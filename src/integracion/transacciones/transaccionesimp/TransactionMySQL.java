@@ -1,7 +1,9 @@
 /**
  * 
  */
-package integracion.transacciones;
+package integracion.transacciones.transaccionesimp;
+
+import integracion.transacciones.Transaction;
 
 import java.sql.Connection;
 
@@ -46,7 +48,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void start() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apéndice de método generado automáticamente
 
 		// end-user-code
 	}
@@ -58,7 +60,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void commit() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apéndice de método generado autom�ticamente
 
 		// end-user-code
 	}
@@ -70,7 +72,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void rollback() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apéndice de método generado autom�ticamente
 
 		// end-user-code
 	}
@@ -82,7 +84,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public Connection getResource() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apéndice de método generado autom�ticamente
 		return null;
 		// end-user-code
 	}
@@ -94,7 +96,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void lock() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		// TODO Apéndice de método generado autom�ticamente
 
 		// end-user-code
 	}
