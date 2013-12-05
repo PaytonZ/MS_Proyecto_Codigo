@@ -4,10 +4,12 @@
 package integracion.clientes.dao.imp;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.PreparedStatement;
+
+
 
 import integracion.clientes.dao.DAOCliente;
 import integracion.transacciones.transaction.Transaction;
@@ -41,12 +43,14 @@ public class DAOClienteImp implements DAOCliente {
 		
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection  c = t.getResource();
+	
 		
 		
 		
 		PreparedStatement addcliente = null;
 		try{
-			addcliente = (PreparedStatement) c.prepareStatement(addClienteQuery);
+			addcliente = c.prepareStatement(addClienteQuery);
+			
 			addcliente.setString(1, Cliente.getDNI());
 			addcliente.setString(2,Cliente.getNombre());
 			addcliente.setString(3,Cliente.getDireccion());

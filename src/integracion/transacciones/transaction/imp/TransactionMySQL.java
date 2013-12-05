@@ -98,7 +98,7 @@ public class TransactionMySQL implements Transaction {
 	public Connection getResource() {
 		// begin-user-code
 		// TODO Apéndice de método generado autom�ticamente
-		return null;
+		return jdbConnection;
 		// end-user-code
 	}
 
