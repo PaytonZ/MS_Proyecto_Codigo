@@ -1,7 +1,10 @@
 /**
  * 
  */
-package integracion.transacciones;
+package integracion.transacciones.transactionManager;
+
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.imp.TransactionManagerImp;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -21,23 +24,13 @@ public abstract class TransactionManager {
 	 * @return el transactionManagerInstance
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public static TransactionManager getTransactionManagerInstance() {
-		// begin-user-code
-		return transactionManagerInstance;
-		// end-user-code
+	private synchronized static void createTransactionManager()
+	{
+		if(transactionManagerInstance==null)
+			transactionManagerInstance= new TransactionManagerImp();
 	}
-
-	/** 
-	 * @param transactionManagerInstance el transactionManagerInstance a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setTransactionManagerInstance(
-			TransactionManager transactionManagerInstance) {
-		// begin-user-code
-		TransactionManager.transactionManagerInstance = transactionManagerInstance;
-		// end-user-code
-	}
-
+	
+		
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -69,9 +62,7 @@ public abstract class TransactionManager {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static TransactionManager getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		createTransactionManager();
+		return transactionManagerInstance;
 	}
 }

@@ -1,11 +1,12 @@
 /**
  * 
  */
-package integracion.transacciones.TransactionManagerimp;
+package integracion.transacciones.transactionManager.imp;
 
-import integracion.transacciones.TransactionManager;
 import java.util.concurrent.ConcurrentHashMap;
-import integracion.transacciones.Transaction;
+
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
 
 /** 
  * <!-- begin-UML-doc -->

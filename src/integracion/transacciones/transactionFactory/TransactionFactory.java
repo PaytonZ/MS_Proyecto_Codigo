@@ -1,7 +1,9 @@
 /**
  * 
  */
-package integracion.transacciones;
+package integracion.transacciones.transactionFactory;
+
+import integracion.transacciones.transaction.Transaction;
 
 /** 
  * <!-- begin-UML-doc -->
