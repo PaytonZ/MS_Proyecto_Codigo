@@ -1,11 +1,11 @@
 /**
  * 
  */
-package negocio.clientes.servicioaplicacion.imp;
+package integracion.clientes.dao.imp;
 
 import java.util.ArrayList;
 
-import negocio.clientes.servicioaplicacion.SAClientes;
+import integracion.clientes.dao.DAOCliente;
 import negocio.clientes.transfer.TransferCliente;
 
 /** 
@@ -14,13 +14,13 @@ import negocio.clientes.transfer.TransferCliente;
  * @author NASAIII
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class SAClientesImp implements SAClientes {
+public class DAOClienteImp implements DAOCliente {
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#anadirCliente(TransferCliente clienteNuevo)
+	 * @see DAOCliente#addCliente(TransferCliente Cliente)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
+	public Integer addCliente(TransferCliente Cliente) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -29,10 +29,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerTodoslosClientes()
+	 * @see DAOCliente#getCliente(Clase idCliente)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> obtenerTodoslosClientes() {
+	public TransferCliente getCliente(Integer idCliente) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -41,10 +41,23 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#actualizarCliente(TransferCliente clienteActualizado)
+	 * @see DAOCliente#deleteCliente(Clase idCliente)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado) {
+	public boolean deleteCliente(Integer idCliente) {
+		// begin-user-code
+		// TODO Ap�ndice de m�todo generado autom�ticamente
+
+		// end-user-code
+		return false;
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see DAOCliente#getAllClientes()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public ArrayList<TransferCliente> getAllClientes() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -53,25 +66,13 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#borrarCliente(Clase idCliente)
+	 * @see DAOCliente#updateCliente(TransferCliente cliente)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer borrarCliente(Integer idCliente) {
+	public boolean updateCliente(TransferCliente cliente) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	 * (sin Javadoc)
-	 * @see SAClientes#obtenerCliente(Clase idCliente)
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public TransferCliente obtenerCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
+		return false;
 		// end-user-code
 	}
 }

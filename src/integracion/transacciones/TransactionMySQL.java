@@ -1,12 +1,9 @@
 /**
  * 
  */
-package negocio.clientes.servicioaplicacion.imp;
+package integracion.transacciones;
 
-import java.util.ArrayList;
-
-import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.transfer.TransferCliente;
+import java.sql.Connection;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,13 +11,76 @@ import negocio.clientes.transfer.TransferCliente;
  * @author NASAIII
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class SAClientesImp implements SAClientes {
+public class TransactionMySQL implements Transaction {
 	/** 
-	 * (sin Javadoc)
-	 * @see SAClientes#anadirCliente(TransferCliente clienteNuevo)
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
+	private Connection jdbConnection;
+
+	/** 
+	 * @return el jdbConnection
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public Connection getJdbConnection() {
+		// begin-user-code
+		return jdbConnection;
+		// end-user-code
+	}
+
+	/** 
+	 * @param jdbConnection el jdbConnection a establecer
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setJdbConnection(Connection jdbConnection) {
+		// begin-user-code
+		this.jdbConnection = jdbConnection;
+		// end-user-code
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see Transaction#start()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void start() {
+		// begin-user-code
+		// TODO Ap�ndice de m�todo generado autom�ticamente
+
+		// end-user-code
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see Transaction#commit()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void commit() {
+		// begin-user-code
+		// TODO Ap�ndice de m�todo generado autom�ticamente
+
+		// end-user-code
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see Transaction#rollback()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void rollback() {
+		// begin-user-code
+		// TODO Ap�ndice de m�todo generado autom�ticamente
+
+		// end-user-code
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see Transaction#getResource()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public Connection getResource() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -29,49 +89,13 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerTodoslosClientes()
+	 * @see Transaction#lock()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> obtenerTodoslosClientes() {
+	public void lock() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
 
-	/** 
-	 * (sin Javadoc)
-	 * @see SAClientes#actualizarCliente(TransferCliente clienteActualizado)
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	 * (sin Javadoc)
-	 * @see SAClientes#borrarCliente(Clase idCliente)
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer borrarCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	 * (sin Javadoc)
-	 * @see SAClientes#obtenerCliente(Clase idCliente)
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public TransferCliente obtenerCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
 		// end-user-code
 	}
 }

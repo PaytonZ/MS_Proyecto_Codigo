@@ -1,12 +1,11 @@
 /**
  * 
  */
-package negocio.clientes.servicioaplicacion.imp;
+package integracion.factorias.factoriaDAO.imp;
 
-import java.util.ArrayList;
-
-import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.transfer.TransferCliente;
+import integracion.factorias.factoriaDAO.FactoriaDAO;
+import integracion.reservas.dao.DAOReserva;
+import integracion.habitaciones.dao.DAOHabitacion;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,13 +13,13 @@ import negocio.clientes.transfer.TransferCliente;
  * @author NASAIII
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class SAClientesImp implements SAClientes {
+public class FactoriaDAOImp extends FactoriaDAO {
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#anadirCliente(TransferCliente clienteNuevo)
+	 * @see FactoriaDAO#generaDAOCliente()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
+	public Object generaDAOCliente() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -29,10 +28,22 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerTodoslosClientes()
+	 * @see FactoriaDAO#generaDAOReserva()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> obtenerTodoslosClientes() {
+	public DAOReserva generaDAOReserva() {
+		// begin-user-code
+		// TODO Apéndice de método generado automáticamente
+		return null;
+		// end-user-code
+	}
+
+	/** 
+	 * (sin Javadoc)
+	 * @see FactoriaDAO#generaDAOHabitacion()
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public DAOHabitacion generaDAOHabitacion() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -41,10 +52,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#actualizarCliente(TransferCliente clienteActualizado)
+	 * @see FactoriaDAO#generaDAOTarea()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado) {
+	public DAOReserva generaDAOTarea() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -53,10 +64,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#borrarCliente(Clase idCliente)
+	 * @see FactoriaDAO#generaDAOEmpleado()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer borrarCliente(Integer idCliente) {
+	public Object generaDAOEmpleado() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -65,10 +76,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerCliente(Clase idCliente)
+	 * @see FactoriaDAO#generaDAODepartamento()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(Integer idCliente) {
+	public Object generaDAODepartamento() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;

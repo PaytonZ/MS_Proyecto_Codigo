@@ -1,12 +1,12 @@
 /**
  * 
  */
-package negocio.clientes.servicioaplicacion.imp;
+package integracion.reservas.dao.imp;
 
 import java.util.ArrayList;
 
-import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.transfer.TransferCliente;
+import integracion.reservas.dao.DAOReserva;
+import negocio.reservas.transfer.TransferReserva;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -14,13 +14,13 @@ import negocio.clientes.transfer.TransferCliente;
  * @author NASAIII
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class SAClientesImp implements SAClientes {
+public class DAOReservaImp implements DAOReserva {
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#anadirCliente(TransferCliente clienteNuevo)
+	 * @see DAOReserva#addReserva(TransferReserva reserva)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
+	public Integer addReserva(TransferReserva reserva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -29,10 +29,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerTodoslosClientes()
+	 * @see DAOReserva#deleteReserva(Integer idReserva)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> obtenerTodoslosClientes() {
+	public Boolean deleteReserva(Integer idReserva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -41,10 +41,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#actualizarCliente(TransferCliente clienteActualizado)
+	 * @see DAOReserva#getAllReservas()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado) {
+	public ArrayList<TransferReserva> getAllReservas() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -53,10 +53,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#borrarCliente(Clase idCliente)
+	 * @see DAOReserva#getReserva(Integer idReserva)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer borrarCliente(Integer idCliente) {
+	public TransferReserva getReserva(Integer idReserva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -65,10 +65,10 @@ public class SAClientesImp implements SAClientes {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see SAClientes#obtenerCliente(Clase idCliente)
+	 * @see DAOReserva#updateReserva(TransferReserva reserva)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(Integer idCliente) {
+	public Boolean updateReserva(TransferReserva reserva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
