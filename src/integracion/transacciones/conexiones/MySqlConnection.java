@@ -22,27 +22,30 @@ public class MySqlConnection {
 	 */
 	private String username="Alex";
 	private String password="zabalamanco";
+	private String dbms="mysql";
+	private String serverName="test.motopoliza.com";
+	private int portNumber=3306;
+	private String dbname="alex";
+		
 	
 	
 	public Connection getConnection() {
 		 Connection conn = null;
 		    Properties connectionProps = new Properties();
-		    connectionProps.put("user", this.userName);
+		    connectionProps.put("user", this.username);
 		    connectionProps.put("password", this.password);
 
-		    if (this.dbms.equals("mysql")) {
-		        conn = DriverManager.getConnection(
-		                   "jdbc:" + this.dbms + "://" +
-		                   this.serverName +
-		                   ":" + this.portNumber + "/",
-		                   connectionProps);
-		    } else if (this.dbms.equals("derby")) {
-		        conn = DriverManager.getConnection(
-		                   "jdbc:" + this.dbms + ":" +
-		                   this.dbName +
-		                   ";create=true",
-		                   connectionProps);
-		    }
+		           try {
+					conn = DriverManager.getConnection(
+					           "jdbc:" + this.dbms + "://" +
+					           this.serverName +
+					           ":" + this.portNumber + "/" + dbname,
+					           connectionProps);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    
 		    System.out.println("Connected to database");
 		    return conn;
 	}
