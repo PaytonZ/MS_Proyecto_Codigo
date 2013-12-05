@@ -3,23 +3,26 @@
  */
 package presentacion.tareas;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author NASAIII
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class GUITareasImp extends GUITareas {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameAltaTareas frameAltaTareas;
 
-	/** 
+	/**
 	 * @return el frameAltaTareas
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameAltaTareas getFrameAltaTareas() {
 		// begin-user-code
@@ -27,9 +30,11 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameAltaTareas el frameAltaTareas a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameAltaTareas
+	 *            el frameAltaTareas a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameAltaTareas(FrameAltaTareas frameAltaTareas) {
 		// begin-user-code
@@ -37,16 +42,18 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameBajaTareas frameBajaTareas;
 
-	/** 
+	/**
 	 * @return el frameBajaTareas
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameBajaTareas getFrameBajaTareas() {
 		// begin-user-code
@@ -54,9 +61,11 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameBajaTareas el frameBajaTareas a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameBajaTareas
+	 *            el frameBajaTareas a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameBajaTareas(FrameBajaTareas frameBajaTareas) {
 		// begin-user-code
@@ -64,16 +73,18 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaMultipleTareas frameConsultaMultiplesTareas;
 
-	/** 
+	/**
 	 * @return el frameConsultaMultiplesTareas
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaMultipleTareas getFrameConsultaMultiplesTareas() {
 		// begin-user-code
@@ -81,9 +92,11 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaMultiplesTareas el frameConsultaMultiplesTareas a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaMultiplesTareas
+	 *            el frameConsultaMultiplesTareas a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaMultiplesTareas(
 			FrameConsultaMultipleTareas frameConsultaMultiplesTareas) {
@@ -92,16 +105,18 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaTarea frameConsultaTareas;
 
-	/** 
+	/**
 	 * @return el frameConsultaTareas
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaTarea getFrameConsultaTareas() {
 		// begin-user-code
@@ -109,9 +124,11 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaTareas el frameConsultaTareas a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaTareas
+	 *            el frameConsultaTareas a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaTareas(FrameConsultaTarea frameConsultaTareas) {
 		// begin-user-code
@@ -119,16 +136,18 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameModificacionTareas frameModificacionTareas;
 
-	/** 
+	/**
 	 * @return el frameModificacionTareas
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameModificacionTareas getFrameModificacionTareas() {
 		// begin-user-code
@@ -136,9 +155,11 @@ public class GUITareasImp extends GUITareas {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameModificacionTareas el frameModificacionTareas a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameModificacionTareas
+	 *            el frameModificacionTareas a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameModificacionTareas(
 			FrameModificacionTareas frameModificacionTareas) {

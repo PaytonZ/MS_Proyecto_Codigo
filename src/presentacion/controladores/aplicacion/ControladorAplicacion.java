@@ -3,23 +3,26 @@
  */
 package presentacion.controladores.aplicacion;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author NASAIII
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public abstract class ControladorAplicacion {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private static ControladorAplicacion controladorAplicacionInstance;
 
-	/** 
+	/**
 	 * @return el controladorAplicacionInstance
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static ControladorAplicacion getControladorAplicacionInstance() {
 		// begin-user-code
@@ -27,9 +30,11 @@ public abstract class ControladorAplicacion {
 		// end-user-code
 	}
 
-	/** 
-	 * @param controladorAplicacionInstance el controladorAplicacionInstance a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param controladorAplicacionInstance
+	 *            el controladorAplicacionInstance a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static void setControladorAplicacionInstance(
 			ControladorAplicacion controladorAplicacionInstance) {
@@ -38,11 +43,12 @@ public abstract class ControladorAplicacion {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
 	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static ControladorAplicacion getInstance() {
 		// begin-user-code
@@ -51,12 +57,13 @@ public abstract class ControladorAplicacion {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
 	 * @param evento
 	 * @param datos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract void handleRequest(Integer evento, Object datos);
 }

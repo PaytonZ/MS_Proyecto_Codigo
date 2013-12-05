@@ -3,23 +3,26 @@
  */
 package presentacion.departamentos;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author NASAIII
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class GUIDepartamentosImp extends GUIDepartamentos {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameModificacionDepartamentos frameModificacionDepartamentos;
 
-	/** 
+	/**
 	 * @return el frameModificacionDepartamentos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameModificacionDepartamentos getFrameModificacionDepartamentos() {
 		// begin-user-code
@@ -27,9 +30,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameModificacionDepartamentos el frameModificacionDepartamentos a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameModificacionDepartamentos
+	 *            el frameModificacionDepartamentos a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameModificacionDepartamentos(
 			FrameModificacionDepartamentos frameModificacionDepartamentos) {
@@ -38,16 +43,18 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaMultiplesDepartamentos frameConsultaMultiplesDepartamentos;
 
-	/** 
+	/**
 	 * @return el frameConsultaMultiplesDepartamentos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaMultiplesDepartamentos getFrameConsultaMultiplesDepartamentos() {
 		// begin-user-code
@@ -55,9 +62,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaMultiplesDepartamentos el frameConsultaMultiplesDepartamentos a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaMultiplesDepartamentos
+	 *            el frameConsultaMultiplesDepartamentos a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaMultiplesDepartamentos(
 			FrameConsultaMultiplesDepartamentos frameConsultaMultiplesDepartamentos) {
@@ -66,16 +75,18 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaDepartamentos frameConsultaDepartamentos;
 
-	/** 
+	/**
 	 * @return el frameConsultaDepartamentos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaDepartamentos getFrameConsultaDepartamentos() {
 		// begin-user-code
@@ -83,9 +94,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaDepartamentos el frameConsultaDepartamentos a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaDepartamentos
+	 *            el frameConsultaDepartamentos a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaDepartamentos(
 			FrameConsultaDepartamentos frameConsultaDepartamentos) {
@@ -94,16 +107,18 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameBajaDepartamentos frameBajaDepartamentos;
 
-	/** 
+	/**
 	 * @return el frameBajaDepartamentos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameBajaDepartamentos getFrameBajaDepartamentos() {
 		// begin-user-code
@@ -111,9 +126,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameBajaDepartamentos el frameBajaDepartamentos a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameBajaDepartamentos
+	 *            el frameBajaDepartamentos a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameBajaDepartamentos(
 			FrameBajaDepartamentos frameBajaDepartamentos) {
@@ -122,16 +139,18 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameAltaDepartamentos frameAltaDepartamentos;
 
-	/** 
+	/**
 	 * @return el frameAltaDepartamentos
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameAltaDepartamentos getFrameAltaDepartamentos() {
 		// begin-user-code
@@ -139,9 +158,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameAltaDepartamentos el frameAltaDepartamentos a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameAltaDepartamentos
+	 *            el frameAltaDepartamentos a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameAltaDepartamentos(
 			FrameAltaDepartamentos frameAltaDepartamentos) {
@@ -150,10 +171,11 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void update() {
 		// begin-user-code

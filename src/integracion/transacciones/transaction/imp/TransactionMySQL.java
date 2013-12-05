@@ -7,23 +7,26 @@ import integracion.transacciones.transaction.Transaction;
 
 import java.sql.Connection;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author NASAIII
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class TransactionMySQL implements Transaction {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private Connection jdbConnection;
 
-	/** 
+	/**
 	 * @return el jdbConnection
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Connection getJdbConnection() {
 		// begin-user-code
@@ -31,9 +34,11 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
-	 * @param jdbConnection el jdbConnection a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param jdbConnection
+	 *            el jdbConnection a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setJdbConnection(Connection jdbConnection) {
 		// begin-user-code
@@ -41,10 +46,12 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see Transaction#start()
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void start() {
 		// begin-user-code
@@ -53,10 +60,12 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see Transaction#commit()
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void commit() {
 		// begin-user-code
@@ -65,10 +74,12 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see Transaction#rollback()
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void rollback() {
 		// begin-user-code
@@ -77,10 +88,12 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see Transaction#getResource()
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Connection getResource() {
 		// begin-user-code
@@ -89,10 +102,12 @@ public class TransactionMySQL implements Transaction {
 		// end-user-code
 	}
 
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see Transaction#lock()
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void lock() {
 		// begin-user-code

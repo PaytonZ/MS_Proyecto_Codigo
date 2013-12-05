@@ -3,23 +3,26 @@
  */
 package presentacion.empleados;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author NASAIII
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class GUIEmpleadosImp {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameBajaTareaEmpleados frameBajaTareaEmpleados;
 
-	/** 
+	/**
 	 * @return el frameBajaTareaEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameBajaTareaEmpleados getFrameBajaTareaEmpleados() {
 		// begin-user-code
@@ -27,9 +30,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameBajaTareaEmpleados el frameBajaTareaEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameBajaTareaEmpleados
+	 *            el frameBajaTareaEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameBajaTareaEmpleados(
 			FrameBajaTareaEmpleados frameBajaTareaEmpleados) {
@@ -38,16 +43,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameAltaTareaEmpleados frameAltaTareaEmpleados;
 
-	/** 
+	/**
 	 * @return el frameAltaTareaEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameAltaTareaEmpleados getFrameAltaTareaEmpleados() {
 		// begin-user-code
@@ -55,9 +62,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameAltaTareaEmpleados el frameAltaTareaEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameAltaTareaEmpleados
+	 *            el frameAltaTareaEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameAltaTareaEmpleados(
 			FrameAltaTareaEmpleados frameAltaTareaEmpleados) {
@@ -66,16 +75,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameBajaEmpleados frameBajaEmpleados;
 
-	/** 
+	/**
 	 * @return el frameBajaEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameBajaEmpleados getFrameBajaEmpleados() {
 		// begin-user-code
@@ -83,9 +94,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameBajaEmpleados el frameBajaEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameBajaEmpleados
+	 *            el frameBajaEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameBajaEmpleados(FrameBajaEmpleados frameBajaEmpleados) {
 		// begin-user-code
@@ -93,16 +106,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaMultipleEmpleados frameConsultaMultipleEmpleados;
 
-	/** 
+	/**
 	 * @return el frameConsultaM�ltipleEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaMultipleEmpleados getFrameConsultaMultipleEmpleados() {
 		// begin-user-code
@@ -110,9 +125,12 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaM�ltipleEmpleados el frameConsultaM�ltipleEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaM
+	 *            �ltipleEmpleados el frameConsultaM�ltipleEmpleados a
+	 *            establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaMultipleEmpleados(
 			FrameConsultaMultipleEmpleados frameConsultaMultipleEmpleados) {
@@ -121,16 +139,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameModificacionEmpleados frameModificacionEmpleados;
 
-	/** 
+	/**
 	 * @return el frameModificaci�nEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameModificacionEmpleados getFrameModificacionEmpleados() {
 		// begin-user-code
@@ -138,9 +158,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameModificaci�nEmpleados el frameModificaci�nEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameModificaci
+	 *            �nEmpleados el frameModificaci�nEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameModificacionEmpleados(
 			FrameModificacionEmpleados frameModificacionEmpleados) {
@@ -149,16 +171,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameConsultaEmpleados frameConsultaEmpleados;
 
-	/** 
+	/**
 	 * @return el frameConsultaEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameConsultaEmpleados getFrameConsultaEmpleados() {
 		// begin-user-code
@@ -166,9 +190,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameConsultaEmpleados el frameConsultaEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameConsultaEmpleados
+	 *            el frameConsultaEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameConsultaEmpleados(
 			FrameConsultaEmpleados frameConsultaEmpleados) {
@@ -177,16 +203,18 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private FrameAltaEmpleados frameAltaEmpleados;
 
-	/** 
+	/**
 	 * @return el frameAltaEmpleados
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameAltaEmpleados getFrameAltaEmpleados() {
 		// begin-user-code
@@ -194,9 +222,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * @param frameAltaEmpleados el frameAltaEmpleados a establecer
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * @param frameAltaEmpleados
+	 *            el frameAltaEmpleados a establecer
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setFrameAltaEmpleados(FrameAltaEmpleados frameAltaEmpleados) {
 		// begin-user-code
@@ -204,10 +234,11 @@ public class GUIEmpleadosImp {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void update() {
 		// begin-user-code
