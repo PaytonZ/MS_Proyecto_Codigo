@@ -3,7 +3,9 @@
  */
 package integracion.transacciones.conexiones;
 
-import java.sql.Connection;
+import java.sql.*;
+import java.util.Properties;
+
 
 /** 
  * <!-- begin-UML-doc -->
@@ -18,10 +20,30 @@ public class MySqlConnection {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	private String username="Alex";
+	private String password="zabalamanco";
+	
+	
 	public Connection getConnection() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		 Connection conn = null;
+		    Properties connectionProps = new Properties();
+		    connectionProps.put("user", this.userName);
+		    connectionProps.put("password", this.password);
+
+		    if (this.dbms.equals("mysql")) {
+		        conn = DriverManager.getConnection(
+		                   "jdbc:" + this.dbms + "://" +
+		                   this.serverName +
+		                   ":" + this.portNumber + "/",
+		                   connectionProps);
+		    } else if (this.dbms.equals("derby")) {
+		        conn = DriverManager.getConnection(
+		                   "jdbc:" + this.dbms + ":" +
+		                   this.dbName +
+		                   ";create=true",
+		                   connectionProps);
+		    }
+		    System.out.println("Connected to database");
+		    return conn;
 	}
 }
