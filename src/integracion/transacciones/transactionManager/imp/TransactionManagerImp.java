@@ -23,7 +23,7 @@ public class TransactionManagerImp extends TransactionManager {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private ConcurrentHashMap<Long, Transaction> mapa;
+	private ConcurrentHashMap<Long, Transaction> mapa = new ConcurrentHashMap<>();
 
 	/**
 	 * (sin Javadoc)

@@ -3,9 +3,15 @@
  */
 package integracion.clientes.dao.imp;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import integracion.clientes.dao.DAOCliente;
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
 import negocio.clientes.transfer.TransferCliente;
 
 /**
@@ -15,6 +21,9 @@ import negocio.clientes.transfer.TransferCliente;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+
+
+
 public class DAOClienteImp implements DAOCliente {
 	/**
 	 * (sin Javadoc)
@@ -23,12 +32,51 @@ public class DAOClienteImp implements DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	
+	private final String addClienteQuery= "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , activo , telefono )"
+			+ 											"VALUES (?, ? , ? , ? , ? , ? , ? )" ;
+			
+	
 	public Integer addCliente(TransferCliente Cliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
+		
+		Transaction t = TransactionManager.getInstance().getTransaccion();
+		Connection  c = t.getResource();
+		
+		
+		
+		PreparedStatement addcliente = null;
+		try{
+			addcliente = (PreparedStatement) c.prepareStatement(addClienteQuery);
+			addcliente.setString(1, Cliente.getDNI());
+			addcliente.setString(2,Cliente.getNombre());
+			addcliente.setString(3,Cliente.getDireccion());
+			addcliente.setString(4,Cliente.getPrimerApellido());
+			addcliente.setString(5,Cliente.getSegundoApellido());
+			addcliente.setBoolean(6,true);
+			addcliente.setInt(7,Cliente.getNumTelefono());
+			
+			addcliente.execute();
+			
+			
+			
+			
+			
+			
+		}catch(SQLException e )
+		{
+			e.printStackTrace();
+		}
+		finally { 
+		}
+			
+		
+		
+		return -1;
+		}
+		
+		
+		
+
 
 	/**
 	 * (sin Javadoc)

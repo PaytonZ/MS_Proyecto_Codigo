@@ -43,7 +43,7 @@ public class MySqlConnection {
 			e.printStackTrace();
 		}
 
-		System.out.println("Connected to database");
+		
 		return conn;
 	}
 }

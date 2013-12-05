@@ -17,7 +17,7 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object ID;
+	private Integer ID;
 
 	/**
 	 * @return el ID
@@ -36,7 +36,7 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setID(Object ID) {
+	public void setID(Integer ID) {
 		// begin-user-code
 		this.ID = ID;
 		// end-user-code
@@ -203,14 +203,14 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object direccion;
+	private String direccion;
 
 	/**
 	 * @return el direccion
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object getDireccion() {
+	public String getDireccion() {
 		// begin-user-code
 		return direccion;
 		// end-user-code
@@ -222,113 +222,13 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setDireccion(Object direccion) {
+	public void setDireccion(String direccion) {
 		// begin-user-code
 		this.direccion = direccion;
 		// end-user-code
 	}
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void getId() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
 
-		// end-user-code
-	}
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setId() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setDNI() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setNombre() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setNumTelefono() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setPrimerApellido() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setSegundoApellido() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setDireccion() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
+	
 }
