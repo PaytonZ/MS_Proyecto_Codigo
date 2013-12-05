@@ -1,7 +1,9 @@
 /**
  * 
  */
-package integracion.transacciones.transaction;
+package integracion.transacciones.transaction.imp;
+
+import integracion.transacciones.transaction.Transaction;
 
 import java.sql.Connection;
 
