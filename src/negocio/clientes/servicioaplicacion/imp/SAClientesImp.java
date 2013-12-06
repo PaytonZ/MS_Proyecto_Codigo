@@ -3,6 +3,9 @@
  */
 package negocio.clientes.servicioaplicacion.imp;
 
+import integracion.clientes.dao.DAOCliente;
+import integracion.factorias.factoriaDAO.FactoriaDAO;
+
 import java.util.ArrayList;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
@@ -24,10 +27,16 @@ public class SAClientesImp implements SAClientes {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		
+		
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		
+		Integer idCliente = dao.addCliente(clienteNuevo);
+		
+		clienteNuevo = dao.getCliente(idCliente);
+		
+		return clienteNuevo;
 	}
 
 	/**

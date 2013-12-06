@@ -57,12 +57,16 @@ public class DAOClienteImp implements DAOCliente {
 			addcliente.setString(5, cliente.getSegundoApellido());
 			addcliente.setInt(6, cliente.getNumTelefono());
 
-			if (addcliente.execute()) {
+			if ( addcliente.executeUpdate() == 1 ) {
 				
 				PreparedStatement getClienteDNI = c.prepareStatement(getClientebyDNIQuery);
 				getClienteDNI.setString(1, cliente.getDNI());
 				
-				idCliente = getClienteDNI.executeQuery().getInt("idClientes");
+				ResultSet resultado = getClienteDNI.executeQuery();
+				
+				if ( resultado.next() )
+				
+				idCliente = resultado.getInt("idClientes");
 			}
 
 		} catch (SQLException e) {

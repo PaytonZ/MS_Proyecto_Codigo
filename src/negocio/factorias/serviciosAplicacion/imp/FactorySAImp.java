@@ -5,11 +5,17 @@ package negocio.factorias.serviciosAplicacion.imp;
 
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.clientes.servicioaplicacion.SAClientes;
+import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.reservas.servicioaplicacion.SAReservas;
+import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
+import negocio.departamentos.servicioaplicacion.imp.SAdepartamentosImp;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
+import negocio.empleados.servicioaplicacion.imp.SAempleadosImp;
 import negocio.tareas.servicioaplicacion.SATareas;
+import negocio.tareas.servicioaplicacion.imp.SATareasImp;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
+import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -27,10 +33,8 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAClientes getSAClientes() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		return new SAClientesImp();
 	}
 
 	/**
@@ -41,10 +45,8 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAReservas getSAReservas() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		return new SAReservasImp();
 	}
 
 	/**
@@ -55,10 +57,8 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SADepartamentos getSADepartamentos() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		return new SAdepartamentosImp();
 	}
 
 	/**
@@ -69,10 +69,8 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAEmpleados getSAEmpleados() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		return new SAempleadosImp();
 	}
 
 	/**
@@ -83,10 +81,8 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SATareas getSATareas() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		return new SATareasImp();
 	}
 
 	/**
@@ -97,9 +93,7 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAHabitaciones getSAHabitaciones() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		return new SAHabitacionesImp();
 	}
 }

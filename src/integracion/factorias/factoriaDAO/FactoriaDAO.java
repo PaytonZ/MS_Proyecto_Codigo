@@ -4,6 +4,8 @@
 package integracion.factorias.factoriaDAO;
 
 import integracion.reservas.dao.DAOReserva;
+import integracion.clientes.dao.DAOCliente;
+import integracion.factorias.factoriaDAO.imp.FactoriaDAOImp;
 import integracion.habitaciones.dao.DAOHabitacion;
 
 /**
@@ -23,26 +25,19 @@ public abstract class FactoriaDAO {
 	private static FactoriaDAO factoriaDAOInstance;
 
 	/**
-	 * @return el factoriaDAOInstance
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public static FactoriaDAO getFactoriaDAOInstance() {
-		// begin-user-code
+	public static FactoriaDAO getInstance() {
+		
+		if ( factoriaDAOInstance == null ) {
+			factoriaDAOInstance = new FactoriaDAOImp();
+		}
+		
 		return factoriaDAOInstance;
-		// end-user-code
-	}
-
-	/**
-	 * @param factoriaDAOInstance
-	 *            el factoriaDAOInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setFactoriaDAOInstance(FactoriaDAO factoriaDAOInstance) {
-		// begin-user-code
-		FactoriaDAO.factoriaDAOInstance = factoriaDAOInstance;
-		// end-user-code
 	}
 
 	/**
@@ -52,7 +47,7 @@ public abstract class FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Object generaDAOCliente();
+	public abstract DAOCliente generaDAOCliente();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -62,20 +57,6 @@ public abstract class FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract DAOReserva generaDAOReserva();
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static FactoriaDAO getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
-	}
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

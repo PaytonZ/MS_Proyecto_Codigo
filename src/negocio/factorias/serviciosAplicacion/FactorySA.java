@@ -28,21 +28,6 @@ public abstract class FactorySA {
 	private static FactorySA factorySAinstance;
 
 	/**
-	 * @return el factorySAinstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static FactorySA getFactorySAinstance() {
-
-		if ( factorySAinstance == null ) {
-			
-			factorySAinstance = new FactorySAImp();
-		}
-		
-		return factorySAinstance;
-	}
-
-	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
@@ -50,10 +35,13 @@ public abstract class FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static FactorySA getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		if ( factorySAinstance == null ) {
+			
+			factorySAinstance = new FactorySAImp();
+		}
+		
+		return factorySAinstance;
 	}
 
 	/**

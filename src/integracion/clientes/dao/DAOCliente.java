@@ -15,7 +15,7 @@ import negocio.clientes.transfer.TransferCliente;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public interface DAOCliente {
-	/**O
+	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param Cliente
