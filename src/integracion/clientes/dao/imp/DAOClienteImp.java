@@ -3,16 +3,19 @@
  */
 package integracion.clientes.dao.imp;
 
+import integracion.clientes.dao.DAOCliente;
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-import integracion.clientes.dao.DAOCliente;
-import integracion.transacciones.transaction.Transaction;
-import integracion.transacciones.transactionManager.TransactionManager;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.departamentos.transfer.transferDepartamento;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -30,10 +33,13 @@ public class DAOClienteImp implements DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , activo , telefono ) VALUES (?, ? , ? , ? , ? , ? , ? )";
+	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
 	private final String getClientebyDNIQuery ="SELECT idClientes FROM clientes WHERE DNI = ? AND activo = true";
 	private final String getClienteQuery = "SELECT * FROM clientes WHERE id = ? AND activado = true";
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idClientes = ?";
+	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true";
+	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE id = ?";
+	
 
 	public Integer addCliente(TransferCliente cliente) {
 
@@ -42,17 +48,15 @@ public class DAOClienteImp implements DAOCliente {
 
 		Integer idCliente = null;
 		
-		PreparedStatement addcliente = null;
 		try {
-			addcliente = c.prepareStatement(addClienteQuery);
+			PreparedStatement addcliente = c.prepareStatement(addClienteQuery);
 
 			addcliente.setString(1, cliente.getDNI());
 			addcliente.setString(2, cliente.getNombre());
 			addcliente.setString(3, cliente.getDireccion());
 			addcliente.setString(4, cliente.getPrimerApellido());
 			addcliente.setString(5, cliente.getSegundoApellido());
-			addcliente.setBoolean(6, true);
-			addcliente.setString(7, cliente.getNumTelefono());
+			addcliente.setString(6, cliente.getNumTelefono());
 
 			if (addcliente.execute()) {
 				
@@ -84,10 +88,8 @@ public class DAOClienteImp implements DAOCliente {
 		
 		TransferCliente cliente = null;
 		
-		PreparedStatement preparedStatement;
-		
 		try {
-			preparedStatement = connection.prepareStatement(getClienteQuery);
+			PreparedStatement preparedStatement = connection.prepareStatement(getClienteQuery);
 			preparedStatement.setInt(1, idCliente);
 			
 			ResultSet rowCliente = preparedStatement.executeQuery();
@@ -122,11 +124,9 @@ public class DAOClienteImp implements DAOCliente {
 		Transaction transaction = TransactionManager.getInstance().getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 		
-		PreparedStatement preparedStatement;
-		
 		boolean correcto = false;
 		try {
-			preparedStatement = connection.prepareStatement(getClienteQuery);
+			PreparedStatement preparedStatement = connection.prepareStatement(deleteClienteQuery);
 			preparedStatement.setInt(1, idCliente);
 			
 			correcto = (preparedStatement.executeUpdate() == 1);
@@ -134,8 +134,6 @@ public class DAOClienteImp implements DAOCliente {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 		return correcto;
 	}
@@ -147,11 +145,38 @@ public class DAOClienteImp implements DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> getAllClientes() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public List<TransferCliente> getAllClientes() {
+		
+		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+		
+		List<TransferCliente> listaClientes = new ArrayList<>();
+		
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(getAllClientesQuery);
+
+			ResultSet rowsClientes = preparedStatement.executeQuery();
+			
+			while ( rowsClientes.next() ) {
+				
+				TransferCliente cliente = new TransferCliente();
+				
+				cliente.setID( rowsClientes.getInt("idClientes") );
+				cliente.setDNI( rowsClientes.getString("DNI") );
+				cliente.setDireccion( rowsClientes.getString("direccion") );
+				cliente.setNombre( rowsClientes.getString("nombre") );
+				cliente.setPrimerApellido( rowsClientes.getString("1apellido") );
+				cliente.setSegundoApellido( rowsClientes.getString("2apellido") );
+				cliente.setNumTelefono( rowsClientes.getString("telefono") );
+				
+				listaClientes.add(cliente);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+		return listaClientes;
 	}
 
 	/**
@@ -162,9 +187,26 @@ public class DAOClienteImp implements DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public boolean updateCliente(TransferCliente cliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return false;
-		// end-user-code
+		
+		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+		
+		boolean correcto = false;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(updateClienteQuery);
+			preparedStatement.setString(1, cliente.getDNI());
+			preparedStatement.setString(2, cliente.getNombre());
+			preparedStatement.setString(3, cliente.getDireccion());
+			preparedStatement.setString(4, cliente.getPrimerApellido());
+			preparedStatement.setString(5, cliente.getSegundoApellido());
+			preparedStatement.setString(6, cliente.getNumTelefono());
+			
+			correcto = (preparedStatement.executeUpdate() == 1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return correcto;
 	}
 }
