@@ -4,11 +4,12 @@
 package negocio.factorias.serviciosAplicacion;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.reservas.servicioaplicacion.SAReservas;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
-import negocio.tareas.servicioaplicacion.SATareas;
+import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
+import negocio.reservas.servicioaplicacion.SAReservas;
+import negocio.tareas.servicioaplicacion.SATareas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -32,21 +33,13 @@ public abstract class FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static FactorySA getFactorySAinstance() {
-		// begin-user-code
-		return factorySAinstance;
-		// end-user-code
-	}
 
-	/**
-	 * @param factorySAinstance
-	 *            el factorySAinstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setFactorySAinstance(FactorySA factorySAinstance) {
-		// begin-user-code
-		FactorySA.factorySAinstance = factorySAinstance;
-		// end-user-code
+		if ( factorySAinstance == null ) {
+			
+			factorySAinstance = new FactorySAImp();
+		}
+		
+		return factorySAinstance;
 	}
 
 	/**
