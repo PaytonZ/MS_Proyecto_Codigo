@@ -160,7 +160,11 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+<<<<<<< HEAD
 	public void setNumTelefono(int i) {
+=======
+	public void setNumTelefono(Integer numTelefono) {
+>>>>>>> 648170a6197f4ee11f332fe032fb0b02cc551d66
 		// begin-user-code
 		this.numTelefono = i;
 		// end-user-code
