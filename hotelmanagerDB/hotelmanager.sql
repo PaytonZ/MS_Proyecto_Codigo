@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `direccion` VARCHAR(45) NULL,
   `1apellido` VARCHAR(45) NULL,
   `2apellido` VARCHAR(45) NULL,
-  `activo` TINYINT(1) 1,
+  `activo` TINYINT(1) DEFAULT 1,
   `telefono` INT(9) NULL,
   PRIMARY KEY (`idclientes`),
   UNIQUE INDEX `DNI_UNIQUE` (`DNI` ASC))
