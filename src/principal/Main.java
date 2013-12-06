@@ -8,7 +8,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println("freakingDaniBOT.");
+		/*que nadie borre esta linea.*/	System.out.println("freakingDaniBOT.");
+		
+		
 		TransferCliente c = new TransferCliente();
 		c.setDNI("123456");
 		c.setDireccion("asdasd");
@@ -19,9 +21,16 @@ public class Main {
 
 		DAOCliente dao = new DAOClienteImp();
 		Integer i = dao.addCliente(c);
+		dao.updateCliente(c);
 		System.out.println(i);
 
 		dao.deleteCliente(i);
+		
+		dao.getAllClientes();
+		
+		dao.getCliente(i);
+		
+		
 
 	}
 

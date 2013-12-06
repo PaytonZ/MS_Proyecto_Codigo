@@ -34,7 +34,7 @@ public class DAOClienteImp implements DAOCliente {
 	 */
 	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
 	private final String getClientebyDNIQuery = "SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true";
-	private final String getClienteQuery = "SELECT * FROM clientes WHERE idcliente = ? AND activado = true";
+	private final String getClienteQuery = "SELECT * FROM clientes WHERE idclientes = ? AND activo = true";
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
 	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true";
 	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE idclientes = ?";
@@ -97,6 +97,7 @@ public class DAOClienteImp implements DAOCliente {
 
 			ResultSet rowCliente = preparedStatement.executeQuery();
 
+			if (rowCliente.next()) {
 			cliente = new TransferCliente();
 
 			cliente.setID(rowCliente.getInt("idClientes"));
@@ -106,7 +107,7 @@ public class DAOClienteImp implements DAOCliente {
 			cliente.setPrimerApellido(rowCliente.getString("1apellido"));
 			cliente.setSegundoApellido(rowCliente.getString("2apellido"));
 			cliente.setNumTelefono(rowCliente.getInt("telefono"));
-
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -155,7 +156,7 @@ public class DAOClienteImp implements DAOCliente {
 				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 
-		List<TransferCliente> listaClientes = new ArrayList<>();
+		List<TransferCliente> listaClientes = new ArrayList<TransferCliente>();
 
 		try {
 			PreparedStatement preparedStatement = connection
@@ -200,6 +201,17 @@ public class DAOClienteImp implements DAOCliente {
 
 		boolean correcto = false;
 		try {
+			Integer idCliente = null;
+			
+			PreparedStatement getClienteDNI = connection
+					.prepareStatement(getClientebyDNIQuery);
+			getClienteDNI.setString(1, cliente.getDNI());
+			ResultSet clienteID = getClienteDNI.executeQuery();
+
+			if (clienteID.next()) {
+				idCliente = clienteID.getInt(1);
+			}
+			
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(updateClienteQuery);
 			preparedStatement.setString(1, cliente.getDNI());
@@ -208,11 +220,16 @@ public class DAOClienteImp implements DAOCliente {
 			preparedStatement.setString(4, cliente.getPrimerApellido());
 			preparedStatement.setString(5, cliente.getSegundoApellido());
 			preparedStatement.setInt(6, cliente.getNumTelefono());
+			preparedStatement.setInt(7,idCliente);
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		finally
+		{
+			
 		}
 
 		return correcto;
