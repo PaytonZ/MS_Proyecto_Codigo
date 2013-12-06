@@ -43,7 +43,6 @@ public class MySqlConnection {
 			e.printStackTrace();
 		}
 
-		
 		return conn;
 	}
 }

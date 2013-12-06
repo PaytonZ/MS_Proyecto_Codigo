@@ -10,16 +10,19 @@ public class Main {
 
 		System.out.println("freakingDaniBOT.");
 		TransferCliente c = new TransferCliente();
-		c.setDNI("111122");
+		c.setDNI("123456");
 		c.setDireccion("asdasd");
 		c.setNombre("asdasd");
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
-		
+
 		DAOCliente dao = new DAOClienteImp();
-		dao.addCliente(c);
-		
+		Integer i = dao.addCliente(c);
+		System.out.println(i);
+
+		dao.deleteCliente(i);
+
 	}
 
 }
