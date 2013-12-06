@@ -27,9 +27,9 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public DAOCliente generaDAOCliente() {
-	
+
 		return new DAOClienteImp();
-		
+
 	}
 
 	/**
@@ -51,9 +51,9 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public DAOHabitacion generaDAOHabitacion() {
-		
+
 		return new DAOHabitacionImp();
-		
+
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package integracion.dao;
+package test.integracion.dao;
 
 import static org.junit.Assert.assertNotNull;
 
