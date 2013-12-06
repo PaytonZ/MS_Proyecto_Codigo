@@ -5,11 +5,9 @@ package integracion.clientes.dao.imp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
-
 
 import integracion.clientes.dao.DAOCliente;
 import integracion.transacciones.transaction.Transaction;
@@ -24,8 +22,6 @@ import negocio.clientes.transfer.TransferCliente;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 
-
-
 public class DAOClienteImp implements DAOCliente {
 	/**
 	 * (sin Javadoc)
@@ -34,53 +30,45 @@ public class DAOClienteImp implements DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	
-	private final String addClienteQuery= "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , activo , telefono )"
-			+ 											"VALUES (?, ? , ? , ? , ? , ? , ? )" ;
-			
-	
-	public Integer addCliente(TransferCliente Cliente) {
-		
+	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , activo , telefono ) VALUES (?, ? , ? , ? , ? , ? , ? )";
+	private final String getClientebyDNIQuery ="SELECT idClientes FROM clientes WHERE DNI = ? AND activo = true";
+	private final String getClienteQuery = "SELECT * FROM clientes WHERE id = ? AND activado = true";
+	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idClientes = ?";
+
+	public Integer addCliente(TransferCliente cliente) {
+
 		Transaction t = TransactionManager.getInstance().getTransaccion();
-		Connection  c = t.getResource();
-	
-		
-		
+		Connection c = t.getResource();
+
+		Integer idCliente = null;
 		
 		PreparedStatement addcliente = null;
-		try{
+		try {
 			addcliente = c.prepareStatement(addClienteQuery);
-			
-			addcliente.setString(1, Cliente.getDNI());
-			addcliente.setString(2,Cliente.getNombre());
-			addcliente.setString(3,Cliente.getDireccion());
-			addcliente.setString(4,Cliente.getPrimerApellido());
-			addcliente.setString(5,Cliente.getSegundoApellido());
-			addcliente.setBoolean(6,true);
-			addcliente.setInt(7,Cliente.getNumTelefono());
-			
-			addcliente.execute();
-			
-			
-			
-			
-			
-			
-		}catch(SQLException e )
-		{
-			e.printStackTrace();
-		}
-		finally { 
-		}
-			
-		
-		
-		return -1;
-		}
-		
-		
-		
 
+			addcliente.setString(1, cliente.getDNI());
+			addcliente.setString(2, cliente.getNombre());
+			addcliente.setString(3, cliente.getDireccion());
+			addcliente.setString(4, cliente.getPrimerApellido());
+			addcliente.setString(5, cliente.getSegundoApellido());
+			addcliente.setBoolean(6, true);
+			addcliente.setString(7, cliente.getNumTelefono());
+
+			if (addcliente.execute()) {
+				
+				PreparedStatement getClienteDNI = c.prepareStatement(getClientebyDNIQuery);
+				getClienteDNI.setString(1, cliente.getDNI());
+				
+				idCliente = getClienteDNI.executeQuery().getInt("idClientes");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		return idCliente;
+	}
 
 	/**
 	 * (sin Javadoc)
@@ -90,10 +78,36 @@ public class DAOClienteImp implements DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente getCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+		
+		TransferCliente cliente = null;
+		
+		PreparedStatement preparedStatement;
+		
+		try {
+			preparedStatement = connection.prepareStatement(getClienteQuery);
+			preparedStatement.setInt(1, idCliente);
+			
+			ResultSet rowCliente = preparedStatement.executeQuery();
+			
+			cliente = new TransferCliente();
+			
+			cliente.setID( rowCliente.getInt("idClientes") );
+			cliente.setDNI( rowCliente.getString("DNI") );
+			cliente.setDireccion( rowCliente.getString("direccion") );
+			cliente.setNombre( rowCliente.getString("nombre") );
+			cliente.setPrimerApellido( rowCliente.getString("1apellido") );
+			cliente.setSegundoApellido( rowCliente.getString("2apellido") );
+			cliente.setNumTelefono( rowCliente.getString("telefono") );
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cliente;
 	}
 
 	/**
@@ -104,11 +118,26 @@ public class DAOClienteImp implements DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public boolean deleteCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-		return false;
+		
+		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+		
+		PreparedStatement preparedStatement;
+		
+		boolean correcto = false;
+		try {
+			preparedStatement = connection.prepareStatement(getClienteQuery);
+			preparedStatement.setInt(1, idCliente);
+			
+			correcto = (preparedStatement.executeUpdate() == 1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return correcto;
 	}
 
 	/**

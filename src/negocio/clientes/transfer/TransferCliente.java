@@ -141,14 +141,14 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer numTelefono;
+	private String numTelefono;
 
 	/**
 	 * @return el numTelefono
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getNumTelefono() {
+	public String getNumTelefono() {
 		// begin-user-code
 		return numTelefono;
 		// end-user-code
@@ -160,7 +160,7 @@ public class TransferCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setNumTelefono(Integer numTelefono) {
+	public void setNumTelefono(String numTelefono) {
 		// begin-user-code
 		this.numTelefono = numTelefono;
 		// end-user-code
