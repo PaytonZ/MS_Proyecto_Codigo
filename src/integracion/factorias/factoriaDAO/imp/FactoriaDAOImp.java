@@ -3,9 +3,13 @@
  */
 package integracion.factorias.factoriaDAO.imp;
 
+import integracion.clientes.dao.DAOCliente;
+import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.reservas.dao.DAOReserva;
+import integracion.reservas.dao.imp.DAOReservaImp;
 import integracion.habitaciones.dao.DAOHabitacion;
+import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -22,11 +26,10 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object generaDAOCliente() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public DAOCliente generaDAOCliente() {
+	
+		return new DAOClienteImp();
+		
 	}
 
 	/**
@@ -37,10 +40,7 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public DAOReserva generaDAOReserva() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return new DAOReservaImp();
 	}
 
 	/**
@@ -51,10 +51,9 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public DAOHabitacion generaDAOHabitacion() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		return new DAOHabitacionImp();
+		
 	}
 
 	/**

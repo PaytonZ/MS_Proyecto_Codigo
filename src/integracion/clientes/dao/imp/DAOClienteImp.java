@@ -56,7 +56,7 @@ public class DAOClienteImp implements DAOCliente {
 			addcliente.setString(3, cliente.getDireccion());
 			addcliente.setString(4, cliente.getPrimerApellido());
 			addcliente.setString(5, cliente.getSegundoApellido());
-			addcliente.setString(6, cliente.getNumTelefono());
+			addcliente.setInt(6, cliente.getNumTelefono());
 
 			if (addcliente.execute()) {
 				
@@ -102,7 +102,7 @@ public class DAOClienteImp implements DAOCliente {
 			cliente.setNombre( rowCliente.getString("nombre") );
 			cliente.setPrimerApellido( rowCliente.getString("1apellido") );
 			cliente.setSegundoApellido( rowCliente.getString("2apellido") );
-			cliente.setNumTelefono( rowCliente.getString("telefono") );
+			cliente.setNumTelefono( rowCliente.getInt("telefono") );
 			
 			
 		} catch (SQLException e) {
@@ -167,7 +167,7 @@ public class DAOClienteImp implements DAOCliente {
 				cliente.setNombre( rowsClientes.getString("nombre") );
 				cliente.setPrimerApellido( rowsClientes.getString("1apellido") );
 				cliente.setSegundoApellido( rowsClientes.getString("2apellido") );
-				cliente.setNumTelefono( rowsClientes.getString("telefono") );
+				cliente.setNumTelefono( rowsClientes.getInt("telefono") );
 				
 				listaClientes.add(cliente);
 			}
@@ -199,7 +199,7 @@ public class DAOClienteImp implements DAOCliente {
 			preparedStatement.setString(3, cliente.getDireccion());
 			preparedStatement.setString(4, cliente.getPrimerApellido());
 			preparedStatement.setString(5, cliente.getSegundoApellido());
-			preparedStatement.setString(6, cliente.getNumTelefono());
+			preparedStatement.setInt(6, cliente.getNumTelefono());
 			
 			correcto = (preparedStatement.executeUpdate() == 1);
 			
