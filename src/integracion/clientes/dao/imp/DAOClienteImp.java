@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
-import negocio.departamentos.transfer.transferDepartamento;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -34,11 +33,11 @@ public class DAOClienteImp implements DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
-	private final String getClientebyDNIQuery ="SELECT idClientes FROM clientes WHERE DNI = ? AND activo = true";
-	private final String getClienteQuery = "SELECT * FROM clientes WHERE id = ? AND activado = true";
-	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idClientes = ?";
+	private final String getClientebyDNIQuery ="SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true";
+	private final String getClienteQuery = "SELECT * FROM clientes WHERE idcliente = ? AND activado = true";
+	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
 	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true";
-	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE id = ?";
+	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE idclientes = ?";
 	
 
 	public Integer addCliente(TransferCliente cliente) {
