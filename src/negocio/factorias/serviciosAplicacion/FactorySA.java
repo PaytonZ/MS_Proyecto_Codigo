@@ -36,11 +36,11 @@ public abstract class FactorySA {
 	 */
 	public static FactorySA getInstance() {
 
-		if ( factorySAinstance == null ) {
-			
+		if (factorySAinstance == null) {
+
 			factorySAinstance = new FactorySAImp();
 		}
-		
+
 		return factorySAinstance;
 	}
 

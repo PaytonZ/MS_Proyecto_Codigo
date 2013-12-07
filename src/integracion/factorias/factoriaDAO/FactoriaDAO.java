@@ -32,11 +32,11 @@ public abstract class FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static FactoriaDAO getInstance() {
-		
-		if ( factoriaDAOInstance == null ) {
+
+		if (factoriaDAOInstance == null) {
 			factoriaDAOInstance = new FactoriaDAOImp();
 		}
-		
+
 		return factoriaDAOInstance;
 	}
 

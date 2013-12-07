@@ -27,15 +27,13 @@ public class SAClientesImp implements SAClientes {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
-		
-		
-		
+
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
-		
+
 		Integer idCliente = dao.addCliente(clienteNuevo);
-		
+
 		clienteNuevo = dao.getCliente(idCliente);
-		
+
 		return clienteNuevo;
 	}
 

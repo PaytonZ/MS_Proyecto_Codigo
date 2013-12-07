@@ -69,7 +69,7 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAEmpleados getSAEmpleados() {
-		
+
 		return new SAempleadosImp();
 	}
 
@@ -81,7 +81,7 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SATareas getSATareas() {
-		
+
 		return new SATareasImp();
 	}
 
@@ -93,7 +93,7 @@ public class FactorySAImp extends FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public SAHabitaciones getSAHabitaciones() {
-		
+
 		return new SAHabitacionesImp();
 	}
 }
