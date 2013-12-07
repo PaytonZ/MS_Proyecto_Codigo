@@ -101,11 +101,7 @@ public class TestDAOCliente {
 
 		assertTrue("El cliente no se borró", correcto);
 		
-<<<<<<< HEAD
-		//closeConnection();
-=======
 		commit();
->>>>>>> branch 'master' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
 	}
 
 	private Integer obtenerIdCliente() {
@@ -138,22 +134,7 @@ public class TestDAOCliente {
 	private void commit() {
 
 		TransactionManager tm = TransactionManager.getInstance();
-<<<<<<< HEAD
 		
-		Transaction transaction = tm.getTransaccion();
-		
-		transaction.commit();
-	}
-	
-	@After
-	public void closeConnection() {
-		Transaction transaccion = TransactionManager.getInstance().getTransaccion();
-		Connection connection = transaccion.getResource();
-=======
->>>>>>> branch 'master' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
-		
-<<<<<<< HEAD
-=======
 		Transaction transaction = tm.getTransaccion();
 		
 		transaction.commit();
@@ -163,7 +144,6 @@ public class TestDAOCliente {
 	public void closeConnection() {
 		TransactionManager tm = TransactionManager.getInstance();
 		
->>>>>>> branch 'master' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
 		tm.eliminaTransaccion();
 	}
 }
