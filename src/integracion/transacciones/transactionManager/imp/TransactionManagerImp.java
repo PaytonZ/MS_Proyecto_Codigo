@@ -56,7 +56,9 @@ public class TransactionManagerImp extends TransactionManager {
 	 */
 	public Transaction getTransaccion() {
 
-		return nuevaTransaccion();
+		Long threadId = Thread.currentThread().getId();
+		
+		return mapa.get(threadId);
 	}
 
 	/**

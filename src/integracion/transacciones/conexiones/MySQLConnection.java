@@ -42,7 +42,6 @@ public class MySQLConnection {
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

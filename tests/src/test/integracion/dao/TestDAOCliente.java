@@ -7,22 +7,29 @@ import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
 
 import org.junit.After;
-import org.junit.FixMethodOrder;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
-@FixMethodOrder
 public class TestDAOCliente {
 
+	@Before
+	public void configureTransaction() {
+		
+		TransactionManager tm = TransactionManager.getInstance();
+		
+		Transaction transaction = tm.nuevaTransaccion();
+		
+		transaction.start();
+	}
+	
 	@Test
 	public void anadirCliente() {
 
@@ -30,6 +37,8 @@ public class TestDAOCliente {
 
 		assertNotNull("El cliente no se creo, el id es nulo", idCliente);
 		assertTrue(idCliente > 0);
+		
+		commit();
 	}
 
 	@Test
@@ -43,6 +52,8 @@ public class TestDAOCliente {
 		TransferCliente cliente = dao.getCliente(id);
 
 		assertNotNull("El cliente obtenido es nulo", cliente);
+		
+		commit();
 	}
 
 	@Test
@@ -74,7 +85,7 @@ public class TestDAOCliente {
 
 		assertTrue(correcto);
 		
-		
+		commit();
 	}
 
 	@Test
@@ -87,11 +98,10 @@ public class TestDAOCliente {
 		assertNotNull("El cliente no puede ser nulo para borrarlo", id);
 
 		boolean correcto = dao.deleteCliente(id);
-	
 
 		assertTrue("El cliente no se borró", correcto);
 		
-		closeConnection();
+		commit();
 	}
 
 	private Integer obtenerIdCliente() {
@@ -101,6 +111,8 @@ public class TestDAOCliente {
 		TransferCliente cliente = crearCliente();
 
 		cliente.setID(dao.addCliente(cliente));
+
+		commit();
 
 		return cliente.getID();
 	}
@@ -119,15 +131,19 @@ public class TestDAOCliente {
 		return c;
 	}
 	
-	@After
-	private void closeConnection() {
-		Transaction transaccion = TransactionManager.getInstance().getTransaccion();
-		Connection connection = transaccion.getResource();
+	private void commit() {
+
+		TransactionManager tm = TransactionManager.getInstance();
 		
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Transaction transaction = tm.getTransaccion();
+		
+		transaction.commit();
+	}
+	
+	@After
+	public void closeConnection() {
+		TransactionManager tm = TransactionManager.getInstance();
+		
+		tm.eliminaTransaccion();
 	}
 }
