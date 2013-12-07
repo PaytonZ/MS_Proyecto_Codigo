@@ -4,12 +4,16 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
 
+import org.junit.After;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -86,6 +90,8 @@ public class TestDAOCliente {
 	
 
 		assertTrue("El cliente no se borró", correcto);
+		
+		closeConnection();
 	}
 
 	private Integer obtenerIdCliente() {
@@ -104,15 +110,24 @@ public class TestDAOCliente {
 		TransferCliente c = new TransferCliente();
 
 		c.setDNI(String.valueOf(new Random().nextInt(99999)));
-		c.setDireccion("asdasd");
+		c.setDireccion("direccion");
 		c.setNombre("asdasd");
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
-		
-		
-		
 
 		return c;
+	}
+	
+	@After
+	private void closeConnection() {
+		Transaction transaccion = TransactionManager.getInstance().getTransaccion();
+		Connection connection = transaccion.getResource();
+		
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
