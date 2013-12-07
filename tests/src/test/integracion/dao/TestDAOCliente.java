@@ -7,6 +7,7 @@ import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
+import java.sql.Connection;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
@@ -101,7 +102,9 @@ public class TestDAOCliente {
 
 		assertTrue("El cliente no se borró", correcto);
 		
-		commit();
+
+		
+
 	}
 
 	private Integer obtenerIdCliente() {
@@ -134,6 +137,7 @@ public class TestDAOCliente {
 	private void commit() {
 
 		TransactionManager tm = TransactionManager.getInstance();
+
 		
 		Transaction transaction = tm.getTransaccion();
 		
@@ -142,8 +146,11 @@ public class TestDAOCliente {
 	
 	@After
 	public void closeConnection() {
-		TransactionManager tm = TransactionManager.getInstance();
 		
+		TransactionManager tm = TransactionManager.getInstance();
 		tm.eliminaTransaccion();
+		
+	
 	}
+
 }
