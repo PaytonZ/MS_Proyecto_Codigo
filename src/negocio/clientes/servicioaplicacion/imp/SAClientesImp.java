@@ -99,9 +99,12 @@ public class SAClientesImp implements SAClientes {
 		{
 			
 			correcto =  dao.updateCliente(clienteActualizado);
+			transacion.commit();
 			if(!correcto)
 			{
+				
 				transacion.rollback();
+				
 			}
 			
 		}
@@ -135,6 +138,7 @@ public class SAClientesImp implements SAClientes {
 		try
 		{
 				resultado = dao.deleteCliente(idCliente);
+				transacion.commit();
 		}
 		catch(NullPointerException e)
 		{

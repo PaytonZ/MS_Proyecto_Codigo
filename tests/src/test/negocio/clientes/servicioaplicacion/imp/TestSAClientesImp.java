@@ -1,5 +1,8 @@
 package test.negocio.clientes.servicioaplicacion.imp;
 
+import integracion.clientes.dao.DAOCliente;
+import integracion.clientes.dao.imp.DAOClienteImp;
+
 import java.util.List;
 import java.util.Random;
 
@@ -60,9 +63,10 @@ public class TestSAClientesImp {
 
 	@Test
 	public void actualizarCliente() {
+	
 		SAClientes s = new SAClientesImp();
-		TransferCliente c = new TransferCliente();
 
+		TransferCliente c = new TransferCliente();
 
 		c.setDNI(String.valueOf(new Random().nextInt(99999)));
 		c.setDireccion("asdasd");
@@ -72,20 +76,28 @@ public class TestSAClientesImp {
 		c.setNumTelefono(454545);
 		Integer id = s.anadirCliente(c);
 		assertTrue(id >=0);
-		String dir="dircambiada";
-		c.setDireccion(dir);
-		Boolean r = s.actualizarCliente(c);
 		
-		assertNotNull(r);
-		assertTrue(r);
+		String nombreeditado = "Editado";
+		String direccioneditada = "editada";
+		c.setNombre(nombreeditado);
+		c.setDireccion(direccioneditada);
+
+		boolean correcto = s.actualizarCliente(c);
 		
-		TransferCliente c1 = s.obtenerCliente(id);
+		assertTrue(correcto);
+		
+		TransferCliente c1 =  s.obtenerCliente(id);
+
 		assertNotNull(c1);
-		
-		System.out.println(c1.getDireccion() + dir);
-		
-		assertTrue(c1.getDireccion().equalsIgnoreCase(dir));
-		
+
+		assertTrue(c1.getDNI().equalsIgnoreCase(c.getDNI()));
+		assertTrue(c1.getNombre().equals(nombreeditado));
+		assertTrue(c1.getDireccion().equalsIgnoreCase(direccioneditada));
+		assertTrue(c1.getPrimerApellido().equalsIgnoreCase(c.getPrimerApellido()));
+		assertTrue(c1.getSegundoApellido().equalsIgnoreCase(c.getSegundoApellido()));
+		assertTrue(c1.getNumTelefono().compareTo(c.getNumTelefono()) == 0);
+
+		assertTrue(correcto);
 		
 	}
 	@Test

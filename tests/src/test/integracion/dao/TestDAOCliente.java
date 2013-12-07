@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.Random;
 
@@ -68,6 +69,8 @@ public class TestDAOCliente {
 		assertTrue(c1.getNumTelefono().compareTo(c.getNumTelefono()) == 0);
 
 		assertTrue(correcto);
+		
+		
 	}
 
 	@Test
@@ -80,6 +83,7 @@ public class TestDAOCliente {
 		assertNotNull("El cliente no puede ser nulo para borrarlo", id);
 
 		boolean correcto = dao.deleteCliente(id);
+	
 
 		assertTrue("El cliente no se borró", correcto);
 	}
