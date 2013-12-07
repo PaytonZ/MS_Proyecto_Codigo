@@ -2,9 +2,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-#DROP SCHEMA IF EXISTS `hotelmanagerDB` ;
-CREATE SCHEMA IF NOT EXISTS `alex` DEFAULT CHARACTER SET utf8 ;
-USE `alex` ;
+DROP SCHEMA IF EXISTS `hotelmanagerDB` ;
+CREATE SCHEMA IF NOT EXISTS `hotelmanagerDB` DEFAULT CHARACTER SET utf8 ;
+USE `hotelmanagerDB` ;
 
 -- -----------------------------------------------------
 -- Table `clientes`
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `direccion` VARCHAR(45) NULL,
   `1apellido` VARCHAR(45) NULL,
   `2apellido` VARCHAR(45) NULL,
-  `activo` TINYINT(1) DEFAULT 1,
+  `activo` TINYINT(1) NULL DEFAULT true,
   `telefono` INT(9) NULL,
   PRIMARY KEY (`idclientes`),
   UNIQUE INDEX `DNI_UNIQUE` (`DNI` ASC))
@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS `habitaciones` ;
 CREATE TABLE IF NOT EXISTS `habitaciones` (
   `numhabitacion` INT NOT NULL,
   `tipohabitacion` ENUM('NORMAL','SUITE') NULL,
+  `precio` DOUBLE NULL,
   PRIMARY KEY (`numhabitacion`))
 ENGINE = InnoDB;
 
@@ -46,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   `idreservas` INT NOT NULL AUTO_INCREMENT,
   `clientes_idclientes` INT NOT NULL,
   `habitaciones_numhabitacion` INT NOT NULL,
-  `fecha_reserva` DATE NULL,
-  `fecha_entrada` DATE NULL,
-  `fecha_salida` DATE NULL,
-  PRIMARY KEY (`idreservas`, `clientes_idclientes`, `habitaciones_numhabitacion`),
+  `fecha_reserva` DATETIME NOT NULL,
+  `fecha_entrada` DATETIME NULL,
+  `fecha_salida` DATETIME NULL,
   INDEX `fk_reservas_clientes_idx` (`clientes_idclientes` ASC),
   INDEX `fk_reservas_habitaciones1_idx` (`habitaciones_numhabitacion` ASC),
   UNIQUE INDEX `idreservas_UNIQUE` (`idreservas` ASC),
+  PRIMARY KEY (`clientes_idclientes`, `fecha_reserva`),
   CONSTRAINT `fk_reservas_clientes`
     FOREIGN KEY (`clientes_idclientes`)
     REFERENCES `clientes` (`idclientes`)
