@@ -82,8 +82,9 @@ public class TestSAClientesImp {
 		TransferCliente c1 = s.obtenerCliente(id);
 		assertNotNull(c1);
 		
+		System.out.println(c1.getDireccion() + dir);
 		
-		assertTrue(c1.getDireccion().equalsIgnoreCase(c.getDireccion()));
+		assertTrue(c1.getDireccion().equalsIgnoreCase(dir));
 		
 		
 	}
