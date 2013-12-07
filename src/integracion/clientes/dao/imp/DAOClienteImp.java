@@ -217,7 +217,7 @@ public class DAOClienteImp implements DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean updateCliente(TransferCliente cliente) {
+	public Boolean updateCliente(TransferCliente cliente) {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();

@@ -76,6 +76,7 @@ public class TestSAClientesImp {
 		c.setDireccion(dir);
 		Boolean r = s.actualizarCliente(c);
 		
+		assertNotNull(r);
 		assertTrue(r);
 		
 		TransferCliente c1 = s.obtenerCliente(id);

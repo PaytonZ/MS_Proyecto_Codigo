@@ -99,7 +99,7 @@ public class SAClientesImp implements SAClientes {
 		Boolean correcto = null;
 		try
 		{
-			correcto = dao.updateCliente(clienteActualizado);
+			correcto =  dao.updateCliente(clienteActualizado);
 			if(!correcto)
 			{
 				transacion.rollback();

@@ -3,6 +3,7 @@
  */
 package integracion.transacciones.transactionManager.imp;
 
+import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import integracion.transacciones.transaction.Transaction;
@@ -69,13 +70,20 @@ public class TransactionManagerImp extends TransactionManager {
 		Long threadId = Thread.currentThread().getId();
 		boolean resultado;
 		if (mapa.containsKey(threadId)) {
+			Transaction t = mapa.get(threadId);
+			try {
+				t.getResource().close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			mapa.remove(threadId);
 			resultado = true;
 		} else {
 			resultado = false;
 			// Pòsible excepcion.
 		}
-
+		
 		return resultado;
 	}
 }
