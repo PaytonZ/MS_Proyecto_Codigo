@@ -30,7 +30,7 @@ public class SAClientesImp implements SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
+	public Integer anadirCliente(TransferCliente clienteNuevo) {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -40,7 +40,6 @@ public class SAClientesImp implements SAClientes {
 		Integer idCliente = null;
 		try {
 			idCliente = dao.addCliente(clienteNuevo);
-			clienteNuevo = dao.getCliente(idCliente);
 			transacion.commit();
 		} catch (NullPointerException e) {
 			transacion.rollback();
@@ -50,7 +49,7 @@ public class SAClientesImp implements SAClientes {
 			}
 		}
 
-		return clienteNuevo;
+		return idCliente;
 	}
 
 	/**
@@ -61,10 +60,28 @@ public class SAClientesImp implements SAClientes {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public List<TransferCliente> obtenerTodoslosClientes() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		transacion.start();
+		List<TransferCliente> listaClientes = null;
+	try
+	{
+		listaClientes = dao.getAllClientes();
+	}
+	catch(NullPointerException e)
+	{
+		//
+	}
+	finally
+	{
+		if (!tm.eliminaTransaccion()) {
+			// ERROR
+		}
+	}
+	
+	
+		return listaClientes;
 	}
 
 	/**
@@ -74,11 +91,32 @@ public class SAClientesImp implements SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public Boolean actualizarCliente(TransferCliente clienteActualizado) {
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		transacion.start();
+		Boolean correcto = null;
+		try
+		{
+			correcto = dao.updateCliente(clienteActualizado);
+			if(!correcto)
+			{
+				transacion.rollback();
+			}
+			
+		}
+		catch(NullPointerException e)
+		{
+			//tratar
+		}
+		finally
+		{
+			if (!tm.eliminaTransaccion()) {
+				// ERROR
+			}
+		}
+		return correcto;
 	}
 
 	/**
@@ -88,10 +126,28 @@ public class SAClientesImp implements SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer borrarCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
+	public Boolean borrarCliente(Integer idCliente) {
+		
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		transacion.start();
+		Boolean resultado = null;
+		try
+		{
+				resultado = dao.deleteCliente(idCliente);
+		}
+		catch(NullPointerException e)
+		{
+			
+		}
+		finally
+		{
+			if (!tm.eliminaTransaccion()) {
+				// ERROR
+			}
+		}
+		return resultado;
 		// end-user-code
 	}
 
@@ -103,9 +159,27 @@ public class SAClientesImp implements SAClientes {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente obtenerCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		TransferCliente t = null;
+		transacion.start();
+		try
+		{
+				t = dao.getCliente(idCliente);
+		}catch(NullPointerException e)
+		{
+			
+		}
+		finally
+		{
+			if (!tm.eliminaTransaccion()) {
+				// ERROR
+			}
+		}
+		
+		return t;
+		
 	}
 }

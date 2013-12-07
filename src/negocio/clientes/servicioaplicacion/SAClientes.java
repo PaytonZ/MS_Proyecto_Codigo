@@ -24,7 +24,7 @@ public interface SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente anadirCliente(TransferCliente clienteNuevo);
+	public Integer anadirCliente(TransferCliente clienteNuevo);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -43,7 +43,7 @@ public interface SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente actualizarCliente(TransferCliente clienteActualizado);
+	public Boolean actualizarCliente(TransferCliente clienteActualizado);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -53,7 +53,7 @@ public interface SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer borrarCliente(Integer idCliente);
+	public Boolean borrarCliente(Integer idCliente);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

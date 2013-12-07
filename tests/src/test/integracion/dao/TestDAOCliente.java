@@ -62,8 +62,10 @@ public class TestDAOCliente {
 		assertNotNull(c1);
 
 		assertTrue(c1.getDNI().equalsIgnoreCase(c.getDNI()));
-		assertTrue(c1.getNombre().equalsIgnoreCase(nombreeditado));
-		assertTrue(c1.getDireccion().equalsIgnoreCase(direccioneditada));
+		assertTrue(c1.getDireccion().equalsIgnoreCase(c.getDireccion()));
+		assertTrue(c1.getPrimerApellido().equalsIgnoreCase(c.getPrimerApellido()));
+		assertTrue(c1.getSegundoApellido().equalsIgnoreCase(c.getSegundoApellido()));
+		assertTrue(c1.getNumTelefono().compareTo(c.getNumTelefono()) == 0);
 
 		assertTrue(correcto);
 	}
@@ -103,6 +105,9 @@ public class TestDAOCliente {
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
+		
+		
+		
 
 		return c;
 	}

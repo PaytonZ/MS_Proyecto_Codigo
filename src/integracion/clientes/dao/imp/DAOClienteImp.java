@@ -71,7 +71,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-
+			
 			// TRATAR
 
 		} finally {
