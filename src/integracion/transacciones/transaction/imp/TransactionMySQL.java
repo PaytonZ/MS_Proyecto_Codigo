@@ -6,6 +6,10 @@ package integracion.transacciones.transaction.imp;
 import integracion.transacciones.transaction.Transaction;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Savepoint;
+
+import javax.swing.JButton;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -22,7 +26,8 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private Connection jdbConnection;
-
+	private Savepoint puntoguardado;
+	
 	/**
 	 * @return el jdbConnection
 	 * @generated 
@@ -54,10 +59,14 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void start() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+		try {
+			jdbConnection.setAutoCommit(false);
+			puntoguardado= jdbConnection.setSavepoint();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -68,10 +77,13 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void commit() {
-		// begin-user-code
-		// TODO Apéndice de método generado autom�ticamente
-
-		// end-user-code
+		try {
+			jdbConnection.commit();
+			jdbConnection.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -82,10 +94,12 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void rollback() {
-		// begin-user-code
-		// TODO Apéndice de método generado autom�ticamente
-
-		// end-user-code
+		try {
+			jdbConnection.rollback(puntoguardado);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -96,10 +110,9 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Connection getResource() {
-		// begin-user-code
-		// TODO Apéndice de método generado autom�ticamente
+		
 		return jdbConnection;
-		// end-user-code
+		
 	}
 
 	/**
@@ -110,9 +123,7 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void lock() {
-		// begin-user-code
-		// TODO Apéndice de método generado autom�ticamente
-
-		// end-user-code
+	
+			
 	}
 }
