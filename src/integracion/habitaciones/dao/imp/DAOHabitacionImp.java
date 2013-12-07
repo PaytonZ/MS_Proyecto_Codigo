@@ -36,11 +36,11 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	
-	private final String addHabitacionQuery = "INSERT INTO habitacones (idhabitacion ,precio ,tipo) VALUES (?, ? , ?)";
-	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE idhabitacion = ? AND activo = true FOR UPDATE";
-	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE idhabitacion = ?";
+	private final String addHabitacionQuery = "INSERT INTO habitaciones (numhabitacion ,precio ,tipohabitacion) VALUES (?, ? , ?)";
+	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE numhabitacion = ? FOR UPDATE";
+	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE numhabitacion = ?";
 	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
-	private final String updateHabitacionQuery = "UPDATE habitaciones SET ID = ?, precio = ?, tipo = ? WHERE idhabitacion = ?";
+	private final String updateHabitacionQuery = "UPDATE habitaciones SET numhabitacion = ?, precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
 	
 	public Integer addHabitacion(TransferHabitacion habitacion) {
 
@@ -52,8 +52,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		try {
 			PreparedStatement addhabitacion = c.prepareStatement(addHabitacionQuery);
 
-			addhabitacion.setInt(1, habitacion.getID());
-			addhabitacion.setInt(2, habitacion.getPrecio());
+			addhabitacion.setInt(1, habitacion.getNumHabitacion());
+			addhabitacion.setDouble(2, habitacion.getPrecio());
 			
 			if(habitacion instanceof TransferHabitacionNormal)
 				addhabitacion.setString(3, "Normal");
@@ -64,13 +64,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 				PreparedStatement getHabitacionID = c
 						.prepareStatement(getHabitacionQuery);
-				getHabitacionID.setInt(1,habitacion.getID());
+				getHabitacionID.setInt(1,habitacion.getNumHabitacion());
 
 				ResultSet resultado = getHabitacionID.executeQuery();
 
 				if (resultado.next())
 
-					idHabitacion = resultado.getInt("idhabitacion");
+					idHabitacion = resultado.getInt(1);
 			}
 
 		} catch (SQLException e) {
@@ -118,7 +118,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				}
 
 
-				habitacion.setID(rowHabitacion.getInt("idhabitacion"));
+				habitacion.setNumHabitacion(rowHabitacion.getInt("idhabitacion"));
 				habitacion.setPrecio(rowHabitacion.getInt("precio"));
 	
 			}
@@ -165,7 +165,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					break;
 				}
 
-				habitacion.setID(rowsHabitaciones.getInt("idhabitacion"));
+				habitacion.setNumHabitacion(rowsHabitaciones.getInt("idhabitacion"));
 				habitacion.setPrecio(rowsHabitaciones.getInt("precio"));
 		
 				listaHabitaciones.add(habitacion);
@@ -197,12 +197,12 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(updateHabitacionQuery);
-			preparedStatement.setInt(1, habitacion.getID());
-			preparedStatement.setInt(2, habitacion.getPrecio());
+			preparedStatement.setInt(1, habitacion.getNumHabitacion());
+			preparedStatement.setDouble(2, habitacion.getPrecio());
 			if(habitacion instanceof TransferHabitacionNormal)
 				preparedStatement.setString(3, "Normal");
 			else preparedStatement.setString(3, "Suite");
-			preparedStatement.setInt(4, habitacion.getID());
+			preparedStatement.setInt(4, habitacion.getNumHabitacion());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 			// }

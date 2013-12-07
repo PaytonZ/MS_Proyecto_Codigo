@@ -24,7 +24,7 @@ public class TransferHabitacionNormal extends TransferHabitacion{
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getID() {
+	public Integer getNumHabitacion() {
 		// begin-user-code
 		return ID;
 		// end-user-code
@@ -36,7 +36,7 @@ public class TransferHabitacionNormal extends TransferHabitacion{
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setID(Integer ID) {
+	public void setNumHabitacion(Integer ID) {
 		// begin-user-code
 		this.ID = ID;
 		// end-user-code
@@ -48,14 +48,14 @@ public class TransferHabitacionNormal extends TransferHabitacion{
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer precio;
+	private double precio;
 
 	/**
 	 * @return el precio
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getPrecio() {
+	public double getPrecio() {
 		// begin-user-code
 		return precio;
 		// end-user-code

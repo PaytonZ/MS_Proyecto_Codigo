@@ -14,28 +14,28 @@ public class TransferHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer ID;
+	private Integer num_habitacion;
 
 	/**
-	 * @return el ID
+	 * @return el num_habitacion
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getID() {
+	public Integer getNumHabitacion() {
 		// begin-user-code
-		return ID;
+		return num_habitacion;
 		// end-user-code
 	}
 
 	/**
-	 * @param ID
-	 *            el ID a establecer
+	 * @param num_habitacion
+	 *            el num_habitacion a establecer
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setID(Integer ID) {
+	public void setNumHabitacion(Integer ID) {
 		// begin-user-code
-		this.ID = ID;
+		this.num_habitacion = ID;
 		// end-user-code
 	}
 
@@ -45,14 +45,14 @@ public class TransferHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer precio;
+	private double precio;
 
 	/**
 	 * @return el precio
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getPrecio() {
+	public double getPrecio() {
 		// begin-user-code
 		return precio;
 		// end-user-code
@@ -64,7 +64,7 @@ public class TransferHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setPrecio(Integer precio) {
+	public void setPrecio(double precio) {
 		// begin-user-code
 		this.precio = precio;
 		// end-user-code

@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `habitaciones` (
   `numhabitacion` INT NOT NULL,
   `tipohabitacion` ENUM('NORMAL','SUITE') NULL,
   `precio` DOUBLE NULL,
+  `activo` TINYINT(1) NULL,
   PRIMARY KEY (`numhabitacion`))
 ENGINE = InnoDB;
 
