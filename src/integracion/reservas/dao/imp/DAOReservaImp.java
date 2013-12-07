@@ -3,7 +3,7 @@
  */
 package integracion.reservas.dao.imp;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import integracion.reservas.dao.DAOReserva;
 import negocio.reservas.transfer.TransferReserva;
@@ -51,7 +51,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferReserva> getAllReservas() {
+	public List<TransferReserva> getAllReservas() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;

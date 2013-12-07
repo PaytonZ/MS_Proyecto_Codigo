@@ -4,6 +4,7 @@
 package integracion.reservas.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import negocio.reservas.transfer.TransferReserva;
 
@@ -42,7 +43,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferReserva> getAllReservas();
+	public List<TransferReserva> getAllReservas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

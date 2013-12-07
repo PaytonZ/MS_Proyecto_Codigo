@@ -3,6 +3,9 @@
  */
 package integracion.habitaciones.dao;
 
+import java.util.List;
+
+import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
 /**
@@ -21,7 +24,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object addHabitacion(TransferHabitacionNormal habitacion);
+	public Integer addHabitacion(TransferHabitacion habitacion);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -31,7 +34,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferHabitacionNormal getHabitacion(Object idHabitacion);
+	public TransferHabitacion getHabitacion(Integer idHabitacion);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -40,7 +43,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object getAllHabitaciones();
+	public List<TransferHabitacion> getAllHabitaciones();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -49,14 +52,15 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void updateHabitacion(TransferHabitacionNormal habitacion);
+	public Boolean updateHabitacion(TransferHabitacion habitacion);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param idHabitacion
+	 * @return 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void deleteHabitacion(Object idHabitacion);
+	public Boolean deleteHabitacion(Integer idHabitacion);
 }

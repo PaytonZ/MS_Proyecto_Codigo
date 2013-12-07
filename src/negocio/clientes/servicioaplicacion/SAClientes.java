@@ -4,6 +4,7 @@
 package negocio.clientes.servicioaplicacion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
 
@@ -32,7 +33,7 @@ public interface SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferCliente> obtenerTodoslosClientes();
+	public List<TransferCliente> obtenerTodoslosClientes();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

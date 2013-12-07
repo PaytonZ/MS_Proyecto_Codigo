@@ -3,7 +3,10 @@
  */
 package integracion.habitaciones.dao.imp;
 
+import java.util.List;
+
 import integracion.habitaciones.dao.DAOHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
 /**
@@ -21,7 +24,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object addHabitacion(TransferHabitacionNormal habitacion) {
+	public Integer addHabitacion(TransferHabitacion habitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -35,7 +38,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferHabitacionNormal getHabitacion(Object idHabitacion) {
+	public TransferHabitacion getHabitacion(Integer idHabitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -49,7 +52,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object getAllHabitaciones() {
+	public List<TransferHabitacion> getAllHabitaciones() {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -63,10 +66,10 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void updateHabitacion(TransferHabitacionNormal habitacion) {
+	public Boolean updateHabitacion(TransferHabitacion habitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-
+return null;
 		// end-user-code
 	}
 
@@ -77,10 +80,12 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void deleteHabitacion(Object idHabitacion) {
+	public Boolean deleteHabitacion(Integer idHabitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-
+return null;
 		// end-user-code
 	}
+
+	
 }
