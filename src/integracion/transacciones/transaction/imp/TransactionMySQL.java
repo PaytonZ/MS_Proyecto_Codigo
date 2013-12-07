@@ -58,10 +58,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void start() {
 		try {
-			jdbConnection.setAutoCommit(false);
+//			jdbConnection.setAutoCommit(false);
 			puntoguardado = jdbConnection.setSavepoint();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -77,9 +76,8 @@ public class TransactionMySQL implements Transaction {
 	public void commit() {
 		try {
 			jdbConnection.commit();
-			jdbConnection.setAutoCommit(true);
+//			jdbConnection.setAutoCommit(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -95,7 +93,6 @@ public class TransactionMySQL implements Transaction {
 		try {
 			jdbConnection.rollback(puntoguardado);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
