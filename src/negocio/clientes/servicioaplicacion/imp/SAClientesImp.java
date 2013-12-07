@@ -96,9 +96,10 @@ public class SAClientesImp implements SAClientes {
 		Transaction transacion = tm.nuevaTransaccion();
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
 		transacion.start();
-		Boolean correcto = null;
+		Boolean correcto = false;
 		try
 		{
+			
 			correcto =  dao.updateCliente(clienteActualizado);
 			if(!correcto)
 			{

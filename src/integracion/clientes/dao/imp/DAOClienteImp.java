@@ -38,32 +38,42 @@ public class DAOClienteImp implements DAOCliente {
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
 	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true FOR UPDATE";
 	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE idclientes = ?";
+	
+	//TODO discutir el tema de reactivar los clientes
+	private final String getClienteDesactivadoByDNI = "SELECT DNI FROM clientes WHERE DNI = ? AND activo = false";
+	private final String activateClienteByDNI = "UPDATE clientes SET activo = true WHERE DNI = ?";
 
 	public Integer addCliente(TransferCliente cliente) {
 
-		Transaction t = TransactionManager.getInstance().getTransaccion();
-		Connection c = t.getResource();
+		Transaction transaccion = TransactionManager.getInstance().getTransaccion();
+		Connection connection = transaccion.getResource();
 
 		Integer idCliente = null;
 
 		try {
 			
-			//Si hay un cliente borrado con DNI X, si vas a dar de alta alguien con el mismo DNI, se activa el cliente con los datos antiguos			
-			String comprobar_dni = "SELECT DNI FROM clientes WHERE activo = false AND DNI = " + cliente.getDNI();
-			PreparedStatement consulta_dni = c.prepareStatement(comprobar_dni);
-			ResultSet res = consulta_dni.executeQuery();
-			if (res.next())
-			{
-				//Si devuelve algo es que teniamos el cliente pero inactivo
-				String activar_cliente = "UPDATE clientes SET activo = true WHERE DNI = " + cliente.getDNI();
-				PreparedStatement activa_el_cliente = c.prepareStatement(activar_cliente);
-				ResultSet dummy = activa_el_cliente.executeQuery();
-				
-			}
-			else
-			{
+			boolean queryCorrecta = false;
 			
-				PreparedStatement addcliente = c.prepareStatement(addClienteQuery);
+			//Si hay un cliente borrado con DNI X, si vas a dar de alta alguien con el mismo DNI, se activa el cliente con los datos antiguos
+			PreparedStatement consultaClienteDesactivado = connection.prepareStatement(getClienteDesactivadoByDNI);
+			consultaClienteDesactivado.setString(1, cliente.getDNI());
+			
+			ResultSet res = consultaClienteDesactivado.executeQuery();
+			
+			if (res.next()) {
+				
+				//Si devuelve algo es que teniamos el cliente pero inactivo
+				PreparedStatement activaCliente = connection.prepareStatement(activateClienteByDNI);
+				activaCliente.setString(1, cliente.getDNI());
+				
+				if ( activaCliente.executeUpdate() == 1 ) {
+				
+					queryCorrecta = true;
+				}
+			}
+			else {
+			
+				PreparedStatement addcliente = connection.prepareStatement(addClienteQuery);
 	
 				addcliente.setString(1, cliente.getDNI());
 				addcliente.setString(2, cliente.getNombre());
@@ -73,18 +83,21 @@ public class DAOClienteImp implements DAOCliente {
 				addcliente.setInt(6, cliente.getNumTelefono());
 				
 	
-	
 				if (addcliente.executeUpdate() == 1) {
-	
-					PreparedStatement getClienteDNI = c
-							.prepareStatement(getClientebyDNIQuery);
-					getClienteDNI.setString(1, cliente.getDNI());
-	
-					ResultSet resultado = getClienteDNI.executeQuery();
-	
-					if (resultado.next())
-	
-						idCliente = resultado.getInt("idclientes");
+					queryCorrecta = true;
+				}
+			}
+			
+			if ( queryCorrecta ) {
+
+				PreparedStatement getClienteDNI = connection.prepareStatement(getClientebyDNIQuery);
+				getClienteDNI.setString(1, cliente.getDNI());
+
+				ResultSet resultado = getClienteDNI.executeQuery();
+
+				if (resultado.next()) {
+					
+					idCliente = resultado.getInt("idclientes");
 				}
 			}
 
@@ -223,7 +236,7 @@ public class DAOClienteImp implements DAOCliente {
 				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 
-		boolean correcto = false;
+		Boolean correcto = false;
 		try {
 
 			// PreparedStatement getClienteDNI =
@@ -245,7 +258,7 @@ public class DAOClienteImp implements DAOCliente {
 			preparedStatement.setInt(6, cliente.getNumTelefono());
 			preparedStatement.setInt(7, cliente.getID());
 
-			correcto = (preparedStatement.executeUpdate() == 1);
+			correcto = Boolean.valueOf((preparedStatement.executeUpdate() == 1));
 			// }
 
 		} catch (SQLException e) {

@@ -74,7 +74,7 @@ public class TestSAClientesImp {
 		assertTrue(id >=0);
 		String dir="dircambiada";
 		c.setDireccion(dir);
-		Boolean r = Boolean.valueOf(s.actualizarCliente(c));
+		Boolean r = s.actualizarCliente(c);
 		
 		assertNotNull(r);
 		assertTrue(r);
