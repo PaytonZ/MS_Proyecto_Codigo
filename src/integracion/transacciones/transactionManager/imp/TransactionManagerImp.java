@@ -73,6 +73,7 @@ public class TransactionManagerImp extends TransactionManager {
 			resultado = true;
 		} else {
 			resultado = false;
+			//Pòsible excepcion.
 		}
 
 		return resultado;

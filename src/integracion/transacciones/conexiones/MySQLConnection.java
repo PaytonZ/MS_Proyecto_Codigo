@@ -13,7 +13,7 @@ import java.util.Properties;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class MySqlConnection {
+public class MySQLConnection {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -33,11 +33,14 @@ public class MySqlConnection {
 		Properties connectionProps = new Properties();
 		connectionProps.put("user", this.username);
 		connectionProps.put("password", this.password);
-
+		
 		try {
 			conn = DriverManager.getConnection("jdbc:" + this.dbms + "://"
 					+ this.serverName + ":" + this.portNumber + "/" + dbname,
 					connectionProps);
+			conn.setAutoCommit(false);
+			conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

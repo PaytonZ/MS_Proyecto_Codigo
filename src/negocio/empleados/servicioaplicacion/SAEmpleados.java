@@ -4,7 +4,9 @@
 package negocio.empleados.servicioaplicacion;
 
 import negocio.empleados.transfer.TransferEmpleado;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -62,7 +64,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferEmpleado> obtenerEmpleadosporTareas(Integer idTarea);
+	public List<TransferEmpleado> obtenerEmpleadosporTareas(Integer idTarea);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

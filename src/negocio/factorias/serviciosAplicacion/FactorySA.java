@@ -3,6 +3,7 @@
  */
 package negocio.factorias.serviciosAplicacion;
 
+import integracion.transacciones.transactionFactory.imp.TransactionFactoryImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
@@ -36,14 +37,17 @@ public abstract class FactorySA {
 	 */
 	public static FactorySA getInstance() {
 
-		if (factorySAinstance == null) {
-
-			factorySAinstance = new FactorySAImp();
-		}
-
+		
+		createServiceApplicationFactory();
 		return factorySAinstance;
 	}
 
+	private synchronized static void createServiceApplicationFactory() {
+		if (factorySAinstance == null)
+			factorySAinstance = new FactorySAImp();
+	}
+
+	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
