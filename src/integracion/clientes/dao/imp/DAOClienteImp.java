@@ -239,6 +239,7 @@ public class DAOClienteImp implements DAOCliente {
 		Boolean correcto = false;
 		try {
 
+<<<<<<< HEAD
 			// PreparedStatement getClienteDNI =
 			// connection.prepareStatement(getClientebyDNIQuery);
 			// getClienteDNI.setString(1, cliente.getDNI());
@@ -260,6 +261,28 @@ public class DAOClienteImp implements DAOCliente {
 
 			correcto = Boolean.valueOf((preparedStatement.executeUpdate() == 1));
 			// }
+=======
+			 PreparedStatement getClienteDNI = connection.prepareStatement(getClientebyDNIQuery);
+			 getClienteDNI.setString(1, cliente.getDNI());
+			
+			 ResultSet clienteID = getClienteDNI.executeQuery();
+			
+			 if (clienteID.next()) {
+				 Integer idCliente = clienteID.getInt("idclientes");
+	
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(updateClienteQuery);
+				preparedStatement.setString(1, cliente.getDNI());
+				preparedStatement.setString(2, cliente.getNombre());
+				preparedStatement.setString(3, cliente.getDireccion());
+				preparedStatement.setString(4, cliente.getPrimerApellido());
+				preparedStatement.setString(5, cliente.getSegundoApellido());
+				preparedStatement.setInt(6, cliente.getNumTelefono());
+				preparedStatement.setInt(7, idCliente);
+	
+				correcto = (preparedStatement.executeUpdate() == 1);
+			 }
+>>>>>>> Borrados imports huerfanos y corregido update de dao cliente
 
 		} catch (SQLException e) {
 			e.printStackTrace();

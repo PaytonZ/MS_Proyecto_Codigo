@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 
-import javax.swing.JButton;
-
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 

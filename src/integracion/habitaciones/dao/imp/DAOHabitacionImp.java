@@ -3,6 +3,10 @@
  */
 package integracion.habitaciones.dao.imp;
 
+import integracion.habitaciones.dao.DAOHabitacion;
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,14 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.xml.internal.ws.api.ha.HaInfo;
-
-import integracion.habitaciones.dao.DAOHabitacion;
-import integracion.transacciones.transaction.Transaction;
-import integracion.transacciones.transactionManager.TransactionManager;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.habitaciones.transfer.TransferHabitacionSuite;
-import negocio.habitaciones.transfer.TransferHabitacion;
 
 //TODO FALTA TEST
 

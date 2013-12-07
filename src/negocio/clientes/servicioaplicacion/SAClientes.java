@@ -3,7 +3,6 @@
  */
 package negocio.clientes.servicioaplicacion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;

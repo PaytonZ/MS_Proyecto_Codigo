@@ -8,8 +8,6 @@ import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
