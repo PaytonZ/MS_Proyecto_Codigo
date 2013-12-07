@@ -5,9 +5,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import test.integracion.dao.TestDAOCliente;
+import test.integracion.dao.TestDAOReservas;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestDAOCliente.class })
+@SuiteClasses({ TestDAOCliente.class , TestDAOReservas.class  })
+
 public class TestsIntegracionSuite {
 
 }

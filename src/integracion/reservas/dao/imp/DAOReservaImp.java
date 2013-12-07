@@ -32,10 +32,10 @@ public class DAOReservaImp implements DAOReserva {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
-	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ?";
-	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE DNI = ? AND fecha_reserva = ?";
+	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
+	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE DNI = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
-	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ?";
+	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
 
 	public Integer addReserva(TransferReserva reserva) {

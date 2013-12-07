@@ -19,6 +19,8 @@ import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import negocio.habitaciones.transfer.TransferHabitacion;
 
+//TODO FALTA TEST
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -36,9 +38,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 */
 	
 	private final String addHabitacionQuery = "INSERT INTO habitacones (idhabitacion ,precio ,tipo) VALUES (?, ? , ?)";
-	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE idhabitacion = ? AND activo = true";
+	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE idhabitacion = ? AND activo = true FOR UPDATE";
 	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE idhabitacion = ?";
-	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true";
+	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
 	private final String updateHabitacionQuery = "UPDATE habitaciones SET ID = ?, precio = ?, tipo = ? WHERE idhabitacion = ?";
 	
 	public Integer addHabitacion(TransferHabitacion habitacion) {
