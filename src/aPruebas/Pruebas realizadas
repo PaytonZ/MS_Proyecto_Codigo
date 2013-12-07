@@ -1,0 +1,18 @@
+Observaciones:
+
+	Clientes.
+	
+	Si añades un cliente y recoges el id, el id que devuelve y el id que guarda en el transfer no es el mismo.
+	Por ejemplo, en el código:
+	
+	id = dao.addCliente(tc);
+	tc2 = dao.getCliente(id);
+	id2 = tc2.getID();
+	
+	id != id2 (id son integer y tc son transfer de clientes)
+	
+	Si añades un cliente, borras, y vuelves a meter un cliente con el mismo dni da problemas.
+	
+	Si añades dos clientes con el mismo dni, el segundo peta (esta bien, falta controlar excepciones
+	
+	El resto de los casos de uso, probados para casos normales y funcionan OK.
