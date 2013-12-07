@@ -47,26 +47,45 @@ public class DAOClienteImp implements DAOCliente {
 		Integer idCliente = null;
 
 		try {
-			PreparedStatement addcliente = c.prepareStatement(addClienteQuery);
-
-			addcliente.setString(1, cliente.getDNI());
-			addcliente.setString(2, cliente.getNombre());
-			addcliente.setString(3, cliente.getDireccion());
-			addcliente.setString(4, cliente.getPrimerApellido());
-			addcliente.setString(5, cliente.getSegundoApellido());
-			addcliente.setInt(6, cliente.getNumTelefono());
-
-			if (addcliente.executeUpdate() == 1) {
-
-				PreparedStatement getClienteDNI = c
-						.prepareStatement(getClientebyDNIQuery);
-				getClienteDNI.setString(1, cliente.getDNI());
-
-				ResultSet resultado = getClienteDNI.executeQuery();
-
-				if (resultado.next())
-
-					idCliente = resultado.getInt("idclientes");
+			
+			//Si hay un cliente borrado con DNI X, si vas a dar de alta alguien con el mismo DNI, se activa el cliente con los datos antiguos			
+			String comprobar_dni = "SELECT DNI FROM clientes WHERE activo = false AND DNI = " + cliente.getDNI();
+			PreparedStatement consulta_dni = c.prepareStatement(comprobar_dni);
+			ResultSet res = consulta_dni.executeQuery();
+			if (res.next())
+			{
+				//Si devuelve algo es que teniamos el cliente pero inactivo
+				String activar_cliente = "UPDATE clientes SET activo = true WHERE DNI = " + cliente.getDNI();
+				PreparedStatement activa_el_cliente = c.prepareStatement(activar_cliente);
+				ResultSet dummy = activa_el_cliente.executeQuery();
+				
+			}
+			else
+			{
+			
+				PreparedStatement addcliente = c.prepareStatement(addClienteQuery);
+	
+				addcliente.setString(1, cliente.getDNI());
+				addcliente.setString(2, cliente.getNombre());
+				addcliente.setString(3, cliente.getDireccion());
+				addcliente.setString(4, cliente.getPrimerApellido());
+				addcliente.setString(5, cliente.getSegundoApellido());
+				addcliente.setInt(6, cliente.getNumTelefono());
+				
+	
+	
+				if (addcliente.executeUpdate() == 1) {
+	
+					PreparedStatement getClienteDNI = c
+							.prepareStatement(getClientebyDNIQuery);
+					getClienteDNI.setString(1, cliente.getDNI());
+	
+					ResultSet resultado = getClienteDNI.executeQuery();
+	
+					if (resultado.next())
+	
+						idCliente = resultado.getInt("idclientes");
+				}
 			}
 
 		} catch (SQLException e) {
