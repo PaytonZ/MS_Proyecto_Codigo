@@ -237,9 +237,13 @@ public class DAOClienteImp implements DAOCliente {
 		Connection connection = (Connection) transaction.getResource();
 
 		Boolean correcto = false;
+<<<<<<< HEAD
 		try {
 
 
+=======
+		try {
+>>>>>>> 5a34cf469847b12ffabbee998ebdadaa292c55f3
 			 PreparedStatement getClienteDNI = connection.prepareStatement(getClientebyDNIQuery);
 			 getClienteDNI.setString(1, cliente.getDNI());
 			
@@ -259,8 +263,12 @@ public class DAOClienteImp implements DAOCliente {
 				preparedStatement.setInt(7, idCliente);
 	
 				correcto = (preparedStatement.executeUpdate() == 1);
+<<<<<<< HEAD
 			 }
 
+=======
+			 }
+>>>>>>> 5a34cf469847b12ffabbee998ebdadaa292c55f3
 
 		} catch (SQLException e) {
 			e.printStackTrace();
