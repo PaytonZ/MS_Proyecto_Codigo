@@ -24,6 +24,7 @@ public class TestDAOCliente {
 		Integer idCliente = obtenerIdCliente();
 
 		assertNotNull("El cliente no se creo, el id es nulo", idCliente);
+		assertTrue(idCliente > 0);
 	}
 
 	@Test
@@ -50,10 +51,19 @@ public class TestDAOCliente {
 
 		assertNotNull("El cliente no puede ser nulo para modificarlo", c);
 
-		c.setNombre("Editado");
-		c.setDireccion("Editada");
+		String nombreeditado = "Editado";
+		String direccioneditada = "editada";
+		c.setNombre(nombreeditado);
+		c.setDireccion(direccioneditada);
 
 		boolean correcto = dao.updateCliente(c);
+		TransferCliente c1 = dao.getCliente(c.getID());
+
+		assertNotNull(c1);
+
+		assertTrue(c1.getDNI().equalsIgnoreCase(c.getDNI()));
+		assertTrue(c1.getNombre().equalsIgnoreCase(nombreeditado));
+		assertTrue(c1.getDireccion().equalsIgnoreCase(direccioneditada));
 
 		assertTrue(correcto);
 	}
@@ -87,7 +97,7 @@ public class TestDAOCliente {
 
 		TransferCliente c = new TransferCliente();
 
-		c.setDNI(String.valueOf(new Random().nextInt(99999999)));
+		c.setDNI(String.valueOf(new Random().nextInt(99999)));
 		c.setDireccion("asdasd");
 		c.setNombre("asdasd");
 		c.setPrimerApellido("asdasd");

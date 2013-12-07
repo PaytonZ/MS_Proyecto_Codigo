@@ -33,14 +33,14 @@ public class MySQLConnection {
 		Properties connectionProps = new Properties();
 		connectionProps.put("user", this.username);
 		connectionProps.put("password", this.password);
-		
+
 		try {
 			conn = DriverManager.getConnection("jdbc:" + this.dbms + "://"
 					+ this.serverName + ":" + this.portNumber + "/" + dbname,
 					connectionProps);
 			conn.setAutoCommit(false);
-			conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-		
+			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

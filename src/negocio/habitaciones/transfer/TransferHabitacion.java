@@ -1,7 +1,7 @@
 package negocio.habitaciones.transfer;
 
 public class TransferHabitacion {
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 

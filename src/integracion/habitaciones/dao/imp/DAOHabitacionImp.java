@@ -69,7 +69,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	public Boolean updateHabitacion(TransferHabitacion habitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-return null;
+		return null;
 		// end-user-code
 	}
 
@@ -83,9 +83,8 @@ return null;
 	public Boolean deleteHabitacion(Integer idHabitacion) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-return null;
+		return null;
 		// end-user-code
 	}
 
-	
 }

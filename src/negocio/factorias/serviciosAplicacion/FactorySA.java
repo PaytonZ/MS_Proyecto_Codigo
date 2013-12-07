@@ -37,7 +37,6 @@ public abstract class FactorySA {
 	 */
 	public static FactorySA getInstance() {
 
-		
 		createServiceApplicationFactory();
 		return factorySAinstance;
 	}
@@ -47,7 +46,6 @@ public abstract class FactorySA {
 			factorySAinstance = new FactorySAImp();
 	}
 
-	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 

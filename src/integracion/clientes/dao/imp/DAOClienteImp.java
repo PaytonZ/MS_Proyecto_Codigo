@@ -33,10 +33,10 @@ public class DAOClienteImp implements DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
-	private final String getClientebyDNIQuery = "SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true";
-	private final String getClienteQuery = "SELECT * FROM clientes WHERE idclientes = ? AND activo = true";
+	private final String getClientebyDNIQuery = "SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true FOR UPDATE";
+	private final String getClienteQuery = "SELECT * FROM clientes WHERE idclientes = ? AND activo = true FOR UPDATE";
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
-	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true";
+	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true FOR UPDATE";
 	private final String updateClienteQuery = "UPDATE clientes SET DNI = ?, nombre = ?, direccion = ?, 1apellido = ?, 2apellido = ?, telefono = ? WHERE idclientes = ?";
 
 	public Integer addCliente(TransferCliente cliente) {
@@ -71,9 +71,9 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
-			//TRATAR
-			
+
+			// TRATAR
+
 		} finally {
 		}
 

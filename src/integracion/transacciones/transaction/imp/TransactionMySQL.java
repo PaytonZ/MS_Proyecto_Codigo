@@ -27,7 +27,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	private Connection jdbConnection;
 	private Savepoint puntoguardado;
-	
+
 	/**
 	 * @return el jdbConnection
 	 * @generated 
@@ -61,12 +61,12 @@ public class TransactionMySQL implements Transaction {
 	public void start() {
 		try {
 			jdbConnection.setAutoCommit(false);
-			puntoguardado= jdbConnection.setSavepoint();
+			puntoguardado = jdbConnection.setSavepoint();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -110,9 +110,9 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Connection getResource() {
-		
+
 		return jdbConnection;
-		
+
 	}
 
 	/**
@@ -123,7 +123,6 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void lock() {
-	
-			
+
 	}
 }

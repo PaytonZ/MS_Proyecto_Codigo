@@ -3,7 +3,6 @@
  */
 package integracion.reservas.dao.imp;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -42,7 +41,7 @@ public class DAOReservaImp implements DAOReserva {
 	public Integer addReserva(TransferReserva reserva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-		
+
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
 
@@ -59,7 +58,8 @@ public class DAOReservaImp implements DAOReserva {
 
 			if (addreserva.executeUpdate() == 1) {
 
-				PreparedStatement getreservaDNIDate = c.prepareStatement(getReservabyDNIDateQuery);
+				PreparedStatement getreservaDNIDate = c
+						.prepareStatement(getReservabyDNIDateQuery);
 				getreservaDNIDate.setString(1, reserva.getDNI());
 				getreservaDNIDate.setDate(2, (Date) reserva.getFechaReserva());
 

@@ -31,29 +31,25 @@ public class SAClientesImp implements SAClientes {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente anadirCliente(TransferCliente clienteNuevo) {
-	
+
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
 		transacion.start();
-		
+
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
 		Integer idCliente = null;
 		try {
 			idCliente = dao.addCliente(clienteNuevo);
 			clienteNuevo = dao.getCliente(idCliente);
 			transacion.commit();
-		} catch(NullPointerException e) {	
-				transacion.rollback();
-		}
-		finally
-		{
-			if(!tm.eliminaTransaccion())
-			{
-				//ERROR
+		} catch (NullPointerException e) {
+			transacion.rollback();
+		} finally {
+			if (!tm.eliminaTransaccion()) {
+				// ERROR
 			}
 		}
-	
-		
+
 		return clienteNuevo;
 	}
 
