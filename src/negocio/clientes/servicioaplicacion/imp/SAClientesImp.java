@@ -36,10 +36,11 @@ public class SAClientesImp implements SAClientes {
 
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
 		Integer idCliente = null;
+		
 		try {
 			idCliente = dao.addCliente(clienteNuevo);
 			transacion.commit();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			transacion.rollback();
 		} finally {
 			if (!tm.eliminaTransaccion()) {
@@ -67,7 +68,7 @@ public class SAClientesImp implements SAClientes {
 	{
 		listaClientes = dao.getAllClientes();
 	}
-	catch(NullPointerException e)
+	catch(Exception e)
 	{
 		//
 	}
@@ -108,7 +109,7 @@ public class SAClientesImp implements SAClientes {
 			}
 			
 		}
-		catch(NullPointerException e)
+		catch(Exception e)
 		{
 			//tratar
 		}
@@ -140,7 +141,7 @@ public class SAClientesImp implements SAClientes {
 				resultado = dao.deleteCliente(idCliente);
 				transacion.commit();
 		}
-		catch(NullPointerException e)
+		catch(Exception e)
 		{
 			
 		}
@@ -171,7 +172,7 @@ public class SAClientesImp implements SAClientes {
 		try
 		{
 				t = dao.getCliente(idCliente);
-		}catch(NullPointerException e)
+		}catch(Exception e)
 		{
 			
 		}
