@@ -8,6 +8,7 @@ import presentacion.clientes.frames.FrameAltaClientes;
 import presentacion.clientes.frames.FrameBajaClientes;
 import presentacion.clientes.frames.FrameConsultaClientes;
 import presentacion.clientes.frames.FrameModificacionClientes;
+import presentacion.clientes.imp.GUIClienteImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -66,10 +67,17 @@ public abstract class GUICliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static GUICliente getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		createGUICliente();
+		
+		return selfInstance;
+	}
+	
+	private static synchronized void createGUICliente() {
+		
+		if ( selfInstance == null) {
+			selfInstance = new GUIClienteImp();
+		}
 	}
 
 	/**
