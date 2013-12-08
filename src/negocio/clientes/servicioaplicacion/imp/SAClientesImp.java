@@ -10,6 +10,8 @@ import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.List;
 
+import excepciones.BSoDException;
+import excepciones.TransaccionNoEliminada;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.transfer.TransferCliente;
 
@@ -53,29 +55,32 @@ public class SAClientesImp implements SAClientes {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws TransaccionNoEliminada 
 	 * 
 	 * @see SAClientes#obtenerTodoslosClientes()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferCliente> obtenerTodoslosClientes() {
+	public List<TransferCliente> obtenerTodoslosClientes() throws BSoDException {
+		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
+		
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		
 		transacion.start();
+		
 		List<TransferCliente> listaClientes = null;
-		try
-		{
+		try {
 			listaClientes = dao.getAllClientes();
 		}
-		catch(Exception e)
-		{
-			//
+		catch(Exception e) {
+			throw new BSoDException(e.getMessage());
 		}
-		finally
-		{
+		finally {
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+
+				throw new TransaccionNoEliminada(SAClientes.class.getName());
 			}
 		}	
 		return listaClientes;

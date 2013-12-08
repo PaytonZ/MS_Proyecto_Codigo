@@ -6,6 +6,7 @@ package negocio.clientes.servicioaplicacion;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
+import excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -29,10 +30,11 @@ public interface SAClientes {
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferCliente> obtenerTodoslosClientes();
+	public List<TransferCliente> obtenerTodoslosClientes() throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

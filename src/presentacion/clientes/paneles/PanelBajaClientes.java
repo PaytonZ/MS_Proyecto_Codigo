@@ -3,33 +3,23 @@
  */
 package presentacion.clientes.paneles;
 
-import javax.swing.JPanel;
-
-import presentacion.clientes.GUIInterfazClientes;
-import presentacion.comandos.Command;
-import presentacion.comandos.IDEventos;
-import presentacion.comandos.commandFactory.CommandFactory;
-import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import negocio.clientes.transfer.*;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
-
-import javax.swing.JList;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.ListModel;
+import javax.swing.event.ListDataListener;
+
+import negocio.clientes.transfer.TransferCliente;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.JScrollBar;
+import presentacion.clientes.GUIInterfazClientes;
+import presentacion.comandos.IDEventos;
+import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -44,13 +34,13 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		
 		setLayout(new BorderLayout(0, 0));
 		
-		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_OBTENER_TODOS_CLIENTE);
-		
 		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+		controladorAplicacion.handleRequest(IDEventos.EVENTO_OBTENER_TODOS_CLIENTE, null);
 		
-//		controladorAplicacion.
+		ListModel<TransferCliente> model = new DefaultListModel<>();
 		
-		final JList<TransferCliente> list = new JList();
+		final JList<TransferCliente> list = new JList<>();
+		
 		add(list, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
