@@ -29,7 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 
-public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
+public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
@@ -40,7 +40,7 @@ public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
 	/**
 	 * Create the panel.
 	 */
-	public FrameAltaClientes() {
+	public PanelAltaClientes() {
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,

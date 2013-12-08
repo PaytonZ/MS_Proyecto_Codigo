@@ -13,4 +13,5 @@ import test.integracion.dao.TestDAOReservas;
 
 public class TestsIntegracionSuite {
 
+	// Nothing to do here
 }
