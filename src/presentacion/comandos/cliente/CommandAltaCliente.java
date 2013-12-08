@@ -3,7 +3,10 @@
  */
 package presentacion.comandos.cliente;
 
+import negocio.clientes.transfer.TransferCliente;
+import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
@@ -22,9 +25,12 @@ public class CommandAltaCliente implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+	CommandResponse cm = new CommandResponse();
+	
+	cm.setDatos(FactorySA.getInstance().getSAClientes().anadirCliente((TransferCliente) datos));
+	cm.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
+	
+	return cm;
 	}
 }

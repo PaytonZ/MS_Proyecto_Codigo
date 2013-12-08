@@ -3,8 +3,12 @@
  */
 package presentacion.controladores.aplicacion.controladoraplicacion.imp;
 
+import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
+import presentacion.comandos.commandFactory.CommandFactory;
+import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+import presentacion.controladores.aplicacion.dispatcher.Dispatcher;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -23,6 +27,9 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 	 */
 	public void handleRequest(IDEventos evento, Object datos) {
 		
+		Command c = CommandFactory.getInstance().nuevoComando(evento);
+		CommandResponse rc = c.execute(datos);
+		Dispatcher.getInstance().redirect(rc);
 			
 		
 		
