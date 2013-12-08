@@ -10,5 +10,11 @@ package presentacion.habitaciones;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameConsultaHabitaciones {
+public class PanelModificacionHabitaciones implements GUIInterfazHabitaciones {
+
+	@Override
+	public void actualizarVentana() {
+		// TODO Auto-generated method stub
+		
+	}
 }

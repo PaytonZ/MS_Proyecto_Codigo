@@ -1,7 +1,7 @@
 /**
  * 
  */
-package presentacion.empleados;
+package presentacion.habitaciones;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -10,5 +10,11 @@ package presentacion.empleados;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameAltaEmpleados {
+public class PanelConsultaHabitaciones implements GUIInterfazHabitaciones {
+
+	@Override
+	public void actualizarVentana() {
+		// TODO Auto-generated method stub
+		
+	}
 }

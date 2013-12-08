@@ -3,6 +3,16 @@
  */
 package presentacion.empleados;
 
+import presentacion.comandos.IDEventos;
+import presentacion.empleados.imp.GUIEmpleadosImp;
+import presentacion.empleados.paneles.PanelAltaEmpleados;
+import presentacion.empleados.paneles.PanelAltaTareaEmpleados;
+import presentacion.empleados.paneles.PanelBajaEmpleados;
+import presentacion.empleados.paneles.PanelBajaTareaEmpleados;
+import presentacion.empleados.paneles.PanelConsultaEmpleados;
+import presentacion.empleados.paneles.PanelConsultaMultipleEmpleados;
+import presentacion.empleados.paneles.PanelModificacionEmpleados;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -10,50 +20,22 @@ package presentacion.empleados;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public abstract class GUIEmpleados extends GUIEmpleadosImp {
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+public abstract class GUIEmpleados {
+
 	private static GUIEmpleados selfInstance;
-
-	/**
-	 * @return el selfInstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static GUIEmpleados getSelfInstance() {
-		// begin-user-code
-		return selfInstance;
-		// end-user-code
-	}
-
-	/**
-	 * @param selfInstance
-	 *            el selfInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setSelfInstance(GUIEmpleados selfInstance) {
-		// begin-user-code
-		GUIEmpleados.selfInstance = selfInstance;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
 	public static GUIEmpleados getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		crearGUIEmpleados();
+		
+		return selfInstance;
+	}
+	
+	private static synchronized void crearGUIEmpleados() {
+		
+		if ( selfInstance == null ) {
+			selfInstance = new GUIEmpleadosImp();
+		}
 	}
 
 	/**
@@ -62,7 +44,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void update();
+	public abstract void update(IDEventos evento_actual, Object datos);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -71,7 +53,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameAltaEmpleados getFrameAltaEmpleados();
+	public abstract PanelAltaEmpleados getPanelAltaEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -80,7 +62,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaEmpleados getFrameConsultaEmpleados();
+	public abstract PanelConsultaEmpleados getPanelConsultaEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -89,7 +71,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaMultipleEmpleados getFrameConsultaMultipleEmpleados();
+	public abstract PanelConsultaMultipleEmpleados getPanelConsultaMultipleEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -98,7 +80,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameModificacionEmpleados getFrameModificacionEmpleados();
+	public abstract PanelModificacionEmpleados getPanelModificacionEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -107,7 +89,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameBajaEmpleados getFrameBajaEmpleados();
+	public abstract PanelBajaEmpleados getPanelBajaEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -116,7 +98,7 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameAltaTareaEmpleados getFrameAltaTareaEmpleados();
+	public abstract PanelAltaTareaEmpleados getPanelAltaTareaEmpleados();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -125,5 +107,5 @@ public abstract class GUIEmpleados extends GUIEmpleadosImp {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameBajaTareaEmpleados getFrameBajaTareaEmpleados();
+	public abstract PanelBajaTareaEmpleados getPanelBajaTareaEmpleados();
 }

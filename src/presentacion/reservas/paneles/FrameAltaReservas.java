@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.reservas;
+package presentacion.reservas.paneles;
+
+import presentacion.reservas.GUIInterfazReservas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -10,7 +12,7 @@ package presentacion.reservas;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameModificacionReservas implements GUIInterfazReservas {
+public class FrameAltaReservas implements GUIInterfazReservas {
 	/**
 	 * (sin Javadoc)
 	 * 

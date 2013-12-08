@@ -3,6 +3,12 @@
  */
 package presentacion.reservas;
 
+import presentacion.reservas.paneles.FrameAltaReservas;
+import presentacion.reservas.paneles.FrameBajaReservas;
+import presentacion.reservas.paneles.FrameConsultaMultipleReservas;
+import presentacion.reservas.paneles.FrameConsultaReservas;
+import presentacion.reservas.paneles.FrameModificacionReservas;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -18,29 +24,6 @@ public abstract class GUIReservas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private static GUIReservas selfInstance;
-
-	/**
-	 * @return el selfInstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static GUIReservas getSelfInstance() {
-		// begin-user-code
-		return selfInstance;
-		// end-user-code
-	}
-
-	/**
-	 * @param selfInstance
-	 *            el selfInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setSelfInstance(GUIReservas selfInstance) {
-		// begin-user-code
-		GUIReservas.selfInstance = selfInstance;
-		// end-user-code
-	}
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

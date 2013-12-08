@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.reservas;
+package presentacion.reservas.paneles;
+
+import presentacion.reservas.GUIInterfazReservas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

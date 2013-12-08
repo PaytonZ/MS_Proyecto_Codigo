@@ -1,8 +1,10 @@
 /**
  * 
  */
-package presentacion.departamentos;
+package presentacion.departamentos.imp;
 
+import presentacion.comandos.IDEventos;
+import presentacion.departamentos.GUIDepartamentos;
 import presentacion.departamentos.paneles.PanelAltaDepartamentos;
 import presentacion.departamentos.paneles.PanelBajaDepartamentos;
 import presentacion.departamentos.paneles.PanelConsultaDepartamento;
@@ -49,7 +51,7 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 		return frameAltaDepartamentos;
 	}
 
-	public void update() {
+	public void update(IDEventos evento_actual, Object datos) {
 		
 	}
 }

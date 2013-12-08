@@ -1,7 +1,7 @@
 /**
  * 
  */
-package presentacion.habitaciones;
+package presentacion.empleados.paneles;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -10,5 +10,5 @@ package presentacion.habitaciones;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameModificacionHabitaciones {
+public class PanelAltaEmpleados {
 }

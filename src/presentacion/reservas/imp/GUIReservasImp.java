@@ -4,11 +4,11 @@
 package presentacion.reservas.imp;
 
 import presentacion.reservas.GUIReservas;
-import presentacion.reservas.FrameAltaReservas;
-import presentacion.reservas.FrameBajaReservas;
-import presentacion.reservas.FrameModificacionReservas;
-import presentacion.reservas.FrameConsultaReservas;
-import presentacion.reservas.FrameConsultaMultipleReservas;
+import presentacion.reservas.paneles.FrameAltaReservas;
+import presentacion.reservas.paneles.FrameBajaReservas;
+import presentacion.reservas.paneles.FrameConsultaMultipleReservas;
+import presentacion.reservas.paneles.FrameConsultaReservas;
+import presentacion.reservas.paneles.FrameModificacionReservas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

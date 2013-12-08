@@ -3,6 +3,8 @@
  */
 package presentacion.departamentos;
 
+import presentacion.comandos.IDEventos;
+import presentacion.departamentos.imp.GUIDepartamentosImp;
 import presentacion.departamentos.paneles.PanelAltaDepartamentos;
 import presentacion.departamentos.paneles.PanelBajaDepartamentos;
 import presentacion.departamentos.paneles.PanelConsultaDepartamento;
@@ -35,7 +37,7 @@ public abstract class GUIDepartamentos {
 		}
 	}
 
-	public abstract void update();
+	public abstract void update(IDEventos evento_actual, Object datos);
 
 	public abstract PanelAltaDepartamentos getPanelAltaDepartamentos();
 
