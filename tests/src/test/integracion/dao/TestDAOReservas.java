@@ -1,6 +1,7 @@
 package test.integracion.dao;
 
-import integracion.clientes.dao.imp.DAOClienteImp;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import integracion.reservas.dao.DAOReserva;
 import integracion.reservas.dao.imp.DAOReservaImp;
 import integracion.transacciones.transaction.Transaction;
@@ -9,7 +10,7 @@ import integracion.transacciones.transactionManager.TransactionManager;
 import java.sql.Date;
 import java.util.List;
 
-import javax.print.attribute.standard.DateTimeAtCreation;
+import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,10 +18,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import negocio.reservas.transfer.TransferReserva;
 @RunWith(JUnit4.class)
 @FixMethodOrder
 public class TestDAOReservas {

@@ -9,7 +9,6 @@ import java.util.Random;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
-import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;

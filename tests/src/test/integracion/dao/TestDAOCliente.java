@@ -7,7 +7,6 @@ import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
-import java.sql.Connection;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;

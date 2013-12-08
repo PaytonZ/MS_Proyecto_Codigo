@@ -2,8 +2,6 @@ package test.integracion.dao;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import integracion.clientes.dao.DAOCliente;
-import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import integracion.transacciones.transaction.Transaction;
@@ -11,7 +9,6 @@ import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.Random;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
