@@ -12,4 +12,6 @@ package negocio.habitaciones.transfer;
  */
 public class TransferHabitacionSuite extends TransferHabitacion{
 	
+	private TipoHabitacion tipohabitacion = TipoHabitacion.HABITACION_SUITE;
+	
 }

@@ -12,6 +12,20 @@ package negocio.habitaciones.transfer;
  */
 public class TransferHabitacionNormal extends TransferHabitacion{
 	
-	
+	private TipoHabitacion tipohabitacion = TipoHabitacion.HABITACION_NORMAL;
+
+	/**
+	 * @return the tipohabitacion
+	 */
+	public TipoHabitacion getTipohabitacion() {
+		return tipohabitacion;
+	}
+
+	/**
+	 * @param tipohabitacion the tipohabitacion to set
+	 */
+	public void setTipohabitacion(TipoHabitacion tipohabitacion) {
+		this.tipohabitacion = tipohabitacion;
+	}
 	
 }
