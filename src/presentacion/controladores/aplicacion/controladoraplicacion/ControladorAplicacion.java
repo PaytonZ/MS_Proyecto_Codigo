@@ -23,8 +23,6 @@ public abstract class ControladorAplicacion {
 	 */
 	private static ControladorAplicacion controladorAplicacionInstance;
 
-
-
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -36,7 +34,7 @@ public abstract class ControladorAplicacion {
 		createApplicationController();
 		return controladorAplicacionInstance;
 	}
-	
+
 	private synchronized static void createApplicationController() {
 		if (controladorAplicacionInstance == null)
 			controladorAplicacionInstance = new ControladorAplicacionImp();

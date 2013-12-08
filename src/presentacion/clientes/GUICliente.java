@@ -9,6 +9,7 @@ import presentacion.clientes.frames.FrameBajaClientes;
 import presentacion.clientes.frames.FrameConsultaClientes;
 import presentacion.clientes.frames.FrameModificacionClientes;
 import presentacion.clientes.imp.GUIClienteImp;
+import presentacion.comandos.IDEventos;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -24,40 +25,17 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private static GUICliente selfInstance;
-
-	/**
-	 * @return el selfInstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static GUICliente getSelfInstance() {
-		// begin-user-code
-		return selfInstance;
-		// end-user-code
-	}
-
-	/**
-	 * @param selfInstance
-	 *            el selfInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setSelfInstance(GUICliente selfInstance) {
-		// begin-user-code
-		GUICliente.selfInstance = selfInstance;
-		// end-user-code
-	}
+	private static GUICliente GUIClienteInstance;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param idEvento
+	 * @param evento_actual
 	 * @param datos
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void update(Integer idEvento, Object datos);
+	public abstract void update(IDEventos evento_actual, Object datos);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -69,14 +47,14 @@ public abstract class GUICliente {
 	public static GUICliente getInstance() {
 
 		createGUICliente();
-		
-		return selfInstance;
+
+		return GUIClienteInstance;
 	}
-	
+
 	private static synchronized void createGUICliente() {
-		
-		if ( selfInstance == null) {
-			selfInstance = new GUIClienteImp();
+
+		if (GUIClienteInstance == null) {
+			GUIClienteInstance = new GUIClienteImp();
 		}
 	}
 

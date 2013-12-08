@@ -23,7 +23,6 @@ public abstract class Dispatcher {
 	 */
 	private static Dispatcher dispatcherInstance;
 
-	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -37,7 +36,7 @@ public abstract class Dispatcher {
 		if (dispatcherInstance == null)
 			dispatcherInstance = new DispatcherImp();
 	}
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -48,6 +47,6 @@ public abstract class Dispatcher {
 	public static Dispatcher getInstance() {
 		createDispatcher();
 		return dispatcherInstance;
-	
+
 	}
 }

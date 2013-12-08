@@ -9,6 +9,7 @@ import presentacion.clientes.frames.FrameBajaClientes;
 import presentacion.clientes.frames.FrameConsultaClientes;
 import presentacion.clientes.frames.FrameConsultaMultipleClientes;
 import presentacion.clientes.frames.FrameModificacionClientes;
+import presentacion.comandos.IDEventos;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -177,20 +178,6 @@ public class GUIClienteImp extends GUICliente {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see GUICliente#update(Integer idEvento, Object datos)
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void update(Integer idEvento, Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
-	}
-
-	/**
-	 * (sin Javadoc)
-	 * 
 	 * @see GUICliente#getFrameConsultaMultipleClientes()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
@@ -256,5 +243,30 @@ public class GUIClienteImp extends GUICliente {
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
 		// end-user-code
+	}
+
+	public void update(IDEventos evento_actual, Object datos) {
+		switch (evento_actual) {
+		case EVENTO_ALTA_CLIENTE:
+			frameAlta.actualizarVentana(datos);
+			break;
+		case EVENTO_BAJA_CLIENTE:
+			frameBaja.actualizarVentana(datos);
+			break;
+		case EVENTO_ACTUALIZAR_CLIENTE:
+			frameModificacion.actualizarVentana(datos);
+			break;
+		case EVENTO_OBTENER_CLIENTE:
+			frameConsulta.actualizarVentana(datos);
+			break;
+		case EVENTO_OBTENER_TODOS_CLIENTE:
+			frameConsultaMoltiple.actualizarVentana(datos);
+			break;
+
+		default:
+			break;
+
+		}
+
 	}
 }

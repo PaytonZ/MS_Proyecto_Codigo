@@ -26,13 +26,10 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void handleRequest(IDEventos evento, Object datos) {
-		
+
 		Command c = CommandFactory.getInstance().nuevoComando(evento);
 		CommandResponse rc = c.execute(datos);
 		Dispatcher.getInstance().redirect(rc);
-			
-		
-		
-		
+
 	}
 }
