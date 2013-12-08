@@ -14,6 +14,15 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import presentacion.clientes.GUIInterfazClientes;
+import javax.swing.JButton;
+import javax.swing.JSplitPane;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
 
 public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
 
@@ -148,7 +157,6 @@ public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		add(btnAceptar, "36, 22, 7, 1");
-
 	}
 
 	@Override

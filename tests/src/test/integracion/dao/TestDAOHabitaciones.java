@@ -77,13 +77,43 @@ public class TestDAOHabitaciones {
 
 	@Test
 	public void modificaHabitacion() {
+		DAOHabitacion dao = new DAOHabitacionImp();
 
+		Integer id = obtenerIdHabitacion();
+
+		TransferHabitacion h = dao.getHabitacion(id);
+
+		assertNotNull("La habitacion no puede ser nula para modificarlo", h);
+
+		Double nuevoprecio = 0000d;
+		h.setPrecio(nuevoprecio);
+
+		boolean correcto = dao.updateHabitacion(h);
+		TransferHabitacion h1 = dao.getHabitacion(h.getNumHabitacion());
+
+		assertNotNull(h1);
+
+		assertTrue(h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
+		assertTrue(h1.getPrecio() == h.getPrecio());
+
+		assertTrue(correcto);
+		
+		commit();
 		
 	}
 
 	@Test
 	public void borrarHabitacion() {
+		
+		DAOHabitacion dao = new DAOHabitacionImp();
 
+		Integer id = obtenerIdHabitacion();
+
+		assertNotNull("La habitacion no puede ser nula para borrarlo", id);
+
+		boolean correcto = dao.deleteHabitacion(id);
+
+		assertTrue("la habitacion no se borró", correcto);
 	
 
 		

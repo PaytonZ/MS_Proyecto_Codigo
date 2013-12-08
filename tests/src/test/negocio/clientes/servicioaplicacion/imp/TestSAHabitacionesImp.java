@@ -31,15 +31,15 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(new Random().nextDouble());
 		
 		Integer id = s.anadirHabitacion(h);
-		assertTrue(id >=0);
+		assertTrue("La habitacion no se añadio",id >=0);
 		
 		TransferHabitacion h1 = s.obtenerHabitacion(id);
 		
-		assertNotNull(h1);
+		assertNotNull("La habitacion no se obtenio",h1);
 		
 		
-		assertTrue(h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
-		assertTrue(h1.getPrecio() == h.getPrecio());
+		assertTrue("El numero de habitacion no es el mismo",h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
+		assertTrue("El precio no es el mismo",h1.getPrecio() == h.getPrecio());
 		
 	}
 	
@@ -48,12 +48,12 @@ public class TestSAHabitacionesImp {
 		
 		SAHabitaciones s = new SAHabitacionesImp();
 		List<TransferHabitacion> lista = s.obtenerTodaslasHabitaciones();
-		assertNotNull(lista);
+		assertNotNull("No hay Lista de habitaciones",lista);
 		
 	}
 
 	@Test
-	public void actualizarCliente() {
+	public void actualizarHabitacion() {
 	
 		SAHabitaciones s = new SAHabitacionesImp();
 
@@ -64,7 +64,7 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(new Random().nextDouble());
 	
 		Integer id = s.anadirHabitacion(h);
-		assertTrue(id >=0);
+		assertTrue("La habitacion no se añadio",id >=0);
 		
 		
 		Double nuevoprecio = 0000d;
@@ -72,22 +72,22 @@ public class TestSAHabitacionesImp {
 
 		boolean correcto = s.actualizarHabitacion(h);
 		
-		assertTrue(correcto);
+		assertTrue("La habitacion no se actualizo correctamente",correcto);
 		
 		TransferHabitacion h1 =  s.obtenerHabitacion(id);
 
-		assertNotNull(h1);
+		assertNotNull("La habitacion no se obtenio",h1);
 
-		assertTrue(h1.getNumHabitacion().compareTo(numhabitacion) == 0);
-		assertTrue(h1.getPrecio() == nuevoprecio);
+		assertTrue("El numero de habitacion no es el actualizado",h1.getNumHabitacion().compareTo(numhabitacion) == 0);
+		assertTrue("El precio no es el actualizado",h1.getPrecio() == nuevoprecio);
 	
 
-		assertTrue(correcto);
+
 		
 	}
 	
 	@Test
-	public void borrarHabitacio() {
+	public void borrarHabitacion() {
 		
 		SAHabitaciones s = new  SAHabitacionesImp();
 		TransferHabitacion h = new TransferHabitacion();
@@ -97,10 +97,10 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(new Random().nextDouble());
 	
 		Integer id = s.anadirHabitacion(h);
-		assertTrue(id >=0);
+		assertTrue("La habitacion no se añadio",id >=0);
 		
 		boolean correcto = s.borrarHabitacion(id);
-		assertTrue(correcto);
+		assertTrue("La habitacion no se borro correctamente",correcto);
 		
 	}
 }
