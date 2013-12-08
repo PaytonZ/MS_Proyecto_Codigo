@@ -25,11 +25,9 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-<<<<<<< HEAD
+
 	private static GUICliente GUIClienteInstance;
-=======
-	private static GUICliente selfInstance;
->>>>>>> 6c3980978979fd72b7bf87d37428bbcac7dae021
+
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
