@@ -106,7 +106,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 			if (rowHabitacion.next()) {
 				
-				switch (rowHabitacion.getString("tipo")) {
+				switch (rowHabitacion.getString("tipohabitacion")) {
 				case "Normal":
 					habitacion = new TransferHabitacionNormal();
 					break;
@@ -114,12 +114,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					habitacion = new TransferHabitacionSuite();
 					break;
 				default:
+					habitacion = new TransferHabitacionNormal();
 					break;
 				}
 
 
-				habitacion.setNumHabitacion(rowHabitacion.getInt("idhabitacion"));
-				habitacion.setPrecio(rowHabitacion.getInt("precio"));
+				habitacion.setNumHabitacion(rowHabitacion.getInt("numhabitacion"));
+				habitacion.setPrecio(rowHabitacion.getDouble("precio"));
 	
 			}
 		} catch (SQLException e) {

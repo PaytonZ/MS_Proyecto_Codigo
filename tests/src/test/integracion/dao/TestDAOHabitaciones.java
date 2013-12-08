@@ -66,7 +66,8 @@ public class TestDAOHabitaciones {
 		
 		assertNotNull(hab);
 		assertTrue(hab.getNumHabitacion()==numhab);
-		assertTrue(hab.getPrecio()==precio);
+		System.out.println(hab.getPrecio() + "/////" + precio );
+		assertTrue(Math.abs(hab.getPrecio()-precio) < 0.01);
 	
 		
 		commit();
