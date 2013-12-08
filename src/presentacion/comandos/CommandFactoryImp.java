@@ -19,9 +19,17 @@ public class CommandFactoryImp extends CommandFactory {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Command nuevoComando(Integer id_comando) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		Command c = null;
+
+		
+		switch (id_comando) {
+		
+		
+		
+		}
+		
+		return c;
+		
 	}
 }
