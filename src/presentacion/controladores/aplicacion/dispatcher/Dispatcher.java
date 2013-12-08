@@ -3,7 +3,7 @@
  */
 package presentacion.controladores.aplicacion.dispatcher;
 
-import presentacion.comandos.CommandResponse;
+import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

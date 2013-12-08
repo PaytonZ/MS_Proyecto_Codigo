@@ -1,7 +1,8 @@
 /**
  * 
  */
-package presentacion.comandos;
+package presentacion.comandos.commandFactory;
+
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

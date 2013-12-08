@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.comandos;
+package presentacion.comandos.commandFactory;
+
+import presentacion.comandos.IDEventos;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -17,7 +19,7 @@ public class CommandResponse {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer evento;
+	private IDEventos evento;
 	private Object datos;
 
 	/**
@@ -25,7 +27,7 @@ public class CommandResponse {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getEvento() {
+	public IDEventos getEvento() {
 		// begin-user-code
 		return evento;
 		// end-user-code
@@ -37,7 +39,7 @@ public class CommandResponse {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setEvento(Integer evento) {
+	public void setEvento(IDEventos evento) {
 		// begin-user-code
 		this.evento = evento;
 		// end-user-code

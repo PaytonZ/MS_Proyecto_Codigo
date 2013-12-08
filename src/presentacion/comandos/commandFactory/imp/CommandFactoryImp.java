@@ -1,7 +1,11 @@
 /**
  * 
  */
-package presentacion.comandos;
+package presentacion.comandos.commandFactory.imp;
+
+import presentacion.comandos.IDEventos;
+import presentacion.comandos.commandFactory.Command;
+import presentacion.comandos.commandFactory.CommandFactory;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -18,7 +22,7 @@ public class CommandFactoryImp extends CommandFactory {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Command nuevoComando(Integer id_comando) {
+	public Command nuevoComando(IDEventos id_comando) {
 		
 		Command c = null;
 

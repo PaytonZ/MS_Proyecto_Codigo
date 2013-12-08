@@ -3,7 +3,7 @@
  */
 package presentacion.controladores.aplicacion.dispatcher.imp;
 
-import presentacion.comandos.CommandResponse;
+import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.controladores.aplicacion.dispatcher.Dispatcher;
 
 /**

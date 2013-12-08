@@ -3,6 +3,7 @@
  */
 package presentacion.controladores.aplicacion.controladoraplicacion;
 
+import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.imp.ControladorAplicacionImp;
 import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 
@@ -49,5 +50,5 @@ public abstract class ControladorAplicacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void handleRequest(Integer evento, Object datos);
+	public abstract void handleRequest(IDEventos evento, Object datos);
 }

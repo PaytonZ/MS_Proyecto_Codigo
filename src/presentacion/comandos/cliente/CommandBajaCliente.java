@@ -3,8 +3,8 @@
  */
 package presentacion.comandos.cliente;
 
-import presentacion.comandos.Command;
-import presentacion.comandos.CommandResponse;
+import presentacion.comandos.commandFactory.Command;
+import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

@@ -1,7 +1,11 @@
 /**
  * 
  */
-package presentacion.comandos;
+package presentacion.comandos.commandFactory;
+
+import presentacion.comandos.IDEventos;
+import presentacion.comandos.commandFactory.imp.CommandFactoryImp;
+import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -20,30 +24,6 @@ public abstract class CommandFactory {
 	private static CommandFactory commandFactoryInstance;
 
 	/**
-	 * @return el commandFactoryInstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static CommandFactory getCommandFactoryInstance() {
-		// begin-user-code
-		return commandFactoryInstance;
-		// end-user-code
-	}
-
-	/**
-	 * @param commandFactoryInstance
-	 *            el commandFactoryInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setCommandFactoryInstance(
-			CommandFactory commandFactoryInstance) {
-		// begin-user-code
-		CommandFactory.commandFactoryInstance = commandFactoryInstance;
-		// end-user-code
-	}
-
-	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
@@ -51,11 +31,15 @@ public abstract class CommandFactory {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static CommandFactory getInstance() {
-		// begin-user-code
-		if(commandFactoryInstance == null)
-			commandFactoryInstance = new CommandFactoryImp();
+		
+		createcommandFactory();
 		return commandFactoryInstance;
 		// end-user-code
+	}
+	
+	private synchronized static void createcommandFactory() {
+		if (commandFactoryInstance == null)
+			commandFactoryInstance = new CommandFactoryImp();
 	}
 
 	/**
@@ -66,5 +50,5 @@ public abstract class CommandFactory {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Command nuevoComando(Integer id_comando);
+	public abstract Command nuevoComando(IDEventos id_comando);
 }
