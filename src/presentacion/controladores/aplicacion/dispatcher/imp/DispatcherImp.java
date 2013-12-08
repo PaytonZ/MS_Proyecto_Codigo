@@ -31,9 +31,9 @@ public class DispatcherImp extends Dispatcher {
 
 		if (evento_actual == IDEventos.EVENTO_ALTA_CLIENTE
 				|| evento_actual == IDEventos.EVENTO_BAJA_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_ACTUALIZAR_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_OBTENER_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_OBTENER_TODOS_CLIENTE) {
+				|| evento_actual == IDEventos.EVENTO_MODIFICAR_CLIENTE
+				|| evento_actual == IDEventos.EVENTO_CONSULTAR_CLIENTE
+				|| evento_actual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE) {
 			GUICliente.getInstance().update(evento_actual, datos);
 		}
 		else if(evento_actual == IDEventos.EVENTO_ALTA_RESERVA

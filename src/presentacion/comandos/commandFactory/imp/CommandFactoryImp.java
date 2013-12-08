@@ -46,15 +46,15 @@ public class CommandFactoryImp extends CommandFactory {
 			c = new CommandBajaCliente();
 			break;
 
-		case EVENTO_ACTUALIZAR_CLIENTE:
+		case EVENTO_MODIFICAR_CLIENTE:
 			c = new CommandModificarCliente();
 			break;
 
-		case EVENTO_OBTENER_CLIENTE:
+		case EVENTO_CONSULTAR_CLIENTE:
 			c = new CommandConsultaCliente();
 			break;
 
-		case EVENTO_OBTENER_TODOS_CLIENTE:
+		case EVENTO_CONSULTAR_TODOS_CLIENTE:
 			c = new CommandConsultaTodosClientes();
 			break;
 		case EVENTO_ALTA_RESERVA:
