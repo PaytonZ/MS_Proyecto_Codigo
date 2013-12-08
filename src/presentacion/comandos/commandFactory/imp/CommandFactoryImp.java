@@ -3,8 +3,9 @@
  */
 package presentacion.comandos.commandFactory.imp;
 
+import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
-import presentacion.comandos.commandFactory.Command;
+import presentacion.comandos.cliente.CommandAltaCliente;
 import presentacion.comandos.commandFactory.CommandFactory;
 
 /**
@@ -28,6 +29,8 @@ public class CommandFactoryImp extends CommandFactory {
 
 		
 		switch (id_comando) {
+		
+		case EVENTO_ALTA_CLIENTE: c = new CommandAltaCliente();
 		
 		
 		

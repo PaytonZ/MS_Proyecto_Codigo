@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.comandos.commandFactory;
+package presentacion.comandos;
+
+import presentacion.comandos.commandFactory.CommandResponse;
 
 
 /**
@@ -20,5 +22,7 @@ public interface Command {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	
+	
 	public CommandResponse execute(Object datos);
 }

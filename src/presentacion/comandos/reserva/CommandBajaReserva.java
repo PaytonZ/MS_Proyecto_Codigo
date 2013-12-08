@@ -3,7 +3,7 @@
  */
 package presentacion.comandos.reserva;
 
-import presentacion.comandos.commandFactory.Command;
+import presentacion.comandos.Command;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
