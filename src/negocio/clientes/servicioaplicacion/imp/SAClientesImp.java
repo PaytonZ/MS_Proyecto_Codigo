@@ -64,22 +64,20 @@ public class SAClientesImp implements SAClientes {
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
 		transacion.start();
 		List<TransferCliente> listaClientes = null;
-	try
-	{
-		listaClientes = dao.getAllClientes();
-	}
-	catch(Exception e)
-	{
-		//
-	}
-	finally
-	{
-		if (!tm.eliminaTransaccion()) {
-			// ERROR
+		try
+		{
+			listaClientes = dao.getAllClientes();
 		}
-	}
-	
-	
+		catch(Exception e)
+		{
+			//
+		}
+		finally
+		{
+			if (!tm.eliminaTransaccion()) {
+				// ERROR
+			}
+		}	
 		return listaClientes;
 	}
 
