@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
-import presentacion.clientes.frames.FrameAltaClientes;
+import presentacion.clientes.frames.PanelAltaClientes;
 
 public class FramePrincipal extends JFrame {
 
@@ -101,11 +101,11 @@ public class FramePrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				FrameAltaClientes frameAlta = GUICliente.getInstance().getFrameAltaClientes();
+				PanelAltaClientes frameAlta = GUICliente.getInstance().getPanelAltaClientes();
 				frameAlta.setAlignmentX(Component.CENTER_ALIGNMENT);
 				frameAlta.setAlignmentY(Component.TOP_ALIGNMENT);
 				
-				contentPane.add(frameAlta, BorderLayout.SOUTH);
+				contentPane.add(frameAlta, BorderLayout.CENTER);
 				contentPane.validate();
 			}
 		});

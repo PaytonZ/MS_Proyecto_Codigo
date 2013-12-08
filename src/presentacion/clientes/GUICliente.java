@@ -3,11 +3,11 @@
  */
 package presentacion.clientes;
 
-import presentacion.clientes.frames.FrameConsultaMultipleClientes;
-import presentacion.clientes.frames.FrameAltaClientes;
-import presentacion.clientes.frames.FrameBajaClientes;
-import presentacion.clientes.frames.FrameConsultaClientes;
-import presentacion.clientes.frames.FrameModificacionClientes;
+import presentacion.clientes.frames.PanelConsultaMultipleClientes;
+import presentacion.clientes.frames.PanelAltaClientes;
+import presentacion.clientes.frames.PanelBajaClientes;
+import presentacion.clientes.frames.PanelConsultaClientes;
+import presentacion.clientes.frames.PanelModificacionClientes;
 import presentacion.clientes.imp.GUIClienteImp;
 import presentacion.comandos.IDEventos;
 
@@ -25,7 +25,11 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+<<<<<<< HEAD
 	private static GUICliente GUIClienteInstance;
+=======
+	private static GUICliente selfInstance;
+>>>>>>> 6c3980978979fd72b7bf87d37428bbcac7dae021
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -65,7 +69,7 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaMultipleClientes getFrameConsultaMultipleClientes();
+	public abstract PanelConsultaMultipleClientes getPanelConsultaMultipleClientes();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -74,7 +78,7 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameAltaClientes getFrameAltaClientes();
+	public abstract PanelAltaClientes getPanelAltaClientes();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -83,7 +87,7 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameBajaClientes getFrameBajaClientes();
+	public abstract PanelBajaClientes getPanelBajaClientes();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -92,7 +96,7 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaClientes getFrameConsultaClientes();
+	public abstract PanelConsultaClientes getPanelConsultaClientes();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -101,5 +105,5 @@ public abstract class GUICliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameModificacionClientes getFameModificacionClientes();
+	public abstract PanelModificacionClientes getPanelModificacionClientes();
 }

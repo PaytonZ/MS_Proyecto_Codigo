@@ -35,8 +35,8 @@ import javax.swing.JScrollBar;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameBajaClientes extends JPanel implements GUIInterfazClientes {
-	public FrameBajaClientes() {
+public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
+	public PanelBajaClientes() {
 		
 		ControladorAplicacion.getInstance();
 		

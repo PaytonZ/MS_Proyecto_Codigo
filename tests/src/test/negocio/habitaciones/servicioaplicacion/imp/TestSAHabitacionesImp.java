@@ -1,4 +1,4 @@
-package test.negocio.clientes.servicioaplicacion.imp;
+package test.negocio.habitaciones.servicioaplicacion.imp;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

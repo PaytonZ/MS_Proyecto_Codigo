@@ -14,17 +14,22 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import presentacion.clientes.GUIInterfazClientes;
+
 import javax.swing.JButton;
 import javax.swing.JSplitPane;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+
 import java.awt.GridLayout;
+
+import negocio.clientes.transfer.TransferCliente;
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 
-public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
+public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
@@ -35,7 +40,7 @@ public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
 	/**
 	 * Create the panel.
 	 */
-	public FrameAltaClientes() {
+	public PanelAltaClientes() {
 		setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.RELATED_GAP_COLSPEC,
 				FormFactory.DEFAULT_COLSPEC,
@@ -161,8 +166,6 @@ public class FrameAltaClientes extends JPanel implements GUIInterfazClientes {
 
 	@Override
 	public void actualizarVentana(Object datos) {
-		// TODO Auto-generated method stub
 		
 	}
-
 }

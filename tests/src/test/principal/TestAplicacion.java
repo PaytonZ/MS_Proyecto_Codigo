@@ -12,4 +12,5 @@ import test.negocio.clientes.servicioaplicacion.imp.TestSAClientesImp;
 @SuiteClasses({ TestNegocioSuite.class , TestsIntegracionSuite.class })
 public class TestAplicacion {
 
+	// Nothing to do here
 }

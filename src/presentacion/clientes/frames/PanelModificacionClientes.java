@@ -3,7 +3,12 @@
  */
 package presentacion.clientes.frames;
 
+import javax.swing.JPanel;
+
 import presentacion.clientes.GUIInterfazClientes;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -12,7 +17,11 @@ import presentacion.clientes.GUIInterfazClientes;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameConsultaMultipleClientes implements GUIInterfazClientes {
+public class PanelModificacionClientes extends JPanel implements GUIInterfazClientes {
+	public PanelModificacionClientes() {
+		setLayout(new FormLayout(new ColumnSpec[] {},
+			new RowSpec[] {}));
+	}
 	/**
 	 * (sin Javadoc)
 	 * 
