@@ -5,6 +5,7 @@ package negocio.reservas.servicioaplicacion;
 
 import negocio.reservas.transfer.TransferReserva;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -32,7 +33,7 @@ public interface SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean anadirReserva(TransferReserva reserva);
+	public Integer anadirReserva(TransferReserva reserva);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -61,5 +62,5 @@ public interface SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList<TransferReserva> obtenerTodaslasReservas();
+	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente);
 }
