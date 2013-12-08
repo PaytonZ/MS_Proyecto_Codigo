@@ -6,7 +6,7 @@ package presentacion.clientes.frames;
 import javax.swing.JPanel;
 
 import presentacion.clientes.GUIInterfazClientes;
-import presentacion.controladores.aplicacion.ControladorAplicacion;
+import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 import negocio.clientes.transfer.*;
 
 import com.jgoodies.forms.layout.FormLayout;

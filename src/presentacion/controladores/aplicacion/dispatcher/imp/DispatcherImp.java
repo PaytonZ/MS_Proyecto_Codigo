@@ -1,9 +1,10 @@
 /**
  * 
  */
-package presentacion.controladores.aplicacion.dispatcher;
+package presentacion.controladores.aplicacion.dispatcher.imp;
 
 import presentacion.comandos.CommandResponse;
+import presentacion.controladores.aplicacion.dispatcher.Dispatcher;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

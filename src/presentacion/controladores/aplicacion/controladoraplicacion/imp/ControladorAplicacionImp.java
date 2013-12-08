@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.controladores.aplicacion;
+package presentacion.controladores.aplicacion.controladoraplicacion.imp;
+
+import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -19,9 +21,10 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void handleRequest(Integer evento, Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+		
+			
+		
+		
+		
 	}
 }

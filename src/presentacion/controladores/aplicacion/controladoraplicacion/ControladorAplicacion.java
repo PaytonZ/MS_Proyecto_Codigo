@@ -1,7 +1,10 @@
 /**
  * 
  */
-package presentacion.controladores.aplicacion;
+package presentacion.controladores.aplicacion.controladoraplicacion;
+
+import presentacion.controladores.aplicacion.controladoraplicacion.imp.ControladorAplicacionImp;
+import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -19,29 +22,7 @@ public abstract class ControladorAplicacion {
 	 */
 	private static ControladorAplicacion controladorAplicacionInstance;
 
-	/**
-	 * @return el controladorAplicacionInstance
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static ControladorAplicacion getControladorAplicacionInstance() {
-		// begin-user-code
-		return controladorAplicacionInstance;
-		// end-user-code
-	}
 
-	/**
-	 * @param controladorAplicacionInstance
-	 *            el controladorAplicacionInstance a establecer
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public static void setControladorAplicacionInstance(
-			ControladorAplicacion controladorAplicacionInstance) {
-		// begin-user-code
-		ControladorAplicacion.controladorAplicacionInstance = controladorAplicacionInstance;
-		// end-user-code
-	}
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -51,10 +32,13 @@ public abstract class ControladorAplicacion {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static ControladorAplicacion getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		createApplicationController();
+		return controladorAplicacionInstance;
+	}
+	
+	private synchronized static void createApplicationController() {
+		if (controladorAplicacionInstance == null)
+			controladorAplicacionInstance = new ControladorAplicacionImp();
 	}
 
 	/**
