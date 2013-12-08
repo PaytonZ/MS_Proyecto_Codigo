@@ -9,12 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
-
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 
@@ -28,129 +24,54 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 	 * Create the panel.
 	 */
 	public PanelAltaClientes() {
+		
 		setPreferredSize(new Dimension(600, 400));
 		setMinimumSize(new Dimension(100, 100));
-		setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		setLayout(new MigLayout("", "[120px][34px][161.00px][12.00px][67px][69.00px][96px][98.00px][53.00px]", "[16px][12px][28px][28px][12px][29px][][][]"));
 		
 		JLabel lblAltaClientes = new JLabel("Alta clientes");
 		lblAltaClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(lblAltaClientes, "4, 4, 40, 1, center, default");
+		add(lblAltaClientes, "cell 2 0 6 1,alignx center,aligny top");
 		
 		JSeparator separator = new JSeparator();
-		add(separator, "2, 6, 43, 1");
+		add(separator, "cell 0 1 9 1,growx,aligny top");
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		add(lblNombre, "6, 12");
+		add(lblNombre, "cell 0 3,alignx right,aligny center");
 		
 		textNombre = new JTextField();
-		add(textNombre, "10, 12, 11, 1, fill, default");
+		add(textNombre, "cell 2 3,growx,aligny top");
 		textNombre.setColumns(10);
 		
 		JLabel lblApellidos = new JLabel("Apellidos: ");
-		add(lblApellidos, "26, 12");
+		add(lblApellidos, "cell 5 3,alignx left,aligny center");
 		
 		textApellidos = new JTextField();
-		add(textApellidos, "28, 12, 17, 1, fill, default");
+		add(textApellidos, "cell 6 3 3 1,growx,aligny top");
 		textApellidos.setColumns(10);
 		
 		JLabel lblDireccin = new JLabel("Dirección: ");
-		add(lblDireccin, "6, 16");
+		add(lblDireccin, "cell 0 5,alignx right,aligny center");
 		
 		textDireccion = new JTextField();
-		add(textDireccion, "10, 16, 11, 1, fill, default");
+		add(textDireccion, "cell 2 5,growx,aligny top");
 		textDireccion.setColumns(10);
 		
 		JLabel lblTelefono = new JLabel("Telefono: ");
-		add(lblTelefono, "26, 16");
+		add(lblTelefono, "cell 5 5,growx,aligny center");
 		
 		textTelefono = new JTextField();
-		add(textTelefono, "28, 16, 17, 1, fill, default");
+		add(textTelefono, "cell 6 5 2 1,growx,aligny top");
 		textTelefono.setColumns(10);
 		
 		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "2, 20, 43, 1");
+		add(separator_1, "cell 0 7 9 1,growx,aligny top");
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		add(btnCancelar, "28, 22, 7, 1");
+		add(btnCancelar, "cell 6 8,growx,aligny top");
 		
 		JButton btnAceptar = new JButton("Aceptar");
-		add(btnAceptar, "36, 22, 7, 1");
+		add(btnAceptar, "cell 7 8,alignx left,aligny top");
 	}
 
 	@Override

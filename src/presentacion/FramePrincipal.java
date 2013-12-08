@@ -18,18 +18,21 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
-import presentacion.clientes.paneles.PanelAltaClientes;
 
 public class FramePrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
+	private JButton btnClientes;
+	private JButton btnHabitaciones;
+	private JButton btnReservas;
 
 	/**
 	 * Launch the application.
@@ -77,10 +80,10 @@ public class FramePrincipal extends JFrame {
 		toolBar.setMaximumSize(new Dimension(150, 23));
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
-		Component glue = Box.createGlue();
-		toolBar.add(glue);
+		Component cajaFlecibleIz = Box.createGlue();
+		toolBar.add(cajaFlecibleIz);
 		
-		JButton btnClientes = new JButton("Clientes");
+		btnClientes = new JButton("Clientes");
 		btnClientes.setIconTextGap(12);
 		btnClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnClientes.setVerticalAlignment(SwingConstants.CENTER);
@@ -99,18 +102,25 @@ public class FramePrincipal extends JFrame {
 		btnClientes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				btnClientes.setEnabled(false);
 				
-				PanelAltaClientes frameAlta = GUICliente.getInstance().getPanelAltaClientes();
-				frameAlta.setAlignmentX(Component.CENTER_ALIGNMENT);
-				frameAlta.setAlignmentY(Component.TOP_ALIGNMENT);
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
+				tabbedPane.add("Baja clientes", GUICliente.getInstance().getPanelBajaClientes());
+				tabbedPane.add("Modificación clientes", GUICliente.getInstance().getPanelModificacionClientes());
+				tabbedPane.add("Consulta clientes", GUICliente.getInstance().getPanelConsultaClientes());
+				tabbedPane.add("Consulta multiple clientes", GUICliente.getInstance().getPanelConsultaMultipleClientes());
 				
-				contentPane.add(frameAlta, BorderLayout.CENTER);
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
+				btnHabitaciones.setEnabled(true);
+				btnReservas.setEnabled(true);
 			}
 		});
 		toolBar.add(btnClientes);
 		
-		JButton btnHabitaciones = new JButton("Habitaciones");
+		btnHabitaciones = new JButton("Habitaciones");
 		btnHabitaciones.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnHabitaciones.setForeground(Color.BLACK);
 		btnHabitaciones.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -121,9 +131,23 @@ public class FramePrincipal extends JFrame {
 
 		btnHabitaciones.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Habitaciones64Over.png")));
 		btnHabitaciones.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Habitaciones64.png")));
+		
+		btnHabitaciones.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				btnHabitaciones.setEnabled(false);
+
+				
+				
+				btnClientes.setEnabled(true);
+				btnReservas.setEnabled(true);
+			}
+		});
+		
 		toolBar.add(btnHabitaciones);
 		
-		JButton btnReservas = new JButton("Reservas");
+		btnReservas = new JButton("Reservas");
 		btnReservas.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnReservas.setForeground(Color.BLACK);
 		btnReservas.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -134,9 +158,23 @@ public class FramePrincipal extends JFrame {
 
 		btnReservas.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Reservas64Over.png")));
 		btnReservas.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Reservas64.png")));
+		
+		btnReservas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				btnReservas.setEnabled(false);
+
+				
+				
+				btnClientes.setEnabled(true);
+				btnHabitaciones.setEnabled(true);
+			}
+		});
+		
 		toolBar.add(btnReservas);
 		
-		Component glue_1 = Box.createGlue();
-		toolBar.add(glue_1);
+		Component cajaFlecibleDr = Box.createGlue();
+		toolBar.add(cajaFlecibleDr);
 	}
 }

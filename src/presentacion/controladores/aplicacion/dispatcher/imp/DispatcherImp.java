@@ -34,17 +34,24 @@ public class DispatcherImp extends Dispatcher {
 				|| evento_actual == IDEventos.EVENTO_MODIFICAR_CLIENTE
 				|| evento_actual == IDEventos.EVENTO_CONSULTAR_CLIENTE
 				|| evento_actual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE) {
+			
 			GUICliente.getInstance().update(evento_actual, datos);
 		}
 		else if(evento_actual == IDEventos.EVENTO_ALTA_RESERVA
 				    || evento_actual == IDEventos.EVENTO_BAJA_RESERVA
 				    || evento_actual == IDEventos.EVENTO_MODIFICAR_RESERVA
 				    || evento_actual == IDEventos.EVENTO_CONSULTAR_RESERVA
-				    || evento_actual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS)
-		{
+				    || evento_actual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) {
+			
 			GUIReservas.getInstance().update(evento_actual, datos);
 		}
-		// rellenar else if con el resto
-
+		else if(evento_actual == IDEventos.EVENTO_ALTA_HABITACION
+			    || evento_actual == IDEventos.EVENTO_BAJA_HABITACION
+			    || evento_actual == IDEventos.EVENTO_MODIFICAR_HABITACION
+			    || evento_actual == IDEventos.EVENTO_CONSULTAR_HABITACION
+			    || evento_actual == IDEventos.EVENTO_CONSULTAR_HABITACION) {
+			
+			GUIReservas.getInstance().update(evento_actual, datos);
+		}
 	}
 }

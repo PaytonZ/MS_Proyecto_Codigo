@@ -1,21 +1,23 @@
 package test.negocio.clientes.servicioaplicacion.imp;
 
-import integracion.clientes.dao.DAOCliente;
-import integracion.clientes.dao.imp.DAOClienteImp;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import negocio.clientes.servicioaplicacion.SAClientes;
+import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
+import negocio.clientes.transfer.TransferCliente;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
-import negocio.clientes.transfer.TransferCliente;
+import excepciones.BSoDException;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder
@@ -56,8 +58,16 @@ public class TestSAClientesImp {
 	public void obtenerTodoslosClientes() {
 		
 		SAClientes s = new SAClientesImp();
-		List<TransferCliente> lista = s.obtenerTodoslosClientes();
+		
+		List<TransferCliente> lista = new ArrayList<>();
+		try {
+			lista = s.obtenerTodoslosClientes();
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull(lista);
+		assertFalse(lista.isEmpty());
 		
 	}
 

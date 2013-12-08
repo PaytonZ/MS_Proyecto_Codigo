@@ -76,13 +76,13 @@ public class GUIClienteImp extends GUICliente {
 		case EVENTO_BAJA_CLIENTE:
 			panelBaja.actualizarVentana(datos);
 			break;
-		case EVENTO_ACTUALIZAR_CLIENTE:
+		case EVENTO_MODIFICAR_CLIENTE:
 			panelModificacion.actualizarVentana(datos);
 			break;
-		case EVENTO_OBTENER_CLIENTE:
+		case EVENTO_CONSULTAR_CLIENTE:
 			panelConsulta.actualizarVentana(datos);
 			break;
-		case EVENTO_OBTENER_TODOS_CLIENTE:
+		case EVENTO_CONSULTAR_TODOS_CLIENTE:
 			panelConsultaMoltiple.actualizarVentana(datos);
 			break;
 

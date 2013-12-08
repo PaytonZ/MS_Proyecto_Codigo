@@ -6,8 +6,9 @@ package presentacion.clientes.paneles;
 import javax.swing.JPanel;
 
 import presentacion.clientes.GUIInterfazClientes;
-import com.jgoodies.forms.layout.FormLayout;
+
 import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 /**
@@ -18,6 +19,9 @@ import com.jgoodies.forms.layout.RowSpec;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class PanelModificacionClientes extends JPanel implements GUIInterfazClientes {
+	
+	private static final long serialVersionUID = 1L;
+	
 	public PanelModificacionClientes() {
 		setLayout(new FormLayout(new ColumnSpec[] {},
 			new RowSpec[] {}));
@@ -30,9 +34,6 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void actualizarVentana(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+		
 	}
 }

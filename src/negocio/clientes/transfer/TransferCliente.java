@@ -229,4 +229,9 @@ public class TransferCliente {
 		// end-user-code
 	}
 
+	@Override
+	public String toString() {
+		
+		return getNombre() + " " + getDNI() + " " + getPrimerApellido() + " " + getSegundoApellido() + " " + getDireccion() + " " + getNumTelefono();
+	}
 }

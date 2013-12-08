@@ -3,6 +3,8 @@
  */
 package presentacion.clientes.paneles;
 
+import javax.swing.JPanel;
+
 import presentacion.clientes.GUIInterfazClientes;
 
 /**
@@ -12,7 +14,10 @@ import presentacion.clientes.GUIInterfazClientes;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaMultipleClientes implements GUIInterfazClientes {
+public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfazClientes {
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * (sin Javadoc)
 	 * 
