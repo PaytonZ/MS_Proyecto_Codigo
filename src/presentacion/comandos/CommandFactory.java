@@ -52,8 +52,9 @@ public abstract class CommandFactory {
 	 */
 	public static CommandFactory getInstance() {
 		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
+		if(commandFactoryInstance == null)
+			commandFactoryInstance = new CommandFactoryImp();
+		return commandFactoryInstance;
 		// end-user-code
 	}
 
