@@ -6,6 +6,9 @@ package presentacion.clientes.paneles;
 import javax.swing.JPanel;
 
 import presentacion.clientes.GUIInterfazClientes;
+import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
+import presentacion.comandos.commandFactory.CommandFactory;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 import negocio.clientes.transfer.*;
 
@@ -36,11 +39,16 @@ import javax.swing.JScrollBar;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
+	private static final long serialVersionUID = 1L;
 	public PanelBajaClientes() {
 		
-		ControladorAplicacion.getInstance();
-		
 		setLayout(new BorderLayout(0, 0));
+		
+		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_OBTENER_TODOS_CLIENTE);
+		
+		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+		
+//		controladorAplicacion.
 		
 		final JList<TransferCliente> list = new JList();
 		add(list, BorderLayout.CENTER);

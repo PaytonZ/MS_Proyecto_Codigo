@@ -16,7 +16,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
+public class PanelAltaClientes2 extends JPanel implements GUIInterfazClientes {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
@@ -27,7 +27,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 	/**
 	 * Create the panel.
 	 */
-	public PanelAltaClientes() {
+	public PanelAltaClientes2() {
 		setPreferredSize(new Dimension(600, 400));
 		setMinimumSize(new Dimension(100, 100));
 		setLayout(new FormLayout(new ColumnSpec[] {
