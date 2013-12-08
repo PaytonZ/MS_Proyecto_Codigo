@@ -22,13 +22,13 @@ import presentacion.empleados.paneles.PanelModificacionEmpleados;
  */
 public class GUIEmpleadosImp extends GUIEmpleados {
 
-	private PanelBajaTareaEmpleados frameBajaTareaEmpleados;
-	private PanelAltaTareaEmpleados frameAltaTareaEmpleados;
-	private PanelBajaEmpleados frameBajaEmpleados;
-	private PanelConsultaMultipleEmpleados frameConsultaMultipleEmpleados;
-	private PanelModificacionEmpleados frameModificacionEmpleados;
-	private PanelConsultaEmpleados frameConsultaEmpleados;
-	private PanelAltaEmpleados frameAltaEmpleados;
+	private PanelBajaTareaEmpleados panelBajaTareaEmpleados;
+	private PanelAltaTareaEmpleados panelAltaTareaEmpleados;
+	private PanelBajaEmpleados panelBajaEmpleados;
+	private PanelConsultaMultipleEmpleados panelConsultaMultipleEmpleados;
+	private PanelModificacionEmpleados panelModificacionEmpleados;
+	private PanelConsultaEmpleados panelConsultaEmpleados;
+	private PanelAltaEmpleados panelAltaEmpleados;
 	
 	@Override
 	public void update(IDEventos evento_actual, Object datos) {

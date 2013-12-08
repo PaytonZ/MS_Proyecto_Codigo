@@ -3,6 +3,8 @@
  */
 package presentacion.departamentos.paneles;
 
+import presentacion.GUIPanelesInterfaz;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -10,5 +12,11 @@ package presentacion.departamentos.paneles;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaDepartamento {
+public class PanelConsultaDepartamento implements GUIPanelesInterfaz {
+
+	@Override
+	public void actualizarVentana(Object datos) {
+		// TODO Auto-generated method stub
+		
+	}
 }

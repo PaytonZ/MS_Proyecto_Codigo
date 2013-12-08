@@ -3,6 +3,7 @@
  */
 package presentacion.tareas;
 
+import presentacion.tareas.imp.GUITareasImp;
 import presentacion.tareas.paneles.PanelAltaTareas;
 import presentacion.tareas.paneles.PanelBajaTareas;
 import presentacion.tareas.paneles.PanelConsultaMultipleTareas;

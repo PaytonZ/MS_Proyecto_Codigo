@@ -5,11 +5,11 @@ package presentacion.habitaciones.imp;
 
 import presentacion.comandos.IDEventos;
 import presentacion.habitaciones.GUIHabitaciones;
-import presentacion.habitaciones.PanelAltaHabitaciones;
-import presentacion.habitaciones.PanelBajaHabitaciones;
-import presentacion.habitaciones.PanelModificacionHabitaciones;
-import presentacion.habitaciones.PanelConsultaHabitaciones;
-import presentacion.habitaciones.PanelConsultaMultiplesHabitaciones;
+import presentacion.habitaciones.paneles.PanelAltaHabitaciones;
+import presentacion.habitaciones.paneles.PanelBajaHabitaciones;
+import presentacion.habitaciones.paneles.PanelConsultaHabitaciones;
+import presentacion.habitaciones.paneles.PanelConsultaMultiplesHabitaciones;
+import presentacion.habitaciones.paneles.PanelModificacionHabitaciones;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

@@ -1,7 +1,9 @@
 /**
  * 
  */
-package presentacion.habitaciones;
+package presentacion.habitaciones.paneles;
+
+import presentacion.GUIPanelesInterfaz;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -10,10 +12,10 @@ package presentacion.habitaciones;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelBajaHabitaciones implements GUIInterfazHabitaciones {
+public class PanelModificacionHabitaciones implements GUIPanelesInterfaz {
 
 	@Override
-	public void actualizarVentana() {
+	public void actualizarVentana(Object datos) {
 		// TODO Auto-generated method stub
 		
 	}

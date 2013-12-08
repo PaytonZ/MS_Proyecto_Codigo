@@ -1,8 +1,9 @@
 /**
  * 
  */
-package presentacion.tareas;
+package presentacion.tareas.imp;
 
+import presentacion.tareas.GUITareas;
 import presentacion.tareas.paneles.PanelAltaTareas;
 import presentacion.tareas.paneles.PanelBajaTareas;
 import presentacion.tareas.paneles.PanelConsultaMultipleTareas;
@@ -18,41 +19,66 @@ import presentacion.tareas.paneles.PanelModificacionTareas;
  */
 public class GUITareasImp extends GUITareas {
 	
-	private PanelAltaTareas panelAltaTareas;
-	private PanelBajaTareas frameBajaTareas;
-	private PanelConsultaMultipleTareas frameConsultaMultiplesTareas;
-	private PanelConsultaTarea frameConsultaTareas;
-	private PanelModificacionTareas frameModificacionTareas;
+	private PanelAltaTareas panelAlta;
+	private PanelBajaTareas panelBaja;
+	private PanelConsultaMultipleTareas panelConsultaMultiples;
+	private PanelConsultaTarea panelConsulta;
+	private PanelModificacionTareas panelModificacion;
 	
 	@Override
 	public void update(Object idVentana, Object datos) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public PanelAltaTareas getPanelAltaTareas() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if(panelAlta == null) {
+			panelAlta = new PanelAltaTareas();
+		}
+		
+		return panelAlta;
 	}
+	
 	@Override
 	public PanelBajaTareas getPanelBajaTareas() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if ( panelBaja == null) {
+			panelBaja = new PanelBajaTareas();
+		}
+		
+		return panelBaja;
 	}
+	
 	@Override
 	public PanelConsultaMultipleTareas getPanelConsultaMultipleTareas() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(panelConsultaMultiples == null) {
+			panelConsultaMultiples = new PanelConsultaMultipleTareas();
+		}
+		
+		return panelConsultaMultiples;
 	}
+	
 	@Override
 	public PanelConsultaTarea getPanelConsultaTarea() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(panelConsulta == null) {
+			panelConsulta = new PanelConsultaTarea();
+		}
+		
+		return panelConsulta;
 	}
+	
 	@Override
 	public PanelModificacionTareas getPanelModificacionTareas() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if ( panelModificacion == null ) {
+			panelModificacion = new PanelModificacionTareas();
+		}
+		
+		return panelModificacion;
 	}
 
 }

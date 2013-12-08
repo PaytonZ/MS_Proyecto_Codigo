@@ -4,11 +4,12 @@
 package presentacion.reservas;
 
 import presentacion.comandos.IDEventos;
-import presentacion.reservas.paneles.FrameAltaReservas;
-import presentacion.reservas.paneles.FrameBajaReservas;
-import presentacion.reservas.paneles.FrameConsultaMultipleReservas;
-import presentacion.reservas.paneles.FrameConsultaReservas;
-import presentacion.reservas.paneles.FrameModificacionReservas;
+import presentacion.reservas.imp.GUIReservasImp;
+import presentacion.reservas.paneles.PanelAltaReservas;
+import presentacion.reservas.paneles.PanelBajaReservas;
+import presentacion.reservas.paneles.PanelConsultaMultipleReservas;
+import presentacion.reservas.paneles.PanelConsultaReservas;
+import presentacion.reservas.paneles.PanelModificacionReservas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -44,10 +45,17 @@ public abstract class GUIReservas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public static GUIReservas getInstance() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		crearGUIReservas();
+		
+		return selfInstance;
+	}
+	
+	private static synchronized void crearGUIReservas() {
+		
+		if ( selfInstance == null ) {
+			selfInstance = new GUIReservasImp();
+		}
 	}
 
 	/**
@@ -57,7 +65,7 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaMultipleReservas getFrameConsultaMultipleReservas();
+	public abstract PanelConsultaMultipleReservas getPanelConsultaMultipleReservas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -66,7 +74,7 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameAltaReservas getFrameAltaReservas();
+	public abstract PanelAltaReservas getPanelAltaReservas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -75,7 +83,7 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameBajaReservas getFrameBajaReservas();
+	public abstract PanelBajaReservas getPanelBajaReservas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -84,7 +92,7 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameConsultaReservas getFrameConsultaReservas();
+	public abstract PanelConsultaReservas getPanelConsultaReservas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -93,5 +101,5 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract FrameModificacionReservas getFrameModificacionReservas();
+	public abstract PanelModificacionReservas getPanelModificacionReservas();
 }
