@@ -210,10 +210,8 @@ public class GUIClienteImp extends GUICliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public FrameAltaClientes getFrameAltaClientes() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		return new FrameAltaClientes();
 	}
 
 	/**

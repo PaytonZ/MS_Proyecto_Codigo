@@ -105,7 +105,7 @@ public class FramePrincipal extends JFrame {
 				frameAlta.setAlignmentX(Component.CENTER_ALIGNMENT);
 				frameAlta.setAlignmentY(Component.TOP_ALIGNMENT);
 				
-				contentPane.add(frameAlta, BorderLayout.SOUTH);
+				contentPane.add(frameAlta, BorderLayout.CENTER);
 				contentPane.validate();
 			}
 		});
