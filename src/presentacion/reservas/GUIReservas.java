@@ -3,6 +3,7 @@
  */
 package presentacion.reservas;
 
+import presentacion.comandos.IDEventos;
 import presentacion.reservas.paneles.FrameAltaReservas;
 import presentacion.reservas.paneles.FrameBajaReservas;
 import presentacion.reservas.paneles.FrameConsultaMultipleReservas;
@@ -33,7 +34,7 @@ public abstract class GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void update(Integer idEvento, Object datos);
+	public abstract void update(IDEventos idEvento, Object datos);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

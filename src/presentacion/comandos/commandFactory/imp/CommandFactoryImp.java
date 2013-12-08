@@ -11,6 +11,11 @@ import presentacion.comandos.cliente.CommandConsultaCliente;
 import presentacion.comandos.cliente.CommandConsultaTodosClientes;
 import presentacion.comandos.cliente.CommandModificarCliente;
 import presentacion.comandos.commandFactory.CommandFactory;
+import presentacion.comandos.reserva.CommandAltaReserva;
+import presentacion.comandos.reserva.CommandBajaReserva;
+import presentacion.comandos.reserva.CommandConsultaReserva;
+import presentacion.comandos.reserva.CommandConsultaTodasReservas;
+import presentacion.comandos.reserva.CommandModificarReserva;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -52,7 +57,21 @@ public class CommandFactoryImp extends CommandFactory {
 		case EVENTO_OBTENER_TODOS_CLIENTE:
 			c = new CommandConsultaTodosClientes();
 			break;
-
+		case EVENTO_ALTA_RESERVA:
+			c = new CommandAltaReserva();
+			break;
+		case EVENTO_BAJA_RESERVA:
+			c = new CommandBajaReserva();
+			break;
+		case EVENTO_MODIFICAR_RESERVA:
+			c = new CommandModificarReserva();
+			break;
+		case EVENTO_CONSULTAR_RESERVA:
+			c = new CommandConsultaReserva();
+			break;
+		case EVENTO_CONSULTAR_TODAS_RESERVAS:
+			c = new CommandConsultaTodasReservas();
+			break;
 		default:
 			break;
 

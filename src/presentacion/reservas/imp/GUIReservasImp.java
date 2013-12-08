@@ -3,6 +3,7 @@
  */
 package presentacion.reservas.imp;
 
+import presentacion.comandos.IDEventos;
 import presentacion.reservas.GUIReservas;
 import presentacion.reservas.paneles.FrameAltaReservas;
 import presentacion.reservas.paneles.FrameBajaReservas;
@@ -181,7 +182,7 @@ public class GUIReservasImp extends GUIReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void update(Integer idEvento, Object datos) {
+	public void update(IDEventos idEvento, Object datos) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
