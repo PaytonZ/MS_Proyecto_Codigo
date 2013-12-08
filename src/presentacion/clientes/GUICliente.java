@@ -3,12 +3,12 @@
  */
 package presentacion.clientes;
 
-import presentacion.clientes.frames.PanelConsultaMultipleClientes;
-import presentacion.clientes.frames.PanelAltaClientes;
-import presentacion.clientes.frames.PanelBajaClientes;
-import presentacion.clientes.frames.PanelConsultaClientes;
-import presentacion.clientes.frames.PanelModificacionClientes;
 import presentacion.clientes.imp.GUIClienteImp;
+import presentacion.clientes.paneles.PanelAltaClientes;
+import presentacion.clientes.paneles.PanelBajaClientes;
+import presentacion.clientes.paneles.PanelConsultaClientes;
+import presentacion.clientes.paneles.PanelConsultaMultipleClientes;
+import presentacion.clientes.paneles.PanelModificacionClientes;
 import presentacion.comandos.IDEventos;
 
 /**

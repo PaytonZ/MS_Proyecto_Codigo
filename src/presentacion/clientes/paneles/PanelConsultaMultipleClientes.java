@@ -1,9 +1,9 @@
 /**
  * 
  */
-package presentacion.tareas;
+package presentacion.clientes.paneles;
 
-import presentacion.habitaciones.GUIInterfazHabitaciones;
+import presentacion.clientes.GUIInterfazClientes;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -12,15 +12,15 @@ import presentacion.habitaciones.GUIInterfazHabitaciones;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameModificacionTareas implements GUIInterfazHabitaciones {
+public class PanelConsultaMultipleClientes implements GUIInterfazClientes {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see GUIInterfazHabitaciones#actualizarVentana()
+	 * @see GUIInterfazClientes#actualizarVentana(Object datos)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarVentana() {
+	public void actualizarVentana(Object datos) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 

@@ -1,4 +1,4 @@
-package presentacion.clientes.frames;
+package presentacion.clientes.paneles;
 
 import java.awt.Component;
 

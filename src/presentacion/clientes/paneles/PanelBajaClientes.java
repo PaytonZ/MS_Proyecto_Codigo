@@ -1,7 +1,7 @@
 /**
  * 
  */
-package presentacion.clientes.frames;
+package presentacion.clientes.paneles;
 
 import javax.swing.JPanel;
 

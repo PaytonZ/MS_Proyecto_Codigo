@@ -1,7 +1,7 @@
 /**
  * 
  */
-package presentacion.tareas;
+package presentacion.tareas.paneles;
 
 import presentacion.habitaciones.GUIInterfazHabitaciones;
 
@@ -12,7 +12,7 @@ import presentacion.habitaciones.GUIInterfazHabitaciones;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class FrameConsultaMultipleTareas implements GUIInterfazHabitaciones {
+public class PanelModificacionTareas implements GUIInterfazHabitaciones {
 	/**
 	 * (sin Javadoc)
 	 * 

@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
-import presentacion.clientes.frames.PanelAltaClientes;
+import presentacion.clientes.paneles.PanelAltaClientes;
 
 public class FramePrincipal extends JFrame {
 
