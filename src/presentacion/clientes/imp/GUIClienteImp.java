@@ -27,11 +27,7 @@ public class GUIClienteImp extends GUICliente {
 	private PanelConsultaClientes panelConsulta;
 	private PanelConsultaMultipleClientes panelConsultaMoltiple;
 
-	public void update(Integer idEvento, Object datos) {
-		
-	}
-
-	public PanelAltaClientes getPanelAlta() {
+	public PanelAltaClientes getPanelAltaClientes() {
 		
 		if ( panelAlta == null)
 			panelAlta = new PanelAltaClientes();
@@ -39,50 +35,37 @@ public class GUIClienteImp extends GUICliente {
 		return panelAlta;
 	}
 
-	public PanelBajaClientes getPanelBaja() {
-		
-		return panelBaja;
-	}
-	
-	public PanelModificacionClientes getPanelModificacion() {
-		
-		return panelModificacion;
-	}
-
-	public PanelConsultaClientes getPanelConsulta() {
-	
-		return panelConsulta;
-	}
-
-public PanelConsultaMultipleClientes getPanelConsultaMoltiple() {
-		 
-		return panelConsultaMoltiple;
-	}
-
-	public PanelConsultaMultipleClientes getPanelConsultaMultipleClientes() {
-		
-		return panelConsultaMoltiple;
-
-	}
-
-	public PanelAltaClientes getPanelAltaClientes() {
-		
-		return new PanelAltaClientes();
-	}
-
 	public PanelBajaClientes getPanelBajaClientes() {
+		
+		if ( panelBaja == null)
+			panelBaja = new PanelBajaClientes();
 	
 		return panelBaja;
 	}
 
 	public PanelConsultaClientes getPanelConsultaClientes() {
+		
+		if ( panelConsulta == null)
+			panelConsulta = new PanelConsultaClientes();
 	
 		return panelConsulta;
 	}
 
 	public PanelModificacionClientes getPanelModificacionClientes() {
+		
+		if ( panelModificacion == null)
+			panelModificacion = new PanelModificacionClientes();
 	
 		return panelModificacion;
+	}
+
+	public PanelConsultaMultipleClientes getPanelConsultaMultipleClientes() {
+		
+		if ( panelConsultaMoltiple == null)
+			panelConsultaMoltiple = new PanelConsultaMultipleClientes();
+		
+		return panelConsultaMoltiple;
+
 	}
 
 	public void update(IDEventos evento_actual, Object datos) {
@@ -107,6 +90,5 @@ public PanelConsultaMultipleClientes getPanelConsultaMoltiple() {
 			break;
 
 		}
-
 	}
 }
