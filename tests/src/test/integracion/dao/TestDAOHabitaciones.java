@@ -13,6 +13,7 @@ import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
 import org.junit.After;
 import org.junit.Before;
@@ -106,7 +107,7 @@ public class TestDAOHabitaciones {
 
 	private TransferHabitacion crearHabitacion() {
 
-		TransferHabitacion c = new TransferHabitacion();
+		TransferHabitacion c = new TransferHabitacionNormal();
 
 		numhab = new Random().nextInt(99999);
 		precio = new Random().nextDouble();

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.habitaciones.transfer.TransferHabitacionSuite;
@@ -56,8 +57,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			addhabitacion.setDouble(2, habitacion.getPrecio());
 			
 			if(habitacion instanceof TransferHabitacionNormal)
-				addhabitacion.setString(3, "Normal");
-			else addhabitacion.setString(3, "Suite");
+				addhabitacion.setString(3, TipoHabitacion.HABITACION_NORMAL.toString());
+			else addhabitacion.setString(3, TipoHabitacion.HABITACION_SUITE.toString());
 	
 
 			if (addhabitacion.executeUpdate() == 1) {
@@ -201,8 +202,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			preparedStatement.setInt(1, habitacion.getNumHabitacion());
 			preparedStatement.setDouble(2, habitacion.getPrecio());
 			if(habitacion instanceof TransferHabitacionNormal)
-				preparedStatement.setString(3, "Normal");
-			else preparedStatement.setString(3, "Suite");
+				preparedStatement.setString(3, TipoHabitacion.HABITACION_NORMAL.toString());
+			else preparedStatement.setString(3, TipoHabitacion.HABITACION_SUITE.toString());
 			preparedStatement.setInt(4, habitacion.getNumHabitacion());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
