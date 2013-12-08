@@ -3,7 +3,6 @@
  */
 package negocio.factorias.serviciosAplicacion;
 
-import integracion.transacciones.transactionFactory.imp.TransactionFactoryImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.empleados.servicioaplicacion.SAEmpleados;

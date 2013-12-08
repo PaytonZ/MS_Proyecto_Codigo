@@ -33,7 +33,7 @@ public class DAOReservaImp implements DAOReserva {
 	 */
 	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
 	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
-	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE DNI = ? AND fecha_reserva = ? FOR UPDATE";
+	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
 	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
@@ -48,7 +48,7 @@ public class DAOReservaImp implements DAOReserva {
 			PreparedStatement addreserva = c.prepareStatement(addReservaQuery);
 
 			addreserva.setString(1, reserva.getDNI());
-			addreserva.setInt(2, reserva.getNumeroHabitacion());
+ 			addreserva.setInt(2, reserva.getNumeroHabitacion());
 			addreserva.setDate(3, (Date) reserva.getFechaReserva());
 			addreserva.setDate(4, (Date) reserva.getFechaEntrada());
 			addreserva.setDate(5, (Date) reserva.getFechaSalida());

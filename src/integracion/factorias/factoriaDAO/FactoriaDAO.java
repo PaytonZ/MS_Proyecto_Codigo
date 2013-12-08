@@ -3,6 +3,7 @@
  */
 package integracion.factorias.factoriaDAO;
 
+import presentacion.clientes.imp.GUIClienteImp;
 import integracion.reservas.dao.DAOReserva;
 import integracion.clientes.dao.DAOCliente;
 import integracion.factorias.factoriaDAO.imp.FactoriaDAOImp;
@@ -33,12 +34,18 @@ public abstract class FactoriaDAO {
 	 */
 	public static FactoriaDAO getInstance() {
 
-		if (factoriaDAOInstance == null) {
-			factoriaDAOInstance = new FactoriaDAOImp();
-		}
+		createFactoriaDAO();
 
 		return factoriaDAOInstance;
 	}
+	
+	private static synchronized void createFactoriaDAO() {
+		
+		if ( factoriaDAOInstance == null) {
+			factoriaDAOInstance = new FactoriaDAOImp();
+		}
+	}
+
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

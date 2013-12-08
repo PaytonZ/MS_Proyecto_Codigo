@@ -1,29 +1,32 @@
 package presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JToolBar;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
+import java.awt.Color;
 import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.SwingConstants;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.JMenuBar;
+
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import presentacion.clientes.GUICliente;
+import presentacion.clientes.frames.FrameAltaClientes;
 
 public class FramePrincipal extends JFrame {
 
@@ -79,37 +82,62 @@ public class FramePrincipal extends JFrame {
 		toolBar.add(glue);
 		
 		JButton btnClientes = new JButton("Clientes");
+		btnClientes.setIconTextGap(12);
 		btnClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnClientes.setVerticalAlignment(SwingConstants.CENTER);
+		btnClientes.setMaximumSize(new Dimension(74, 400));
 		btnClientes.setForeground(Color.BLACK);
 		btnClientes.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnClientes.setOpaque(false);
-		toolBar.add(btnClientes);
 		btnClientes.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnClientes.setMnemonic(KeyEvent.VK_C);
 		btnClientes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnClientes.setToolTipText("Abre la sección de administración de clientes");
+		btnClientes.requestFocus(true);
 		
+		btnClientes.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Clientes64Over.png")));
 		btnClientes.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Clientes64.png")));
+		
+		btnClientes.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				FrameAltaClientes frameAlta = GUICliente.getInstance().getFrameAltaClientes();
+				frameAlta.setAlignmentX(Component.CENTER_ALIGNMENT);
+				frameAlta.setAlignmentY(Component.TOP_ALIGNMENT);
+				
+				contentPane.add(frameAlta, BorderLayout.SOUTH);
+				contentPane.validate();
+			}
+		});
+		toolBar.add(btnClientes);
+		
+		JButton btnHabitaciones = new JButton("Habitaciones");
+		btnHabitaciones.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnHabitaciones.setForeground(Color.BLACK);
+		btnHabitaciones.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnHabitaciones.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnHabitaciones.setMnemonic(KeyEvent.VK_C);
+		btnHabitaciones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnHabitaciones.setToolTipText("Abre la sección de administración de clientes");
+
+		btnHabitaciones.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Habitaciones64Over.png")));
+		btnHabitaciones.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Habitaciones64.png")));
+		toolBar.add(btnHabitaciones);
+		
+		JButton btnReservas = new JButton("Reservas");
+		btnReservas.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnReservas.setForeground(Color.BLACK);
+		btnReservas.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnReservas.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnReservas.setMnemonic(KeyEvent.VK_C);
+		btnReservas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnReservas.setToolTipText("Abre la sección de administración de clientes");
+
+		btnReservas.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Reservas64Over.png")));
+		btnReservas.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Reservas64.png")));
+		toolBar.add(btnReservas);
 		
 		Component glue_1 = Box.createGlue();
 		toolBar.add(glue_1);
-	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
 	}
 }
