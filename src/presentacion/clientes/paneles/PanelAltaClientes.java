@@ -142,6 +142,12 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		else if ( datos instanceof Integer ) {
 			
 			JOptionPane.showConfirmDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+
+			textDNI.setText("");
+			textApellidos.setText("");
+			textNombre.setText("");
+			textDireccion.setText("");
+			textTelefono.setText("");
 		}
 		else {
 			
