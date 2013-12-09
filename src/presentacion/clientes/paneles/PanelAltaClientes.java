@@ -104,7 +104,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 					String[] apellidos = textApellidos.getText().split(" ");
 					
 					if ( apellidos.length < 1 ) {
-						JOptionPane.showConfirmDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						if ( apellidos.length >= 1 )
@@ -117,14 +117,14 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showConfirmDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 						
 						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
 					}
 				}
 				else {
-					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -136,11 +136,11 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		if ( datos == null) {
 			
-			JOptionPane.showConfirmDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if ( datos instanceof Integer ) {
 			
-			JOptionPane.showConfirmDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			textDNI.setText("");
 			textApellidos.setText("");
@@ -152,7 +152,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 			
 			BSoDException bsod = (BSoDException) datos;
 			
-			JOptionPane.showConfirmDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

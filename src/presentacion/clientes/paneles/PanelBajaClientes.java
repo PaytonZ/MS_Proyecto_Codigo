@@ -151,11 +151,11 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				textDireccion.setText("");
 				textTelefono.setText("");
 				
-				JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				
-				JOptionPane.showConfirmDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

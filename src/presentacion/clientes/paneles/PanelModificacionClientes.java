@@ -150,7 +150,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 					String[] apellidos = textApellidos.getText().split(" ");
 					
 					if ( apellidos.length < 1 ) {
-						JOptionPane.showConfirmDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						if ( apellidos.length > 1 )
@@ -163,7 +163,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showConfirmDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 						
 						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_CLIENTE, cliente);
@@ -217,11 +217,11 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textTelefono.setText("");
 				textTelefono.setEditable(true);
 				
-				JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				
-				JOptionPane.showConfirmDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			idCliente = null;
 		}

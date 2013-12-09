@@ -111,14 +111,14 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 			list.setListData(clientes);
 		}
 		else if ( datos instanceof BSoDException ) {
-			System.out.println(((BSoDException) datos).getMensaje() );
+			System.out.println( ((BSoDException) datos).getMensaje() );
 		}
 		else if ( datos instanceof Boolean ) {
 			
-			JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
-			JOptionPane.showConfirmDialog(this, "Error al borrar el cliente", "Error", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
