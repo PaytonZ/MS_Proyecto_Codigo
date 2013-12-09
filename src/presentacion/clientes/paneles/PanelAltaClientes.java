@@ -84,8 +84,8 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 0 10 8 1,growx,aligny top");
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -129,9 +129,6 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 				}
 			}
 		});
-		add(btnCancelar, "cell 6 11,growx,aligny top");
-		
-		JButton btnAceptar = new JButton("Aceptar");
 		add(btnAceptar, "cell 7 11,alignx left,aligny top");
 	}
 
