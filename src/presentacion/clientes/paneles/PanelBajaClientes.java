@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
@@ -36,10 +38,14 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 	public PanelBajaClientes() {
 		
 		setLayout(new BorderLayout(0, 0));
-		
+
 		list = new JList<TransferCliente>();
 		
-		add(list, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		
+		add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(10, 100));
