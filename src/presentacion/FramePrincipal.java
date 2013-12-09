@@ -24,9 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
-import presentacion.clientes.paneles.PanelBajaClientes;
 import presentacion.habitaciones.GUIHabitaciones;
-import presentacion.habitaciones.paneles.PanelBajaHabitaciones;
 import presentacion.reservas.GUIReservas;
 
 public class FramePrincipal extends JFrame {
@@ -119,8 +117,7 @@ public class FramePrincipal extends JFrame {
 				
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
-				PanelBajaClientes panelBaja = GUICliente.getInstance().getPanelBajaClientes();
-				tabbedPane.add("Baja clientes", panelBaja);
+				tabbedPane.add("Baja clientes", GUICliente.getInstance().getPanelBajaClientes());
 				tabbedPane.add("Modificación clientes", GUICliente.getInstance().getPanelModificacionClientes());
 				tabbedPane.add("Consulta clientes", GUICliente.getInstance().getPanelConsultaClientes());
 				tabbedPane.add("Consulta multiple clientes", GUICliente.getInstance().getPanelConsultaMultipleClientes());
@@ -164,9 +161,7 @@ public class FramePrincipal extends JFrame {
 				
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta habitaciones", GUIHabitaciones.getInstance().getPanelAltaHabitaciones());
-				PanelBajaHabitaciones panelBaja = GUIHabitaciones.getInstance().getPanelBajaHabitaciones();
-				panelBaja.cargaDatosInit();
-				tabbedPane.add("Baja habitaciones", panelBaja);
+				tabbedPane.add("Baja habitaciones", GUIHabitaciones.getInstance().getPanelBajaHabitaciones());
 				tabbedPane.add("Modificación habitaciones", GUIHabitaciones.getInstance().getPanelModificacionHabitaciones());
 				tabbedPane.add("Consulta habitaciones", GUIHabitaciones.getInstance().getPanelConsultaHabitaciones());
 				tabbedPane.add("Consulta multiple habitaciones", GUIHabitaciones.getInstance().getPanelConsultaMultiplesHabitaciones());
