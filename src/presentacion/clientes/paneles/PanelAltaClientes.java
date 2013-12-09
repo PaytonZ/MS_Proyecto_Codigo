@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import com.apple.dnssd.TXTRecord;
+
 
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
