@@ -73,6 +73,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblDni_1, "cell 2 6,alignx right");
 		
 		txtDni = new JTextField();
+		txtDni.setEditable(false);
 		add(txtDni, "cell 3 6,growx");
 		txtDni.setColumns(10);
 		
@@ -80,6 +81,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblNombre, "cell 5 6,alignx trailing");
 		
 		textNombre = new JTextField();
+		textNombre.setEditable(false);
 		add(textNombre, "cell 6 6,growx");
 		textNombre.setColumns(10);
 		
@@ -87,6 +89,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblApellidos, "cell 2 8,alignx right");
 		
 		textApellidos = new JTextField();
+		textApellidos.setEditable(false);
 		add(textApellidos, "cell 3 8,growx");
 		textApellidos.setColumns(10);
 		
@@ -94,6 +97,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblDireccin, "cell 5 8,alignx trailing");
 		
 		textDireccion = new JTextField();
+		textDireccion.setEditable(false);
 		add(textDireccion, "cell 6 8,growx");
 		textDireccion.setColumns(10);
 		
@@ -101,6 +105,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblTelefono, "cell 2 10,alignx trailing");
 		
 		textTelefono = new JTextField();
+		textTelefono.setEditable(false);
 		add(textTelefono, "cell 3 10,growx");
 		textTelefono.setColumns(10);
 	}
