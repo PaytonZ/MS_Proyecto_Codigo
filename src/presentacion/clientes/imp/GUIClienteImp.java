@@ -69,20 +69,27 @@ public class GUIClienteImp extends GUICliente {
 	}
 
 	public void update(IDEventos evento_actual, Object datos) {
+		
 		switch (evento_actual) {
+		
 		case EVENTO_ALTA_CLIENTE:
+		case ERROR_ALTA_CLIENTE:
 			panelAlta.actualizarVentana(datos);
 			break;
 		case EVENTO_BAJA_CLIENTE:
+		case ERROR_BAJA_CLIENTE:
 			panelBaja.actualizarVentana(datos);
 			break;
 		case EVENTO_MODIFICAR_CLIENTE:
+		case ERROR_MODIFICAR_CLIENTE:
 			panelModificacion.actualizarVentana(datos);
 			break;
 		case EVENTO_CONSULTAR_CLIENTE:
+		case ERROR_CONSULTAR_CLIENTE:
 			panelConsulta.actualizarVentana(datos);
 			break;
 		case EVENTO_CONSULTAR_TODOS_CLIENTE:
+		case ERROR_CONSULTAR_TODOS_CLIENTE:
 			panelConsultaMoltiple.actualizarVentana(datos);
 			break;
 
