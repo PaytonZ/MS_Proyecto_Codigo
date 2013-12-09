@@ -9,6 +9,7 @@ import excepciones.BSoDException;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
@@ -36,11 +37,12 @@ public class CommandConsultaTodosClientes implements Command {
 			lista = factoriaSa.getSAClientes().obtenerTodoslosClientes();
 			
 			cr.setDatos(lista);
-//			cr.setEvento();
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
 			
 		} catch (BSoDException bsod) {
 			
 			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE);
 		}
 		
 		return cr;

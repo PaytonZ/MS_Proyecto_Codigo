@@ -11,7 +11,7 @@ import integracion.transacciones.transactionManager.TransactionManager;
 import java.util.List;
 
 import excepciones.BSoDException;
-import excepciones.TransaccionNoEliminada;
+import excepciones.TransaccionNoEliminadaException;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.transfer.TransferCliente;
 
@@ -55,7 +55,7 @@ public class SAClientesImp implements SAClientes {
 
 	/**
 	 * (sin Javadoc)
-	 * @throws TransaccionNoEliminada 
+	 * @throws TransaccionNoEliminadaException 
 	 * 
 	 * @see SAClientes#obtenerTodoslosClientes()
 	 * @generated 
@@ -80,7 +80,7 @@ public class SAClientesImp implements SAClientes {
 		finally {
 			if (!tm.eliminaTransaccion()) {
 
-				throw new TransaccionNoEliminada(SAClientes.class.getName());
+				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
 		}	
 		return listaClientes;
