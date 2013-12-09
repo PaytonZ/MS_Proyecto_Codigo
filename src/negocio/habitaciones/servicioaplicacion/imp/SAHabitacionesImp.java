@@ -4,6 +4,9 @@
 package negocio.habitaciones.servicioaplicacion.imp;
 
 
+
+import negocio.excepciones.BSoDException;
+import negocio.excepciones.TransaccionNoEliminadaException;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
@@ -24,13 +27,14 @@ import java.util.List;
 public class SAHabitacionesImp implements SAHabitaciones {
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException  
 	 * 
 	 * @see SAHabitaciones#anadirHabitacion(TransferHabitacionNormal
 	 *      habitacionNueva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirHabitacion(TransferHabitacion habitacionNueva) {
+	public Integer anadirHabitacion(TransferHabitacion habitacionNueva) throws BSoDException  {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -46,7 +50,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 			transacion.rollback();
 		} finally {
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 
@@ -55,13 +59,14 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAHabitaciones#actualizarHabitacion(TransferHabitacionNormal
 	 *      habitacionModificada)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarHabitacion(TransferHabitacion habitacionModificada) {
+	public Boolean actualizarHabitacion(TransferHabitacion habitacionModificada) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -83,12 +88,12 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		}
 		catch(Exception e)
 		{
-			//tratar
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		return correcto;
@@ -96,12 +101,13 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAHabitaciones#borrarHabitacion(Integer idHabitacion)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarHabitacion(Integer idHabitacion) {
+	public Boolean borrarHabitacion(Integer idHabitacion) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -115,12 +121,12 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		}
 		catch(Exception e)
 		{
-			
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		return resultado;
@@ -129,12 +135,13 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAHabitaciones#obtenerTodaslasHabitaciones()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferHabitacion> obtenerTodaslasHabitaciones() {
+	public List<TransferHabitacion> obtenerTodaslasHabitaciones() throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -147,12 +154,13 @@ public class SAHabitacionesImp implements SAHabitaciones {
 	}
 	catch(Exception e)
 	{
-		//
+		throw new BSoDException(e.toString());
 	}
 	finally
 	{
 		if (!tm.eliminaTransaccion()) {
-			// ERROR
+			
+			throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 		}
 	}
 	
@@ -163,12 +171,13 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAHabitaciones#obtenerHabitacion(Integer idHabitacion)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferHabitacion obtenerHabitacion(Integer idHabitacion) {
+	public TransferHabitacion obtenerHabitacion(Integer idHabitacion) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -181,12 +190,12 @@ public class SAHabitacionesImp implements SAHabitaciones {
 				t = dao.getHabitacion(idHabitacion);
 		}catch(Exception e)
 		{
-			
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		

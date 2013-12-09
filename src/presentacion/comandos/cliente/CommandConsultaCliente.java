@@ -30,13 +30,13 @@ public class CommandConsultaCliente implements Command {
 		try {
 
 			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.obtenerTodoslosClientes());
-			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
+					.obtenerCliente((Integer)datos));
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE);
 
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_CLIENTE);
 		}
 
 		return cr;

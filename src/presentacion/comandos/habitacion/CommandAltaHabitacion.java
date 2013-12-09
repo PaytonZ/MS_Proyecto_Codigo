@@ -3,7 +3,12 @@
  */
 package presentacion.comandos.habitacion;
 
+
+import negocio.excepciones.BSoDException;
+import negocio.factorias.serviciosAplicacion.FactorySA;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
@@ -22,9 +27,20 @@ public class CommandAltaHabitacion implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		
+		CommandResponse cr = new CommandResponse();
+		try {
+
+			cr.setDatos(FactorySA.getInstance().getSAHabitaciones()
+					.anadirHabitacion((TransferHabitacion) datos));
+			cr.setEvento(IDEventos.EVENTO_ALTA_HABITACION);
+
+		} catch (BSoDException bsod) {
+
+			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.ERROR_ALTA_HABITACION);
+		}
+
+		return cr;
 	}
 }
