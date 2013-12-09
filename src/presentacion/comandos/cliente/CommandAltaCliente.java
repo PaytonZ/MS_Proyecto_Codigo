@@ -30,8 +30,7 @@ public class CommandAltaCliente implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.anadirCliente((TransferCliente) datos));
+			cr.setDatos(FactorySA.getInstance().getSAClientes().anadirCliente((TransferCliente) datos));
 			cr.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
 
 		} catch (BSoDException bsod) {
