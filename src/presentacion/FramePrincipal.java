@@ -27,6 +27,7 @@ import presentacion.clientes.GUICliente;
 import presentacion.clientes.paneles.PanelBajaClientes;
 import presentacion.habitaciones.GUIHabitaciones;
 import presentacion.habitaciones.paneles.PanelBajaHabitaciones;
+import presentacion.reservas.GUIReservas;
 
 public class FramePrincipal extends JFrame {
 
@@ -199,7 +200,23 @@ public class FramePrincipal extends JFrame {
 
 				btnReservas.setEnabled(false);
 
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
 				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+				}
+				
+				
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta reservas", GUIReservas.getInstance().getPanelAltaReservas());
+				tabbedPane.add("Baja reservas", GUIReservas.getInstance().getPanelBajaReservas());
+				tabbedPane.add("Modificación reservas", GUIReservas.getInstance().getPanelModificacionReservas());
+				tabbedPane.add("Consulta reservas", GUIReservas.getInstance().getPanelConsultaReservas());
+				tabbedPane.add("Consulta multiple reservas", GUIReservas.getInstance().getPanelConsultaMultipleReservas());
+				
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
+				contentPane.validate();
 				
 				btnClientes.setEnabled(true);
 				btnHabitaciones.setEnabled(true);
