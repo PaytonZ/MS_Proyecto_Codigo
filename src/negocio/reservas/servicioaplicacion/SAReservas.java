@@ -3,8 +3,8 @@
  */
 package negocio.reservas.servicioaplicacion;
 
+import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,47 +20,52 @@ public interface SAReservas {
 	 * 
 	 * @param reserva
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarReserva(TransferReserva reserva);
+	public Boolean actualizarReserva(TransferReserva reserva) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param reserva
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirReserva(TransferReserva reserva);
+	public Integer anadirReserva(TransferReserva reserva) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param idReserva
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarReserva(Integer idReserva);
+	public Boolean borrarReserva(Integer idReserva) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param idReserva
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva obtenerReserva(Integer idReserva);
+	public TransferReserva obtenerReserva(Integer idReserva) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente);
+	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente) throws BSoDException;
 }

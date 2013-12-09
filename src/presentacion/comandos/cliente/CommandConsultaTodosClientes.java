@@ -34,7 +34,7 @@ public class CommandConsultaTodosClientes implements Command {
 
 			cr.setDatos(FactorySA.getInstance().getSAClientes()
 					.obtenerTodoslosClientes());
-			;
+			
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
 
 		} catch (BSoDException bsod) {

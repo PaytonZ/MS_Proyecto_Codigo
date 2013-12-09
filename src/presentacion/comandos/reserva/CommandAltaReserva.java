@@ -3,7 +3,8 @@
  */
 package presentacion.comandos.reserva;
 
-import negocio.clientes.transfer.TransferCliente;
+
+import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.reservas.transfer.TransferReserva;
 import presentacion.comandos.Command;
@@ -27,9 +28,19 @@ public class CommandAltaReserva implements Command {
 	 */
 	public CommandResponse execute(Object datos) {
 		
-		CommandResponse cm = new CommandResponse();	
-		cm.setDatos(FactorySA.getInstance().getSAReservas().anadirReserva((TransferReserva) datos));
-		cm.setEvento(IDEventos.EVENTO_ALTA_RESERVA);
-		return cm;
+		CommandResponse cr = new CommandResponse();
+		try {
+
+			cr.setDatos(FactorySA.getInstance().getSAReservas()
+					.anadirReserva((TransferReserva) datos));
+			cr.setEvento(IDEventos.EVENTO_ALTA_RESERVA);
+
+		} catch (BSoDException bsod) {
+
+			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.EVENTO_ALTA_RESERVA);
+		}
+
+		return cr;
 	}
 }

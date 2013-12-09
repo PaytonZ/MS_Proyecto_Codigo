@@ -3,7 +3,10 @@
  */
 package presentacion.comandos.reserva;
 
+import negocio.excepciones.BSoDException;
+import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /**
@@ -22,9 +25,22 @@ public class CommandConsultaReserva implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+
+		CommandResponse cr = new CommandResponse();
+		try {
+
+			cr.setDatos(FactorySA.getInstance().getSAReservas()
+					.obtenerReserva((Integer)datos));
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_RESERVA);
+
+		} catch (BSoDException bsod) {
+
+			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_RESERVA);
+		}
+
+		return cr;
+	
 	}
 }

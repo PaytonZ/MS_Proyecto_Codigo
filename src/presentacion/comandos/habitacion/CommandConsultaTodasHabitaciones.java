@@ -31,7 +31,7 @@ public class CommandConsultaTodasHabitaciones implements Command {
 
 			cr.setDatos(FactorySA.getInstance().getSAHabitaciones()
 					.obtenerTodaslasHabitaciones());
-			;
+			
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION);
 
 		} catch (BSoDException bsod) {
