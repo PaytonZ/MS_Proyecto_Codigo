@@ -144,8 +144,34 @@ public class TestSAClientesImp {
 	}
 	@Test
 	public void borrarCliente() {
+		SAClientes s = new SAClientesImp();
+		TransferCliente c = new TransferCliente();
+
+		c.setDNI(String.valueOf(new Random().nextInt(99999)));
+		c.setDireccion("asdasd");
+		c.setNombre("asdasd");
+		c.setPrimerApellido("asdasd");
+		c.setSegundoApellido("asdasd");
+		c.setNumTelefono(454545);
+		Integer id=null;
+		try {
+			id = s.anadirCliente(c);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(id >=0);
 		
+		boolean correcto = false;
 		
+		try{
+			correcto = s.borrarCliente(id);
+		}catch (BSoDException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(correcto);
 	}
 
 	}

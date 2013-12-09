@@ -1,8 +1,10 @@
 package test.negocio.habitaciones.servicioaplicacion.imp;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -29,10 +31,11 @@ public class TestSAHabitacionesImp {
 
 		h.setNumHabitacion((new Random().nextInt(99999)));
 		h.setPrecio(new Random().nextDouble());
-		
+
 		Integer id = null;
-		try {
-			id = s.anadirHabitacion(h);
+		try{
+		id = s.anadirHabitacion(h);
+
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,13 +43,15 @@ public class TestSAHabitacionesImp {
 		assertTrue("La habitacion no se añadio",id >=0);
 		
 		TransferHabitacion h1 = null;
-		try {
-			h1 = s.obtenerHabitacion(id);
-		} catch (BSoDException e) {
+		
+		try{
+			h1 = s.obtenerHabitacion(id); 
+			
+		}catch (BSoDException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
-		
 		assertNotNull("La habitacion no se obtenio",h1);
 		
 		
@@ -59,13 +64,15 @@ public class TestSAHabitacionesImp {
 	public void obtenerTodaslasHabitaciones() {
 		
 		SAHabitaciones s = new SAHabitacionesImp();
-		List<TransferHabitacion> lista = null;
-		try {
-			lista = s.obtenerTodaslasHabitaciones();
+		
+		List<TransferHabitacion> lista = new ArrayList<>();
+		try{
+			lista = s.obtenerTodaslasHabitaciones(); 
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
+
 		assertNotNull("No hay Lista de habitaciones",lista);
 		
 	}
@@ -82,12 +89,15 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(new Random().nextDouble());
 	
 		Integer id = null;
-		try {
-			id = s.anadirHabitacion(h);
+
+		try{
+			id = s.anadirHabitacion(h); 
+
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		assertTrue("La habitacion no se añadio",id >=0);
 		
 		
@@ -95,21 +105,27 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(nuevoprecio);
 
 		boolean correcto = false;
-		try {
+
+		try{
 			correcto = s.actualizarHabitacion(h);
-		} catch (BSoDException e1) {
+		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
+
 		}
 		
 		assertTrue("La habitacion no se actualizo correctamente",correcto);
 		
 		TransferHabitacion h1 = null;
-		try {
+
+		try{
+
 			h1 = s.obtenerHabitacion(id);
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
+
 		}
 
 		assertNotNull("La habitacion no se obtenio",h1);
@@ -133,18 +149,21 @@ public class TestSAHabitacionesImp {
 		h.setPrecio(new Random().nextDouble());
 	
 		Integer id = null;
-		try {
+
+		try{
 			id = s.anadirHabitacion(h);
-		} catch (BSoDException e) {
+		} catch (BSoDException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
 		assertTrue("La habitacion no se añadio",id >=0);
 		
-		boolean correcto = false;
-		try {
+		boolean correcto = false; 
+		try{
 			correcto = s.borrarHabitacion(id);
-		} catch (BSoDException e) {
+		}catch (BSoDException e) {
+
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
