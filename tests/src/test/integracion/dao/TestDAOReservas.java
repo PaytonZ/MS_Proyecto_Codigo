@@ -49,7 +49,7 @@ public class TestDAOReservas {
 	@Test
 	public void  deleteReserva() {
 		DAOReserva d = new DAOReservaImp();
-		;
+		
 		assertTrue(d.deleteReserva(1));
 		
 	}

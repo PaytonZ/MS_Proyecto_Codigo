@@ -13,23 +13,23 @@ public class CommandConsultaTodosClientesVentanaBorrar implements Command {
 
 	@Override
 	public CommandResponse execute(Object datos) {
-		
+
 		FactorySA factoriaSa = FactorySA.getInstance();
-		
+
 		List<TransferCliente> lista = null;
 		CommandResponse cr = new CommandResponse();
 		try {
 			lista = factoriaSa.getSAClientes().obtenerTodoslosClientes();
-			
+
 			cr.setDatos(lista);
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRAR);
-			
+
 		} catch (BSoDException bsod) {
-			
+
 			cr.setDatos(bsod);
 			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE_V_BORRAR);
 		}
-		
+
 		return cr;
 	}
 }

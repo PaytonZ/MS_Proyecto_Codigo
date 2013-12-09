@@ -28,20 +28,21 @@ public class CommandConsultaTodosClientes implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		
-			
+
 		CommandResponse cr = new CommandResponse();
 		try {
-				
-			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerTodoslosClientes());;
+
+			cr.setDatos(FactorySA.getInstance().getSAClientes()
+					.obtenerTodoslosClientes());
+			;
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
-			
+
 		} catch (BSoDException bsod) {
-			
+
 			cr.setDatos(bsod);
 			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE);
 		}
-		
+
 		return cr;
 	}
 }

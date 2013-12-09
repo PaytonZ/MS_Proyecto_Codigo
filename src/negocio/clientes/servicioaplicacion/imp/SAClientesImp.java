@@ -50,7 +50,7 @@ public class SAClientesImp implements SAClientes {
 			
 		} finally {
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
 		}
 
@@ -79,8 +79,7 @@ public class SAClientesImp implements SAClientes {
 		try {
 			listaClientes = dao.getAllClientes();
 			
-			listaClientes = null;
-			listaClientes.get(0);
+			
 		}
 		catch(Exception e) {
 			throw new BSoDException(e.toString());
@@ -96,12 +95,13 @@ public class SAClientesImp implements SAClientes {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAClientes#actualizarCliente(TransferCliente clienteActualizado)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarCliente(TransferCliente clienteActualizado) {
+	public Boolean actualizarCliente(TransferCliente clienteActualizado) throws BSoDException {
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
@@ -122,12 +122,12 @@ public class SAClientesImp implements SAClientes {
 		}
 		catch(Exception e)
 		{
-			//tratar
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
 		}
 		return correcto;
@@ -140,7 +140,7 @@ public class SAClientesImp implements SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarCliente(Integer idCliente) {
+	public Boolean borrarCliente(Integer idCliente) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -154,12 +154,12 @@ public class SAClientesImp implements SAClientes {
 		}
 		catch(Exception e)
 		{
-			
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
 		}
 		return resultado;
@@ -168,12 +168,13 @@ public class SAClientesImp implements SAClientes {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws TransaccionNoEliminadaException 
 	 * 
 	 * @see SAClientes#obtenerCliente(Clase idCliente)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(Integer idCliente) {
+	public TransferCliente obtenerCliente(Integer idCliente) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -185,12 +186,12 @@ public class SAClientesImp implements SAClientes {
 				t = dao.getCliente(idCliente);
 		}catch(Exception e)
 		{
-			
+			throw new BSoDException(e.toString());
 		}
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
 		}
 		

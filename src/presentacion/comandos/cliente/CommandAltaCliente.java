@@ -4,6 +4,7 @@
 package presentacion.comandos.cliente;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
@@ -25,12 +26,20 @@ public class CommandAltaCliente implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		
-	CommandResponse cm = new CommandResponse();
-	
-//	cm.setDatos(FactorySA.getInstance().getSAClientes().anadirCliente((TransferCliente) datos));
-//	cm.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
-	
-	return cm;
+
+		CommandResponse cr = new CommandResponse();
+		try {
+
+			cr.setDatos(FactorySA.getInstance().getSAClientes()
+					.anadirCliente((TransferCliente) datos));
+			cr.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
+
+		} catch (BSoDException bsod) {
+
+			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.ERROR_ALTA_CLIENTE);
+		}
+
+		return cr;
 	}
 }

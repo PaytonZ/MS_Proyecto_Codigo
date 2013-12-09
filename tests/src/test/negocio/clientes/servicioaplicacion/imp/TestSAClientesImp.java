@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import junit.framework.AssertionFailedError;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
@@ -43,7 +44,14 @@ public class TestSAClientesImp {
 		}
 		assertTrue(id >=0);
 		
-		TransferCliente c1 = s.obtenerCliente(id);
+		TransferCliente c1 = null;
+		try {
+			c1 = s.obtenerCliente(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 		
 		assertNotNull(c1);
 		
@@ -103,11 +111,24 @@ public class TestSAClientesImp {
 		c.setNombre(nombreeditado);
 		c.setDireccion(direccioneditada);
 
-		boolean correcto = s.actualizarCliente(c);
+		boolean correcto = false;
+		try {
+			correcto = s.actualizarCliente(c);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertTrue(correcto);
 		
-		TransferCliente c1 =  s.obtenerCliente(id);
+		TransferCliente c1=null;
+		try {
+			c1 = s.obtenerCliente(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertNotNull(c1);
 
