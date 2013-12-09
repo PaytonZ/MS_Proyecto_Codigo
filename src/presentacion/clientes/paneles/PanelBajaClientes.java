@@ -38,7 +38,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		setLayout(new BorderLayout(0, 0));
 		
 		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE, null);
+		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA, null);
 		
 		// TODO esto son datos de prueba, se tienen que conseguir del comando a través del método actualizaVentana
 //		TransferCliente cliente1 = new TransferCliente();

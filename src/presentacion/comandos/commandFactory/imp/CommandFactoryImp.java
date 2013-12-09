@@ -55,6 +55,7 @@ public class CommandFactoryImp extends CommandFactory {
 			break;
 
 		case EVENTO_CONSULTAR_TODOS_CLIENTE:
+		case EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA:
 			c = new CommandConsultaTodosClientes();
 			break;
 		case EVENTO_ALTA_RESERVA:
