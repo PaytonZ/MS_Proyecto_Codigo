@@ -25,6 +25,8 @@ import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
 import presentacion.clientes.paneles.PanelBajaClientes;
+import presentacion.habitaciones.GUIHabitaciones;
+import presentacion.habitaciones.paneles.PanelBajaHabitaciones;
 
 public class FramePrincipal extends JFrame {
 
@@ -104,8 +106,15 @@ public class FramePrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				// Desactivo el botón ya pulsado
 				btnClientes.setEnabled(false);
 				
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+				}
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
 				PanelBajaClientes panelBaja = GUICliente.getInstance().getPanelBajaClientes();
@@ -117,6 +126,8 @@ public class FramePrincipal extends JFrame {
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
+				
+				// Activo los botonos de las otras secciones
 				btnHabitaciones.setEnabled(true);
 				btnReservas.setEnabled(true);
 			}
@@ -139,10 +150,30 @@ public class FramePrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				// Desactivo el botón de habitaciones
 				btnHabitaciones.setEnabled(false);
+				
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+				}
+				
+				
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta habitaciones", GUIHabitaciones.getInstance().getPanelAltaHabitaciones());
+				PanelBajaHabitaciones panelBaja = GUIHabitaciones.getInstance().getPanelBajaHabitaciones();
+				panelBaja.cargaDatosInit();
+				tabbedPane.add("Baja habitaciones", panelBaja);
+				tabbedPane.add("Modificación habitaciones", GUIHabitaciones.getInstance().getPanelModificacionHabitaciones());
+				tabbedPane.add("Consulta habitaciones", GUIHabitaciones.getInstance().getPanelConsultaHabitaciones());
+				tabbedPane.add("Consulta multiple habitaciones", GUIHabitaciones.getInstance().getPanelConsultaMultiplesHabitaciones());
+				
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
+				contentPane.validate();
 
-				
-				
+				// Activo el resto de botones
 				btnClientes.setEnabled(true);
 				btnReservas.setEnabled(true);
 			}
