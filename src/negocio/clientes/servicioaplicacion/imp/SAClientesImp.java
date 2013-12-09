@@ -114,14 +114,15 @@ public class SAClientesImp implements SAClientes {
 			transacion.commit();
 			if(!correcto)
 			{
-				
+			
 				transacion.rollback();
+				throw new BSoDException("Cliente no actualizado.");
 				
 				
 			}
 			
 		}
-		catch(Exception e)
+		catch(Exception e )
 		{
 			throw new BSoDException(e.toString());
 		}
