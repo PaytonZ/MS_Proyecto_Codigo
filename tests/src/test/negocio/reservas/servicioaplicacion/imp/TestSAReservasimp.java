@@ -1,29 +1,24 @@
 package test.negocio.reservas.servicioaplicacion.imp;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-import integracion.clientes.dao.DAOCliente;
-import integracion.clientes.dao.imp.DAOClienteImp;
-import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
-import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.Test;
-
-import negocio.clientes.servicioaplicacion.imp.*;
 
 public class TestSAReservasimp {
 	

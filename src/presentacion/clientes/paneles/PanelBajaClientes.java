@@ -57,7 +57,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				TransferCliente clienteaBorrar = list.getSelectedValue();
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, clienteaBorrar);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, clienteaBorrar.getID());
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");

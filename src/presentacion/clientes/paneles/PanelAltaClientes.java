@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import com.apple.dnssd.TXTRecord;
+
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
@@ -89,7 +91,42 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 				
 				TransferCliente cliente = new TransferCliente();
 				
-				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
+				cliente.setDNI(textDNI.getText());
+				
+				if ( !textDNI.getText().equals("") 
+						&& !textApellidos.getText().equals("") 
+						&& !textNombre.getText().equals("")
+						&& !textDireccion.getText().equals("")
+						&& !textTelefono.getText().equals("")) {
+					
+					cliente.setNombre(textNombre.getText());
+					cliente.setDireccion(textDireccion.getText());
+					
+					String[] apellidos = textApellidos.getText().split(" ");
+					
+					if ( apellidos.length < 1 ) {
+						JOptionPane.showConfirmDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						if ( apellidos.length >= 1 )
+							cliente.setPrimerApellido(apellidos[0]);
+						else if (apellidos.length == 2)
+							cliente.setSegundoApellido(apellidos[1]);
+						
+						
+						try {
+							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
+						}
+						catch(NumberFormatException nu) {
+							JOptionPane.showConfirmDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						
+						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
+					}
+				}
+				else {
+					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		add(btnCancelar, "cell 6 11,growx,aligny top");
@@ -104,6 +141,10 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		if ( datos == null) {
 			
 			JOptionPane.showConfirmDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else if ( datos instanceof Integer ) {
+			
+			JOptionPane.showConfirmDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
 		}
 		else {
 			
