@@ -81,16 +81,16 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private String DNI;
+	private Integer idusuario;
 
 	/**
 	 * @return el DNI
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public String getDNI() {
+	public Integer getidusuario() {
 		// begin-user-code
-		return DNI;
+		return idusuario;
 		// end-user-code
 	}
 
@@ -100,9 +100,9 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setDNI(String DNI) {
+	public void setidusuario(Integer idusuario) {
 		// begin-user-code
-		this.DNI = DNI;
+		this.idusuario = idusuario;
 		// end-user-code
 	}
 

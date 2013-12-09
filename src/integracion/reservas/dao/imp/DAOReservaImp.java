@@ -47,7 +47,7 @@ public class DAOReservaImp implements DAOReserva {
 		try {
 			PreparedStatement addreserva = c.prepareStatement(addReservaQuery);
 
-			addreserva.setString(1, reserva.getDNI());
+			addreserva.setInt(1, reserva.getidusuario());
  			addreserva.setInt(2, reserva.getNumeroHabitacion());
 			addreserva.setDate(3, (Date) reserva.getFechaReserva());
 			addreserva.setDate(4, (Date) reserva.getFechaEntrada());
@@ -57,9 +57,8 @@ public class DAOReservaImp implements DAOReserva {
 
 				PreparedStatement getreservaDNIDate = c
 						.prepareStatement(getReservabyDNIDateQuery);
-				getreservaDNIDate.setString(1, reserva.getDNI());
+				getreservaDNIDate.setInt(1, reserva.getidusuario());
 				getreservaDNIDate.setDate(2, (Date) reserva.getFechaReserva());
-
 				ResultSet resultado = getreservaDNIDate.executeQuery();
 
 				if (resultado.next())
@@ -115,23 +114,24 @@ public class DAOReservaImp implements DAOReserva {
 
 		try {
 			PreparedStatement todaslasreservas = connection.prepareStatement(getAllReservaQuery);
-			todaslasreservas.setInt(1, idCliente);
-			
+			todaslasreservas.setInt(1, idCliente);		
 			ResultSet rowsReservas = todaslasreservas.executeQuery();
-
 			while (rowsReservas.next()) {
 
 				TransferReserva reserva = new TransferReserva();
 
 				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
-				reserva.setDNI(rowsReservas.getString("clientes_idclientes"));
+				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
 				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
 				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
 				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
 				listaReservas.add(reserva);
 			}
-
+			if(listaReservas.isEmpty())
+			{
+				listaReservas = null;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -164,7 +164,7 @@ public class DAOReservaImp implements DAOReserva {
 			if (rowReserva.next()) {
 				reserva = new TransferReserva();
 				reserva.setNumeroReserva(rowReserva.getInt("idreservas"));
-				reserva.setDNI(rowReserva.getString("clientes_idclientes"));
+				reserva.setidusuario(rowReserva.getInt("clientes_idclientes"));
 				reserva.setNumeroHabitacion(rowReserva.getInt("habitaciones_numhabitacion"));
 				reserva.setFechaReserva(rowReserva.getDate("fecha_reserva"));
 				reserva.setFechaEntrada(rowReserva.getDate("fecha_entrada"));
@@ -195,12 +195,11 @@ public class DAOReservaImp implements DAOReserva {
 			PreparedStatement updatereserva = connection
 					.prepareStatement(updateReservaQuery);
 			updatereserva.setInt(1, reserva.getNumeroReserva());
-			updatereserva.setString(2, reserva.getDNI());
+			updatereserva.setInt(2, reserva.getidusuario());
 			updatereserva.setInt(3, reserva.getNumeroHabitacion());
 			updatereserva.setDate(4, (Date) reserva.getFechaReserva());
 			updatereserva.setDate(5, (Date) reserva.getFechaEntrada());
 			updatereserva.setDate(6, (Date) reserva.getFechaSalida());
-
 			exitoupdate = (updatereserva.executeUpdate() == 1);
 			// }
 

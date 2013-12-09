@@ -39,29 +39,14 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		Boolean correcto = false;
-		try
-		{
-			
-			correcto =  dao.updateReserva(reserva);
+		correcto =  dao.updateReserva(reserva);
+		if(correcto)
 			transacion.commit();
-			if(!correcto)
-			{
-				
-				transacion.rollback();
-				
-			}
-			
-		}
-		catch(Exception e)
+		else
 		{
-			throw new BSoDException(e.toString());
+			transacion.rollback();
 		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
+		tm.eliminaTransaccion();
 		return correcto;
 	}
 
@@ -81,19 +66,16 @@ public class SAReservasImp implements SAReservas {
 
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		Integer idReserva = null;
-		
-		try {
-			idReserva = dao.addReserva(reserva);
+		idReserva = dao.addReserva(reserva);
+		if(idReserva != null)
+		{
 			transacion.commit();
-		} catch (Exception e) {
-			transacion.rollback();
-			throw new BSoDException(e.toString());
-		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
 		}
-
+		else
+		{
+			transacion.rollback();
+		}
+		tm.eliminaTransaccion();
 		return idReserva;
 	}
 
@@ -112,21 +94,16 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		Boolean resultado = null;
-		try
+		resultado = dao.deleteReserva(idReserva);
+		if(resultado)
 		{
-				resultado = dao.deleteReserva(idReserva);
-				transacion.commit();
+			transacion.commit();
 		}
-		catch(Exception e)
+		else
 		{
-			throw new BSoDException(e.toString());
+			transacion.rollback();
 		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
+		tm.eliminaTransaccion();
 		return resultado;
 		// end-user-code
 	}
@@ -146,20 +123,8 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		TransferReserva reserva = null;
 		transacion.start();
-		try
-		{
-				reserva = dao.getReserva(idReserva);
-		}catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
-		
+		reserva = dao.getReserva(idReserva);
+		tm.eliminaTransaccion();
 		return reserva;
 	}
 
@@ -177,20 +142,8 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		List<TransferReserva> listaReserva = null;
-		try
-		{
-			listaReserva = dao.getAllReservas(idCliente);
-		}
-		catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}	
+		listaReserva = dao.getAllReservas(idCliente);
+		tm.eliminaTransaccion();
 		return listaReserva;
 	}
 }

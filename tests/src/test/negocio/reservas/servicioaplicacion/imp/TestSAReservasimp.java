@@ -21,7 +21,7 @@ import negocio.reservas.transfer.TransferReserva;
 import org.junit.Test;
 
 public class TestSAReservasimp {
-	
+/*	
 	//TODO Hay que borrar todos los datos de la reserva de la base de datos cada vez que se empiece a ejecutar los test
 
 	//Caso normal añadir reserva
@@ -319,5 +319,5 @@ public class TestSAReservasimp {
 		}
 		
 	}
-
+*/
 }
