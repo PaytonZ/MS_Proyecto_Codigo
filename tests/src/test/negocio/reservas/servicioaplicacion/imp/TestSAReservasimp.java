@@ -10,12 +10,19 @@ import java.util.List;
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.habitaciones.dao.imp.DAOHabitacionImp;
+import negocio.clientes.servicioaplicacion.SAClientes;
+import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.factorias.serviciosAplicacion.FactorySA;
+import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
+import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.Test;
+
+import negocio.clientes.servicioaplicacion.imp.*;
 
 public class TestSAReservasimp {
 	
@@ -25,14 +32,15 @@ public class TestSAReservasimp {
 	@SuppressWarnings("deprecation")
 	//Con la de pruebas que se ha hecho, seguro que hay al menos una habitacion en la base de datos
 	@Test
-	public void anyadereserva() 
+	public void anyadereserva()
 	{
 		//Preparar los datos
 		TransferReserva tr = new TransferReserva();
-		DAOHabitacionImp daohabitacion = new DAOHabitacionImp();
-		DAOClienteImp daocliente = new DAOClienteImp();
-		List<TransferHabitacion> allhabitaciones = daohabitacion.getAllHabitaciones();
-		List<TransferCliente> allclientes = daocliente.getAllClientes();
+		SAClientes sacli = FactorySA.getInstance().getSAClientes();
+		SAHabitaciones sahab = FactorySA.getInstance().getSAHabitaciones();		
+		List<TransferHabitacion> allhabitaciones = sahab.obtenerTodaslasHabitaciones();		
+		List<TransferCliente> allclientes = sacli.obtenerTodoslosClientes();
+		
 		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
 		tr.setDNI(allclientes.get(0).getDNI());
 		Date diaentrada = new Date();		
@@ -69,6 +77,7 @@ public class TestSAReservasimp {
 		
 		assertEquals("Fallo: No coincide el ID de la reserva que ha insertado la base de datos al añadir la reserva con el ID de la reserva al recuper la reserva por numero de ID",
 				tr.getNumeroReserva(), recuperada.getNumeroReserva());	
+		sareservas.borrarReserva(ID);
 		}
 		catch
 		(Exception ex)
@@ -114,8 +123,11 @@ public class TestSAReservasimp {
 		//si va bien, no debería saltar excepcion de sql
 		try
 		{
-			sareservas.anadirReserva(tr);
-			sareservas.anadirReserva(tr2);
+			Integer id1 = sareservas.anadirReserva(tr);
+			Integer id2 = sareservas.anadirReserva(tr2);
+			sareservas.borrarReserva(id1);
+			sareservas.borrarReserva(id2);
+			
 		}
 		catch
 		(Exception ex)
@@ -142,8 +154,10 @@ public class TestSAReservasimp {
 		//si va bien, no debería saltar excepcion de sql
 		try
 		{
-			sareservas.anadirReserva(tr);
-			sareservas.anadirReserva(tr2);
+			Integer id1 = sareservas.anadirReserva(tr);
+			Integer id2 = sareservas.anadirReserva(tr2);
+			sareservas.borrarReserva(id1);
+			sareservas.borrarReserva(id2);
 		}
 		catch
 		(Exception ex)
@@ -194,7 +208,8 @@ public class TestSAReservasimp {
 		SAReservasImp sareservas = new SAReservasImp();
 		try
 		{
-			sareservas.anadirReserva(tr);
+			Integer id1 = sareservas.anadirReserva(tr);
+			sareservas.borrarReserva(id1);
 		}
 		catch
 		(Exception ex)
@@ -214,7 +229,8 @@ public class TestSAReservasimp {
 		tr.setFechaSalida(diasalida);
 		try
 		{
-			sareservas.anadirReserva(tr);
+			Integer id1 = sareservas.anadirReserva(tr);
+			sareservas.borrarReserva(id1);
 		}
 		catch
 		(Exception ex)
@@ -249,7 +265,8 @@ public class TestSAReservasimp {
 		SAReservasImp sareservas = new SAReservasImp();
 		try
 		{
-			sareservas.anadirReserva(tr);
+			Integer id1 = sareservas.anadirReserva(tr);
+			sareservas.borrarReserva(id1);
 		}
 		catch
 		(Exception ex)
@@ -266,7 +283,8 @@ public class TestSAReservasimp {
 		tr.setFechaSalida(diasalida);
 		try
 		{
-			sareservas.anadirReserva(tr);
+			Integer id1 = sareservas.anadirReserva(tr);
+			sareservas.borrarReserva(id1);
 		}
 		catch
 		(Exception ex)
@@ -283,7 +301,8 @@ public class TestSAReservasimp {
 		tr.setFechaSalida(diasalida);
 		try
 		{
-			sareservas.anadirReserva(tr);
+			Integer id1 = sareservas.anadirReserva(tr);
+			sareservas.borrarReserva(id1);
 		}
 		catch
 		(Exception ex)
