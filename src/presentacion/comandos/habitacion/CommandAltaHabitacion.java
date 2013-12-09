@@ -3,7 +3,7 @@
  */
 package presentacion.comandos.habitacion;
 
-import negocio.clientes.transfer.TransferCliente;
+
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.transfer.TransferHabitacion;
@@ -27,11 +27,14 @@ public class CommandAltaHabitacion implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
+
+	
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAHabitaciones().anadirHabitacion((TransferHabitacion) datos));
-					
+			cr.setDatos(FactorySA.getInstance().getSAHabitaciones()
+					.anadirHabitacion((TransferHabitacion) datos));
+
 			cr.setEvento(IDEventos.EVENTO_ALTA_HABITACION);
 
 		} catch (BSoDException bsod) {

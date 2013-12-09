@@ -3,6 +3,8 @@
  */
 package presentacion.habitaciones.paneles;
 
+import javax.swing.JPanel;
+
 import presentacion.GUIPanelesInterfaz;
 
 /**
@@ -12,7 +14,8 @@ import presentacion.GUIPanelesInterfaz;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelAltaHabitaciones implements GUIPanelesInterfaz {
+public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void actualizarVentana(Object datos) {

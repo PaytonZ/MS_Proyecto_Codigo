@@ -4,13 +4,17 @@
 package negocio.habitaciones.servicioaplicacion.imp;
 
 
+
 import negocio.excepciones.BSoDException;
+import negocio.excepciones.TransaccionNoEliminadaException;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
+
+
 
 
 
@@ -26,7 +30,11 @@ import java.util.List;
 public class SAHabitacionesImp implements SAHabitaciones {
 	/**
 	 * (sin Javadoc)
+<<<<<<< HEAD
 	 * @throws BSoDException 
+=======
+	 * @throws BSoDException  
+>>>>>>> branch 'master' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
 	 * 
 	 * @see SAHabitaciones#anadirHabitacion(TransferHabitacionNormal
 	 *      habitacionNueva)
@@ -34,6 +42,8 @@ public class SAHabitacionesImp implements SAHabitaciones {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Integer anadirHabitacion(TransferHabitacion habitacionNueva) throws BSoDException {
+
+
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -50,7 +60,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 			throw new BSoDException(e.toString());
 		} finally {
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 
@@ -93,7 +103,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		return correcto;
@@ -126,7 +136,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		return resultado;
@@ -159,7 +169,8 @@ public class SAHabitacionesImp implements SAHabitaciones {
 	finally
 	{
 		if (!tm.eliminaTransaccion()) {
-			// ERROR
+			
+			throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 		}
 	}
 	
@@ -194,7 +205,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		finally
 		{
 			if (!tm.eliminaTransaccion()) {
-				// ERROR
+				throw new TransaccionNoEliminadaException(SAHabitaciones.class.getName());
 			}
 		}
 		

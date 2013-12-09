@@ -3,6 +3,8 @@
  */
 package presentacion.habitaciones.paneles;
 
+import javax.swing.JPanel;
+
 import presentacion.GUIPanelesInterfaz;
 
 /**
@@ -12,10 +14,15 @@ import presentacion.GUIPanelesInterfaz;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelBajaHabitaciones implements GUIPanelesInterfaz {
+public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz {
 
 	@Override
 	public void actualizarVentana(Object datos) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void cargaDatosInit() {
 		// TODO Auto-generated method stub
 		
 	}

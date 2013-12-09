@@ -26,11 +26,16 @@ public class CommandModificarCliente implements Command {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public CommandResponse execute(Object datos) {
+
+
+
+		
 		CommandResponse cr = new CommandResponse();
 		try {
 
 			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.anadirCliente((TransferCliente) datos));
+					.actualizarCliente((TransferCliente) datos));
+
 			cr.setEvento(IDEventos.EVENTO_MODIFICAR_CLIENTE);
 
 		} catch (BSoDException bsod) {

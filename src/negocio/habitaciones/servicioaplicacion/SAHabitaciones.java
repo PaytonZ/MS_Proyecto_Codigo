@@ -22,6 +22,7 @@ public interface SAHabitaciones {
 	 * 
 	 * @param habitacionNueva
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -32,6 +33,7 @@ public interface SAHabitaciones {
 	 * 
 	 * @param habitacionModificada
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -43,6 +45,7 @@ public interface SAHabitaciones {
 	 * 
 	 * @param idHabitacion
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -52,6 +55,7 @@ public interface SAHabitaciones {
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
