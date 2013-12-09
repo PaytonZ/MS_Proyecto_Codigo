@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import negocio.clientes.transfer.TransferCliente;
 import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
 import presentacion.comandos.IDEventos;
@@ -102,6 +104,47 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 		add(separator_1, "cell 1 10 6 1,growx,aligny center");
 		
 		JButton btnModificarCliente = new JButton("Modificar cliente");
+		btnModificarCliente.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				TransferCliente cliente = new TransferCliente();
+				
+				if ( !textApellidos.getText().equals("") 
+						&& !textNombre.getText().equals("")
+						&& !textDireccion.getText().equals("")
+						&& !textTelefono.getText().equals("")) {
+					
+					cliente.setNombre(textNombre.getText());
+					cliente.setDireccion(textDireccion.getText());
+					
+					String[] apellidos = textApellidos.getText().split(" ");
+					
+					if ( apellidos.length < 1 ) {
+						JOptionPane.showConfirmDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						if ( apellidos.length >= 1 )
+							cliente.setPrimerApellido(apellidos[0]);
+						else if (apellidos.length == 2)
+							cliente.setSegundoApellido(apellidos[1]);
+						
+						
+						try {
+							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
+						}
+						catch(NumberFormatException nu) {
+							JOptionPane.showConfirmDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						
+						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_CLIENTE, cliente);
+					}
+				}
+				else {
+					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
 		add(btnModificarCliente, "cell 6 11");
 	}
 	/**

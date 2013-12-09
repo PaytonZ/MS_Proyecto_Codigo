@@ -91,14 +91,13 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 				
 				TransferCliente cliente = new TransferCliente();
 				
-				cliente.setDNI(textDNI.getText());
-				
 				if ( !textDNI.getText().equals("") 
 						&& !textApellidos.getText().equals("") 
 						&& !textNombre.getText().equals("")
 						&& !textDireccion.getText().equals("")
 						&& !textTelefono.getText().equals("")) {
 					
+					cliente.setDNI(textDNI.getText());
 					cliente.setNombre(textNombre.getText());
 					cliente.setDireccion(textDireccion.getText());
 					
