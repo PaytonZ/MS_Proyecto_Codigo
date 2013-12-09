@@ -47,6 +47,7 @@ public class SAClientesImp implements SAClientes {
 			transacion.commit();
 		} catch (Exception e) {
 			transacion.rollback();
+			throw new BSoDException(e.toString());
 			
 		} finally {
 			if (!tm.eliminaTransaccion()) {
@@ -115,6 +116,7 @@ public class SAClientesImp implements SAClientes {
 			{
 				
 				transacion.rollback();
+				
 				
 			}
 			

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
 
+import negocio.excepciones.BSoDException;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
@@ -29,10 +30,22 @@ public class TestSAHabitacionesImp {
 		h.setNumHabitacion((new Random().nextInt(99999)));
 		h.setPrecio(new Random().nextDouble());
 		
-		Integer id = s.anadirHabitacion(h);
+		Integer id = null;
+		try {
+			id = s.anadirHabitacion(h);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue("La habitacion no se añadio",id >=0);
 		
-		TransferHabitacion h1 = s.obtenerHabitacion(id);
+		TransferHabitacion h1 = null;
+		try {
+			h1 = s.obtenerHabitacion(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertNotNull("La habitacion no se obtenio",h1);
 		
@@ -46,7 +59,13 @@ public class TestSAHabitacionesImp {
 	public void obtenerTodaslasHabitaciones() {
 		
 		SAHabitaciones s = new SAHabitacionesImp();
-		List<TransferHabitacion> lista = s.obtenerTodaslasHabitaciones();
+		List<TransferHabitacion> lista = null;
+		try {
+			lista = s.obtenerTodaslasHabitaciones();
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull("No hay Lista de habitaciones",lista);
 		
 	}
@@ -62,18 +81,36 @@ public class TestSAHabitacionesImp {
 		h.setNumHabitacion(numhabitacion);
 		h.setPrecio(new Random().nextDouble());
 	
-		Integer id = s.anadirHabitacion(h);
+		Integer id = null;
+		try {
+			id = s.anadirHabitacion(h);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue("La habitacion no se añadio",id >=0);
 		
 		
 		Double nuevoprecio = 0000d;
 		h.setPrecio(nuevoprecio);
 
-		boolean correcto = s.actualizarHabitacion(h);
+		boolean correcto = false;
+		try {
+			correcto = s.actualizarHabitacion(h);
+		} catch (BSoDException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		assertTrue("La habitacion no se actualizo correctamente",correcto);
 		
-		TransferHabitacion h1 =  s.obtenerHabitacion(id);
+		TransferHabitacion h1 = null;
+		try {
+			h1 = s.obtenerHabitacion(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		assertNotNull("La habitacion no se obtenio",h1);
 
@@ -95,10 +132,22 @@ public class TestSAHabitacionesImp {
 		h.setNumHabitacion(numhabitacion);
 		h.setPrecio(new Random().nextDouble());
 	
-		Integer id = s.anadirHabitacion(h);
+		Integer id = null;
+		try {
+			id = s.anadirHabitacion(h);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue("La habitacion no se añadio",id >=0);
 		
-		boolean correcto = s.borrarHabitacion(id);
+		boolean correcto = false;
+		try {
+			correcto = s.borrarHabitacion(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue("La habitacion no se borro correctamente",correcto);
 		
 	}
