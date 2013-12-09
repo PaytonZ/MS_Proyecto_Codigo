@@ -1,4 +1,4 @@
-package test.presentacion.controlador;
+package test.presentacion.controlador.comandos;
 
 import java.util.Random;
 
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder
-public class TestComandos {
+public class TestComandosClientes {
 	@Test
 	public void comandoAltaYBajaCliente()
 	{
