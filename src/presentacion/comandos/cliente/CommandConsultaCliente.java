@@ -29,8 +29,7 @@ public class CommandConsultaCliente implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.obtenerCliente((Integer)datos));
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente((String)datos));
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE);
 
 		} catch (BSoDException bsod) {

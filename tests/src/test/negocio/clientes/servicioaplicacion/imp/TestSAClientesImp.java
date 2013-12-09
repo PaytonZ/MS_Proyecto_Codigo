@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import junit.framework.AssertionFailedError;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
@@ -46,7 +45,7 @@ public class TestSAClientesImp {
 		
 		TransferCliente c1 = null;
 		try {
-			c1 = s.obtenerCliente(id);
+			c1 = s.obtenerCliente(c.getDNI());
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,7 +122,7 @@ public class TestSAClientesImp {
 		
 		TransferCliente c1=null;
 		try {
-			c1 = s.obtenerCliente(id);
+			c1 = s.obtenerCliente(c.getDNI());
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

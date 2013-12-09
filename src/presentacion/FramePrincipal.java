@@ -115,6 +115,7 @@ public class FramePrincipal extends JFrame {
 					
 					contentPane.remove(c);
 				}
+				
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
 				PanelBajaClientes panelBaja = GUICliente.getInstance().getPanelBajaClientes();
