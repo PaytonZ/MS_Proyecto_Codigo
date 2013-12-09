@@ -78,8 +78,7 @@ public class SAClientesImp implements SAClientes {
 		
 		try {
 			listaClientes = dao.getAllClientes();
-			
-			
+
 		}
 		catch(Exception e) {
 			throw new BSoDException(e.toString());

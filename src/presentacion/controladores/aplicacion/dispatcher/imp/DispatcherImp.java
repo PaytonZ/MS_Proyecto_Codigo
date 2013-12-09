@@ -48,7 +48,12 @@ public class DispatcherImp extends Dispatcher {
 				    || eventoActual == IDEventos.EVENTO_BAJA_RESERVA
 				    || eventoActual == IDEventos.EVENTO_MODIFICAR_RESERVA
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA
-				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) {
+				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS
+				    || eventoActual == IDEventos.ERROR_ALTA_RESERVA
+				    || eventoActual == IDEventos.ERROR_BAJA_RESERVA
+				    || eventoActual == IDEventos.ERROR_MODIFICAR_RESERVA
+				    || eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA
+				    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS) {
 			
 			GUIReservas.getInstance().update(eventoActual, datos);
 		}
@@ -56,7 +61,12 @@ public class DispatcherImp extends Dispatcher {
 			    || eventoActual == IDEventos.EVENTO_BAJA_HABITACION
 			    || eventoActual == IDEventos.EVENTO_MODIFICAR_HABITACION
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION
-			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION) {
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION
+			    || eventoActual == IDEventos.ERROR_ALTA_HABITACION
+			    || eventoActual == IDEventos.ERROR_BAJA_HABITACION
+			    || eventoActual == IDEventos.ERROR_MODIFICAR_HABITACION
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_HABITACION) {
 			
 			GUIReservas.getInstance().update(eventoActual, datos);
 		}
