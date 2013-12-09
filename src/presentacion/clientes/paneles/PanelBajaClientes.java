@@ -37,8 +37,8 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		
 		setLayout(new BorderLayout(0, 0));
 		
-		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA, null);
+//		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+//		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA, null);
 		
 		// TODO esto son datos de prueba, se tienen que conseguir del comando a través del método actualizaVentana
 //		TransferCliente cliente1 = new TransferCliente();
@@ -135,8 +135,10 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		JButton btnNewButton = new JButton("Borrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				list.getSelectedIndices();
+				TransferCliente clienteaBorrar = list.getSelectedValue();
 				
+				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, clienteaBorrar);
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
@@ -158,10 +160,15 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 			TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
 			listaClientes.toArray(clientes);
 			
-			list = new JList<>(clientes);
+			list.setListData(clientes);
 		}
 		else if ( datos instanceof BSoDException ) {
 			
 		}
+	}
+	
+	public void cargaDatosInit() {
+		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA, null);
 	}
 }

@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
+import presentacion.clientes.paneles.PanelBajaClientes;
 
 public class FramePrincipal extends JFrame {
 
@@ -107,7 +108,9 @@ public class FramePrincipal extends JFrame {
 				
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
-				tabbedPane.add("Baja clientes", GUICliente.getInstance().getPanelBajaClientes());
+				PanelBajaClientes panelBaja = GUICliente.getInstance().getPanelBajaClientes();
+				panelBaja.cargaDatosInit();
+				tabbedPane.add("Baja clientes", panelBaja);
 				tabbedPane.add("Modificación clientes", GUICliente.getInstance().getPanelModificacionClientes());
 				tabbedPane.add("Consulta clientes", GUICliente.getInstance().getPanelConsultaClientes());
 				tabbedPane.add("Consulta multiple clientes", GUICliente.getInstance().getPanelConsultaMultipleClientes());

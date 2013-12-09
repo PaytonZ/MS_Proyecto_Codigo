@@ -26,32 +26,33 @@ public class DispatcherImp extends Dispatcher {
 	 */
 	public void redirect(CommandResponse respuestacomando) {
 
-		IDEventos evento_actual = respuestacomando.getEvento();
+		IDEventos eventoActual = respuestacomando.getEvento();
 		Object datos = respuestacomando.getDatos();
 
-		if (evento_actual == IDEventos.EVENTO_ALTA_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_BAJA_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_MODIFICAR_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_CONSULTAR_CLIENTE
-				|| evento_actual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE) {
+		if (eventoActual == IDEventos.EVENTO_ALTA_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_BAJA_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_MODIFICAR_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA) {
 			
-			GUICliente.getInstance().update(evento_actual, datos);
+			GUICliente.getInstance().update(eventoActual, datos);
 		}
-		else if(evento_actual == IDEventos.EVENTO_ALTA_RESERVA
-				    || evento_actual == IDEventos.EVENTO_BAJA_RESERVA
-				    || evento_actual == IDEventos.EVENTO_MODIFICAR_RESERVA
-				    || evento_actual == IDEventos.EVENTO_CONSULTAR_RESERVA
-				    || evento_actual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) {
+		else if(eventoActual == IDEventos.EVENTO_ALTA_RESERVA
+				    || eventoActual == IDEventos.EVENTO_BAJA_RESERVA
+				    || eventoActual == IDEventos.EVENTO_MODIFICAR_RESERVA
+				    || eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA
+				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) {
 			
-			GUIReservas.getInstance().update(evento_actual, datos);
+			GUIReservas.getInstance().update(eventoActual, datos);
 		}
-		else if(evento_actual == IDEventos.EVENTO_ALTA_HABITACION
-			    || evento_actual == IDEventos.EVENTO_BAJA_HABITACION
-			    || evento_actual == IDEventos.EVENTO_MODIFICAR_HABITACION
-			    || evento_actual == IDEventos.EVENTO_CONSULTAR_HABITACION
-			    || evento_actual == IDEventos.EVENTO_CONSULTAR_HABITACION) {
+		else if(eventoActual == IDEventos.EVENTO_ALTA_HABITACION
+			    || eventoActual == IDEventos.EVENTO_BAJA_HABITACION
+			    || eventoActual == IDEventos.EVENTO_MODIFICAR_HABITACION
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION) {
 			
-			GUIReservas.getInstance().update(evento_actual, datos);
+			GUIReservas.getInstance().update(eventoActual, datos);
 		}
 	}
 }
