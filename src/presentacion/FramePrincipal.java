@@ -119,7 +119,6 @@ public class FramePrincipal extends JFrame {
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
 				tabbedPane.add("Alta clientes", GUICliente.getInstance().getPanelAltaClientes());
 				PanelBajaClientes panelBaja = GUICliente.getInstance().getPanelBajaClientes();
-				panelBaja.cargaDatosInit();
 				tabbedPane.add("Baja clientes", panelBaja);
 				tabbedPane.add("Modificación clientes", GUICliente.getInstance().getPanelModificacionClientes());
 				tabbedPane.add("Consulta clientes", GUICliente.getInstance().getPanelConsultaClientes());

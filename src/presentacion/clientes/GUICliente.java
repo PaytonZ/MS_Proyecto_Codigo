@@ -4,8 +4,8 @@
 package presentacion.clientes;
 
 import presentacion.clientes.imp.GUIClienteImp;
-import presentacion.clientes.paneles.PanelAltaClientes;
 import presentacion.clientes.paneles.PanelBajaClientes;
+import presentacion.clientes.paneles.PanelAltaClientes;
 import presentacion.clientes.paneles.PanelConsultaClientes;
 import presentacion.clientes.paneles.PanelConsultaMultipleClientes;
 import presentacion.clientes.paneles.PanelModificacionClientes;

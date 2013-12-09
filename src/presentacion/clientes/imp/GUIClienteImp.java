@@ -78,8 +78,8 @@ public void update(IDEventos evento_actual, Object datos) {
 			break;
 		case EVENTO_BAJA_CLIENTE:
 		case ERROR_BAJA_CLIENTE:
-		case EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRAR:
-		case ERROR_CONSULTAR_TODOS_CLIENTE_V_BORRAR:
+		case EVENTO_CONSULTAR_CLIENTE_V_BORRAR:
+		case ERROR_CONSULTAR_CLIENTE_V_BORRAR:
 			getPanelBajaClientes().actualizarVentana(datos);
 			break;
 		case EVENTO_MODIFICAR_CLIENTE:
