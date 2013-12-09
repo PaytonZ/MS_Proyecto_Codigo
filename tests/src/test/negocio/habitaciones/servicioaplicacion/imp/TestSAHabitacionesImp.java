@@ -39,6 +39,7 @@ public class TestSAHabitacionesImp {
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
 		assertTrue("La habitacion no se añadio",id >=0);
 		
@@ -71,6 +72,7 @@ public class TestSAHabitacionesImp {
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}	
 
 		assertNotNull("No hay Lista de habitaciones",lista);
@@ -96,6 +98,7 @@ public class TestSAHabitacionesImp {
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
 
 		assertTrue("La habitacion no se añadio",id >=0);
@@ -111,6 +114,7 @@ public class TestSAHabitacionesImp {
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 
 		}
 		
@@ -166,6 +170,7 @@ public class TestSAHabitacionesImp {
 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
 		assertTrue("La habitacion no se borro correctamente",correcto);
 		
