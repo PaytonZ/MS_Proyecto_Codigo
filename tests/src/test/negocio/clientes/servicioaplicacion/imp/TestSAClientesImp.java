@@ -34,7 +34,13 @@ public class TestSAClientesImp {
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
-		Integer id = s.anadirCliente(c);
+		Integer id=null;
+		try {
+			id = s.anadirCliente(c);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue(id >=0);
 		
 		TransferCliente c1 = s.obtenerCliente(id);
@@ -83,7 +89,13 @@ public class TestSAClientesImp {
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
-		Integer id = s.anadirCliente(c);
+		Integer id=null;
+		try {
+			id = s.anadirCliente(c);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue(id >=0);
 		
 		String nombreeditado = "Editado";

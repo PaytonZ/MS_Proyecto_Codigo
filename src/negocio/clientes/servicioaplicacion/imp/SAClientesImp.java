@@ -25,17 +25,20 @@ import negocio.excepciones.TransaccionNoEliminadaException;
 public class SAClientesImp implements SAClientes {
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAClientes#anadirCliente(TransferCliente clienteNuevo)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirCliente(TransferCliente clienteNuevo) {
+	public Integer anadirCliente(TransferCliente clienteNuevo) throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
 		transacion.start();
 
+		
+		
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
 		Integer idCliente = null;
 		
@@ -44,6 +47,7 @@ public class SAClientesImp implements SAClientes {
 			transacion.commit();
 		} catch (Exception e) {
 			transacion.rollback();
+			
 		} finally {
 			if (!tm.eliminaTransaccion()) {
 				// ERROR
@@ -71,6 +75,7 @@ public class SAClientesImp implements SAClientes {
 		transacion.start();
 		
 		List<TransferCliente> listaClientes = null;
+		
 		try {
 			listaClientes = dao.getAllClientes();
 			
