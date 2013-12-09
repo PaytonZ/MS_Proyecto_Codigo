@@ -163,7 +163,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 			list.setListData(clientes);
 		}
 		else if ( datos instanceof BSoDException ) {
-			
+			System.out.println(((BSoDException) datos).getMensaje());
 		}
 	}
 	

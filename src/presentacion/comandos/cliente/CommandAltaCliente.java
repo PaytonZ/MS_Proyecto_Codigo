@@ -28,8 +28,8 @@ public class CommandAltaCliente implements Command {
 		
 	CommandResponse cm = new CommandResponse();
 	
-	cm.setDatos(FactorySA.getInstance().getSAClientes().anadirCliente((TransferCliente) datos));
-	cm.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
+//	cm.setDatos(FactorySA.getInstance().getSAClientes().anadirCliente((TransferCliente) datos));
+//	cm.setEvento(IDEventos.EVENTO_ALTA_CLIENTE);
 	
 	return cm;
 	}

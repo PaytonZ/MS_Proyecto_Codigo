@@ -21,10 +21,11 @@ public interface SAClientes {
 	 * 
 	 * @param clienteNuevo
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirCliente(TransferCliente clienteNuevo);
+	public Integer anadirCliente(TransferCliente clienteNuevo) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

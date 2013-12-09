@@ -29,14 +29,11 @@ public class CommandConsultaTodosClientes implements Command {
 	 */
 	public CommandResponse execute(Object datos) {
 		
-		FactorySA factoriaSa = FactorySA.getInstance();
-		
-		List<TransferCliente> lista = null;
+			
 		CommandResponse cr = new CommandResponse();
 		try {
-			lista = factoriaSa.getSAClientes().obtenerTodoslosClientes();
-			
-			cr.setDatos(lista);
+				
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerTodoslosClientes());;
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
 			
 		} catch (BSoDException bsod) {
