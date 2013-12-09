@@ -193,7 +193,7 @@ public class DAOClienteImp implements DAOCliente {
 				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 
-		List<TransferCliente> listaClientes = new ArrayList<TransferCliente>();
+		List<TransferCliente> listaClientes = null;
 
 		try {
 			PreparedStatement preparedStatement = connection
@@ -201,6 +201,8 @@ public class DAOClienteImp implements DAOCliente {
 
 			ResultSet rowsClientes = preparedStatement.executeQuery();
 
+			listaClientes = new ArrayList<>();
+			
 			while (rowsClientes.next()) {
 
 				TransferCliente cliente = new TransferCliente();

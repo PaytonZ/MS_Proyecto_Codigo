@@ -32,6 +32,7 @@ import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAp
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private JList<TransferCliente> list;

@@ -3,9 +3,6 @@
  */
 package presentacion.comandos.cliente;
 
-import java.util.List;
-
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
@@ -32,8 +29,7 @@ public class CommandConsultaTodosClientes implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.obtenerTodoslosClientes());
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerTodoslosClientes());
 			
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE);
 
