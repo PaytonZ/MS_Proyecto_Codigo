@@ -33,7 +33,7 @@ public class TestDAOCliente {
 	@Test
 	public void anadirCliente() {
 
-		Integer idCliente = obtenerIdCliente();
+		Integer idCliente = obtenerIdCliente().getID();
 
 		assertNotNull("El cliente no se creo, el id es nulo", idCliente);
 		assertTrue(idCliente > 0);
@@ -45,11 +45,12 @@ public class TestDAOCliente {
 	public void obtenerCliente() {
 		DAOCliente dao = new DAOClienteImp();
 
-		Integer id = obtenerIdCliente();
+		TransferCliente cli = obtenerIdCliente();
 
-		assertNotNull("El id no puede ser nulo para obtener un cliente", id);
+		assertNotNull("El cliente no puede ser nulo", cli);
+		assertNotNull("El id no puede ser nulo para obtener un cliente", cli.getID());
 
-		TransferCliente cliente = dao.getCliente(id);
+		TransferCliente cliente = dao.getCliente(cli.getDNI());
 
 		assertNotNull("El cliente obtenido es nulo", cliente);
 		
@@ -61,9 +62,9 @@ public class TestDAOCliente {
 
 		DAOCliente dao = new DAOClienteImp();
 
-		Integer id = obtenerIdCliente();
+		String dni = obtenerIdCliente().getDNI();
 
-		TransferCliente c = dao.getCliente(id);
+		TransferCliente c = dao.getCliente(dni);
 
 		assertNotNull("El cliente no puede ser nulo para modificarlo", c);
 
@@ -73,7 +74,7 @@ public class TestDAOCliente {
 		c.setDireccion(direccioneditada);
 
 		boolean correcto = dao.updateCliente(c);
-		TransferCliente c1 = dao.getCliente(c.getID());
+		TransferCliente c1 = dao.getCliente(c.getDNI());
 
 		assertNotNull(c1);
 
@@ -93,7 +94,7 @@ public class TestDAOCliente {
 
 		DAOCliente dao = new DAOClienteImp();
 
-		Integer id = obtenerIdCliente();
+		Integer id = obtenerIdCliente().getID();
 
 		assertNotNull("El cliente no puede ser nulo para borrarlo", id);
 
@@ -106,7 +107,7 @@ public class TestDAOCliente {
 
 	}
 
-	private Integer obtenerIdCliente() {
+	private TransferCliente obtenerIdCliente() {
 
 		DAOCliente dao = new DAOClienteImp();
 
@@ -116,7 +117,7 @@ public class TestDAOCliente {
 
 		commit();
 
-		return cliente.getID();
+		return cliente;
 	}
 
 	private TransferCliente crearCliente() {

@@ -175,7 +175,7 @@ public class SAClientesImp implements SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(Integer idCliente) throws BSoDException {
+	public TransferCliente obtenerCliente(String dniCliente) throws BSoDException {
 		
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -184,7 +184,7 @@ public class SAClientesImp implements SAClientes {
 		transacion.start();
 		try
 		{
-				t = dao.getCliente(idCliente);
+				t = dao.getCliente(dniCliente);
 		}catch(Exception e)
 		{
 			throw new BSoDException(e.toString());

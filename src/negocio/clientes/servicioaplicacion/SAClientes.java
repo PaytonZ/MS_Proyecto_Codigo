@@ -7,7 +7,6 @@ import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
-import negocio.excepciones.TransaccionNoEliminadaException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -67,5 +66,5 @@ public interface SAClientes {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(Integer idCliente) throws BSoDException;
+	public TransferCliente obtenerCliente(String idCliente) throws BSoDException;
 }

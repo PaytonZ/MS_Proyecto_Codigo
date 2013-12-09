@@ -33,7 +33,7 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente getCliente(Integer idCliente);
+	public TransferCliente getCliente(String dniCliente);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
