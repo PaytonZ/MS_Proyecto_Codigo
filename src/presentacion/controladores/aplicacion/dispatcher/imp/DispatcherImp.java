@@ -34,7 +34,13 @@ public class DispatcherImp extends Dispatcher {
 				|| eventoActual == IDEventos.EVENTO_MODIFICAR_CLIENTE
 				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE
 				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE
-				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA) {
+				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRAR
+				|| eventoActual == IDEventos.ERROR_ALTA_CLIENTE
+				|| eventoActual == IDEventos.ERROR_BAJA_CLIENTE
+				|| eventoActual == IDEventos.ERROR_MODIFICAR_CLIENTE
+				|| eventoActual == IDEventos.ERROR_CONSULTAR_CLIENTE
+				|| eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE
+				|| eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE_V_BORRAR) {
 			
 			GUICliente.getInstance().update(eventoActual, datos);
 		}

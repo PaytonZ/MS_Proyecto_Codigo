@@ -163,12 +163,12 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 			list.setListData(clientes);
 		}
 		else if ( datos instanceof BSoDException ) {
-			
+			System.out.println(((BSoDException) datos).getMensaje() );
 		}
 	}
 	
 	public void cargaDatosInit() {
 		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA, null);
+		controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRAR, null);
 	}
 }

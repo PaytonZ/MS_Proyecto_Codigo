@@ -22,7 +22,7 @@ public class CommandConsultaTodosClientesVentanaBorrar implements Command {
 			lista = factoriaSa.getSAClientes().obtenerTodoslosClientes();
 			
 			cr.setDatos(lista);
-			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRA);
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE_V_BORRAR);
 			
 		} catch (BSoDException bsod) {
 			

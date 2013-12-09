@@ -73,9 +73,12 @@ public class SAClientesImp implements SAClientes {
 		List<TransferCliente> listaClientes = null;
 		try {
 			listaClientes = dao.getAllClientes();
+			
+			listaClientes = null;
+			listaClientes.get(0);
 		}
 		catch(Exception e) {
-			throw new BSoDException(e.getMessage());
+			throw new BSoDException(e.toString());
 		}
 		finally {
 			if (!tm.eliminaTransaccion()) {
