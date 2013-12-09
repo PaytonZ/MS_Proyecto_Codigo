@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -89,6 +90,13 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		}
 		else if ( datos instanceof BSoDException ) {
 			System.out.println(((BSoDException) datos).getMensaje() );
+		}
+		else if ( datos instanceof Boolean ) {
+			
+			JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+		}
+		else {
+			JOptionPane.showConfirmDialog(this, "Error al borrar el cliente", "Error", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	
