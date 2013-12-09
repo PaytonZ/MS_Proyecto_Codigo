@@ -11,13 +11,12 @@ import java.util.Random;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import excepciones.BSoDException;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder

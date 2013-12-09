@@ -5,8 +5,8 @@ package presentacion.comandos.cliente;
 
 import java.util.List;
 
-import excepciones.BSoDException;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;

@@ -14,12 +14,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

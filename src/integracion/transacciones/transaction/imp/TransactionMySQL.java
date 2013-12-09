@@ -95,9 +95,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void rollback() {
 		try {
-			PreparedStatement unlocktables = jdbConnection
+		/*	PreparedStatement unlocktables = jdbConnection
 					.prepareStatement(queryUnlockTables);
-			unlocktables.execute();
+			unlocktables.execute();*/
 			jdbConnection.rollback(puntoguardado);
 		} catch (SQLException e) {
 			e.printStackTrace();

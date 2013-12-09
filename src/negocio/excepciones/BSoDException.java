@@ -1,4 +1,4 @@
-package excepciones;
+package negocio.excepciones;
 
 public class BSoDException extends Exception {
 

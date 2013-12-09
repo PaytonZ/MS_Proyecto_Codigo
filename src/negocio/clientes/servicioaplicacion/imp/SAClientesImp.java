@@ -10,10 +10,10 @@ import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.List;
 
-import excepciones.BSoDException;
-import excepciones.TransaccionNoEliminadaException;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
+import negocio.excepciones.TransaccionNoEliminadaException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

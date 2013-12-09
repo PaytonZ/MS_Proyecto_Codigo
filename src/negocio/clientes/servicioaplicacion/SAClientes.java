@@ -6,7 +6,7 @@ package negocio.clientes.servicioaplicacion;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
-import excepciones.BSoDException;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
