@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import negocio.clientes.transfer.TransferCliente;
 import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
 import presentacion.comandos.IDEventos;
@@ -60,7 +61,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 				String dniCliente = textDNIBusqueda.getText();
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.ERROR_CONSULTAR_CLIENTE, dniCliente);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE, dniCliente);
 			}
 		});
 		add(btnBuscar, "cell 5 4");
@@ -113,5 +114,17 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 	 */
 	public void actualizarVentana(Object datos) {
 		
+		if ( datos instanceof TransferCliente) {
+			
+			TransferCliente cliente = (TransferCliente) datos;
+			
+			if ( cliente != null ) {
+				txtDni.setText(cliente.getDNI());
+				textNombre.setText(cliente.getNombre());
+				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
+				textDireccion.setText(cliente.getDireccion());
+				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
+			}
+		}
 	}
 }
