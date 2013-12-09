@@ -27,10 +27,37 @@ public class GUIHabitacionesImp extends GUIHabitaciones {
 	private PanelConsultaMultiplesHabitaciones panelConsultaMultiple;
 	
 	@Override
-	public void update(IDEventos idEvento, Object datos) {
+	public void update(IDEventos evento_actual, Object datos) {
+		switch (evento_actual) {
+		
+		case EVENTO_ALTA_HABITACION:
+		case ERROR_ALTA_HABITACION:
+			getPanelAltaHabitaciones().actualizarVentana(datos);
+			break;
+		case EVENTO_BAJA_HABITACION:
+		case ERROR_BAJA_HABITACION:
+			getPanelBajaHabitaciones().actualizarVentana(datos);
+			break;
+		case EVENTO_CONSULTAR_HABITACION:
+		case ERROR_CONSULTAR_HABITACION:
+			getPanelConsultaHabitaciones().actualizarVentana(datos);
+			break;
+		case EVENTO_MODIFICAR_HABITACION:
+		case ERROR_MODIFICAR_HABITACION:
+			getPanelModificacionHabitaciones().actualizarVentana(datos);
+			break;
+		case EVENTO_CONSULTAR_TODAS_HABITACION:
+		case ERROR_CONSULTAR_TODAS_HABITACION:
+			getPanelConsultaMultiplesHabitaciones().actualizarVentana(datos);
+			break;
 
-			
+		default:
+			break;
+
+		}
 	}
+			
+	
 	
 	@Override
 	public PanelAltaHabitaciones getPanelAltaHabitaciones() {
