@@ -2,15 +2,22 @@ package presentacion.clientes.paneles;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
+import presentacion.comandos.IDEventos;
+import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
 public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 
@@ -76,6 +83,15 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		add(separator_1, "cell 0 10 8 1,growx,aligny top");
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				TransferCliente cliente = new TransferCliente();
+				
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
+			}
+		});
 		add(btnCancelar, "cell 6 11,growx,aligny top");
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -85,5 +101,15 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 	@Override
 	public void actualizarVentana(Object datos) {
 		
+		if ( datos == null) {
+			
+			JOptionPane.showConfirmDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else {
+			
+			BSoDException bsod = (BSoDException) datos;
+			
+			JOptionPane.showConfirmDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
