@@ -69,6 +69,15 @@ public class TransactionMySQL implements Transaction {
 		}
 
 	}
+	public void end()
+	{
+		try {
+			jdbConnection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * (sin Javadoc)
@@ -82,6 +91,7 @@ public class TransactionMySQL implements Transaction {
 			jdbConnection.commit();
 			// jdbConnection.setAutoCommit(true);
 		} catch (SQLException e) {
+			rollback();
 			e.printStackTrace();
 		}
 	}

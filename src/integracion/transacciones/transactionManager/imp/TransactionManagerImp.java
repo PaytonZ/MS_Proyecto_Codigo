@@ -82,13 +82,8 @@ public class TransactionManagerImp extends TransactionManager {
 		boolean resultado;
 		if (mapa.containsKey(threadId)) {
 			Transaction t = mapa.get(threadId);
-			try {
-				t.commit();
-				t.getResource().close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			t.commit();
+			t.end();
 			mapa.remove(threadId);
 			resultado = true;
 		} else {
