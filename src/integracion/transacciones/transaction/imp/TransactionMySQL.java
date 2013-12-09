@@ -6,6 +6,7 @@ package integracion.transacciones.transaction.imp;
 import integracion.transacciones.transaction.Transaction;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 
@@ -25,6 +26,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	private Connection jdbConnection;
 	private Savepoint puntoguardado;
+
+	private final String queryLockTables = "LOCK TABLES ? WRITE";
+	private final String queryUnlockTables = "UNLOCK TABLES";
 
 	/**
 	 * @return el jdbConnection
@@ -58,7 +62,7 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void start() {
 		try {
-//			jdbConnection.setAutoCommit(false);
+			// jdbConnection.setAutoCommit(false);
 			puntoguardado = jdbConnection.setSavepoint();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,7 +80,7 @@ public class TransactionMySQL implements Transaction {
 	public void commit() {
 		try {
 			jdbConnection.commit();
-//			jdbConnection.setAutoCommit(true);
+			// jdbConnection.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -91,6 +95,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void rollback() {
 		try {
+			PreparedStatement unlocktables = jdbConnection
+					.prepareStatement(queryUnlockTables);
+			unlocktables.execute();
 			jdbConnection.rollback(puntoguardado);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,14 +117,23 @@ public class TransactionMySQL implements Transaction {
 
 	}
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see Transaction#lock()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void lock() {
+	@Override
+	public void lock(String[] tablasabloquear) {
 
+		PreparedStatement locktables = null;
+
+		for (String tabla : tablasabloquear) {
+			try {
+				locktables = jdbConnection.prepareStatement(queryLockTables);
+				locktables.setString(1, tabla);
+				locktables.execute();
+
+			} catch (Exception e) {
+
+			} finally {
+
+			}
+		}
 	}
+
 }

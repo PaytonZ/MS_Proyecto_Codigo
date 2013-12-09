@@ -57,8 +57,17 @@ public class TransactionManagerImp extends TransactionManager {
 	public Transaction getTransaccion() {
 
 		Long threadId = Thread.currentThread().getId();
-		
-		return mapa.get(threadId);
+		Transaction t = null;
+		if(mapa.containsKey((threadId)))
+			{
+			t = mapa.get(threadId);
+			}
+		else 
+		{
+			//THROWEXCEPTION
+		}
+		return t;
+		 
 	}
 
 	/**
@@ -74,6 +83,7 @@ public class TransactionManagerImp extends TransactionManager {
 		if (mapa.containsKey(threadId)) {
 			Transaction t = mapa.get(threadId);
 			try {
+				t.commit();
 				t.getResource().close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
