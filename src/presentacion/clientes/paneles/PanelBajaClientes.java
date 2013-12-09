@@ -115,7 +115,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		btnBorrarCliente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, idCliente);
 			}
 		});
@@ -143,6 +143,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 			Boolean correcto = (Boolean) datos;
 			
 			if ( correcto ) {
+				textDNIBusqueda.setText("");
 				idCliente = null;
 				txtDni.setText("");
 				textNombre.setText("");
@@ -151,6 +152,10 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				textTelefono.setText("");
 				
 				JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+			}
+			else {
+				
+				JOptionPane.showConfirmDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

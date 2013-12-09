@@ -41,7 +41,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		JLabel lblAltaClientes = new JLabel("Alta clientes");
 		lblAltaClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(lblAltaClientes, "cell 0 0 8 1,alignx center,aligny top");
+		add(lblAltaClientes, "cell 0 0 9 1,alignx center,aligny top");
 		
 		JSeparator separator = new JSeparator();
 		add(separator, "cell 0 1 9 1,growx,aligny center");

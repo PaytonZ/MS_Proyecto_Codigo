@@ -34,6 +34,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 	private JTextField textApellidos;
 	private JTextField textDireccion;
 	private JTextField textTelefono;
+	private Integer idCliente;
 	
 	public PanelModificacionClientes() {
 		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][][17.00][][10.00][][][][]"));
@@ -57,13 +58,35 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				textDNIBusqueda.setEditable(false);
+				
 				String dniCliente = textDNIBusqueda.getText();
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_MODIFICAR_CLIENTE, dniCliente);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR, dniCliente);
 			}
 		});
 		add(buttonBuscar, "cell 5 3");
+		
+		JButton btnNuevaBsqueda = new JButton("Nueva búsqueda");
+		btnNuevaBsqueda.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				idCliente = null;
+				textDNIBusqueda.setText("");
+				textDNIBusqueda.setEditable(true);
+				textNombre.setText("");
+				textNombre.setEditable(false);
+				textApellidos.setText("");
+				textApellidos.setEditable(false);
+				textDireccion.setText("");
+				textDireccion.setEditable(false);
+				textTelefono.setText("");
+				textTelefono.setEditable(false);
+			}
+		});
+		add(btnNuevaBsqueda, "cell 6 3");
 		
 		JSeparator separator_2 = new JSeparator();
 		add(separator_2, "cell 1 4 6 1, growx, aligny center");
@@ -80,6 +103,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 		add(label_2, "cell 5 6,alignx trailing");
 		
 		textApellidos = new JTextField();
+		textApellidos.setToolTipText("Más de dos apellidos serán ingonrados.");
 		textApellidos.setEditable(false);
 		textApellidos.setColumns(10);
 		add(textApellidos, "cell 6 6,growx");
@@ -108,13 +132,18 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				textDNIBusqueda.setEditable(false);
+				
 				TransferCliente cliente = new TransferCliente();
 				
-				if ( !textApellidos.getText().equals("") 
+				if ( idCliente != null 
+						&& !textDNIBusqueda.getText().equals("")
+						&& !textApellidos.getText().equals("") 
 						&& !textNombre.getText().equals("")
 						&& !textDireccion.getText().equals("")
 						&& !textTelefono.getText().equals("")) {
 					
+					cliente.setDNI(textDNIBusqueda.getText());
 					cliente.setNombre(textNombre.getText());
 					cliente.setDireccion(textDireccion.getText());
 					
@@ -124,9 +153,9 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 						JOptionPane.showConfirmDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						if ( apellidos.length >= 1 )
+						if ( apellidos.length > 1 )
 							cliente.setPrimerApellido(apellidos[0]);
-						else if (apellidos.length == 2)
+						if (apellidos.length <= 2)
 							cliente.setSegundoApellido(apellidos[1]);
 						
 						
@@ -156,5 +185,45 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 	 */
 	public void actualizarVentana(Object datos) {
 		
+		if ( datos instanceof TransferCliente) {
+			
+			TransferCliente cliente = (TransferCliente) datos;
+			
+			if ( cliente != null ) {
+				idCliente = cliente.getID();
+				textNombre.setText(cliente.getNombre());
+				textNombre.setEditable(true);
+				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
+				textApellidos.setEditable(true);
+				textDireccion.setText(cliente.getDireccion());
+				textDireccion.setEditable(true);
+				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
+				textTelefono.setEditable(true);
+			}
+		}
+		else if ( datos instanceof Boolean ) {
+			
+			Boolean correcto = (Boolean) datos;
+			
+			if ( correcto ) {
+				textDNIBusqueda.setText("");
+				textDNIBusqueda.setEditable(true);
+				textNombre.setText("");
+				textNombre.setEditable(true);
+				textApellidos.setText("");
+				textApellidos.setEditable(true);
+				textDireccion.setText("");
+				textDireccion.setEditable(true);
+				textTelefono.setText("");
+				textTelefono.setEditable(true);
+				
+				JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+			}
+			else {
+				
+				JOptionPane.showConfirmDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			idCliente = null;
+		}
 	}
 }
