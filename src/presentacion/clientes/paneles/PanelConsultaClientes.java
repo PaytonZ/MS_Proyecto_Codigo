@@ -43,7 +43,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
 		
 		JSeparator separator = new JSeparator();
-		add(separator, "cell 0 2 7 1,aligny center");
+		add(separator, "cell 0 2 7 1,growx,aligny center");
 		
 		JLabel lblDni = new JLabel("DNI: ");
 		add(lblDni, "cell 2 4,alignx trailing");
@@ -67,7 +67,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 		add(btnBuscar, "cell 5 4");
 		
 		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "cell 0 5 8 1,aligny center");
+		add(separator_1, "cell 0 5 8 1,growx,aligny center");
 		
 		JLabel lblDni_1 = new JLabel("DNI: ");
 		add(lblDni_1, "cell 2 6,alignx right");

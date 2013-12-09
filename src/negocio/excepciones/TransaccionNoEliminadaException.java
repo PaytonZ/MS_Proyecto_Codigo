@@ -13,7 +13,7 @@ public class TransaccionNoEliminadaException extends BSoDException {
 	@Override
 	public String getMensaje() {
 		
-		return getMensaje() + source;
+		return super.getMensaje() + source;
 	}
 	
 	public String getOrigen() {

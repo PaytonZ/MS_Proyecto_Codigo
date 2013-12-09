@@ -37,14 +37,14 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		setPreferredSize(new Dimension(600, 400));
 		setMinimumSize(new Dimension(100, 100));
-		setLayout(new MigLayout("", "[120px][34px][161.00px,grow][12.00px][67px][69.00px][96px][98.00px][53.00px]", "[16px][12px][28px][28px][8.00][30.00px][7.00px][][][][][]"));
+		setLayout(new MigLayout("", "[120px][34px][161.00px,grow][12.00px][67px][69.00px][96px][98.00px][53.00px]", "[16px][12px][28px][28px][8.00][30.00px][7.00px][][][17.00][19.00][]"));
 		
 		JLabel lblAltaClientes = new JLabel("Alta clientes");
 		lblAltaClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(lblAltaClientes, "cell 0 0 8 1,alignx center,aligny top");
 		
 		JSeparator separator = new JSeparator();
-		add(separator, "cell 0 1 9 1,growx,aligny top");
+		add(separator, "cell 0 1 9 1,growx,aligny center");
 		
 		JLabel lblDni = new JLabel("DNI: ");
 		add(lblDni, "cell 0 3,alignx right,aligny center");
@@ -82,7 +82,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		textTelefono.setColumns(10);
 		
 		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "cell 0 10 8 1,growx,aligny top");
+		add(separator_1, "cell 0 10 8 1,growx,aligny center");
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {

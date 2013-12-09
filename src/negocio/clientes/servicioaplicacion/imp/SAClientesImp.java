@@ -104,30 +104,27 @@ public class SAClientesImp implements SAClientes {
 	public Boolean actualizarCliente(TransferCliente clienteActualizado) throws BSoDException {
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
+		
 		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		
 		transacion.start();
+		
 		Boolean correcto = false;
-		try
-		{
-			
+		
+		try {
 			correcto =  dao.updateCliente(clienteActualizado);
 			transacion.commit();
-			if(!correcto)
-			{
+			
+			if(!correcto) {
 			
 				transacion.rollback();
 				throw new BSoDException("Cliente no actualizado.");
-				
-				
 			}
-			
 		}
-		catch(Exception e )
-		{
+		catch(Exception e ) {
 			throw new BSoDException(e.toString());
 		}
-		finally
-		{
+		finally {
 			if (!tm.eliminaTransaccion()) {
 				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
 			}
