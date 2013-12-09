@@ -13,6 +13,7 @@ import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
@@ -38,8 +39,20 @@ public class TestSAReservasimp {
 		TransferReserva tr = new TransferReserva();
 		SAClientes sacli = FactorySA.getInstance().getSAClientes();
 		SAHabitaciones sahab = FactorySA.getInstance().getSAHabitaciones();		
-		List<TransferHabitacion> allhabitaciones = sahab.obtenerTodaslasHabitaciones();		
-		List<TransferCliente> allclientes = sacli.obtenerTodoslosClientes();
+		List<TransferHabitacion> allhabitaciones = null;
+		try {
+			allhabitaciones = sahab.obtenerTodaslasHabitaciones();
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		List<TransferCliente> allclientes = null;
+		try {
+			allclientes = sacli.obtenerTodoslosClientes();
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
 		tr.setDNI(allclientes.get(0).getDNI());
