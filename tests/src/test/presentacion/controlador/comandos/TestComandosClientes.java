@@ -14,6 +14,7 @@ import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.cliente.CommandAltaCliente;
 import presentacion.comandos.cliente.CommandBajaCliente;
+import presentacion.comandos.cliente.CommandConsultaCliente;
 import presentacion.comandos.commandFactory.CommandFactory;
 import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
@@ -58,6 +59,38 @@ public class TestComandosClientes {
 		assertTrue(rc.getEvento()==IDEventos.EVENTO_BAJA_CLIENTE);
 		assertTrue((Boolean)rc.getDatos());
 			
+	}
+	@Test
+	public void commandoADDandconsultaCliente()
+	{
+		Command c = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_ALTA_CLIENTE);
+		assertNotNull(c);
+		assertTrue(c instanceof CommandAltaCliente);
+		
+		Object d = new TransferCliente();
+        
+
+        ((TransferCliente) d).setDNI(String.valueOf(new Random().nextInt(99999)));
+        ((TransferCliente) d).setDireccion("testcommand");
+        ((TransferCliente) d).setNombre("asdasd");
+        ((TransferCliente) d).setPrimerApellido("asdasd");
+        ((TransferCliente) d).setSegundoApellido("asdasd");
+        ((TransferCliente) d).setNumTelefono(new Random().nextInt(99999));
+        
+		CommandResponse rc = c.execute(d);
+		
+		assertTrue(rc.getEvento()==IDEventos.EVENTO_ALTA_CLIENTE);
+		assertTrue((Integer)rc.getDatos()>=0);
+				
+		
+		c = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_CLIENTE);
+		assertNotNull(c);
+		assertTrue(c instanceof CommandConsultaCliente);
+		rc = c.execute(((TransferCliente) d).getDNI());
+
+		assertTrue(rc.getEvento()==IDEventos.EVENTO_CONSULTAR_CLIENTE);
+		assertTrue(((TransferCliente) rc.getDatos()).getDNI().equalsIgnoreCase(((TransferCliente) d).getDNI()));
+		
 	}
 
 }
