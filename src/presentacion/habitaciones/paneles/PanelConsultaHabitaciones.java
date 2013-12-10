@@ -53,14 +53,20 @@ public class PanelConsultaHabitaciones extends JPanel implements GUIPanelesInter
 				try
 				{
 					Integer numhab =Integer.valueOf(numhabconsultatext.getText());
+					numhabconsultatext.setText("");
 					if ( numhab > 0 ) {
 						
 						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION, numhab);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(contentPane, "Numero de habitacion debe ser positivo!", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
 					catch(NumberFormatException nu) {
 						JOptionPane.showMessageDialog(contentPane, "El numero de habitacion contiene caracteres no numericos", "Error", JOptionPane.ERROR_MESSAGE);
+						numhabconsultatext.setText("");
 					}
 			}
 		});
