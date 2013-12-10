@@ -32,7 +32,8 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
+	//private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
+	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
 	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
 	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
@@ -51,17 +52,20 @@ public class DAOReservaImp implements DAOReserva {
 
 			addreserva.setInt(1, reserva.getidusuario());
  			addreserva.setInt(2, reserva.getNumeroHabitacion());
-			addreserva.setDate(3, (Date) reserva.getFechaReserva());
-			addreserva.setDate(4, (Date) reserva.getFechaEntrada());
-			addreserva.setDate(5, (Date) reserva.getFechaSalida());
+			//addreserva.setDate(3, reserva.getFechaReserva());
+ 			Date temp = new java.sql.Date(reserva.getFechaEntrada().getTime());
+			addreserva.setDate(3, temp);
+			temp.setTime(reserva.getFechaSalida().getTime());
+			addreserva.setDate(4, temp);
 
 			if (addreserva.executeUpdate() == 1) {
 
 				PreparedStatement getreservaDNIDate = c
 						.prepareStatement(getReservabyDNIDateQuery);
 				getreservaDNIDate.setInt(1, reserva.getidusuario());
-				getreservaDNIDate.setDate(2, (Date) reserva.getFechaReserva());
+				getreservaDNIDate.setDate(2, new Date(reserva.getFechaReserva().getTime()));
 				ResultSet resultado = getreservaDNIDate.executeQuery();
+				
 
 				if (resultado.next())
 					idreserva = resultado.getInt("idreservas");
