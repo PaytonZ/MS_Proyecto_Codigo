@@ -1,8 +1,6 @@
 package test.negocio.habitaciones.servicioaplicacion.imp;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +39,7 @@ public class TestSAHabitacionesImp {
 			e.printStackTrace();
 			assertTrue(false);
 		}
+		assertNotNull(id);
 		assertTrue("La habitacion no se añadio",id >=0);
 		
 		TransferHabitacion h1 = null;

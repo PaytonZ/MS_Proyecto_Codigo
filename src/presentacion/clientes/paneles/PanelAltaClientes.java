@@ -25,10 +25,11 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
-	private JTextField textApellidos;
+	private JTextField textSegundoApellido;
 	private JTextField textDireccion;
 	private JTextField textTelefono;
 	private JTextField textDNI;
+	private JTextField textPrimerApellido;
 
 	/**
 	 * Create the panel.
@@ -37,7 +38,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		setPreferredSize(new Dimension(600, 400));
 		setMinimumSize(new Dimension(100, 100));
-		setLayout(new MigLayout("", "[120px][34px][161.00px,grow][12.00px][67px][69.00px][96px][98.00px][53.00px]", "[16px][12px][28px][28px][8.00][30.00px][7.00px][][][17.00][19.00][]"));
+		setLayout(new MigLayout("", "[120px][34px][161.00px,grow][12.00px][67px][69.00px][96px,grow][98.00px][53.00px]", "[16px][12px][28px][28px][8.00][30.00px][7.00px][][][17.00][19.00][]"));
 		
 		JLabel lblAltaClientes = new JLabel("Alta clientes");
 		lblAltaClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -53,6 +54,13 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		add(textDNI, "cell 2 3,growx");
 		textDNI.setColumns(10);
 		
+		JLabel lblPrimerApellido = new JLabel("Primer apellido: ");
+		add(lblPrimerApellido, "cell 5 3,alignx trailing");
+		
+		textPrimerApellido = new JTextField();
+		add(textPrimerApellido, "cell 6 3 3 1,growx");
+		textPrimerApellido.setColumns(10);
+		
 		JLabel lblNombre = new JLabel("Nombre: ");
 		add(lblNombre, "cell 0 5,alignx right,aligny center");
 		
@@ -60,12 +68,12 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		add(textNombre, "cell 2 5,growx,aligny top");
 		textNombre.setColumns(10);
 		
-		JLabel lblApellidos = new JLabel("Apellidos: ");
-		add(lblApellidos, "cell 5 5,alignx left,aligny center");
+		JLabel lblApellido2 = new JLabel("Segundo apellido: ");
+		add(lblApellido2, "cell 5 5,alignx left,aligny center");
 		
-		textApellidos = new JTextField();
-		add(textApellidos, "cell 6 5 3 1,growx,aligny top");
-		textApellidos.setColumns(10);
+		textSegundoApellido = new JTextField();
+		add(textSegundoApellido, "cell 6 5 3 1,growx,aligny top");
+		textSegundoApellido.setColumns(10);
 		
 		JLabel lblDireccin = new JLabel("Dirección: ");
 		add(lblDireccin, "cell 0 7,alignx right,aligny center");
@@ -92,7 +100,8 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 				TransferCliente cliente = new TransferCliente();
 				
 				if ( !textDNI.getText().equals("") 
-						&& !textApellidos.getText().equals("") 
+						&& !textPrimerApellido.getText().equals("")
+						&& !textSegundoApellido.getText().equals("") 
 						&& !textNombre.getText().equals("")
 						&& !textDireccion.getText().equals("")
 						&& !textTelefono.getText().equals("")) {
@@ -101,17 +110,13 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 					cliente.setNombre(textNombre.getText());
 					cliente.setDireccion(textDireccion.getText());
 					
-					String[] apellidos = textApellidos.getText().split(" ");
-					
-					if ( apellidos.length < 1 ) {
-						JOptionPane.showMessageDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+					if ( textPrimerApellido.getText().equals("") ) {
+						JOptionPane.showMessageDialog(null, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						if ( apellidos.length >= 1 )
-							cliente.setPrimerApellido(apellidos[0]);
-						else if (apellidos.length == 2)
-							cliente.setSegundoApellido(apellidos[1]);
-						
+						cliente.setPrimerApellido(textPrimerApellido.getText().trim());
+						if ( !textSegundoApellido.getText().equals("") )
+							cliente.setSegundoApellido(textSegundoApellido.getText().trim());
 						
 						try {
 							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
@@ -143,7 +148,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 			JOptionPane.showMessageDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			textDNI.setText("");
-			textApellidos.setText("");
+			textSegundoApellido.setText("");
 			textNombre.setText("");
 			textDireccion.setText("");
 			textTelefono.setText("");
