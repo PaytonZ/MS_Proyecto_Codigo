@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,6 +20,8 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JCalendar;
 
+import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -37,8 +41,13 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 	private JTextField textNHabitacion;
 	private JTextField textDNI;
 	
+	private JPanel contentPane;
+	//version de prueba
+	private boolean verificado;
 	public PanelAltaReservas(){
-setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.00:74.00][grow][grow]", "[14px][][24.00:30.00][][][][59.00:63.00:41.00][15.00:69.00][197.00:246.00][][152.00,grow][grow]"));
+		
+		contentPane=this;
+		setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.00:74.00][grow][grow]", "[14px][][24.00:30.00][][][][59.00:63.00:41.00][15.00:21.00][197.00:246.00][-41.00:-73.00:-17.00][28.00:152.00,grow][57.00:40.00,grow]"));
 		
 		JLabel AltaReserva = new JLabel("Alta Reserva");
 		add(AltaReserva, "cell 3 0,alignx right,aligny top");
@@ -50,6 +59,26 @@ setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.0
 		add(lblDNI, "cell 0 3,alignx trailing");
 		
 		textDNI = new JTextField();
+		textDNI.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				verificado=false;
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		add(textDNI, "cell 1 3,growx");
 		textDNI.setColumns(10);
 		
@@ -58,6 +87,19 @@ setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.0
 		add(panelImageIcon, "cell 2 3");
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TransferCliente cliente= new TransferCliente();
+				if(!textDNI.getText().equals("")){
+					cliente.setDNI(textDNI.getText());
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_RESERVAS, cliente);
+				}
+				
+				
+			}
+		});
 		add(btnBuscar, "cell 3 3");
 		
 		JLabel lblNHabitacion = new JLabel("Nº habitación");
@@ -83,7 +125,7 @@ setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.0
 		add(separator_1, "cell 0 9 7 1");
 		
 		JPanel panelBotonAceptar = new JPanel();
-		add(panelBotonAceptar, "cell 5 11 2 1,grow");
+		add(panelBotonAceptar, "cell 6 6,grow");
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -93,20 +135,22 @@ setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.0
 				TransferReserva reserva = new TransferReserva();
 				
 				if ( !textDNI.getText().equals("") 
-						&& !textNHabitacion.getText().equals("") ) {
+						&& !textNHabitacion.getText().equals("") 
+						&& verificado) {
 					
 
 					reserva.setidusuario(Integer.parseInt(textDNI.getText()));
-
-//					reserva.setDNI(textDNI.getText());
 
 					try{
 						reserva.setNumeroHabitacion(Integer.parseInt(textNHabitacion.getText()));
 					}catch(NumberFormatException nu) {
 						JOptionPane.showMessageDialog(null, "El número de habitación contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
-						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_RESERVA, reserva);
-					}
+					}	
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_RESERVA, reserva);
+					
+				}
+				else if(!verificado){
+					JOptionPane.showMessageDialog(null, "Deben verificarse los datos del cliente antes de proceder con la reserva", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -127,9 +171,26 @@ setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.0
 	
 	}
 	public void actualizarVentana(IDEventos idEventos, Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
 
-		// end-user-code
+
+		if(idEventos == IDEventos.ERROR_CONSULTAR_CLIENTE_RESERVAS){
+			
+			if( datos instanceof BSoDException){
+				JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else if( idEventos == IDEventos.EVENTO_CONSULTAR_CLIENTE_RESERVAS){
+			
+			if( datos instanceof TransferCliente){
+				TransferCliente cliente = (TransferCliente) datos;
+				JOptionPane.showMessageDialog(contentPane,
+						"DNI: " + cliente.getDNI()+
+						"\nNombre: "+cliente.getNombre()+
+						"\nApellidos: "+cliente.getPrimerApellido()+" "+cliente.getSegundoApellido()+
+						"\nTelefono: "+cliente.getNumTelefono(), "Resumen de datos del cliente", JOptionPane.OK_OPTION);
+				verificado = true;
+			}
+			
+		}
 	}
 }
