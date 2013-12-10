@@ -31,7 +31,7 @@ public class PanelConsultaHabitaciones extends JPanel implements GUIPanelesInter
 	public PanelConsultaHabitaciones() {
 		contentPane=this;
 		
-		setLayout(new MigLayout("", "[][][][][][21.00][192.00,grow]", "[][][][][][][][][][][][][]"));
+		setLayout(new MigLayout("", "[][][][][][21.00][192.00,grow]", "[][][13.00][][][][][][][][][][]"));
 		
 		JLabel lblConsultaHabitacin = new JLabel("Consulta Habitación");
 		add(lblConsultaHabitacin, "cell 5 1");

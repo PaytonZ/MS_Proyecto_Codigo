@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -31,9 +32,9 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField textNumHabBusqueda;
-	private JTextField txtDni;
-	private JTextField textNombre;
-	private Integer idCliente;
+	private JTextField textPrecioNoche;
+	private JTextField textTipoHab;
+	private Integer idHabitacion;
 	private JButton btnBorrarHab;
 	
 	private JPanel contentPane;
@@ -72,7 +73,7 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						if ( numHabitacion > 0 ) {
 							
 							ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-							controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, numHabitacion);
+							controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_BAJA, numHabitacion);
 						}
 						else {
 							JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negativo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -98,28 +99,28 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if ( idCliente != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, idCliente);
+				if ( idHabitacion != null )
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_HABITACION, idHabitacion);
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar el cliente, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		
-		JLabel lblDni_1 = new JLabel("DNI: ");
-		add(lblDni_1, "cell 2 7,alignx right");
+		JLabel lblPrecioNoche = new JLabel("Precio por noche: ");
+		add(lblPrecioNoche, "cell 2 7,alignx right");
 		
-		txtDni = new JTextField();
-		txtDni.setEditable(false);
-		add(txtDni, "cell 3 7,growx");
-		txtDni.setColumns(10);
+		textPrecioNoche = new JTextField();
+		textPrecioNoche.setEditable(false);
+		add(textPrecioNoche, "cell 3 7,growx");
+		textPrecioNoche.setColumns(10);
 		
-		JLabel lblNombre = new JLabel("Nombre: ");
-		add(lblNombre, "cell 5 7,alignx trailing");
+		JLabel lblTipo = new JLabel("Tipo: ");
+		add(lblTipo, "cell 5 7,alignx trailing");
 		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		add(textNombre, "cell 6 7,growx");
-		textNombre.setColumns(10);
+		textTipoHab = new JTextField();
+		textTipoHab.setEditable(false);
+		add(textTipoHab, "cell 6 7,growx");
+		textTipoHab.setColumns(10);
 		add(btnBorrarHab, "cell 5 12 2 1");
 	}
 
@@ -127,41 +128,63 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
 		if ( IDEventos.EVENTO_BAJA_HABITACION == idEvento ) {
-			if ( datos instanceof TransferCliente) {
-				
-				TransferCliente cliente = (TransferCliente) datos;
-				
-				if ( cliente != null ) {
-					idCliente = cliente.getID();
-					txtDni.setText(cliente.getDNI());
-					textNombre.setText(cliente.getNombre());
-					btnBorrarHab.setEnabled(true);
-				}
-			}
-			else if ( datos instanceof Boolean ) {
-				
-				Boolean correcto = (Boolean) datos;
-				
-				if ( correcto ) {
-					textNumHabBusqueda.setText("");
-					idCliente = null;
-					txtDni.setText("");
-					textNombre.setText("");
-					btnBorrarHab.setEnabled(false);
+			
+			if ( datos != null ) {
+				if ( datos instanceof Boolean ) {
 					
-					JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-				}
-				else {
+					Boolean correcto = (Boolean) datos;
 					
-					JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+					if ( correcto ) {
+						textNumHabBusqueda.setText("");
+						textNumHabBusqueda.setEditable(true);
+						idHabitacion = null;
+						textPrecioNoche.setText("");
+						textTipoHab.setText("");
+						btnBorrarHab.setEnabled(false);
+						
+						JOptionPane.showMessageDialog(this, "La habitación se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					} 
+					else {
+						
+						JOptionPane.showMessageDialog(this, "La habitación no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
-			
+
+			if ( datos != null ) {
+				if ( datos instanceof TransferHabitacion ) {
+					
+					TransferHabitacion hab = (TransferHabitacion) datos;
+					
+					textTipoHab.setText( hab.getTipohabitacion().toString() );
+					textPrecioNoche.setText( String.valueOf(hab.getPrecio()) );
+					idHabitacion = hab.getNumHabitacion();
+					
+					textNumHabBusqueda.setEditable(false);
+					btnBorrarHab.setEnabled(true);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "No se ha podido obtener la habitación", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		else if (IDEventos.ERROR_BAJA_HABITACION == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
 			
+			if ( datos != null ) {
+				
+				if ( datos instanceof BSoDException ) {
+					
+					JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

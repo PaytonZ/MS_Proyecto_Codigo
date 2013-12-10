@@ -52,7 +52,10 @@ public class GUIHabitacionesImp extends GUIHabitaciones {
 		case ERROR_CONSULTAR_TODAS_HABITACION:
 			getPanelConsultaMultiplesHabitaciones().actualizarVentana(eventoActual, datos);
 			break;
-
+		case EVENTO_CONSULTAR_HABITACION_V_BAJA:
+		case ERROR_CONSULTAR_HABITACION_V_BAJA:
+			getPanelBajaHabitaciones().actualizarVentana(eventoActual, datos);
+			break;
 		default:
 			break;
 

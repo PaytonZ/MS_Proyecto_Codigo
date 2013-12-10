@@ -66,12 +66,14 @@ public class DispatcherImp extends Dispatcher {
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION_V_BAJA
 			    || eventoActual == IDEventos.ERROR_ALTA_HABITACION
 			    || eventoActual == IDEventos.ERROR_BAJA_HABITACION
 			    || eventoActual == IDEventos.ERROR_MODIFICAR_HABITACION
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_HABITACION
-			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA) {
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION_V_BAJA) {
 			
 			GUIHabitaciones.getInstance().update(eventoActual, datos);
 		}
