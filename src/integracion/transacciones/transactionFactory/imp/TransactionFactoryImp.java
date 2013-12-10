@@ -3,7 +3,6 @@
  */
 package integracion.transacciones.transactionFactory.imp;
 
-import integracion.transacciones.conexiones.MySQLConnection;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transaction.imp.TransactionMySQL;
 import integracion.transacciones.transactionFactory.TransactionFactory;
@@ -25,10 +24,7 @@ public class TransactionFactoryImp extends TransactionFactory {
 	 */
 	public Transaction nuevaTransaccionMySQL() {
 
-		TransactionMySQL t = new TransactionMySQL();
-		t.setJdbConnection(new MySQLConnection().getConnection());
-
-		return t;
+		return  new TransactionMySQL();
 
 	}
 }

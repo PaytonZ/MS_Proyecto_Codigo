@@ -3,10 +3,10 @@
  */
 package integracion.transacciones.transaction.imp;
 
+import integracion.transacciones.conexiones.MySQLConnection;
 import integracion.transacciones.transaction.Transaction;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 
@@ -27,8 +27,9 @@ public class TransactionMySQL implements Transaction {
 	private Connection jdbConnection;
 	private Savepoint puntoguardado;
 
-	private final String queryLockTables = "LOCK TABLES ? WRITE";
-	private final String queryUnlockTables = "UNLOCK TABLES";
+	public TransactionMySQL() {
+		jdbConnection = new MySQLConnection().getConnection();
+	}
 
 	/**
 	 * @return el jdbConnection
@@ -69,8 +70,8 @@ public class TransactionMySQL implements Transaction {
 		}
 
 	}
-	public void end()
-	{
+
+	public void end() {
 		try {
 			jdbConnection.close();
 		} catch (SQLException e) {
@@ -105,9 +106,10 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void rollback() {
 		try {
-		/*	PreparedStatement unlocktables = jdbConnection
-					.prepareStatement(queryUnlockTables);
-			unlocktables.execute();*/
+			/*
+			 * PreparedStatement unlocktables = jdbConnection
+			 * .prepareStatement(queryUnlockTables); unlocktables.execute();
+			 */
 			jdbConnection.rollback(puntoguardado);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,24 +128,4 @@ public class TransactionMySQL implements Transaction {
 		return jdbConnection;
 
 	}
-
-	@Override
-	public void lock(String[] tablasabloquear) {
-
-		PreparedStatement locktables = null;
-
-		for (String tabla : tablasabloquear) {
-			try {
-				locktables = jdbConnection.prepareStatement(queryLockTables);
-				locktables.setString(1, tabla);
-				locktables.execute();
-
-			} catch (Exception e) {
-
-			} finally {
-
-			}
-		}
-	}
-
 }
