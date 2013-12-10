@@ -146,40 +146,45 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		}
 
 		@Override
-		public void actualizarVentana(IDEventos idEventos, Object datos) {
+		public void actualizarVentana(IDEventos idEvento, Object datos) {
 			
-			if ( datos == null) {
-				
-				JOptionPane.showMessageDialog(this, "Error al dar de alta una habitación", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			else if ( datos instanceof TransferHabitacion ) {
-				
-				if ( datos instanceof TransferHabitacionNormal ) {
+			if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA == idEvento) {
+				if ( datos == null) {
+					
+					JOptionPane.showMessageDialog(this, "No se pudo validar el número de habitación", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else if ( datos instanceof TransferHabitacion ) {
+					
+					if ( datos instanceof TransferHabitacionNormal ) {
+							
+						Integer tipo = ((TransferHabitacionNormal) datos).getNumHabitacion();
 						
-					Integer tipo = ((TransferHabitacionNormal) datos).getNumHabitacion();
+						textNumHab.setText( String.valueOf(tipo) );
+					}
+					else if ( datos instanceof TransferHabitacionSuite ) {
+						
+						Integer tipo = ((TransferHabitacionSuite) datos).getNumHabitacion();
+						
+						textNumHab.setText( String.valueOf(tipo) );
+					}
 					
-					textNumHab.setText( String.valueOf(tipo) );
+					textNumHab.setText("");
+					textPrecioNoche.setText("");
+					comboBox.setSelectedItem(null);
 				}
-				else if ( datos instanceof TransferHabitacionSuite ) {
+				else if( datos instanceof Integer ) {
 					
-					Integer tipo = ((TransferHabitacionSuite) datos).getNumHabitacion();
 					
-					textNumHab.setText( String.valueOf(tipo) );
 				}
-				
-				textNumHab.setText("");
-				textPrecioNoche.setText("");
-				comboBox.setSelectedItem(null);
+				else if( datos instanceof BSoDException ) {
+					
+					BSoDException bsod = (BSoDException) datos;
+					
+					JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
-			else if( datos instanceof Integer ) {
+			else if ( IDEventos.EVENTO_ALTA_HABITACION == idEvento || IDEventos.ERROR_ALTA_HABITACION == idEvento) {
 				
-				
-			}
-			else if( datos instanceof BSoDException ) {
-				
-				BSoDException bsod = (BSoDException) datos;
-				
-				JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
