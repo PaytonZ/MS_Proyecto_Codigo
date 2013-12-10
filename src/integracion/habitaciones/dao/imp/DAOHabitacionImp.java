@@ -156,7 +156,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 				TransferHabitacion habitacion = new TransferHabitacion();
 				
-				switch (rowsHabitaciones.getString("tipo")) {
+				switch (rowsHabitaciones.getString("tipohabitacion")) {
 				case "Normal":
 					habitacion = new TransferHabitacionNormal();
 					break;
