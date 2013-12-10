@@ -6,6 +6,7 @@ package integracion.reservas.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 
 /**
@@ -63,5 +64,5 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean updateReserva(TransferReserva reserva);
+	public Boolean updateReserva(TransferReserva reserva) throws BSoDException;
 }
