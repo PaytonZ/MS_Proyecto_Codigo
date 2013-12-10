@@ -30,7 +30,7 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField textDNIBusqueda;
+	private JTextField textNumHabBusqueda;
 	private JTextField txtDni;
 	private JTextField textNombre;
 	private Integer idCliente;
@@ -53,9 +53,9 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		JLabel lblNumHab = new JLabel("Número de habitación: ");
 		add(lblNumHab, "cell 2 4,alignx trailing");
 		
-		textDNIBusqueda = new JTextField();
-		add(textDNIBusqueda, "cell 3 4 3 1,growx");
-		textDNIBusqueda.setColumns(10);
+		textNumHabBusqueda = new JTextField();
+		add(textNumHabBusqueda, "cell 3 4 3 1,growx");
+		textNumHabBusqueda.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -63,12 +63,24 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String dniCliente = textDNIBusqueda.getText();
-				
-				if ( !"".equals(dniCliente) ) {
+				if ( !"".equals(textNumHabBusqueda.getText()) ) {
 					
-					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, dniCliente);
+					try {
+						
+						Integer numHabitacion = Integer.valueOf(textNumHabBusqueda.getText().trim());
+						
+						if ( numHabitacion > 0 ) {
+							
+							ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+							controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, numHabitacion);
+						}
+						else {
+							JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negativo", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					catch (NullPointerException nu) {
+						JOptionPane.showMessageDialog(contentPane, "El campo número de habitación solo puede contener caractéres numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				else {
 					JOptionPane.showMessageDialog(contentPane, "El campo DNI no puede ser vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -114,34 +126,42 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof TransferCliente) {
-			
-			TransferCliente cliente = (TransferCliente) datos;
-			
-			if ( cliente != null ) {
-				idCliente = cliente.getID();
-				txtDni.setText(cliente.getDNI());
-				textNombre.setText(cliente.getNombre());
-				btnBorrarHab.setEnabled(true);
+		if ( IDEventos.EVENTO_BAJA_HABITACION == idEvento ) {
+			if ( datos instanceof TransferCliente) {
+				
+				TransferCliente cliente = (TransferCliente) datos;
+				
+				if ( cliente != null ) {
+					idCliente = cliente.getID();
+					txtDni.setText(cliente.getDNI());
+					textNombre.setText(cliente.getNombre());
+					btnBorrarHab.setEnabled(true);
+				}
+			}
+			else if ( datos instanceof Boolean ) {
+				
+				Boolean correcto = (Boolean) datos;
+				
+				if ( correcto ) {
+					textNumHabBusqueda.setText("");
+					idCliente = null;
+					txtDni.setText("");
+					textNombre.setText("");
+					btnBorrarHab.setEnabled(false);
+					
+					JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					
+					JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
-		else if ( datos instanceof Boolean ) {
+		else if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
 			
-			Boolean correcto = (Boolean) datos;
+		}
+		else if (IDEventos.ERROR_BAJA_HABITACION == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
 			
-			if ( correcto ) {
-				textDNIBusqueda.setText("");
-				idCliente = null;
-				txtDni.setText("");
-				textNombre.setText("");
-				btnBorrarHab.setEnabled(false);
-				
-				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-			}
-			else {
-				
-				JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-			}
 		}
 	}
 }
