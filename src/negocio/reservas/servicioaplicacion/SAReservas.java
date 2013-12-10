@@ -68,4 +68,6 @@ public interface SAReservas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente) throws BSoDException;
+	
+	public List<TransferReserva> obtenerReservasporHabitacion(Integer numhabitacion) throws BSoDException;
 }

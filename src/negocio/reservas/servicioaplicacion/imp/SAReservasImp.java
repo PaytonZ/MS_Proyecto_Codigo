@@ -31,24 +31,20 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarReserva(TransferReserva reserva)throws BSoDException {
+	public Boolean actualizarReserva(TransferReserva reserva)
+			throws BSoDException {
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		Boolean correcto = false;
-		try
-		{
+		try {
 			correcto = dao.updateReserva(reserva);
 			transacion.commit();
-		}
-		catch(BSoDException e)
-		{ 
+		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
-		}
-		finally
-		{
+		} finally {
 			tm.eliminaTransaccion();
 		}
 		return correcto;
@@ -63,7 +59,7 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirReserva(TransferReserva reserva) throws BSoDException{
+	public Integer anadirReserva(TransferReserva reserva) throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -71,19 +67,16 @@ public class SAReservasImp implements SAReservas {
 
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		Integer idReserva = null;
-		try
-		{
+		try {
 			idReserva = dao.addReserva(reserva);
 			transacion.commit();
-		} catch(BSoDException e){
+		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
-		}
-		finally
-		{
+		} finally {
 			tm.eliminaTransaccion();
 		}
-		
+
 		return idReserva;
 	}
 
@@ -100,22 +93,20 @@ public class SAReservasImp implements SAReservas {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
-		
+
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
-		
+
 		transacion.start();
-		
+
 		Boolean resultado = null;
-		try{
-		
-		resultado = dao.deleteReserva(idReserva);
-		transacion.commit();
-		} catch(BSoDException e){
+		try {
+
+			resultado = dao.deleteReserva(idReserva);
+			transacion.commit();
+		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
-		}
-		finally
-		{
+		} finally {
 			tm.eliminaTransaccion();
 		}
 		return resultado;
@@ -130,28 +121,25 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva obtenerReserva(Integer idReserva) throws BSoDException {
+	public TransferReserva obtenerReserva(Integer idReserva)
+			throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
-		
+
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
-		
+
 		TransferReserva reserva = null;
-		
+
 		transacion.start();
-		try
-		{
+		try {
 			reserva = dao.getReserva(idReserva);
-		}catch(BSoDException e)
-		{
+		} catch (BSoDException e) {
 			throw e;
-		}
-		finally
-		{
+		} finally {
 			tm.eliminaTransaccion();
 		}
-		
+
 		return reserva;
 	}
 
@@ -164,27 +152,47 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente) throws BSoDException {
+	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente)
+			throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
-		
+
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
-		
+
 		transacion.start();
-		
+
 		List<TransferReserva> listaReserva = null;
-		try
-		{
+		try {
 			listaReserva = dao.getAllReservas(idCliente);
-		}catch(BSoDException e)
-		{
+		} catch (BSoDException e) {
 			throw e;
-		}
-		finally
-		{
+		} finally {
 			tm.eliminaTransaccion();
 		}
 		return listaReserva;
+	}
+
+	@Override
+	public List<TransferReserva> obtenerReservasporHabitacion(
+			Integer numhabitacion) throws BSoDException {
+
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+
+		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+
+		transacion.start();
+
+		List<TransferReserva> listaReserva = null;
+		try {
+			listaReserva = dao.getReservasporHabitacion(numhabitacion);
+		} catch (BSoDException e) {
+			throw e;
+		} finally {
+			tm.eliminaTransaccion();
+		}
+		return listaReserva;
+
 	}
 }

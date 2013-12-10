@@ -5,8 +5,10 @@ package negocio.habitaciones.servicioaplicacion.imp;
 
 import negocio.excepciones.BSoDException;
 import negocio.excepciones.TransaccionNoEliminadaException;
+import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.reservas.transfer.TransferReserva;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.transacciones.transaction.Transaction;
@@ -114,8 +116,17 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		transacion.start();
 		Boolean resultado = null;
 		try {
+			List<TransferReserva> listareservas = FactoriaDAO.getInstance().generaDAOReserva().getReservasporHabitacion(idHabitacion);
+			if(listareservas.isEmpty())
+			{
 			resultado = dao.deleteHabitacion(idHabitacion);
 			transacion.commit();
+			}
+			else
+			{
+				resultado=false;
+				listareservas=null;
+			}
 		} catch (Exception e) {
 			throw new BSoDException(e.toString());
 		} finally {

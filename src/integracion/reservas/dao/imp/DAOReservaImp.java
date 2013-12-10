@@ -38,7 +38,8 @@ public class DAOReservaImp implements DAOReserva {
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
 	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
-
+	private final String getHabporReservaQuery = "SELECT * from reservas where habitaciones_numhabitacion = ? FOR UPDATE";
+	
 	public Integer addReserva(TransferReserva reserva) throws BSoDException{
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
@@ -215,5 +216,41 @@ public class DAOReservaImp implements DAOReserva {
 		}
 
 		return exitoupdate;
+	}
+
+	@Override
+	public List<TransferReserva> getReservasporHabitacion(Integer numhab)
+			throws BSoDException {
+		
+		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+
+		List<TransferReserva> listaReservas = new ArrayList<TransferReserva>();
+
+		try {
+			PreparedStatement todaslasreservas = connection.prepareStatement(getHabporReservaQuery);
+			todaslasreservas.setInt(1, numhab);		
+			ResultSet rowsReservas = todaslasreservas.executeQuery();
+			while (rowsReservas.next()) {
+
+				TransferReserva reserva = new TransferReserva();
+
+				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
+				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
+				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
+				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
+				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
+				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
+				listaReservas.add(reserva);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BSoDException("Error al cargar las reservas");
+		}
+
+		return listaReservas;
+		
+		
+		
 	}
 }
