@@ -31,13 +31,14 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 	private static final long serialVersionUID = 1L;
 	private JTextField textDNIBusqueda;
 	private JTextField textNombre;
-	private JTextField textApellidos;
+	private JTextField textSegundoApellido;
 	private JTextField textDireccion;
 	private JTextField textTelefono;
 	private Integer idCliente;
+	private JTextField textPrimerApellido;
 	
 	public PanelModificacionClientes() {
-		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][][17.00][][10.00][][][][]"));
+		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][18.00][17.00][][10.00][][9.00][][16.00][13.00][]"));
 		
 		JLabel lblModificacinDeClientes = new JLabel("Modificación de clientes");
 		add(lblModificacinDeClientes, "cell 0 0 7 1,alignx center");
@@ -78,8 +79,10 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textDNIBusqueda.setEditable(true);
 				textNombre.setText("");
 				textNombre.setEditable(false);
-				textApellidos.setText("");
-				textApellidos.setEditable(false);
+				textPrimerApellido.setText("");
+				textPrimerApellido.setEditable(false);
+				textSegundoApellido.setText("");
+				textSegundoApellido.setEditable(false);
 				textDireccion.setText("");
 				textDireccion.setEditable(false);
 				textTelefono.setText("");
@@ -99,14 +102,13 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 		textNombre.setColumns(10);
 		add(textNombre, "cell 2 6 2 1,growx");
 		
-		JLabel label_2 = new JLabel("Apellidos: ");
-		add(label_2, "cell 5 6,alignx trailing");
+		JLabel lblPrimerApellido = new JLabel("Primer apellido: ");
+		add(lblPrimerApellido, "cell 5 6,alignx trailing");
 		
-		textApellidos = new JTextField();
-		textApellidos.setToolTipText("Más de dos apellidos serán ingonrados.");
-		textApellidos.setEditable(false);
-		textApellidos.setColumns(10);
-		add(textApellidos, "cell 6 6,growx");
+		textPrimerApellido = new JTextField();
+		textPrimerApellido.setEditable(false);
+		add(textPrimerApellido, "cell 6 6,growx");
+		textPrimerApellido.setColumns(10);
 		
 		JLabel label_3 = new JLabel("Dirección: ");
 		add(label_3, "cell 1 8,alignx trailing");
@@ -116,16 +118,22 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 		textDireccion.setColumns(10);
 		add(textDireccion, "cell 2 8 2 1,growx");
 		
+		JLabel lblSegundoApellido = new JLabel("Segundo apellido: ");
+		add(lblSegundoApellido, "cell 5 8,alignx trailing");
+		
+		textSegundoApellido = new JTextField();
+		textSegundoApellido.setToolTipText("Más de dos apellidos serán ingonrados.");
+		textSegundoApellido.setEditable(false);
+		textSegundoApellido.setColumns(10);
+		add(textSegundoApellido, "cell 6 8,growx");
+		
 		JLabel label_4 = new JLabel("Telefono: ");
-		add(label_4, "cell 5 8,alignx trailing");
+		add(label_4, "cell 5 10,alignx trailing");
 		
 		textTelefono = new JTextField();
 		textTelefono.setEditable(false);
 		textTelefono.setColumns(10);
-		add(textTelefono, "cell 6 8,growx");
-		
-		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "cell 1 10 6 1,growx,aligny center");
+		add(textTelefono, "cell 6 10,growx");
 		
 		JButton btnModificarCliente = new JButton("Modificar cliente");
 		btnModificarCliente.addActionListener(new ActionListener() {
@@ -138,7 +146,8 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				
 				if ( idCliente != null 
 						&& !textDNIBusqueda.getText().equals("")
-						&& !textApellidos.getText().equals("") 
+						&& !textPrimerApellido.getText().equals("")
+						&& !textSegundoApellido.getText().equals("") 
 						&& !textNombre.getText().equals("")
 						&& !textDireccion.getText().equals("")
 						&& !textTelefono.getText().equals("")) {
@@ -147,16 +156,13 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 					cliente.setNombre(textNombre.getText());
 					cliente.setDireccion(textDireccion.getText());
 					
-					String[] apellidos = textApellidos.getText().split(" ");
-					
-					if ( apellidos.length < 1 ) {
-						JOptionPane.showMessageDialog(null, "No ha introducido los apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+					if ( textPrimerApellido.getText().equals("") ) {
+						JOptionPane.showMessageDialog(null, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						if ( apellidos.length > 1 )
-							cliente.setPrimerApellido(apellidos[0]);
-						if (apellidos.length <= 2)
-							cliente.setSegundoApellido(apellidos[1]);
+						cliente.setPrimerApellido(textPrimerApellido.getText().trim());
+						if ( !textSegundoApellido.getText().equals("") )
+							cliente.setSegundoApellido(textSegundoApellido.getText().trim());
 						
 						
 						try {
@@ -174,7 +180,10 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				}
 			}
 		});
-		add(btnModificarCliente, "cell 6 11");
+		
+		JSeparator separator_1 = new JSeparator();
+		add(separator_1, "cell 1 12 7 1,growx,aligny center");
+		add(btnModificarCliente, "cell 6 13");
 	}
 	/**
 	 * (sin Javadoc)
@@ -193,8 +202,10 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				idCliente = cliente.getID();
 				textNombre.setText(cliente.getNombre());
 				textNombre.setEditable(true);
-				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
-				textApellidos.setEditable(true);
+				textPrimerApellido.setText(cliente.getPrimerApellido());
+				textPrimerApellido.setEditable(true);
+				textSegundoApellido.setText(cliente.getSegundoApellido());
+				textSegundoApellido.setEditable(true);
 				textDireccion.setText(cliente.getDireccion());
 				textDireccion.setEditable(true);
 				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
@@ -210,8 +221,10 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textDNIBusqueda.setEditable(true);
 				textNombre.setText("");
 				textNombre.setEditable(true);
-				textApellidos.setText("");
-				textApellidos.setEditable(true);
+				textSegundoApellido.setText("");
+				textSegundoApellido.setEditable(true);
+				textSegundoApellido.setText("");
+				textSegundoApellido.setEditable(true);
 				textDireccion.setText("");
 				textDireccion.setEditable(true);
 				textTelefono.setText("");

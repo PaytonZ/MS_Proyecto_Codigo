@@ -38,7 +38,7 @@ public class CommandAltaReserva implements Command {
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.EVENTO_ALTA_RESERVA);
+			cr.setEvento(IDEventos.ERROR_ALTA_RESERVA);
 		}
 
 		return cr;

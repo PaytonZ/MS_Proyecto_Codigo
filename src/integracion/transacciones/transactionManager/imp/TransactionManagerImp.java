@@ -3,12 +3,11 @@
  */
 package integracion.transacciones.transactionManager.imp;
 
-import java.sql.SQLException;
-import java.util.concurrent.ConcurrentHashMap;
-
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionFactory.TransactionFactory;
 import integracion.transacciones.transactionManager.TransactionManager;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -38,8 +37,10 @@ public class TransactionManagerImp extends TransactionManager {
 		Transaction t;
 		Long threadId = Thread.currentThread().getId();
 		if (mapa.containsKey(threadId)) {
+			
 			t = mapa.get(threadId);
 		} else {
+			
 			t = TransactionFactory.getInstance().nuevaTransaccionMySQL();
 			mapa.put(threadId, t);
 		}
@@ -57,15 +58,15 @@ public class TransactionManagerImp extends TransactionManager {
 	public Transaction getTransaccion() {
 
 		Long threadId = Thread.currentThread().getId();
+		
 		Transaction t = null;
-		if(mapa.containsKey((threadId)))
-			{
+		if(mapa.containsKey((threadId))) {
 			t = mapa.get(threadId);
-			}
-		else 
-		{
+		}
+		else {
 			//THROWEXCEPTION
 		}
+		
 		return t;
 		 
 	}
@@ -78,17 +79,23 @@ public class TransactionManagerImp extends TransactionManager {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Boolean eliminaTransaccion() {
+		
 		Long threadId = Thread.currentThread().getId();
+		
 		boolean resultado;
 		if (mapa.containsKey(threadId)) {
+			
 			Transaction t = mapa.get(threadId);
+			
 			t.commit();
 			t.end();
+			
 			mapa.remove(threadId);
+			
 			resultado = true;
 		} else {
+			
 			resultado = false;
-			// Pòsible excepcion.
 		}
 		
 		return resultado;
