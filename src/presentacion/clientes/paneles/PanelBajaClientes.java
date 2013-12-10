@@ -62,8 +62,10 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				
 				String dniCliente = textDNIBusqueda.getText();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, dniCliente);
+				if ( !"".equals(dniCliente) ) {
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, dniCliente);
+				}
 			}
 		});
 		add(btnBuscar, "cell 5 4");

@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,22 +34,6 @@ public class FramePrincipal extends JFrame {
 	private JButton btnClientes;
 	private JButton btnHabitaciones;
 	private JButton btnReservas;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FramePrincipal frame = new FramePrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -222,5 +205,7 @@ public class FramePrincipal extends JFrame {
 		
 		Component cajaFlecibleDr = Box.createGlue();
 		toolBar.add(cajaFlecibleDr);
+		
+		setVisible(true);
 	}
 }
