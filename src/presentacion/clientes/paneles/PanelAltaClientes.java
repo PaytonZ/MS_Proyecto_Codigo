@@ -12,16 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-
-
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
-import presentacion.clientes.GUIInterfazClientes;
+import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
-public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
+public class PanelAltaClientes extends JPanel implements GUIPanelesInterfaz {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
@@ -141,7 +139,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 	}
 
 	@Override
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
 		if ( datos == null) {
 			

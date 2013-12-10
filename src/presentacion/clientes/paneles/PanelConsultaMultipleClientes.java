@@ -5,11 +5,13 @@ package presentacion.clientes.paneles;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,11 +22,9 @@ import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
-import presentacion.clientes.GUIInterfazClientes;
+import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -33,7 +33,7 @@ import java.awt.FlowLayout;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfazClientes {
+public class PanelConsultaMultipleClientes extends JPanel implements GUIPanelesInterfaz {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -102,7 +102,7 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
 		if ( datos instanceof List) {
 			

@@ -74,27 +74,27 @@ public void update(IDEventos evento_actual, Object datos) {
 		
 		case EVENTO_ALTA_CLIENTE:
 		case ERROR_ALTA_CLIENTE:
-			getPanelAltaClientes().actualizarVentana(datos);
+			getPanelAltaClientes().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_BAJA_CLIENTE:
 		case ERROR_BAJA_CLIENTE:
 		case EVENTO_CONSULTAR_CLIENTE_V_BORRAR:
 		case ERROR_CONSULTAR_CLIENTE_V_BORRAR:
-			getPanelBajaClientes().actualizarVentana(datos);
+			getPanelBajaClientes().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_MODIFICAR_CLIENTE:
 		case ERROR_MODIFICAR_CLIENTE:
 		case EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR:
 		case ERROR_CONSULTAR_CLIENTE_V_MODIFICAR:
-			getPanelModificacionClientes().actualizarVentana(datos);
+			getPanelModificacionClientes().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_CLIENTE:
 		case ERROR_CONSULTAR_CLIENTE:
-			getPanelConsultaClientes().actualizarVentana(datos);
+			getPanelConsultaClientes().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_TODOS_CLIENTE:
 		case ERROR_CONSULTAR_TODOS_CLIENTE:
-			getPanelConsultaMultipleClientes().actualizarVentana(datos);
+			getPanelConsultaMultipleClientes().actualizarVentana(evento_actual, datos);
 			break;
 
 		default:

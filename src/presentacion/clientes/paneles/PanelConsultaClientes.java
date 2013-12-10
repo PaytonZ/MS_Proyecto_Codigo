@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import negocio.clientes.transfer.TransferCliente;
 import net.miginfocom.swing.MigLayout;
-import presentacion.clientes.GUIInterfazClientes;
+import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
@@ -25,7 +25,7 @@ import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAp
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes {
+public class PanelConsultaClientes extends JPanel implements GUIPanelesInterfaz {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -118,7 +118,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
 		if ( datos instanceof TransferCliente) {
 			
