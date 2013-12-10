@@ -34,7 +34,6 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField textNumHabBusqueda;
-	private JTextField textNumHab;
 	private JTextField textPrecio;
 	private JComboBox<TipoHabitacion> comboBox;
 	private JButton btnModificarHab;
@@ -92,11 +91,8 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-//				numHabitacion = null;
 				textNumHabBusqueda.setText("");
 				textNumHabBusqueda.setEditable(true);
-				textNumHab.setText("");
-				textNumHab.setEditable(false);
 				textPrecio.setText("");
 				textPrecio.setEditable(false);
 				comboBox.setEditable(false);
@@ -108,22 +104,12 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 		JSeparator separator_2 = new JSeparator();
 		add(separator_2, "cell 1 4 6 1, growx, aligny center");
 		
-		JLabel lblNmeroDeHabitacin_1 = new JLabel("Número de habitación: ");
-		add(lblNmeroDeHabitacin_1, "cell 1 6,alignx trailing");
-		
-		textNumHab = new JTextField();
-		textNumHab.setColumns(10);
-		add(textNumHab, "cell 2 6 2 1,growx");
-		
 		JLabel lblPrecio = new JLabel("Precio por noche: ");
-		add(lblPrecio, "cell 5 6,alignx trailing");
+		add(lblPrecio, "cell 1 6,alignx trailing");
 		
 		textPrecio = new JTextField();
-		add(textPrecio, "cell 6 6,growx");
+		add(textPrecio, "cell 2 6 2 1,growx");
 		textPrecio.setColumns(10);
-		
-		JLabel lblTipoDeHabitacin = new JLabel("Tipo de habitación: ");
-		add(lblTipoDeHabitacin, "cell 1 8,alignx trailing");
 		
 		btnModificarHab = new JButton("Modificar habitación");
 		btnModificarHab.setEnabled(false);
@@ -133,12 +119,12 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 				
 				TransferHabitacion habitacion = new TransferHabitacion();
 				
-				if ( !textNumHab.getText().equals("") 
+				if ( !textNumHabBusqueda.getText().equals("") 
 						&& !textPrecio.getText().equals("")
 						&& comboBox.getSelectedIndex() >= 0) {
 					
 					try {
-						habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
+						habitacion.setNumHabitacion(Integer.valueOf(textNumHabBusqueda.getText().trim()) );
 						habitacion.setPrecio( Double.valueOf(textPrecio.getText().trim()) );
 						
 						if ( Double.valueOf(textPrecio.getText().trim()) >= 0 ) {
@@ -160,10 +146,13 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 			}
 		});
 		
+		JLabel lblTipoDeHabitacin = new JLabel("Tipo de habitación: ");
+		add(lblTipoDeHabitacin, "cell 5 6,alignx trailing");
+		
 		comboBox = new JComboBox<>();
 		comboBox.setEditable(true);
 		comboBox.setModel(new DefaultComboBoxModel<TipoHabitacion>(TipoHabitacion.values()));
-		add(comboBox, "cell 2 8 2 1,growx");
+		add(comboBox, "cell 6 6,growx");
 		
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 1 10 7 1,growx,aligny center");
@@ -178,7 +167,7 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_MODIFICAR_CLIENTE == idEvento ) {
+		if ( IDEventos.EVENTO_MODIFICAR_HABITACION == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				
@@ -187,8 +176,6 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 				if ( correcto ) {
 					textNumHabBusqueda.setText("");
 					textNumHabBusqueda.setEditable(true);
-					textNumHab.setText("");
-					textNumHab.setEditable(false);
 					textPrecio.setText("");
 					textPrecio.setEditable(false);
 					comboBox.setEnabled(false);
@@ -208,10 +195,9 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 				
 				TransferHabitacion habitacion = (TransferHabitacion) datos;
 				
-				textNumHab.setText( String.valueOf(habitacion.getNumHabitacion()) );
-				textNumHab.setEditable(true);
 				textPrecio.setText( String.valueOf(habitacion.getPrecio()) );
 				textPrecio.setEditable(true);
+				comboBox.setSelectedItem(habitacion.getTipohabitacion());
 				comboBox.setEnabled(true);
 				btnModificarHab.setEnabled(true);
 			}
