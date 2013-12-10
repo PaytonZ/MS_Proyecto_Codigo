@@ -57,8 +57,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			addhabitacion.setDouble(2, habitacion.getPrecio());
 			
 			if(habitacion instanceof TransferHabitacionNormal)
-				addhabitacion.setString(3, TipoHabitacion.HABITACION_NORMAL.toString());
-			else addhabitacion.setString(3, TipoHabitacion.HABITACION_SUITE.toString());
+				addhabitacion.setString(3, TipoHabitacion.HABITACION_NORMAL.name());
+			else addhabitacion.setString(3, TipoHabitacion.HABITACION_SUITE.name());
 	
 
 			if (addhabitacion.executeUpdate() == 1) {
@@ -201,8 +201,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					.prepareStatement(updateHabitacionQuery);
 			preparedStatement.setDouble(1, habitacion.getPrecio());
 			if(habitacion instanceof TransferHabitacionNormal)
-				preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.toString());
-			else preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.toString());
+				preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.name());
+			else preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.name());
 			preparedStatement.setInt(3, habitacion.getNumHabitacion());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
