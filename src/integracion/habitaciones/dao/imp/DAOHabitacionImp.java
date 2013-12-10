@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
@@ -43,7 +44,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
 	private final String updateHabitacionQuery = "UPDATE habitaciones SET  precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
 	
-	public Integer addHabitacion(TransferHabitacion habitacion) {
+	public Integer addHabitacion(TransferHabitacion habitacion) throws BSoDException {
 
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
@@ -76,7 +77,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+			throw new BSoDException("Error al crear la habitacion");
 		}
 
 		return idHabitacion;
@@ -85,12 +86,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOHabitacion#getHabitacion(Object idHabitacion)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferHabitacion getHabitacion(Integer idHabitacion) {
+	public TransferHabitacion getHabitacion(Integer idHabitacion) throws BSoDException {
 		
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -126,6 +128,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar la habitacion");
 		}
 
 		return habitacion;
@@ -133,12 +136,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOHabitacion#getAllHabitaciones()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferHabitacion> getAllHabitaciones() {
+	public List<TransferHabitacion> getAllHabitaciones() throws BSoDException {
 		
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -175,6 +179,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar las habitaciones");
 		}
 
 		return listaHabitaciones;
@@ -182,12 +187,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOHabitacion#updateHabitacion(TransferHabitacionNormal habitacion)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean updateHabitacion(TransferHabitacion habitacion) {
+	public boolean updateHabitacion(TransferHabitacion habitacion) throws BSoDException {
 		
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -210,8 +216,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-
+			throw new BSoDException("Error al actualizar la habitacion");
 		}
 
 		return correcto;
@@ -219,12 +224,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOHabitacion#deleteHabitacion(Object idHabitacion)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean deleteHabitacion(Integer idHabitacion) {
+	public boolean deleteHabitacion(Integer idHabitacion) throws BSoDException {
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
@@ -239,6 +245,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al eliminar la habitacion");
 		}
 
 		return correcto;

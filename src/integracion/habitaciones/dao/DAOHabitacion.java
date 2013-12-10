@@ -5,6 +5,7 @@ package integracion.habitaciones.dao;
 
 import java.util.List;
 
+import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TransferHabitacion;
 
 /**
@@ -23,7 +24,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer addHabitacion(TransferHabitacion habitacion);
+	public Integer addHabitacion(TransferHabitacion habitacion)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -33,7 +34,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferHabitacion getHabitacion(Integer idHabitacion);
+	public TransferHabitacion getHabitacion(Integer idHabitacion)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -42,7 +43,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferHabitacion> getAllHabitaciones();
+	public List<TransferHabitacion> getAllHabitaciones()throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -51,7 +52,7 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean updateHabitacion(TransferHabitacion habitacion);
+	public boolean updateHabitacion(TransferHabitacion habitacion)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -60,5 +61,5 @@ public interface DAOHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean deleteHabitacion(Integer idHabitacion);
+	public boolean deleteHabitacion(Integer idHabitacion)throws BSoDException;
 }

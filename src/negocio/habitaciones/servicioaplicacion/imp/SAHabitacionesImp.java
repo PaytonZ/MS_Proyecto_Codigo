@@ -48,14 +48,11 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		try {
 			idHabitacion = dao.addHabitacion(habitacionNueva);
 			transacion.commit();
-		} catch (Exception e) {
+		} catch (BSoDException e) {
 			transacion.rollback();
-			throw new BSoDException(e.toString());
+			throw e;
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(
-						SAHabitaciones.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 
 		return idHabitacion;
@@ -83,19 +80,11 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 			correcto = dao.updateHabitacion(habitacionModificada);
 			transacion.commit();
-			if (!correcto) {
-
-				transacion.rollback();
-
-			}
-
-		} catch (Exception e) {
-			throw new BSoDException(e.toString());
+		} catch (BSoDException e) {
+			transacion.rollback();
+			throw e;
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(
-						SAHabitaciones.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 		return correcto;
 	}
@@ -129,13 +118,11 @@ public class SAHabitacionesImp implements SAHabitaciones {
 				listareservas=null;
 				transacion.rollback();
 			}
-		} catch (Exception e) {
-			throw new BSoDException(e.toString());
+		} catch (BSoDException e) {
+			transacion.rollback();
+			throw e;
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(
-						SAHabitaciones.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 		return resultado;
 	}
@@ -159,16 +146,11 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		List<TransferHabitacion> listaHabitaciones = null;
 		try {
 			listaHabitaciones = dao.getAllHabitaciones();
-		} catch (Exception e) {
-			throw new BSoDException(e.toString());
+		} catch (BSoDException e) {
+			throw e;
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-
-				throw new TransaccionNoEliminadaException(
-						SAHabitaciones.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
-
 		return listaHabitaciones;
 	}
 
@@ -192,13 +174,10 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 		try {
 			t = dao.getHabitacion(idHabitacion);
-		} catch (Exception e) {
-			throw new BSoDException(e.toString());
+		} catch (BSoDException e) {
+			throw e;
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(
-						SAHabitaciones.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 
 		return t;
