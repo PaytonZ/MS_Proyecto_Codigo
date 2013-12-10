@@ -6,6 +6,7 @@ package presentacion.habitaciones.paneles;
 import javax.swing.JPanel;
 
 import presentacion.GUIPanelesInterfaz;
+import presentacion.comandos.IDEventos;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -19,7 +20,7 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		// TODO Auto-generated method stub
 		
 	}

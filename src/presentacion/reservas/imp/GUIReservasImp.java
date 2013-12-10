@@ -31,23 +31,23 @@ switch (evento_actual) {
 		
 		case EVENTO_ALTA_RESERVA:
 		case ERROR_ALTA_RESERVA:
-			getPanelAltaReservas().actualizarVentana(datos);
+			getPanelAltaReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_BAJA_RESERVA:
 		case ERROR_BAJA_RESERVA:
-			getPanelBajaReservas().actualizarVentana(datos);
+			getPanelBajaReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_RESERVA:
 		case ERROR_CONSULTAR_RESERVA:
-			getPanelConsultaReservas().actualizarVentana(datos);
+			getPanelConsultaReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_MODIFICAR_RESERVA:
 		case ERROR_MODIFICAR_RESERVA:
-			getPanelModificacionReservas().actualizarVentana(datos);
+			getPanelModificacionReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_TODAS_RESERVAS:
 		case ERROR_CONSULTAR_TODAS_RESERVAS:
-			getPanelConsultaMultipleReservas().actualizarVentana(datos);
+			getPanelConsultaMultipleReservas().actualizarVentana(evento_actual, datos);
 			break;
 
 		default:
