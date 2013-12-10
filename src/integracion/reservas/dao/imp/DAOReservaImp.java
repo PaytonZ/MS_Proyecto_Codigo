@@ -14,6 +14,7 @@ import java.util.List;
 import integracion.reservas.dao.DAOReserva;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
+import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 
 /**
@@ -179,12 +180,13 @@ public class DAOReservaImp implements DAOReserva {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOReserva#updateReserva(TransferReserva reserva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean updateReserva(TransferReserva reserva) {
+	public Boolean updateReserva(TransferReserva reserva) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -201,11 +203,8 @@ public class DAOReservaImp implements DAOReserva {
 			updatereserva.setDate(4, (Date) reserva.getFechaEntrada());
 			updatereserva.setDate(5, (Date) reserva.getFechaSalida());
 			exitoupdate = (updatereserva.executeUpdate() == 1);
-			
-			// }
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BSoDException("Error al actualizar el cliente");
 		} finally {
 
 		}

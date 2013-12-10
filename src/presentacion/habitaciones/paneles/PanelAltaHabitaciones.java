@@ -146,7 +146,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		}
 
 		@Override
-		public void actualizarVentana(Object datos) {
+		public void actualizarVentana(IDEventos idEventos, Object datos) {
 			
 			if ( datos == null) {
 				

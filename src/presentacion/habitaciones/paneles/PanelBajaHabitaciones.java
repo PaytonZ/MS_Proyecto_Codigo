@@ -6,6 +6,7 @@ package presentacion.habitaciones.paneles;
 import javax.swing.JPanel;
 
 import presentacion.GUIPanelesInterfaz;
+import presentacion.comandos.IDEventos;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -17,7 +18,7 @@ import presentacion.GUIPanelesInterfaz;
 public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz {
 
 	@Override
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEventos, Object datos) {
 		// TODO Auto-generated method stub
 		
 	}

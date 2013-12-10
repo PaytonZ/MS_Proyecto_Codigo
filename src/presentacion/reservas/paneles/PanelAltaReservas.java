@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -94,7 +93,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 		});
 		add(btnAceptar, "cell 7 11,alignx left,aligny top");
 	}
-	public void actualizarVentana(Object datos) {
+	public void actualizarVentana(IDEventos idEventos, Object datos) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
