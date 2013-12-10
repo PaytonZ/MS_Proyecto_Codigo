@@ -38,7 +38,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	 */
 	
 	private final String addHabitacionQuery = "INSERT INTO habitaciones (numhabitacion ,precio ,tipohabitacion) VALUES (?, ? , ?)";
-	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE numhabitacion = ? FOR UPDATE";
+	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE numhabitacion = ? AND activo = true FOR UPDATE";
 	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE numhabitacion = ?";
 	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
 	private final String updateHabitacionQuery = "UPDATE habitaciones SET  precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
