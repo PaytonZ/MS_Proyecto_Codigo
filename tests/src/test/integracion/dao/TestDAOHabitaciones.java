@@ -9,6 +9,7 @@ import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.Random;
 
+import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 
@@ -60,7 +61,14 @@ public class TestDAOHabitaciones {
 		assertNotNull(id);
 		assertTrue(id>=0);
 
-		TransferHabitacion hab = dao.getHabitacion(id);
+		TransferHabitacion hab = null;
+		try {
+			hab = dao.getHabitacion(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 		
 		assertNotNull(hab);
 		assertTrue(hab.getNumHabitacion()==numhab);
@@ -78,16 +86,25 @@ public class TestDAOHabitaciones {
 
 		Integer id = obtenerIdHabitacion();
 
-		TransferHabitacion h = dao.getHabitacion(id);
+		TransferHabitacion h = null;
+		TransferHabitacion h1 = null;
+		boolean correcto = false;
+		try {
+			h = dao.getHabitacion(id);
+		
 
 		assertNotNull("La habitacion no puede ser nula para modificarlo", h);
 
 		Double nuevoprecio = 0000d;
 		h.setPrecio(nuevoprecio);
 
-		boolean correcto = dao.updateHabitacion(h);
-		TransferHabitacion h1 = dao.getHabitacion(h.getNumHabitacion());
-
+		correcto = dao.updateHabitacion(h);
+		h1 = dao.getHabitacion(h.getNumHabitacion());
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 		assertNotNull(h1);
 
 		assertTrue(h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
@@ -108,7 +125,14 @@ public class TestDAOHabitaciones {
 
 		assertNotNull("La habitacion no puede ser nula para borrarlo", id);
 
-		boolean correcto = dao.deleteHabitacion(id);
+		boolean correcto = false;
+		try {
+			correcto = dao.deleteHabitacion(id);
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertTrue("la habitacion no se borró", correcto);
 	
@@ -124,7 +148,13 @@ public class TestDAOHabitaciones {
 
 		TransferHabitacion hab = crearHabitacion();
 
-		hab.setNumHabitacion((dao.addHabitacion(hab)));
+		try {
+			hab.setNumHabitacion((dao.addHabitacion(hab)));
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		commit();
 

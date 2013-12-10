@@ -113,7 +113,12 @@ public class TestDAOReservas {
 
 		TransferHabitacion hab = crearHabitacion();
 
-		hab.setNumHabitacion((dao.addHabitacion(hab)));
+		try {
+			hab.setNumHabitacion((dao.addHabitacion(hab)));
+		} catch (BSoDException e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		commit();
 
