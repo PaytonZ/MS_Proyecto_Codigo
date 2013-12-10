@@ -3,12 +3,12 @@
  */
 package integracion.transacciones.transaction.imp;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import integracion.transacciones.conexiones.MySQLConnection;
 import integracion.transacciones.transaction.Transaction;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Savepoint;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -25,11 +25,9 @@ public class TransactionMySQL implements Transaction {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private Connection jdbConnection;
-	private Savepoint puntoguardado;
-
-	public TransactionMySQL() {
-		jdbConnection = new MySQLConnection().getConnection();
-	}
+	private final String queryStartTransaction = "START TRANSACTION";
+	private final String queryCommit = "COMMIT";
+	private final String queryRollback = "ROLLBACK";
 
 	/**
 	 * @return el jdbConnection
@@ -63,8 +61,15 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void start() {
 		try {
-			// jdbConnection.setAutoCommit(false);
-			puntoguardado = jdbConnection.setSavepoint();
+
+			jdbConnection = new MySQLConnection().getConnection();
+			PreparedStatement starttransaction = jdbConnection
+					.prepareStatement(queryStartTransaction);
+
+			if (starttransaction.execute()) {
+				// error
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +78,7 @@ public class TransactionMySQL implements Transaction {
 
 	public void end() {
 		try {
+			commit();
 			jdbConnection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -89,8 +95,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void commit() {
 		try {
-			jdbConnection.commit();
-			// jdbConnection.setAutoCommit(true);
+			PreparedStatement commit = jdbConnection
+					.prepareStatement(queryCommit);
+			commit.execute();
 		} catch (SQLException e) {
 			rollback();
 			e.printStackTrace();
@@ -106,11 +113,9 @@ public class TransactionMySQL implements Transaction {
 	 */
 	public void rollback() {
 		try {
-			/*
-			 * PreparedStatement unlocktables = jdbConnection
-			 * .prepareStatement(queryUnlockTables); unlocktables.execute();
-			 */
-			jdbConnection.rollback(puntoguardado);
+			PreparedStatement rollback = jdbConnection
+					.prepareStatement(queryRollback);
+			rollback.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
