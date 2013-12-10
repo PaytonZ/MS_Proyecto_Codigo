@@ -5,6 +5,7 @@ package presentacion.reservas.paneles;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+
+import com.toedter.calendar.JCalendar;
 
 import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.swing.MigLayout;
@@ -35,33 +38,52 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 	private JTextField textDNI;
 	
 	public PanelAltaReservas(){
-		setPreferredSize(new Dimension(600, 400));
-		setMinimumSize(new Dimension(100, 100));
-		setLayout(new MigLayout("", "[120px][34px][161.00px,grow][12.00px][67px][69.00px][96px][98.00px][53.00px]", "[16px][12px][28px][28px][8.00][30.00px][7.00px][][][17.00][19.00][]"));
+setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.00:74.00][grow][grow]", "[14px][][24.00:30.00][][][][59.00:63.00:41.00][15.00:69.00][197.00:246.00][][152.00,grow][grow]"));
 		
-		JLabel lblAltaClientes = new JLabel("Alta clientes");
-		lblAltaClientes.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(lblAltaClientes, "cell 0 0 8 1,alignx center,aligny top");
+		JLabel AltaReserva = new JLabel("Alta Reserva");
+		add(AltaReserva, "cell 3 0,alignx right,aligny top");
 		
 		JSeparator separator = new JSeparator();
-		add(separator, "cell 0 1 9 1,growx,aligny center");
+		add(separator, "cell 0 1 7 1, growx");
 		
-		JLabel lblDni = new JLabel("DNI: ");
-		add(lblDni, "cell 0 3,alignx right,aligny center");
+		JLabel lblDNI = new JLabel("DNI");
+		add(lblDNI, "cell 0 3,alignx trailing");
 		
 		textDNI = new JTextField();
-		add(textDNI, "cell 2 3,growx");
+		add(textDNI, "cell 1 3,growx");
 		textDNI.setColumns(10);
 		
-		JLabel lblNombre = new JLabel("Número: ");
-		add(lblNombre, "cell 0 5,alignx right,aligny center");
+		// Panel incluido por si se introduce el image icon
+		Panel panelImageIcon = new Panel();
+		add(panelImageIcon, "cell 2 3");
+		
+		JButton btnBuscar = new JButton("Buscar");
+		add(btnBuscar, "cell 3 3");
+		
+		JLabel lblNHabitacion = new JLabel("Nº habitación");
+		add(lblNHabitacion, "cell 4 3,alignx trailing");
 		
 		textNHabitacion = new JTextField();
-		add(textNHabitacion, "cell 2 5, growx");
+		add(textNHabitacion, "cell 5 3 2 1,growx");
 		textNHabitacion.setColumns(10);
-
+		
+		JLabel lblFechaEntrada = new JLabel("Fecha de entrada");
+		add(lblFechaEntrada, "cell 0 6,alignx center");
+		
+		JLabel lblFechaSalida = new JLabel("Fecha salida");
+		add(lblFechaSalida, "cell 4 6");
+		
+		JPanel panelFechaEntrada = new JPanel();
+		add(panelFechaEntrada, "cell 0 7 4 2,grow");
+		
+		JPanel panelFechaSalida = new JPanel();
+		add(panelFechaSalida, "cell 4 7 3 2,grow");
+		
 		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "cell 0 10 8 1,growx,aligny center");
+		add(separator_1, "cell 0 9 7 1");
+		
+		JPanel panelBotonAceptar = new JPanel();
+		add(panelBotonAceptar, "cell 5 11 2 1,grow");
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -91,7 +113,18 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				}
 			}
 		});
-		add(btnAceptar, "cell 7 11,alignx left,aligny top");
+		panelBotonAceptar.add(btnAceptar);
+	
+		//CALENDARIOS
+		JCalendar calendarioEntrada = new JCalendar();
+		panelFechaEntrada.add(calendarioEntrada);
+		JCalendar calendarioSalida = new JCalendar();
+		panelFechaSalida.add(calendarioSalida);
+	
+	
+
+		
+	
 	}
 	public void actualizarVentana(IDEventos idEventos, Object datos) {
 		// begin-user-code
