@@ -3,6 +3,8 @@
  */
 package presentacion.reservas.paneles;
 
+import javax.swing.JPanel;
+
 import presentacion.GUIPanelesInterfaz;
 
 /**
@@ -12,7 +14,7 @@ import presentacion.GUIPanelesInterfaz;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaReservas implements GUIPanelesInterfaz {
+public class PanelConsultaReservas extends JPanel implements GUIPanelesInterfaz {
 	/**
 	 * (sin Javadoc)
 	 * 

@@ -50,8 +50,8 @@ public class SAClientesImp implements SAClientes {
 			throw new BSoDException(e.toString());
 			
 		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
+			if ( !tm.eliminaTransaccion() ) {
+				idCliente = null;
 			}
 		}
 

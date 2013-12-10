@@ -23,6 +23,8 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.clientes.GUIInterfazClientes;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -68,6 +70,25 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
+		
+		JPanel panel_1 = new JPanel();
+		add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		JLabel lblDni = new JLabel("DNI");
+		panel_1.add(lblDni);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		panel_1.add(lblNombre);
+		
+		JLabel lblApellidos = new JLabel("Apellidos");
+		panel_1.add(lblApellidos);
+		
+		JLabel lblDireccin = new JLabel("Dirección");
+		panel_1.add(lblDireccin);
+		
+		JLabel lblTelefono = new JLabel("Telefono");
+		panel_1.add(lblTelefono);
 	}
 
 	/**
@@ -90,14 +111,14 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 			list.setListData(clientes);
 		}
 		else if ( datos instanceof BSoDException ) {
-			System.out.println(((BSoDException) datos).getMensaje() );
+			System.out.println( ((BSoDException) datos).getMensaje() );
 		}
 		else if ( datos instanceof Boolean ) {
 			
-			JOptionPane.showConfirmDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
-			JOptionPane.showConfirmDialog(this, "Error al borrar el cliente", "Error", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

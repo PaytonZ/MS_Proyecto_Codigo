@@ -3,19 +3,16 @@
  */
 package negocio.reservas.servicioaplicacion.imp;
 
-
-import negocio.excepciones.BSoDException;
-import negocio.excepciones.TransaccionNoEliminadaException;
-import negocio.reservas.servicioaplicacion.SAReservas;
-import negocio.reservas.transfer.TransferReserva;
-
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.reservas.dao.DAOReserva;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
-
 import java.util.List;
+
+import negocio.excepciones.BSoDException;
+import negocio.reservas.servicioaplicacion.SAReservas;
+import negocio.reservas.transfer.TransferReserva;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -27,53 +24,41 @@ import java.util.List;
 public class SAReservasImp implements SAReservas {
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see SAReservas#actualizarReserva(TransferReserva reserva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarReserva(TransferReserva reserva) throws BSoDException {
+	public Boolean actualizarReserva(TransferReserva reserva) {
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		Boolean correcto = false;
-		try
-		{
-			
-			correcto =  dao.updateReserva(reserva);
+		correcto = dao.updateReserva(reserva);
+		if (correcto)
 			transacion.commit();
-			if(!correcto)
-			{
-				
-				transacion.rollback();
-				
-			}
-			
+		else {
+			transacion.rollback();
 		}
-		catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
+
+		tm.eliminaTransaccion();
+
 		return correcto;
 	}
 
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see SAReservas#anadirReserva(TransferReserva reserva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer anadirReserva(TransferReserva reserva) throws BSoDException {
+	public Integer anadirReserva(TransferReserva reserva) {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -81,116 +66,101 @@ public class SAReservasImp implements SAReservas {
 
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		Integer idReserva = null;
-		
-		try {
-			idReserva = dao.addReserva(reserva);
+		idReserva = dao.addReserva(reserva);
+		if (idReserva != null) {
 			transacion.commit();
-		} catch (Exception e) {
+		} else {
 			transacion.rollback();
-			throw new BSoDException(e.toString());
-		} finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
 		}
 
+		tm.eliminaTransaccion();
+		
 		return idReserva;
 	}
 
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see SAReservas#borrarReserva(Integer idReserva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarReserva(Integer idReserva) throws BSoDException {
+	public Boolean borrarReserva(Integer idReserva) {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
+		
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+		
 		transacion.start();
+		
 		Boolean resultado = null;
-		try
-		{
-				resultado = dao.deleteReserva(idReserva);
-				transacion.commit();
+		
+		resultado = dao.deleteReserva(idReserva);
+		if (resultado) {
+			
+			transacion.commit();
+		} else {
+			transacion.rollback();
 		}
-		catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
+
+		tm.eliminaTransaccion();
+		
 		return resultado;
-		// end-user-code
 	}
 
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see SAReservas#obtenerReserva(Integer idReserva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva obtenerReserva(Integer idReserva) throws BSoDException 
-	{
+	public TransferReserva obtenerReserva(Integer idReserva) {
+
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
+		
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+		
 		TransferReserva reserva = null;
+		
 		transacion.start();
-		try
-		{
-				reserva = dao.getReserva(idReserva);
-		}catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}
+		
+		reserva = dao.getReserva(idReserva);
+		
+		tm.eliminaTransaccion();
 		
 		return reserva;
 	}
 
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see SAReservas#obtenerTodaslasReservas()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente) throws BSoDException {
+	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente) {
+
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
+		
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+		
 		transacion.start();
+		
 		List<TransferReserva> listaReserva = null;
-		try
-		{
-			listaReserva = dao.getAllReservas(idCliente);
-		}
-		catch(Exception e)
-		{
-			throw new BSoDException(e.toString());
-		}
-		finally
-		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAReservas.class.getName());
-			}
-		}	
+		listaReserva = dao.getAllReservas(idCliente);
+
+		tm.eliminaTransaccion();
+		
 		return listaReserva;
 	}
 }

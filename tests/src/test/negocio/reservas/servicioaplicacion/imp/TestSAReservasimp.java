@@ -6,8 +6,10 @@ import static org.junit.Assert.assertTrue;
 import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.transfer.TransferCliente;
@@ -47,19 +49,21 @@ public class TestSAReservasimp {
 		} catch (BSoDException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			assertTrue(false);
 		}
-		
+		System.out.println(allhabitaciones.isEmpty());
+		System.out.println(allclientes.isEmpty());
 		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
 		tr.setDNI(allclientes.get(0).getDNI());
-		Date diaentrada = new Date();		
-		Date diareserva = diaentrada;		
-		Date diasalida = diaentrada;
-		diareserva.setYear(1);
-		diaentrada.setYear(2);		
-		diasalida.setYear(3);
-		tr.setFechaReserva(diareserva);
-		tr.setFechaEntrada(diaentrada);
-		tr.setFechaSalida(diasalida);
+		Calendar diaentrada= Calendar.getInstance(new Locale("es"));
+		Calendar diareserva= Calendar.getInstance(new Locale("es"));	
+		Calendar diasalida = Calendar.getInstance(new Locale("es"));
+		diaentrada.add(Calendar.YEAR, 1);
+		diareserva.add(Calendar.YEAR,2);
+		diasalida.add(Calendar.YEAR,3);		
+		tr.setFechaReserva(diareserva.getTime());
+		tr.setFechaEntrada(diaentrada.getTime());
+		tr.setFechaSalida(diasalida.getTime());
 		
 		//Hacer las reservas y comprobar que se ha hecho bien
 		SAReservasImp sareservas = new SAReservasImp();
