@@ -4,6 +4,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.habitaciones.dao.DAOHabitacion;
+import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import integracion.reservas.dao.DAOReserva;
 import integracion.reservas.dao.imp.DAOReservaImp;
 import integracion.transacciones.transaction.Transaction;
@@ -15,6 +17,8 @@ import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
+import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.After;
@@ -38,7 +42,7 @@ public class TestDAOReservas {
 	}
 	@Test
 	public void addReserva() {
-		Integer id=0;
+		Integer id=null;
 		try {
 			id = obteneridReserva().getNumeroReserva();
 		
@@ -65,7 +69,7 @@ public class TestDAOReservas {
 	{
 		TransferReserva t = new TransferReserva();	
 		t.setidusuario(obtenerIdCliente().getID());
-		t.setNumeroHabitacion(2970);//cambiar por una habitacion creada igual que el cliente
+		t.setNumeroHabitacion(obtenerIdHabitacion());
 		t.setFechaReserva(new Date(new java.util.Date().getTime()));
 		t.setFechaEntrada(new Date(new java.util.Date().getTime()));
 		t.setFechaSalida(new Date(new java.util.Date().getTime()));	
@@ -93,6 +97,33 @@ public class TestDAOReservas {
 		c.setPrimerApellido("asdasd");
 		c.setSegundoApellido("asdasd");
 		c.setNumTelefono(454545);
+
+		return c;
+	}
+	
+	private Integer obtenerIdHabitacion() {
+
+		
+		DAOHabitacion dao = new DAOHabitacionImp();
+
+		TransferHabitacion hab = crearHabitacion();
+
+		hab.setNumHabitacion((dao.addHabitacion(hab)));
+
+		commit();
+
+		return hab.getNumHabitacion();
+		
+	}
+	private TransferHabitacion crearHabitacion() {
+
+		TransferHabitacion c = new TransferHabitacionNormal();
+		int numhab;
+		double precio;
+		numhab = new Random().nextInt(99999);
+		precio = new Random().nextDouble();
+		c.setNumHabitacion(numhab);
+		c.setPrecio(precio);
 
 		return c;
 	}
