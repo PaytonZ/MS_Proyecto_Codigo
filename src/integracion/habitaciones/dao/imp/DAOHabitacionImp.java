@@ -167,7 +167,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					break;
 				}
 
-				habitacion.setNumHabitacion(rowsHabitaciones.getInt("idhabitacion"));
+				habitacion.setNumHabitacion(rowsHabitaciones.getInt("numhabitacion"));
 				habitacion.setPrecio(rowsHabitaciones.getInt("precio"));
 		
 				listaHabitaciones.add(habitacion);

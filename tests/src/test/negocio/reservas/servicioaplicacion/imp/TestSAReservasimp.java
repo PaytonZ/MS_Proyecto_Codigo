@@ -4,7 +4,9 @@ package test.negocio.reservas.servicioaplicacion.imp;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import integracion.clientes.dao.DAOCliente;
@@ -18,6 +20,7 @@ import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.reservas.servicioaplicacion.SAReservas;
 import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.reservas.transfer.TransferReserva;
@@ -43,43 +46,83 @@ public class TestSAReservasimp {
 		SAHabitaciones sahab = FactorySA.getInstance().getSAHabitaciones();
 		SAReservas sareservas = FactorySA.getInstance().getSAReservas();
 		
-		//Añadir clientes
-		/*TransferCliente tc = new TransferCliente();
-		tc.setDNI("97");
+		//Añadir 2 clientes. Vale para todos los demas test
+		TransferCliente tc = new TransferCliente();		
+		tc.setDNI("765334");
 		tc.setDireccion("sdfe");
 		tc.setNombre("erth");
 		tc.setNumTelefono(567423);
 		tc.setPrimerApellido("ertjhn");
 		tc.setSegundoApellido("tuikr");
-		sacli.anadirCliente(tc);
-		tc.setDNI("98");
-		sacli.anadirCliente(tc);*/
+		TransferCliente tc2 = tc;
+		tc2.setDNI("765331");
 		
-		//Añadir habitaciones
-		TransferHabitacion th = new TransferHabitacion();
-		th.setNumHabitacion(-4598);
+		List<TransferCliente> allclientes = sacli.obtenerTodoslosClientes();
+		if (allclientes.size() == 0)
+		{
+			sacli.anadirCliente(tc);
+			sacli.anadirCliente(tc2);
+		}
+		else
+			if (allclientes.size() == 1)
+			{
+				sacli.anadirCliente(tc2);
+			}
+		
+		//Añadir 2 habitaciones. Vale para todos los demas test
+		TransferHabitacion th = new TransferHabitacionNormal();
+		th.setNumHabitacion(742341);
 		th.setPrecio(456);			
+		TransferHabitacion th2 = th;
+		th2.setNumHabitacion(742345);
 		
-		Integer id = sahab.anadirHabitacion(th); // id 56
-		sahab.obtenerHabitacion(id);
-		/*th.setNumHabitacion(-455);
-		sahab.anadirHabitacion(th);*/
-		TransferReserva tr = new TransferReserva();	
-		List<TransferHabitacion> allhabitaciones = sahab.obtenerTodaslasHabitaciones();		
-		List<TransferCliente> allclientes = sacli.obtenerTodoslosClientes();		
-		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
-		tr.setDNI(allclientes.get(0).getDNI());
-		Date diaentrada = new Date();		
-		Date diareserva = diaentrada;		
-		Date diasalida = diaentrada;
-		diareserva.setYear(1);
-		diaentrada.setYear(2);		
-		diasalida.setYear(3);
-		tr.setFechaReserva(diareserva);
-		tr.setFechaEntrada(diaentrada);
-		tr.setFechaSalida(diasalida);
+		List<TransferHabitacion> allhabitaciones = sahab.obtenerTodaslasHabitaciones();
+		if (allhabitaciones.size() == 0)
+		{
+			sahab.anadirHabitacion(th);
+			sahab.anadirHabitacion(th2);
+		}
+		else
+			if (allhabitaciones.size() == 1)
+			{
+				sahab.anadirHabitacion(th2);
+			}											
+		//Comprobar que se puede consultar cliente por su identificador (DNI)
+		allclientes = sacli.obtenerTodoslosClientes();
+		TransferCliente cliente_recuperado = sacli.obtenerCliente(allclientes.get(0).getDNI());
+		assertEquals("No se ha podido insertar un cliente o consultar cliente por DNI", 
+				allclientes.get(0).getDNI(), cliente_recuperado.getDNI());
+		
+		//Comprobar que se puede consultar habitacion por su identificador (Numero habitacion)
+		allhabitaciones = sahab.obtenerTodaslasHabitaciones();
+		TransferHabitacion habitacion_recuperada = sahab.obtenerHabitacion(allhabitaciones.get(0).getNumHabitacion());
+		assertEquals("No se ha podido insertar una habitacion o consultar habitacion por el numero de habitacion", 
+				habitacion_recuperada.getNumHabitacion(), allhabitaciones.get(0).getNumHabitacion());
 		
 		//Hacer las reservas y comprobar que se ha hecho bien
+		//Preparar la reserva
+		TransferReserva tr = new TransferReserva();
+		tr.setidusuario(allclientes.get(0).getID());
+		tr.setDNI(allclientes.get(0).getDNI());
+		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
+		
+		//fechas
+		java.util.Date dummyfecha = new java.util.Date(); //para obtener el dia actual
+		java.sql.Date dummy = new java.sql.Date(dummyfecha.getTime());
+		long fecha_hora = dummy.getTime();
+		Calendar cal = new GregorianCalendar();
+		long hora = cal.get(Calendar.HOUR);
+		long minuto = cal.get(Calendar.MINUTE);
+		long segundo = cal.get(Calendar.SECOND);
+		fecha_hora += hora * 3600 * 1000;
+		fecha_hora += minuto * 60 * 1000;
+		fecha_hora += segundo * 1000;
+		
+		tr.setFechaReserva(dummy);
+		dummy.setTime(dummy.getTime()+1000);
+		tr.setFechaEntrada(dummy);
+		dummy.setTime(dummy.getTime()+2000);
+		tr.setFechaSalida(dummy);
 
 		try
 		{
