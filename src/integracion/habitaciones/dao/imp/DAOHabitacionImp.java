@@ -41,7 +41,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE numhabitacion = ? FOR UPDATE";
 	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE numhabitacion = ?";
 	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
-	private final String updateHabitacionQuery = "UPDATE habitaciones SET numhabitacion = ?, precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
+	private final String updateHabitacionQuery = "UPDATE habitaciones SET  precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
 	
 	public Integer addHabitacion(TransferHabitacion habitacion) {
 
@@ -199,12 +199,11 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(updateHabitacionQuery);
-			preparedStatement.setInt(1, habitacion.getNumHabitacion());
-			preparedStatement.setDouble(2, habitacion.getPrecio());
+			preparedStatement.setDouble(1, habitacion.getPrecio());
 			if(habitacion instanceof TransferHabitacionNormal)
-				preparedStatement.setString(3, TipoHabitacion.HABITACION_NORMAL.toString());
-			else preparedStatement.setString(3, TipoHabitacion.HABITACION_SUITE.toString());
-			preparedStatement.setInt(4, habitacion.getNumHabitacion());
+				preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.toString());
+			else preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.toString());
+			preparedStatement.setInt(3, habitacion.getNumHabitacion());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 			// }
