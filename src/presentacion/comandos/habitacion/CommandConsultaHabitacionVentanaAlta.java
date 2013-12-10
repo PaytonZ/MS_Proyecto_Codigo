@@ -1,8 +1,8 @@
 package presentacion.comandos.habitacion;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
@@ -14,14 +14,14 @@ public class CommandConsultaHabitacionVentanaAlta implements Command {
 
 		FactorySA factoriaSa = FactorySA.getInstance();
 
-		TransferCliente cliente = null;
+		TransferHabitacion habitacion = null;
 		CommandResponse cr = new CommandResponse();
 		try {
-			String dniCliente = (String) datos;
+			Integer numHabitacion = (Integer) datos;
 			
-			cliente = factoriaSa.getSAClientes().obtenerCliente(dniCliente);
+			habitacion = factoriaSa.getSAHabitaciones().obtenerHabitacion(numHabitacion);
 
-			cr.setDatos(cliente);
+			cr.setDatos(habitacion);
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA);
 
 		} catch (BSoDException bsod) {

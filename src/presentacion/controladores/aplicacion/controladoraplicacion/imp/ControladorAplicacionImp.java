@@ -30,6 +30,5 @@ public class ControladorAplicacionImp extends ControladorAplicacion {
 		Command c = CommandFactory.getInstance().nuevoComando(evento);
 		CommandResponse rc = c.execute(datos);
 		Dispatcher.getInstance().redirect(rc);
-
 	}
 }

@@ -32,6 +32,8 @@ public class GUIHabitacionesImp extends GUIHabitaciones {
 		
 		case EVENTO_ALTA_HABITACION:
 		case ERROR_ALTA_HABITACION:
+		case EVENTO_CONSULTAR_HABITACION_V_ALTA:
+		case ERROR_CONSULTAR_HABITACION_V_ALTA:
 			getPanelAltaHabitaciones().actualizarVentana(eventoActual, datos);
 			break;
 		case EVENTO_BAJA_HABITACION:

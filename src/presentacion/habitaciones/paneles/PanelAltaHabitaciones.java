@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
@@ -79,16 +78,35 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 
 					if ( !"".equals(textNumHab.getText()) ) {
 						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA, textNumHab.getText());
+						Integer numHabitacion = null;
+						try {
+							numHabitacion = Integer.valueOf(textNumHab.getText());
+							
+							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA, numHabitacion);
+						}
+						catch(NumberFormatException nu) {
+							JOptionPane.showMessageDialog(null, "El número de habitación solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 					else {
-						JOptionPane.showMessageDialog(contentPane, "El número de habitación ya existe", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "El campo numero de habitación no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			});
 			add(btnVerificar, "cell 5 3");
 			
 			btnLimpiar = new JButton("Limpiar");
+			btnLimpiar.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					textNumHab.setEditable(true);
+					textPrecioNoche.setText("");
+					textPrecioNoche.setEditable(false);
+					comboBox.setEnabled(false);
+					btnAceptar.setEnabled(false);
+				}
+			});
 			add(btnLimpiar, "cell 6 3");
 			
 			JLabel lblPrecioNoche = new JLabel("Precio por noche: ");
@@ -116,37 +134,27 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					TransferCliente cliente = new TransferCliente();
+					TransferHabitacion habitacion = new TransferHabitacion();
 					
-//					if ( !textNumHab.getText().equals("") 
-//							&& !textNombre.getText().equals("")
-//							&& !textDireccion.getText().equals("")) {
-//						
-//						cliente.setDNI(textNumHab.getText());
-//						cliente.setNombre(textNombre.getText());
-//						cliente.setDireccion(textDireccion.getText());
-//						
-//						if ( textPrimerApellido.getText().equals("") ) {
-//							JOptionPane.showMessageDialog(null, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
-//						}
-//						else {
-//							cliente.setPrimerApellido(textPrimerApellido.getText().trim());
-//							if ( !textSegundoApellido.getText().equals("") )
-//								cliente.setSegundoApellido(textSegundoApellido.getText().trim());
-//							
-//							try {
-//								cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
-//							}
-//							catch(NumberFormatException nu) {
-//								JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
-//							}
-//							
-//							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
-//						}
-//					}
-//					else {
-//						JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
-//					}
+					if ( !textNumHab.getText().equals("") 
+							&& !textPrecioNoche.getText().equals("")
+							&& comboBox.getSelectedIndex() >= 0) {
+						
+						try {
+							habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
+							habitacion.setPrecio( Double.valueOf(textPrecioNoche.getText().trim()) );
+							
+							habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+						}
+						catch(NumberFormatException nu) {
+							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+							
+						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar o sin seleccionar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			});
 			add(btnAceptar, "cell 7 8,alignx left,aligny top");
@@ -159,7 +167,12 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA == idEvento ) {
 					if ( datos == null) {
 						
-						JOptionPane.showMessageDialog(this, "No se pudo validar el número de habitación", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(this, "El número de habitación está libre", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						
+						textNumHab.setEditable(false);
+						textPrecioNoche.setEditable(true);
+						comboBox.setEnabled(true);
+						btnAceptar.setEnabled(true);
 					}
 					else if ( datos instanceof TransferHabitacion ) {
 								
@@ -167,6 +180,14 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						
 						if ( numHabitacion == Integer.valueOf(textNumHab.getText()) ) {
 							JOptionPane.showMessageDialog(this, "El número de habitación ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+							
+							textNumHab.setText("");
+							textPrecioNoche.setText("");
+							comboBox.setSelectedItem(null);
+							textNumHab.setEditable(true);
+							textPrecioNoche.setEditable(false);
+							comboBox.setEnabled(false);
+							btnAceptar.setEnabled(false);
 						}
 						else {
 						
@@ -179,15 +200,32 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				}
 				else if ( IDEventos.EVENTO_ALTA_HABITACION == idEvento ) {
 					
-					if ( datos instanceof Integer ) {
+					if ( datos != null ) {
 						
-						if ( datos != null) {
-							JOptionPane.showMessageDialog(this, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-						}
-						else {
+						if ( datos instanceof Integer) {
 							
 							JOptionPane.showMessageDialog(this, "La habitación se añadió correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							
+							textNumHab.setText("");
+							textPrecioNoche.setText("");
+							comboBox.setSelectedItem(null);
+							textNumHab.setEditable(true);
+							textPrecioNoche.setEditable(false);
+							comboBox.setEnabled(false);
+							btnAceptar.setEnabled(false);
 						}
+					}
+					else {
+
+						JOptionPane.showMessageDialog(this, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						
+						textNumHab.setText("");
+						textPrecioNoche.setText("");
+						comboBox.setSelectedItem(null);
+						textNumHab.setEditable(true);
+						textPrecioNoche.setEditable(false);
+						comboBox.setEnabled(false);
+						btnAceptar.setEnabled(false);
 					}
 				}
 				else if ( IDEventos.ERROR_ALTA_HABITACION == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA == idEvento) {
@@ -199,14 +237,6 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-				
-				textNumHab.setText("");
-				textPrecioNoche.setText("");
-				comboBox.setSelectedItem(null);
-				textNumHab.setEditable(true);
-				textPrecioNoche.setEditable(false);
-				comboBox.setEnabled(false);
-				btnAceptar.setEnabled(false);
 			}
 		}
 	}
