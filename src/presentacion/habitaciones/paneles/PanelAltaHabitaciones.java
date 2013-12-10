@@ -22,7 +22,6 @@ import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
-import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -42,6 +41,8 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		private JTextField textNumHab;
 		private JPanel contentPane;
 		private JComboBox<TipoHabitacion> comboBox;
+		private JButton btnAceptar;
+		private JButton btnLimpiar;
 
 		/**
 		 * Create the panel.
@@ -87,10 +88,14 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			});
 			add(btnVerificar, "cell 5 3");
 			
+			btnLimpiar = new JButton("Limpiar");
+			add(btnLimpiar, "cell 6 3");
+			
 			JLabel lblPrecioNoche = new JLabel("Precio por noche: ");
 			add(lblPrecioNoche, "cell 0 5,alignx right,aligny center");
 			
 			textPrecioNoche = new JTextField();
+			textPrecioNoche.setEditable(false);
 			add(textPrecioNoche, "cell 2 5,growx,aligny top");
 			textPrecioNoche.setColumns(10);
 			
@@ -98,13 +103,15 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			add(lblTipo, "cell 5 5,alignx trailing");
 			
 			comboBox = new JComboBox<>();
+			comboBox.setEnabled(false);
 			comboBox.setModel(new DefaultComboBoxModel<TipoHabitacion>(TipoHabitacion.values()));
 			add(comboBox, "cell 6 5 2 1,growx");
 			
 			JSeparator separator_1 = new JSeparator();
 			add(separator_1, "cell 0 7 9 1,growx,aligny center");
 			
-			JButton btnAceptar = new JButton("Aceptar");
+			btnAceptar = new JButton("Aceptar");
+			btnAceptar.setEnabled(false);
 			btnAceptar.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -148,43 +155,58 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		@Override
 		public void actualizarVentana(IDEventos idEvento, Object datos) {
 			
-			if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA == idEvento) {
-				if ( datos == null) {
-					
-					JOptionPane.showMessageDialog(this, "No se pudo validar el número de habitación", "Error", JOptionPane.ERROR_MESSAGE);
+			if ( idEvento != null) {
+				if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA == idEvento ) {
+					if ( datos == null) {
+						
+						JOptionPane.showMessageDialog(this, "No se pudo validar el número de habitación", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					else if ( datos instanceof TransferHabitacion ) {
+								
+						Integer numHabitacion = ((TransferHabitacionNormal) datos).getNumHabitacion();
+						
+						if ( numHabitacion == Integer.valueOf(textNumHab.getText()) ) {
+							JOptionPane.showMessageDialog(this, "El número de habitación ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+						
+							textNumHab.setEditable(false);
+							textPrecioNoche.setEditable(true);
+							comboBox.setEnabled(true);
+							btnAceptar.setEnabled(true);
+						}
+					}
 				}
-				else if ( datos instanceof TransferHabitacion ) {
+				else if ( IDEventos.EVENTO_ALTA_HABITACION == idEvento ) {
 					
-					if ( datos instanceof TransferHabitacionNormal ) {
+					if ( datos instanceof Integer ) {
+						
+						if ( datos != null) {
+							JOptionPane.showMessageDialog(this, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
 							
-						Integer tipo = ((TransferHabitacionNormal) datos).getNumHabitacion();
-						
-						textNumHab.setText( String.valueOf(tipo) );
+							JOptionPane.showMessageDialog(this, "La habitación se añadió correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
-					else if ( datos instanceof TransferHabitacionSuite ) {
+				}
+				else if ( IDEventos.ERROR_ALTA_HABITACION == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA == idEvento) {
+					
+					if( datos instanceof BSoDException ) {
 						
-						Integer tipo = ((TransferHabitacionSuite) datos).getNumHabitacion();
+						BSoDException bsod = (BSoDException) datos;
 						
-						textNumHab.setText( String.valueOf(tipo) );
+						JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
-					
-					textNumHab.setText("");
-					textPrecioNoche.setText("");
-					comboBox.setSelectedItem(null);
 				}
-				else if( datos instanceof Integer ) {
-					
-					
-				}
-				else if( datos instanceof BSoDException ) {
-					
-					BSoDException bsod = (BSoDException) datos;
-					
-					JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-			else if ( IDEventos.EVENTO_ALTA_HABITACION == idEvento || IDEventos.ERROR_ALTA_HABITACION == idEvento) {
 				
+				textNumHab.setText("");
+				textPrecioNoche.setText("");
+				comboBox.setSelectedItem(null);
+				textNumHab.setEditable(true);
+				textPrecioNoche.setEditable(false);
+				comboBox.setEnabled(false);
+				btnAceptar.setEnabled(false);
 			}
 		}
 	}
