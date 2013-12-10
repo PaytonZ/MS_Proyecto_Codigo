@@ -110,7 +110,7 @@ public class TestDAOReservas {
 		
 		List<TransferReserva> listareservas = d.getAllReservas(reserva.getidusuario());
 		assertNotNull(listareservas);
-		assertTrue(listareservas.size() == 1);
+		assertTrue(listareservas.size() >= 1);
 	}
 
 	@Test
@@ -121,10 +121,10 @@ public class TestDAOReservas {
 		Integer id = reserva.getNumeroReserva();
 		TransferReserva reserva2 = d.getReserva(id);
 		assertTrue(reserva2.getidusuario().equals(reserva.getidusuario()));
-		assertTrue(reserva2.getNumeroReserva()== reserva.getNumeroReserva());
-		assertTrue(reserva2.getFechaReserva().equals(reserva.getFechaReserva()));
-		assertTrue(reserva2.getFechaEntrada().equals(reserva.getFechaEntrada()));
-		assertTrue(reserva2.getFechaSalida().equals(reserva.getFechaSalida()));
+		assertTrue(reserva2.getNumeroReserva().equals(reserva.getNumeroReserva()));
+		assertTrue(reserva2.getFechaReserva().toString().equals(reserva.getFechaReserva().toString()));
+		assertTrue(reserva2.getFechaEntrada().toString().equals(reserva.getFechaEntrada().toString()));
+		assertTrue(reserva2.getFechaSalida().toString().equals(reserva.getFechaSalida().toString()));
 	}
 
 	@Test
@@ -135,12 +135,10 @@ public class TestDAOReservas {
 		TransferReserva reserva2 = new TransferReserva();
 		reserva2.setNumeroReserva(reserva.getNumeroReserva());
 		reserva2.setidusuario(reserva.getidusuario());
-		reserva2.setFechaEntrada(null);
-		reserva2.setFechaSalida(null);
 		reserva2.setNumeroHabitacion(reserva.getNumeroHabitacion());
-		reserva2.setFechaReserva(reserva.getFechaReserva());
-		boolean update = d.updateReserva(reserva2);	
-		assertTrue(update);	
+		reserva2.setFechaReserva(reserva.getFechaReserva());	
+		reserva2.setFechaSalida(null);;
+		assertTrue(d.updateReserva(reserva2));
 	}
 	
 	@After

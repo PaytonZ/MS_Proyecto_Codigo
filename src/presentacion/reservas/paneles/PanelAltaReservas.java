@@ -74,7 +74,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				if ( !textDNI.getText().equals("") 
 						&& !textNHabitacion.getText().equals("") ) {
 					
-					reserva.setDNI(textDNI.getText());
+					reserva.setidusuario(Integer.parseInt(textDNI.getText()));
 					try{
 						reserva.setNumeroHabitacion(Integer.parseInt(textNHabitacion.getText()));
 					}catch(NumberFormatException nu) {

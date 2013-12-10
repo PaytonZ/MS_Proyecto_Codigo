@@ -199,5 +199,16 @@ public class TransferReserva {
 		// end-user-code
 	}
 
+	public String getDNI() {
+		return DNI;
+	}
+
+	public void setDNI(String dNI) {
+		DNI = dNI;
+	}
+
+	private String DNI;
+	
+	
 
 }

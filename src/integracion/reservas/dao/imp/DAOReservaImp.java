@@ -194,13 +194,14 @@ public class DAOReservaImp implements DAOReserva {
 		try {
 			PreparedStatement updatereserva = connection
 					.prepareStatement(updateReservaQuery);
-			updatereserva.setInt(1, reserva.getNumeroReserva());
-			updatereserva.setInt(2, reserva.getidusuario());
-			updatereserva.setInt(3, reserva.getNumeroHabitacion());
-			updatereserva.setDate(4, (Date) reserva.getFechaReserva());
-			updatereserva.setDate(5, (Date) reserva.getFechaEntrada());
-			updatereserva.setDate(6, (Date) reserva.getFechaSalida());
+			updatereserva.setInt(6, reserva.getNumeroReserva());
+			updatereserva.setInt(1, reserva.getidusuario());
+			updatereserva.setInt(2, reserva.getNumeroHabitacion());
+			updatereserva.setDate(3, (Date) reserva.getFechaReserva());
+			updatereserva.setDate(4, (Date) reserva.getFechaEntrada());
+			updatereserva.setDate(5, (Date) reserva.getFechaSalida());
 			exitoupdate = (updatereserva.executeUpdate() == 1);
+			
 			// }
 
 		} catch (SQLException e) {
