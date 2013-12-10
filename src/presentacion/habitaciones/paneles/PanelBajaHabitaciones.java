@@ -33,33 +33,28 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 	private JTextField textDNIBusqueda;
 	private JTextField txtDni;
 	private JTextField textNombre;
-	private JTextField textApellidos;
-	private JTextField textDireccion;
-	private JTextField textTelefono;
 	private Integer idCliente;
-	private JButton btnBorrarCliente;
+	private JButton btnBorrarHab;
 	
 	private JPanel contentPane;
 	
 	public PanelBajaHabitaciones() {
 		
-		contentPane = this;
-		
-		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][][][]"));
+		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][15.00][][13.00][][][][]"));
 		
 		contentPane = this;
 		
-		JLabel lblConsultaClientes = new JLabel("Baja clientes");
-		add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
+		JLabel lblBajaHab = new JLabel("Baja habitaciones");
+		add(lblBajaHab, "cell 0 1 8 1,alignx center");
 		
 		JSeparator separator = new JSeparator();
 		add(separator, "cell 0 2 7 1,growx,aligny center");
 		
-		JLabel lblDni = new JLabel("DNI: ");
-		add(lblDni, "cell 2 4,alignx trailing");
+		JLabel lblNumHab = new JLabel("Número de habitación: ");
+		add(lblNumHab, "cell 2 4,alignx trailing");
 		
 		textDNIBusqueda = new JTextField();
-		add(textDNIBusqueda, "cell 3 4,growx");
+		add(textDNIBusqueda, "cell 3 4 3 1,growx");
 		textDNIBusqueda.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -80,54 +75,14 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				}
 			}
 		});
-		add(btnBuscar, "cell 5 4");
+		add(btnBuscar, "cell 6 4");
 		
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 0 5 8 1,growx,aligny center");
 		
-		JLabel lblDni_1 = new JLabel("DNI: ");
-		add(lblDni_1, "cell 2 6,alignx right");
-		
-		txtDni = new JTextField();
-		txtDni.setEditable(false);
-		add(txtDni, "cell 3 6,growx");
-		txtDni.setColumns(10);
-		
-		JLabel lblNombre = new JLabel("Nombre: ");
-		add(lblNombre, "cell 5 6,alignx trailing");
-		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		add(textNombre, "cell 6 6,growx");
-		textNombre.setColumns(10);
-		
-		JLabel lblApellidos = new JLabel("Apellidos: ");
-		add(lblApellidos, "cell 2 8,alignx right");
-		
-		textApellidos = new JTextField();
-		textApellidos.setEditable(false);
-		add(textApellidos, "cell 3 8,growx");
-		textApellidos.setColumns(10);
-		
-		JLabel lblDireccin = new JLabel("Dirección: ");
-		add(lblDireccin, "cell 5 8,alignx trailing");
-		
-		textDireccion = new JTextField();
-		textDireccion.setEditable(false);
-		add(textDireccion, "cell 6 8,growx");
-		textDireccion.setColumns(10);
-		
-		JLabel lblTelefono = new JLabel("Telefono: ");
-		add(lblTelefono, "cell 2 10,alignx trailing");
-		
-		textTelefono = new JTextField();
-		textTelefono.setEditable(false);
-		add(textTelefono, "cell 3 10,growx");
-		textTelefono.setColumns(10);
-		
-		btnBorrarCliente = new JButton("Borrar cliente");
-		btnBorrarCliente.setEnabled(false);
-		btnBorrarCliente.addActionListener(new ActionListener() {
+		btnBorrarHab = new JButton("Borrar habitación");
+		btnBorrarHab.setEnabled(false);
+		btnBorrarHab.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -137,7 +92,23 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar el cliente, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		add(btnBorrarCliente, "cell 6 13");
+		
+		JLabel lblDni_1 = new JLabel("DNI: ");
+		add(lblDni_1, "cell 2 7,alignx right");
+		
+		txtDni = new JTextField();
+		txtDni.setEditable(false);
+		add(txtDni, "cell 3 7,growx");
+		txtDni.setColumns(10);
+		
+		JLabel lblNombre = new JLabel("Nombre: ");
+		add(lblNombre, "cell 5 7,alignx trailing");
+		
+		textNombre = new JTextField();
+		textNombre.setEditable(false);
+		add(textNombre, "cell 6 7,growx");
+		textNombre.setColumns(10);
+		add(btnBorrarHab, "cell 5 12 2 1");
 	}
 
 	@Override
@@ -151,10 +122,7 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				idCliente = cliente.getID();
 				txtDni.setText(cliente.getDNI());
 				textNombre.setText(cliente.getNombre());
-				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
-				textDireccion.setText(cliente.getDireccion());
-				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
-				btnBorrarCliente.setEnabled(true);
+				btnBorrarHab.setEnabled(true);
 			}
 		}
 		else if ( datos instanceof Boolean ) {
@@ -166,10 +134,7 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				idCliente = null;
 				txtDni.setText("");
 				textNombre.setText("");
-				textApellidos.setText("");
-				textDireccion.setText("");
-				textTelefono.setText("");
-				btnBorrarCliente.setEnabled(false);
+				btnBorrarHab.setEnabled(false);
 				
 				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}

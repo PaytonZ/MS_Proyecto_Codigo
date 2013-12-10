@@ -87,7 +87,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA, numHabitacion);
 							}
 							else {
-								JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negatico", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negativo", "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
 						catch(NumberFormatException nu) {
