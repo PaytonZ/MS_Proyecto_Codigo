@@ -7,6 +7,7 @@ import presentacion.clientes.GUICliente;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.controladores.aplicacion.dispatcher.Dispatcher;
+import presentacion.habitaciones.GUIHabitaciones;
 import presentacion.reservas.GUIReservas;
 
 /**
@@ -64,13 +65,15 @@ public class DispatcherImp extends Dispatcher {
 			    || eventoActual == IDEventos.EVENTO_MODIFICAR_HABITACION
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION
 			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA
 			    || eventoActual == IDEventos.ERROR_ALTA_HABITACION
 			    || eventoActual == IDEventos.ERROR_BAJA_HABITACION
 			    || eventoActual == IDEventos.ERROR_MODIFICAR_HABITACION
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION
-			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_HABITACION) {
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_HABITACION
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_HABITACION_V_ALTA) {
 			
-			GUIReservas.getInstance().update(eventoActual, datos);
+			GUIHabitaciones.getInstance().update(eventoActual, datos);
 		}
 	}
 }
