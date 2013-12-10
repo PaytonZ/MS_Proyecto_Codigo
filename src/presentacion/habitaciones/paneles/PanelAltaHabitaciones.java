@@ -20,6 +20,9 @@ import javax.swing.JTextField;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
+import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -38,6 +41,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		private JTextField textPrecioNoche;
 		private JTextField textNumHab;
 		private JPanel contentPane;
+		private JComboBox<TipoHabitacion> comboBox;
 
 		/**
 		 * Create the panel.
@@ -93,7 +97,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			JLabel lblTipo = new JLabel("Tipo: ");
 			add(lblTipo, "cell 5 5,alignx trailing");
 			
-			JComboBox<TipoHabitacion> comboBox = new JComboBox<>();
+			comboBox = new JComboBox<>();
 			comboBox.setModel(new DefaultComboBoxModel<TipoHabitacion>(TipoHabitacion.values()));
 			add(comboBox, "cell 6 5 2 1,growx");
 			
@@ -146,16 +150,32 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 			
 			if ( datos == null) {
 				
-				JOptionPane.showMessageDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Error al dar de alta una habitación", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			else if ( datos instanceof Integer ) {
+			else if ( datos instanceof TransferHabitacion ) {
 				
-				JOptionPane.showMessageDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-
+				if ( datos instanceof TransferHabitacionNormal ) {
+						
+					Integer tipo = ((TransferHabitacionNormal) datos).getNumHabitacion();
+					
+					textNumHab.setText( String.valueOf(tipo) );
+				}
+				else if ( datos instanceof TransferHabitacionSuite ) {
+					
+					Integer tipo = ((TransferHabitacionSuite) datos).getNumHabitacion();
+					
+					textNumHab.setText( String.valueOf(tipo) );
+				}
+				
 				textNumHab.setText("");
 				textPrecioNoche.setText("");
+				comboBox.setSelectedItem(null);
 			}
-			else {
+			else if( datos instanceof Integer ) {
+				
+				
+			}
+			else if( datos instanceof BSoDException ) {
 				
 				BSoDException bsod = (BSoDException) datos;
 				
