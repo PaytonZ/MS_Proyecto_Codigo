@@ -1,26 +1,30 @@
 package test.negocio.reservas.servicioaplicacion.imp;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import integracion.clientes.dao.imp.DAOClienteImp;
-import integracion.habitaciones.dao.imp.DAOHabitacionImp;
+import static org.junit.Assert.*;
 
-import java.util.Calendar;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
+import integracion.clientes.dao.DAOCliente;
+import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
+import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
+import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.reservas.servicioaplicacion.SAReservas;
 import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.Test;
+
+import negocio.clientes.servicioaplicacion.imp.*;
 
 public class TestSAReservasimp {
 	
@@ -30,43 +34,53 @@ public class TestSAReservasimp {
 	@SuppressWarnings("deprecation")
 	//Con la de pruebas que se ha hecho, seguro que hay al menos una habitacion en la base de datos
 	@Test
-	public void anyadereserva()
+	public void anyadereserva() throws BSoDException
 	{
+				
 		//Preparar los datos
-		TransferReserva tr = new TransferReserva();
+		
 		SAClientes sacli = FactorySA.getInstance().getSAClientes();
-		SAHabitaciones sahab = FactorySA.getInstance().getSAHabitaciones();		
-		List<TransferHabitacion> allhabitaciones = null;
-		try {
-			allhabitaciones = sahab.obtenerTodaslasHabitaciones();
-		} catch (BSoDException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		List<TransferCliente> allclientes = null;
-		try {
-			allclientes = sacli.obtenerTodoslosClientes();
-		} catch (BSoDException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			assertTrue(false);
-		}
-		System.out.println(allhabitaciones.isEmpty());
-		System.out.println(allclientes.isEmpty());
+		SAHabitaciones sahab = FactorySA.getInstance().getSAHabitaciones();
+		SAReservas sareservas = FactorySA.getInstance().getSAReservas();
+		
+		//Añadir clientes
+		/*TransferCliente tc = new TransferCliente();
+		tc.setDNI("97");
+		tc.setDireccion("sdfe");
+		tc.setNombre("erth");
+		tc.setNumTelefono(567423);
+		tc.setPrimerApellido("ertjhn");
+		tc.setSegundoApellido("tuikr");
+		sacli.anadirCliente(tc);
+		tc.setDNI("98");
+		sacli.anadirCliente(tc);*/
+		
+		//Añadir habitaciones
+		TransferHabitacion th = new TransferHabitacion();
+		th.setNumHabitacion(-4598);
+		th.setPrecio(456);			
+		
+		Integer id = sahab.anadirHabitacion(th); // id 56
+		sahab.obtenerHabitacion(id);
+		/*th.setNumHabitacion(-455);
+		sahab.anadirHabitacion(th);*/
+		TransferReserva tr = new TransferReserva();	
+		List<TransferHabitacion> allhabitaciones = sahab.obtenerTodaslasHabitaciones();		
+		List<TransferCliente> allclientes = sacli.obtenerTodoslosClientes();		
 		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
 		tr.setDNI(allclientes.get(0).getDNI());
-		Calendar diaentrada= Calendar.getInstance(new Locale("es"));
-		Calendar diareserva= Calendar.getInstance(new Locale("es"));	
-		Calendar diasalida = Calendar.getInstance(new Locale("es"));
-		diaentrada.add(Calendar.YEAR, 1);
-		diareserva.add(Calendar.YEAR,2);
-		diasalida.add(Calendar.YEAR,3);		
-		tr.setFechaReserva(diareserva.getTime());
-		tr.setFechaEntrada(diaentrada.getTime());
-		tr.setFechaSalida(diasalida.getTime());
+		Date diaentrada = new Date();		
+		Date diareserva = diaentrada;		
+		Date diasalida = diaentrada;
+		diareserva.setYear(1);
+		diaentrada.setYear(2);		
+		diasalida.setYear(3);
+		tr.setFechaReserva(diareserva);
+		tr.setFechaEntrada(diaentrada);
+		tr.setFechaSalida(diasalida);
 		
 		//Hacer las reservas y comprobar que se ha hecho bien
-		SAReservasImp sareservas = new SAReservasImp();
+
 		try
 		{
 		Integer ID = sareservas.anadirReserva(tr);
@@ -99,6 +113,7 @@ public class TestSAReservasimp {
 							
 	}
 	
+	/*
 	//Comprobar que se pueden añadir 2 reservas con el mismo DNI y/o habitacion
 	@SuppressWarnings("deprecation")
 	public void dosreservas()
@@ -322,6 +337,6 @@ public class TestSAReservasimp {
 			System.out.println("Correcto: No se puede salir de la habitacion antes de hacer una reserva");
 		}
 		
-	}
+	}*/
 
 }
