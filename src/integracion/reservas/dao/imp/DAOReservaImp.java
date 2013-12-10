@@ -70,7 +70,6 @@ public class DAOReservaImp implements DAOReserva {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new BSoDException("Error al hacer la reserva");
-		} finally {
 		}
 
 		return idreserva;
@@ -211,8 +210,6 @@ public class DAOReservaImp implements DAOReserva {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new BSoDException("Error al actualizar la reserva");
-		} finally {
-
 		}
 
 		return exitoupdate;
@@ -245,7 +242,7 @@ public class DAOReservaImp implements DAOReserva {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new BSoDException("Error al cargar las reservas");
+			throw new BSoDException("Error al cargar las reservas de la habitacion");
 		}
 
 		return listaReservas;

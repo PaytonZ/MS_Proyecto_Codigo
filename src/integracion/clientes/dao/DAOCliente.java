@@ -6,6 +6,7 @@ package integracion.clientes.dao;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -23,7 +24,7 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer addCliente(TransferCliente Cliente);
+	public Integer addCliente(TransferCliente Cliente)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -33,7 +34,7 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente getCliente(String dniCliente);
+	public TransferCliente getCliente(String dniCliente)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -43,7 +44,7 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean deleteCliente(Integer idCliente);
+	public boolean deleteCliente(Integer idCliente)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -52,7 +53,7 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferCliente> getAllClientes();
+	public List<TransferCliente> getAllClientes()throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -62,5 +63,5 @@ public interface DAOCliente {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean updateCliente(TransferCliente cliente);
+	public Boolean updateCliente(TransferCliente cliente)throws BSoDException;
 }

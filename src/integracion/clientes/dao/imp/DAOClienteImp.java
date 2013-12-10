@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -43,7 +44,7 @@ public class DAOClienteImp implements DAOCliente {
 	private final String getClienteDesactivadoByDNI = "SELECT DNI FROM clientes WHERE DNI = ? AND activo = false";
 	private final String activateClienteByDNI = "UPDATE clientes SET activo = true WHERE DNI = ?";
 
-	public Integer addCliente(TransferCliente cliente) {
+	public Integer addCliente(TransferCliente cliente) throws BSoDException {
 
 		Transaction transaccion = TransactionManager.getInstance().getTransaccion();
 		Connection connection = transaccion.getResource();
@@ -103,7 +104,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+			throw new BSoDException("Error al crear el usuario");
 			// TRATAR
 
 		} finally {
@@ -114,12 +115,13 @@ public class DAOClienteImp implements DAOCliente {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOCliente#getCliente(Clase idCliente)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente getCliente(String dniCliente) {
+	public TransferCliente getCliente(String dniCliente) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -147,6 +149,7 @@ public class DAOClienteImp implements DAOCliente {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar el usuario");
 		}
 
 		return cliente;
@@ -154,12 +157,13 @@ public class DAOClienteImp implements DAOCliente {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOCliente#deleteCliente(Clase idCliente)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean deleteCliente(Integer idCliente) {
+	public boolean deleteCliente(Integer idCliente) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -175,6 +179,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al eliminar el usuario");
 		}
 
 		return correcto;
@@ -182,12 +187,13 @@ public class DAOClienteImp implements DAOCliente {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOCliente#getAllClientes()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferCliente> getAllClientes() {
+	public List<TransferCliente> getAllClientes() throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -220,6 +226,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar los usuarios");
 		}
 
 		return listaClientes;
@@ -227,12 +234,13 @@ public class DAOClienteImp implements DAOCliente {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see DAOCliente#updateCliente(TransferCliente cliente)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean updateCliente(TransferCliente cliente) {
+	public Boolean updateCliente(TransferCliente cliente) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -272,6 +280,7 @@ public class DAOClienteImp implements DAOCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al actualizar el cliente");
 		} finally {
 
 		}

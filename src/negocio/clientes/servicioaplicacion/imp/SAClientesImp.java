@@ -45,14 +45,12 @@ public class SAClientesImp implements SAClientes {
 		try {
 			idCliente = dao.addCliente(clienteNuevo);
 			transacion.commit();
-		} catch (Exception e) {
+		} catch (BSoDException e) {
 			transacion.rollback();
-			throw new BSoDException(e.toString());
+			throw e;
 			
 		} finally {
-			if ( !tm.eliminaTransaccion() ) {
-				idCliente = null;
-			}
+			tm.eliminaTransaccion();
 		}
 
 		return idCliente;
@@ -79,16 +77,12 @@ public class SAClientesImp implements SAClientes {
 		
 		try {
 			listaClientes = dao.getAllClientes();
-
 		}
-		catch(Exception e) {
-			throw new BSoDException(e.toString());
+		catch(BSoDException e) {
+			throw e;
 		}
 		finally {
-			if (!tm.eliminaTransaccion()) {
-
-				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}	
 		return listaClientes;
 	}
@@ -114,20 +108,13 @@ public class SAClientesImp implements SAClientes {
 		try {
 			correcto =  dao.updateCliente(clienteActualizado);
 			transacion.commit();
-			
-			if(!correcto) {
-			
-				transacion.rollback();
-				throw new BSoDException("Cliente no actualizado.");
-			}
 		}
-		catch(Exception e ) {
-			throw new BSoDException(e.toString());
+		catch(BSoDException e ) {
+			transacion.rollback();
+			throw e;
 		}
 		finally {
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 		return correcto;
 	}
@@ -151,15 +138,14 @@ public class SAClientesImp implements SAClientes {
 				resultado = dao.deleteCliente(idCliente);
 				transacion.commit();
 		}
-		catch(Exception e)
+		catch(BSoDException e)
 		{
-			throw new BSoDException(e.toString());
+			transacion.rollback();
+			throw e;
 		}
 		finally
 		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 		return resultado;
 		// end-user-code
@@ -183,15 +169,13 @@ public class SAClientesImp implements SAClientes {
 		try
 		{
 				t = dao.getCliente(dniCliente);
-		}catch(Exception e)
+		}catch(BSoDException e)
 		{
-			throw new BSoDException(e.toString());
+			throw e;
 		}
 		finally
 		{
-			if (!tm.eliminaTransaccion()) {
-				throw new TransaccionNoEliminadaException(SAClientes.class.getName());
-			}
+			tm.eliminaTransaccion();
 		}
 		
 		return t;
