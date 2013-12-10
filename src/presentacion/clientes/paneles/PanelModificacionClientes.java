@@ -176,7 +176,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 					}
 				}
 				else {
-					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -230,11 +230,11 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textTelefono.setText("");
 				textTelefono.setEditable(true);
 				
-				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				
-				JOptionPane.showMessageDialog(this, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			idCliente = null;
 		}
