@@ -79,6 +79,8 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textDNIBusqueda.setEditable(true);
 				textNombre.setText("");
 				textNombre.setEditable(false);
+				textPrimerApellido.setText("");
+				textPrimerApellido.setEditable(false);
 				textSegundoApellido.setText("");
 				textSegundoApellido.setEditable(false);
 				textDireccion.setText("");
@@ -200,7 +202,9 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				idCliente = cliente.getID();
 				textNombre.setText(cliente.getNombre());
 				textNombre.setEditable(true);
-				textSegundoApellido.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
+				textPrimerApellido.setText(cliente.getPrimerApellido());
+				textPrimerApellido.setEditable(true);
+				textSegundoApellido.setText(cliente.getSegundoApellido());
 				textSegundoApellido.setEditable(true);
 				textDireccion.setText(cliente.getDireccion());
 				textDireccion.setEditable(true);
@@ -217,6 +221,8 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textDNIBusqueda.setEditable(true);
 				textNombre.setText("");
 				textNombre.setEditable(true);
+				textSegundoApellido.setText("");
+				textSegundoApellido.setEditable(true);
 				textSegundoApellido.setText("");
 				textSegundoApellido.setEditable(true);
 				textDireccion.setText("");

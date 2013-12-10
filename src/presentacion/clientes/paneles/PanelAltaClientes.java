@@ -148,6 +148,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 			JOptionPane.showMessageDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			textDNI.setText("");
+			textPrimerApellido.setText("");
 			textSegundoApellido.setText("");
 			textNombre.setText("");
 			textDireccion.setText("");
