@@ -2,9 +2,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `Alex` ;
-CREATE SCHEMA IF NOT EXISTS `Alex` DEFAULT CHARACTER SET utf8 ;
-USE `Alex` ;
+DROP SCHEMA IF EXISTS `alex` ;
+CREATE SCHEMA IF NOT EXISTS `alex` DEFAULT CHARACTER SET utf8 ;
+USE `alex` ;
 
 -- -----------------------------------------------------
 -- Table `clientes`
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `habitaciones` (
   `numhabitacion` INT NOT NULL,
   `tipohabitacion` ENUM('HABITACION_NORMAL','HABITACION_SUITE') NULL,
   `precio` DOUBLE NULL,
-  `activo` TINYINT(1) NULL,
+  `activo` TINYINT(1) NULL DEFAULT true,
   PRIMARY KEY (`numhabitacion`))
 ENGINE = InnoDB;
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `telefono` INT(9) UNSIGNED NULL,
   `direccion` VARCHAR(45) NULL,
   `apellidos` VARCHAR(45) NULL,
-  `activo` TINYINT(1) NULL,
+  `activo` TINYINT(1) NULL DEFAULT true,
   `tipoempleado` ENUM('PARCIAL','COMPLETO') NULL,
   PRIMARY KEY (`idempleados`),
   UNIQUE INDEX `DNI_UNIQUE` (`DNI` ASC))
