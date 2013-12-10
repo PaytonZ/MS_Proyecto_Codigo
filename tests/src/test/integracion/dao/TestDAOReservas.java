@@ -81,7 +81,12 @@ public class TestDAOReservas {
 
 		TransferCliente cliente = crearCliente();
 
-		cliente.setID(dao.addCliente(cliente));
+		try {
+			cliente.setID(dao.addCliente(cliente));
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		commit();
 

@@ -10,6 +10,7 @@ import integracion.transacciones.transactionManager.TransactionManager;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,7 +51,13 @@ public class TestDAOCliente {
 		assertNotNull("El cliente no puede ser nulo", cli);
 		assertNotNull("El id no puede ser nulo para obtener un cliente", cli.getID());
 
-		TransferCliente cliente = dao.getCliente(cli.getDNI());
+		TransferCliente cliente = null;
+		try {
+			cliente = dao.getCliente(cli.getDNI());
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertNotNull("El cliente obtenido es nulo", cliente);
 		
@@ -64,7 +71,13 @@ public class TestDAOCliente {
 
 		String dni = obtenerIdCliente().getDNI();
 
-		TransferCliente c = dao.getCliente(dni);
+		TransferCliente c = null;
+		try {
+			c = dao.getCliente(dni);
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertNotNull("El cliente no puede ser nulo para modificarlo", c);
 
@@ -73,8 +86,20 @@ public class TestDAOCliente {
 		c.setNombre(nombreeditado);
 		c.setDireccion(direccioneditada);
 
-		boolean correcto = dao.updateCliente(c);
-		TransferCliente c1 = dao.getCliente(c.getDNI());
+		boolean correcto = false;
+		try {
+			correcto = dao.updateCliente(c);
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
+		TransferCliente c1 = null;
+		try {
+			c1 = dao.getCliente(c.getDNI());
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertNotNull(c1);
 
@@ -98,7 +123,13 @@ public class TestDAOCliente {
 
 		assertNotNull("El cliente no puede ser nulo para borrarlo", id);
 
-		boolean correcto = dao.deleteCliente(id);
+		boolean correcto = false;
+		try {
+			correcto = dao.deleteCliente(id);
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		assertTrue("El cliente no se borró", correcto);
 		
@@ -113,7 +144,12 @@ public class TestDAOCliente {
 
 		TransferCliente cliente = crearCliente();
 
-		cliente.setID(dao.addCliente(cliente));
+		try {
+			cliente.setID(dao.addCliente(cliente));
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 
 		commit();
 
