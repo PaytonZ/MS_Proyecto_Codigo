@@ -197,18 +197,6 @@ public class TransferReserva {
 		// begin-user-code
 		this.fechaEntrada = fechaEntrada;
 		// end-user-code
-	}
-
-	public String getDNI() {
-		return DNI;
-	}
-
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-
-	private String DNI;
-	
-	
+	}	
 
 }
