@@ -82,10 +82,16 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						try {
 							numHabitacion = Integer.valueOf(textNumHab.getText());
 							
-							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA, numHabitacion);
+							if ( numHabitacion > 0 ) {
+							
+								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA, numHabitacion);
+							}
+							else {
+								JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negatico", "Error", JOptionPane.ERROR_MESSAGE);
+							}
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(null, "El número de habitación solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "El número de habitación solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else {
@@ -144,16 +150,21 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 							habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
 							habitacion.setPrecio( Double.valueOf(textPrecioNoche.getText().trim()) );
 							
-							habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+							if ( Double.valueOf(textPrecioNoche.getText().trim()) >= 0 ) {
+								habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+								
+								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
+							}
+							else {
+								JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precion negativo", "Error", JOptionPane.ERROR_MESSAGE);
+							}
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
-							
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar o sin seleccionar", "Aviso", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar o sin seleccionar", "Aviso", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			});
@@ -167,7 +178,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_ALTA == idEvento ) {
 					if ( datos == null) {
 						
-						JOptionPane.showMessageDialog(this, "El número de habitación está libre", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "El número de habitación está libre", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 						
 						textNumHab.setEditable(false);
 						textPrecioNoche.setEditable(true);
@@ -179,7 +190,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						Integer numHabitacion = ((TransferHabitacionNormal) datos).getNumHabitacion();
 						
 						if ( numHabitacion == Integer.valueOf(textNumHab.getText()) ) {
-							JOptionPane.showMessageDialog(this, "El número de habitación ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "El número de habitación ya existe", "Error", JOptionPane.ERROR_MESSAGE);
 							
 							textNumHab.setText("");
 							textPrecioNoche.setText("");
@@ -204,7 +215,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						
 						if ( datos instanceof Integer) {
 							
-							JOptionPane.showMessageDialog(this, "La habitación se añadió correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "La habitación se añadió correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 							
 							textNumHab.setText("");
 							textPrecioNoche.setText("");
@@ -217,7 +228,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 					}
 					else {
 
-						JOptionPane.showMessageDialog(this, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 						
 						textNumHab.setText("");
 						textPrecioNoche.setText("");
@@ -234,7 +245,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						
 						BSoDException bsod = (BSoDException) datos;
 						
-						JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
