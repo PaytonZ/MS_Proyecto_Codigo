@@ -3,11 +3,10 @@
  */
 package integracion.factorias.factoriaDAO;
 
-import presentacion.clientes.imp.GUIClienteImp;
-import integracion.reservas.dao.DAOReserva;
 import integracion.clientes.dao.DAOCliente;
 import integracion.factorias.factoriaDAO.imp.FactoriaDAOImp;
 import integracion.habitaciones.dao.DAOHabitacion;
+import integracion.reservas.dao.DAOReserva;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

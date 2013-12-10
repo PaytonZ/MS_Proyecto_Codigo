@@ -1,10 +1,12 @@
 package test.presentacion.controlador.comandos;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,10 +19,6 @@ import presentacion.comandos.cliente.CommandBajaCliente;
 import presentacion.comandos.cliente.CommandConsultaCliente;
 import presentacion.comandos.commandFactory.CommandFactory;
 import presentacion.comandos.commandFactory.CommandResponse;
-import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder

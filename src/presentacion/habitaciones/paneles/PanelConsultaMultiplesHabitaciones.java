@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import net.miginfocom.layout.LC;
@@ -67,7 +66,7 @@ public class PanelConsultaMultiplesHabitaciones extends JPanel implements GUIPan
 			public void actionPerformed(ActionEvent e) {
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE, null);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION, null);
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
@@ -76,20 +75,14 @@ public class PanelConsultaMultiplesHabitaciones extends JPanel implements GUIPan
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
-		JLabel lblDni = new JLabel("DNI");
-		panel_1.add(lblDni);
+		JLabel lblNumHab = new JLabel("Número habitación");
+		panel_1.add(lblNumHab);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		panel_1.add(lblNombre);
+		JLabel lblTipo = new JLabel("Tipo habitación");
+		panel_1.add(lblTipo);
 		
-		JLabel lblApellidos = new JLabel("Apellidos");
-		panel_1.add(lblApellidos);
-		
-		JLabel lblDireccin = new JLabel("Dirección");
-		panel_1.add(lblDireccin);
-		
-		JLabel lblTelefono = new JLabel("Telefono");
-		panel_1.add(lblTelefono);
+		JLabel lblPrecio = new JLabel("Precio por noche");
+		panel_1.add(lblPrecio);
 	}
 
 	/**
@@ -101,25 +94,31 @@ public class PanelConsultaMultiplesHabitaciones extends JPanel implements GUIPan
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof List) {
+		if ( IDEventos.EVENTO_CONSULTAR_TODAS_HABITACION == idEvento ) {
 			
-			@SuppressWarnings("unchecked")
-			List<TransferCliente> listaClientes = (List<TransferCliente>) datos;
-			
-			TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
-			listaClientes.toArray(clientes);
-			
-//			list.setListData(clientes);
+			if ( datos instanceof List) {
+				
+				@SuppressWarnings("unchecked")
+				List<TransferHabitacion> listaHabitaciones = (List<TransferHabitacion>) datos;
+				
+				TransferHabitacion[] clientes = new TransferHabitacion[listaHabitaciones.size()];
+				listaHabitaciones.toArray(clientes);
+				
+				list.setListData(clientes);
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "No se pudieron recuperar los clientes", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
-		else if ( datos instanceof BSoDException ) {
-			System.out.println( ((BSoDException) datos).getMensaje() );
-		}
-		else if ( datos instanceof Boolean ) {
+		else if ( IDEventos.ERROR_CONSULTAR_TODAS_HABITACION == idEvento ) {
 			
-			JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-		else {
-			JOptionPane.showMessageDialog(this, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(this, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

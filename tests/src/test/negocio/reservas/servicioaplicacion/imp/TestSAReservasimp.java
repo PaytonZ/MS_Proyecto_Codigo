@@ -1,40 +1,30 @@
 package test.negocio.reservas.servicioaplicacion.imp;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import integracion.clientes.dao.DAOCliente;
-import integracion.clientes.dao.imp.DAOClienteImp;
-import integracion.habitaciones.dao.imp.DAOHabitacionImp;
 import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
-import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.reservas.servicioaplicacion.SAReservas;
-import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.Test;
-
-import negocio.clientes.servicioaplicacion.imp.*;
 
 public class TestSAReservasimp {
 	
 	//TODO Hay que borrar todos los datos de la reserva de la base de datos cada vez que se empiece a ejecutar los test
 
 	//Caso normal añadir reserva
-	@SuppressWarnings("deprecation")
 	//Con la de pruebas que se ha hecho, seguro que hay al menos una habitacion en la base de datos
 	@Test
 	public void anyadereserva() throws BSoDException

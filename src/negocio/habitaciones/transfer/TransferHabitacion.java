@@ -86,4 +86,10 @@ public class TransferHabitacion {
 	public void setTipohabitacion(TipoHabitacion tipohabitacion) {
 		this.tipohabitacion = tipohabitacion;
 	}
+	
+	@Override
+	public String toString() {
+		
+		return getNumHabitacion() + " " + getTipohabitacion() + " " + getPrecio() + "€";
+	}
 }

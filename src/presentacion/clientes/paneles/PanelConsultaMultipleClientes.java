@@ -106,20 +106,15 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIPanelesI
 		
 		if ( IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE == idEvento ) {
 			
-			if ( datos != null ) {
-				if ( datos instanceof List) {
-					
-					@SuppressWarnings("unchecked")
-					List<TransferCliente> listaClientes = (List<TransferCliente>) datos;
-					
-					TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
-					listaClientes.toArray(clientes);
-					
-					list.setListData(clientes);
-				}
-				else {
-					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
-				}
+			if ( datos instanceof List) {
+				
+				@SuppressWarnings("unchecked")
+				List<TransferCliente> listaClientes = (List<TransferCliente>) datos;
+				
+				TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
+				listaClientes.toArray(clientes);
+				
+				list.setListData(clientes);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "No se pudieron recuperar los clientes", "Error", JOptionPane.ERROR_MESSAGE);
@@ -127,14 +122,9 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIPanelesI
 		}
 		else if ( IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE == idEvento ) {
 			
-			if ( datos != null ) {
-				if ( datos instanceof BSoDException ) {
-					
-					JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				else {
-					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
-				}
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);

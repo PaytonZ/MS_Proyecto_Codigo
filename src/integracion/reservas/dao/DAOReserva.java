@@ -3,7 +3,6 @@
  */
 package integracion.reservas.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import negocio.excepciones.BSoDException;

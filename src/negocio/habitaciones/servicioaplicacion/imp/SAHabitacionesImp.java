@@ -3,18 +3,19 @@
  */
 package negocio.habitaciones.servicioaplicacion.imp;
 
-import negocio.excepciones.BSoDException;
-import negocio.excepciones.TransaccionNoEliminadaException;
-import negocio.factorias.serviciosAplicacion.FactorySA;
-import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
-import negocio.habitaciones.transfer.TransferHabitacion;
-import negocio.reservas.transfer.TransferReserva;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.List;
+
+import negocio.excepciones.BSoDException;
+import negocio.excepciones.TransaccionNoEliminadaException;
+import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
+import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
+import negocio.reservas.transfer.TransferReserva;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

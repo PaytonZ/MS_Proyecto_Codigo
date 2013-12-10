@@ -3,11 +3,10 @@
  */
 package negocio.habitaciones.servicioaplicacion;
 
+import java.util.List;
+
 import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TransferHabitacion;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
