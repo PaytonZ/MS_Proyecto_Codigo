@@ -18,10 +18,12 @@ import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.cliente.CommandAltaCliente;
 import presentacion.comandos.cliente.CommandBajaCliente;
+import presentacion.comandos.cliente.CommandConsultaCliente;
 import presentacion.comandos.commandFactory.CommandFactory;
 import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.comandos.habitacion.CommandAltaHabitacion;
 import presentacion.comandos.habitacion.CommandBajaHabitacion;
+import presentacion.comandos.habitacion.CommandConsultaHabitacion;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder
@@ -60,6 +62,34 @@ public class TestComandosHabitaciones {
 		
 		assertTrue(rc.getEvento()==IDEventos.EVENTO_BAJA_HABITACION);
 		assertTrue((Boolean)rc.getDatos());
+	}
+	@Test
+	public void commandoADDandconsultaHabitacion()
+	{
+		Command c = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_ALTA_HABITACION);
+		assertNotNull(c);
+		assertTrue(c instanceof CommandAltaHabitacion);
+		
+		Object d = new TransferHabitacion();
+        
+
+		((TransferHabitacion) d).setNumHabitacion(new Random().nextInt(99999));
+		((TransferHabitacion) d).setPrecio(new Random().nextDouble());
+        
+		CommandResponse rc = c.execute(d);
+		
+		assertTrue(rc.getEvento()==IDEventos.EVENTO_ALTA_HABITACION);
+		assertTrue((Integer)rc.getDatos()>=0);
+				
+		
+		c = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_HABITACION);
+		assertNotNull(c);
+		assertTrue(c instanceof CommandConsultaHabitacion);
+		rc = c.execute(((TransferHabitacion) d).getNumHabitacion());
+
+		assertTrue(rc.getEvento()==IDEventos.EVENTO_CONSULTAR_HABITACION);
+		assertTrue(((TransferHabitacion) rc.getDatos()).getNumHabitacion().compareTo(((TransferHabitacion) d).getNumHabitacion())==0);
+		
 	}
 
 }
