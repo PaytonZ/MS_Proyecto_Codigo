@@ -18,6 +18,7 @@ import presentacion.comandos.habitacion.CommandBajaHabitacion;
 import presentacion.comandos.habitacion.CommandConsultaHabitacion;
 import presentacion.comandos.habitacion.CommandConsultaHabitacionVentanaAlta;
 import presentacion.comandos.habitacion.CommandConsultaHabitacionVentanaBaja;
+import presentacion.comandos.habitacion.CommandConsultaHabitacionVentanaModificar;
 import presentacion.comandos.habitacion.CommandConsultaTodasHabitaciones;
 import presentacion.comandos.habitacion.CommandModificarHabitacion;
 import presentacion.comandos.reserva.CommandAltaReserva;
@@ -113,6 +114,10 @@ public class CommandFactoryImp extends CommandFactory {
 			break;
 		case EVENTO_CONSULTAR_HABITACION_V_BAJA:
 			c = new CommandConsultaHabitacionVentanaBaja();
+			break;
+		case EVENTO_CONSULTAR_HABITACION_V_MODIFICAR:
+			c = new CommandConsultaHabitacionVentanaModificar();
+			break;
 		default:
 			break;
 

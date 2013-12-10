@@ -46,6 +46,8 @@ public class GUIHabitacionesImp extends GUIHabitaciones {
 			break;
 		case EVENTO_MODIFICAR_HABITACION:
 		case ERROR_MODIFICAR_HABITACION:
+		case EVENTO_CONSULTAR_HABITACION_V_MODIFICAR:
+		case ERROR_CONSULTAR_HABITACION_V_MODIFICAR:
 			getPanelModificacionHabitaciones().actualizarVentana(eventoActual, datos);
 			break;
 		case EVENTO_CONSULTAR_TODAS_HABITACION:

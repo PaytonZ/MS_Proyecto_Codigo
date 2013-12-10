@@ -156,11 +156,11 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
 							}
 							else {
-								JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precion negativo", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precio negativo", "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(contentPane, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "Los campos número de habitación y precio contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else {

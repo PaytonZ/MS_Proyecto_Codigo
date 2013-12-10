@@ -6,15 +6,18 @@ package presentacion.habitaciones.paneles;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
+import negocio.habitaciones.transfer.TipoHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacion;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -30,13 +33,11 @@ import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAp
 public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesInterfaz {
 	
 	private static final long serialVersionUID = 1L;
-	private JTextField textDNIBusqueda;
-	private JTextField textNombre;
-	private JTextField textSegundoApellido;
-	private JTextField textDireccion;
-	private JTextField textTelefono;
-	private Integer idCliente;
-	private JTextField textPrimerApellido;
+	private JTextField textNumHabBusqueda;
+	private JTextField textNumHab;
+	private JTextField textPrecio;
+	private JComboBox<TipoHabitacion> comboBox;
+	private JButton btnModificarHab;
 	
 	private JPanel contentPane;
 	
@@ -44,7 +45,7 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 		
 		contentPane = this;
 		
-		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][18.00][17.00][][10.00][][9.00][][16.00][13.00][]"));
+		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][18.00][17.00][][10.00][][16.00][13.00][]"));
 		
 		JLabel lblModificacinDeClientes = new JLabel("Modificación de clientes");
 		add(lblModificacinDeClientes, "cell 0 0 7 1,alignx center");
@@ -55,9 +56,9 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 		JLabel lblNmeroDeHabitacin = new JLabel("Número de habitación: ");
 		add(lblNmeroDeHabitacin, "cell 1 3,alignx trailing");
 		
-		textDNIBusqueda = new JTextField();
-		textDNIBusqueda.setColumns(10);
-		add(textDNIBusqueda, "cell 2 3 2 1,growx");
+		textNumHabBusqueda = new JTextField();
+		textNumHabBusqueda.setColumns(10);
+		add(textNumHabBusqueda, "cell 2 3 2 1,growx");
 		
 		JButton buttonBuscar = new JButton("Buscar");
 		buttonBuscar.addActionListener(new ActionListener() {
@@ -65,12 +66,23 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				textDNIBusqueda.setEditable(false);
+				textNumHabBusqueda.setEditable(false);
 				
-				String dniCliente = textDNIBusqueda.getText();
-				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR, dniCliente);
+				try {
+					Integer numHabitacion = Integer.valueOf(textNumHabBusqueda.getText());
+					
+					if ( numHabitacion >= 0 ) {
+						
+						ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+						controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_HABITACION_V_MODIFICAR, numHabitacion);
+					}
+					else {
+						JOptionPane.showMessageDialog(contentPane, "El número de habitación no puede ser negativo", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				catch(NumberFormatException nu) {
+					JOptionPane.showMessageDialog(contentPane, "El campo número de habitación solo debe contener números", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		add(buttonBuscar, "cell 5 3");
@@ -80,19 +92,15 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				idCliente = null;
-				textDNIBusqueda.setText("");
-				textDNIBusqueda.setEditable(true);
-				textNombre.setText("");
-				textNombre.setEditable(false);
-				textPrimerApellido.setText("");
-				textPrimerApellido.setEditable(false);
-				textSegundoApellido.setText("");
-				textSegundoApellido.setEditable(false);
-				textDireccion.setText("");
-				textDireccion.setEditable(false);
-				textTelefono.setText("");
-				textTelefono.setEditable(false);
+//				numHabitacion = null;
+				textNumHabBusqueda.setText("");
+				textNumHabBusqueda.setEditable(true);
+				textNumHab.setText("");
+				textNumHab.setEditable(false);
+				textPrecio.setText("");
+				textPrecio.setEditable(false);
+				comboBox.setEditable(false);
+				btnModificarHab.setEnabled(false);
 			}
 		});
 		add(btnNuevaBsqueda, "cell 6 3");
@@ -100,96 +108,66 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 		JSeparator separator_2 = new JSeparator();
 		add(separator_2, "cell 1 4 6 1, growx, aligny center");
 		
-		JLabel label_1 = new JLabel("Nombre: ");
-		add(label_1, "cell 1 6,alignx trailing");
+		JLabel lblNmeroDeHabitacin_1 = new JLabel("Número de habitación: ");
+		add(lblNmeroDeHabitacin_1, "cell 1 6,alignx trailing");
 		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		textNombre.setColumns(10);
-		add(textNombre, "cell 2 6 2 1,growx");
+		textNumHab = new JTextField();
+		textNumHab.setColumns(10);
+		add(textNumHab, "cell 2 6 2 1,growx");
 		
-		JLabel lblPrimerApellido = new JLabel("Primer apellido: ");
-		add(lblPrimerApellido, "cell 5 6,alignx trailing");
+		JLabel lblPrecio = new JLabel("Precio por noche: ");
+		add(lblPrecio, "cell 5 6,alignx trailing");
 		
-		textPrimerApellido = new JTextField();
-		textPrimerApellido.setEditable(false);
-		add(textPrimerApellido, "cell 6 6,growx");
-		textPrimerApellido.setColumns(10);
+		textPrecio = new JTextField();
+		add(textPrecio, "cell 6 6,growx");
+		textPrecio.setColumns(10);
 		
-		JLabel label_3 = new JLabel("Dirección: ");
-		add(label_3, "cell 1 8,alignx trailing");
+		JLabel lblTipoDeHabitacin = new JLabel("Tipo de habitación: ");
+		add(lblTipoDeHabitacin, "cell 1 8,alignx trailing");
 		
-		textDireccion = new JTextField();
-		textDireccion.setEditable(false);
-		textDireccion.setColumns(10);
-		add(textDireccion, "cell 2 8 2 1,growx");
-		
-		JLabel lblSegundoApellido = new JLabel("Segundo apellido: ");
-		add(lblSegundoApellido, "cell 5 8,alignx trailing");
-		
-		textSegundoApellido = new JTextField();
-		textSegundoApellido.setToolTipText("Más de dos apellidos serán ingonrados.");
-		textSegundoApellido.setEditable(false);
-		textSegundoApellido.setColumns(10);
-		add(textSegundoApellido, "cell 6 8,growx");
-		
-		JLabel label_4 = new JLabel("Telefono: ");
-		add(label_4, "cell 5 10,alignx trailing");
-		
-		textTelefono = new JTextField();
-		textTelefono.setEditable(false);
-		textTelefono.setColumns(10);
-		add(textTelefono, "cell 6 10,growx");
-		
-		JButton btnModificarCliente = new JButton("Modificar cliente");
-		btnModificarCliente.addActionListener(new ActionListener() {
+		btnModificarHab = new JButton("Modificar habitación");
+		btnModificarHab.setEnabled(false);
+		btnModificarHab.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				textDNIBusqueda.setEditable(false);
+				TransferHabitacion habitacion = new TransferHabitacion();
 				
-				TransferCliente cliente = new TransferCliente();
-				
-				if ( idCliente != null 
-						&& !textDNIBusqueda.getText().equals("")
-						&& !textPrimerApellido.getText().equals("")
-						&& !textSegundoApellido.getText().equals("") 
-						&& !textNombre.getText().equals("")
-						&& !textDireccion.getText().equals("")
-						&& !textTelefono.getText().equals("")) {
+				if ( !textNumHab.getText().equals("") 
+						&& !textPrecio.getText().equals("")
+						&& comboBox.getSelectedIndex() >= 0) {
 					
-					cliente.setDNI(textDNIBusqueda.getText());
-					cliente.setNombre(textNombre.getText());
-					cliente.setDireccion(textDireccion.getText());
-					
-					if ( textPrimerApellido.getText().equals("") ) {
-						JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+					try {
+						habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
+						habitacion.setPrecio( Double.valueOf(textPrecio.getText().trim()) );
+						
+						if ( Double.valueOf(textPrecio.getText().trim()) >= 0 ) {
+							habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+							
+							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_HABITACION, habitacion);
+						}
+						else {
+							JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precio negativo", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
-					else {
-						cliente.setPrimerApellido(textPrimerApellido.getText().trim());
-						if ( !textSegundoApellido.getText().equals("") )
-							cliente.setSegundoApellido(textSegundoApellido.getText().trim());
-						
-						
-						try {
-							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
-						}
-						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(contentPane, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
-						}
-						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_CLIENTE, cliente);
+					catch(NumberFormatException nu) {
+						JOptionPane.showMessageDialog(contentPane, "Los campos número de habitación y precio contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar o sin seleccionar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
 		
+		comboBox = new JComboBox<>();
+		comboBox.setEditable(true);
+		comboBox.setModel(new DefaultComboBoxModel<TipoHabitacion>(TipoHabitacion.values()));
+		add(comboBox, "cell 2 8 2 1,growx");
+		
 		JSeparator separator_1 = new JSeparator();
-		add(separator_1, "cell 1 12 7 1,growx,aligny center");
-		add(btnModificarCliente, "cell 6 13");
+		add(separator_1, "cell 1 10 7 1,growx,aligny center");
+		add(btnModificarHab, "cell 6 11");
 	}
 	/**
 	 * (sin Javadoc)
@@ -207,18 +185,14 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 				Boolean correcto = (Boolean) datos;
 				
 				if ( correcto ) {
-					textDNIBusqueda.setText("");
-					textDNIBusqueda.setEditable(true);
-					textNombre.setText("");
-					textNombre.setEditable(true);
-					textPrimerApellido.setText("");
-					textPrimerApellido.setEditable(true);
-					textSegundoApellido.setText("");
-					textSegundoApellido.setEditable(true);
-					textDireccion.setText("");
-					textDireccion.setEditable(true);
-					textTelefono.setText("");
-					textTelefono.setEditable(true);
+					textNumHabBusqueda.setText("");
+					textNumHabBusqueda.setEditable(true);
+					textNumHab.setText("");
+					textNumHab.setEditable(false);
+					textPrecio.setText("");
+					textPrecio.setEditable(false);
+					comboBox.setEnabled(false);
+					btnModificarHab.setEnabled(false);
 					
 					JOptionPane.showMessageDialog(contentPane, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -226,27 +200,20 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 					
 					JOptionPane.showMessageDialog(contentPane, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				idCliente = null;
 			}
 		}
-		else if ( IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR == idEvento ) {
+		else if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_MODIFICAR == idEvento ) {
 			
-			if ( datos instanceof TransferCliente) {
+			if ( datos instanceof TransferHabitacion) {
 				
-				TransferCliente cliente = (TransferCliente) datos;
+				TransferHabitacion habitacion = (TransferHabitacion) datos;
 				
-					
-				idCliente = cliente.getID();
-				textNombre.setText(cliente.getNombre());
-				textNombre.setEditable(true);
-				textPrimerApellido.setText(cliente.getPrimerApellido());
-				textPrimerApellido.setEditable(true);
-				textSegundoApellido.setText(cliente.getSegundoApellido());
-				textSegundoApellido.setEditable(true);
-				textDireccion.setText(cliente.getDireccion());
-				textDireccion.setEditable(true);
-				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
-				textTelefono.setEditable(true);
+				textNumHab.setText( String.valueOf(habitacion.getNumHabitacion()) );
+				textNumHab.setEditable(true);
+				textPrecio.setText( String.valueOf(habitacion.getPrecio()) );
+				textPrecio.setEditable(true);
+				comboBox.setEnabled(true);
+				btnModificarHab.setEnabled(true);
 			}
 		}
 		else if ( IDEventos.ERROR_MODIFICAR_CLIENTE == idEvento || IDEventos.ERROR_CONSULTAR_CLIENTE_V_MODIFICAR == idEvento ) {

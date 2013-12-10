@@ -42,7 +42,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	private final String getHabitacionQuery = "SELECT * FROM habitaciones WHERE numhabitacion = ? AND activo = true FOR UPDATE";
 	private final String deleteHabitacionQuery = "UPDATE habitaciones SET activo = false WHERE numhabitacion = ?";
 	private final String getAllHabitacionesQuery = "SELECT * FROM habitaciones WHERE activo = true FOR UPDATE";
-	private final String updateHabitacionQuery = "UPDATE habitaciones SET  precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
+	private final String updateHabitacionQuery = "UPDATE habitaciones SET precio = ?, tipohabitacion = ? WHERE numhabitacion = ?";
 	
 	public Integer addHabitacion(TransferHabitacion habitacion) throws BSoDException {
 
