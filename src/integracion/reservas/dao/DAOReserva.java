@@ -25,7 +25,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer addReserva(TransferReserva reserva);
+	public Integer addReserva(TransferReserva reserva)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -35,7 +35,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean deleteReserva(Integer idReserva);
+	public Boolean deleteReserva(Integer idReserva)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -44,7 +44,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> getAllReservas(Integer idCliente);
+	public List<TransferReserva> getAllReservas(Integer idCliente)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -54,7 +54,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva getReserva(Integer idReserva);
+	public TransferReserva getReserva(Integer idReserva)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

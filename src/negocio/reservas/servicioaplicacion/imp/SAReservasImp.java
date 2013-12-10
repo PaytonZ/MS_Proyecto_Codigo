@@ -37,7 +37,7 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		transacion.start();
 		Boolean correcto = false;
-		correcto = dao.updateReserva(reserva);
+	//	correcto = dao.updateReserva(reserva);
 		if (correcto)
 			transacion.commit();
 		else {
@@ -66,7 +66,7 @@ public class SAReservasImp implements SAReservas {
 
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		Integer idReserva = null;
-		idReserva = dao.addReserva(reserva);
+		//idReserva = dao.addReserva(reserva);
 		if (idReserva != null) {
 			transacion.commit();
 		} else {
@@ -98,7 +98,7 @@ public class SAReservasImp implements SAReservas {
 		
 		Boolean resultado = null;
 		
-		resultado = dao.deleteReserva(idReserva);
+		//resultado = dao.deleteReserva(idReserva);
 		if (resultado) {
 			
 			transacion.commit();
@@ -131,7 +131,7 @@ public class SAReservasImp implements SAReservas {
 		
 		transacion.start();
 		
-		reserva = dao.getReserva(idReserva);
+		//reserva = dao.getReserva(idReserva);
 		
 		tm.eliminaTransaccion();
 		
@@ -157,7 +157,7 @@ public class SAReservasImp implements SAReservas {
 		transacion.start();
 		
 		List<TransferReserva> listaReserva = null;
-		listaReserva = dao.getAllReservas(idCliente);
+		//listaReserva = dao.getAllReservas(idCliente);
 
 		tm.eliminaTransaccion();
 		

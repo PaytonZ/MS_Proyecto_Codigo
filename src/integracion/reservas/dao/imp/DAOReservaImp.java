@@ -39,7 +39,7 @@ public class DAOReservaImp implements DAOReserva {
 	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
 
-	public Integer addReserva(TransferReserva reserva) {
+	public Integer addReserva(TransferReserva reserva) throws BSoDException{
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
 
@@ -68,6 +68,7 @@ public class DAOReservaImp implements DAOReserva {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al hacer la reserva");
 		} finally {
 		}
 
@@ -81,7 +82,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean deleteReserva(Integer idReserva) {
+	public Boolean deleteReserva(Integer idReserva) throws BSoDException{
 		Transaction transaction = TransactionManager.getInstance().getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 		boolean borrado = false;
@@ -94,6 +95,7 @@ public class DAOReservaImp implements DAOReserva {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al eliminar la reserva");
 		}
 
 		return borrado;
@@ -106,7 +108,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> getAllReservas(Integer idCliente) {
+	public List<TransferReserva> getAllReservas(Integer idCliente) throws BSoDException{
 
 		Transaction transaction = TransactionManager.getInstance().getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
@@ -135,6 +137,7 @@ public class DAOReservaImp implements DAOReserva {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar las reservas");
 		}
 
 		return listaReservas;
@@ -147,7 +150,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva getReserva(Integer idReserva) {
+	public TransferReserva getReserva(Integer idReserva) throws BSoDException{
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -173,6 +176,7 @@ public class DAOReservaImp implements DAOReserva {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BSoDException("Error al cargar la reserva");
 		}
 
 		return reserva;
@@ -204,7 +208,8 @@ public class DAOReservaImp implements DAOReserva {
 			updatereserva.setDate(5, (Date) reserva.getFechaSalida());
 			exitoupdate = (updatereserva.executeUpdate() == 1);
 		} catch (SQLException e) {
-			throw new BSoDException("Error al actualizar el cliente");
+			e.printStackTrace();
+			throw new BSoDException("Error al actualizar la reserva");
 		} finally {
 
 		}

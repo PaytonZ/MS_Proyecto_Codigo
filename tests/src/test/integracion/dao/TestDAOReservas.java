@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.After;
@@ -37,12 +38,21 @@ public class TestDAOReservas {
 	}
 	@Test
 	public void addReserva() {
-		Integer id = obteneridReserva().getNumeroReserva();
-		assertNotNull("La reserva no se creo, la reserva es nula",id);
-		assertTrue(id >= 0);	
-		commit();
+		Integer id=0;
+		try {
+			id = obteneridReserva().getNumeroReserva();
+		
+		} catch (BSoDException e) {
+			assertTrue(e.getMensaje().equals("Error al hacer la reserva"));
+		}
+		finally{
+			assertNotNull("La reserva no se creo, la reserva es nula",id);
+			assertTrue(id >= 0);	
+			commit();
+		}
+		
 	}
-	private TransferReserva obteneridReserva()
+	private TransferReserva obteneridReserva() throws BSoDException
 	{
 		DAOReserva d = new DAOReservaImp();
 		TransferReserva t = crearReserva();
@@ -98,47 +108,85 @@ public class TestDAOReservas {
 	@Test
 	public void  deleteReserva() {
 		DAOReserva d = new DAOReservaImp();
-		Integer id = obteneridReserva().getNumeroReserva();
-		assertTrue(d.deleteReserva(id));
+		Integer id= null;
+		boolean prueba = false;
+		try {
+			 id = obteneridReserva().getNumeroReserva();
+			 prueba =d.deleteReserva(id);
+		} catch (BSoDException e) {
+			assertTrue(e.getMensaje().equals("Error al eliminar la reserva"));
+		}
+		finally
+		{
+			assertTrue(prueba);
+		}
 		
 	}
 	@Test
 	public void  getAllReservas() 
 	{
 		DAOReserva d = new DAOReservaImp();
-		TransferReserva reserva = obteneridReserva();
-		
-		List<TransferReserva> listareservas = d.getAllReservas(reserva.getidusuario());
-		assertNotNull(listareservas);
-		assertTrue(listareservas.size() >= 1);
+		List<TransferReserva> listareservas = null;
+		try {
+			TransferReserva reserva = obteneridReserva();	
+			listareservas = d.getAllReservas(reserva.getidusuario());
+		} catch (BSoDException e) {
+			assertTrue(e.getMensaje().equals("Error al carga la reservas"));
+		}
+		finally
+		{
+			assertNotNull(listareservas);
+			assertTrue(listareservas.size() >= 1);
+		}
 	}
 
 	@Test
 	public void  getReserva() 
 	{
 		DAOReserva d = new DAOReservaImp();
-		TransferReserva reserva  = obteneridReserva();
-		Integer id = reserva.getNumeroReserva();
-		TransferReserva reserva2 = d.getReserva(id);
-		assertTrue(reserva2.getidusuario().equals(reserva.getidusuario()));
-		assertTrue(reserva2.getNumeroReserva().equals(reserva.getNumeroReserva()));
-		assertTrue(reserva2.getFechaReserva().toString().equals(reserva.getFechaReserva().toString()));
-		assertTrue(reserva2.getFechaEntrada().toString().equals(reserva.getFechaEntrada().toString()));
-		assertTrue(reserva2.getFechaSalida().toString().equals(reserva.getFechaSalida().toString()));
+		TransferReserva reserva2 = null;
+		TransferReserva reserva= null ;
+		try {
+			 reserva  = obteneridReserva();
+			Integer id = reserva.getNumeroReserva();
+			reserva2 = d.getReserva(id);
+		} catch (BSoDException e) {
+			assertTrue(e.getMensaje().equals("Error al carga la reservas"));
+		}
+		finally
+		{
+			assertNotNull(reserva2);
+			assertTrue(reserva2.getidusuario().equals(reserva.getidusuario()));
+			assertTrue(reserva2.getNumeroReserva().equals(reserva.getNumeroReserva()));
+			assertTrue(reserva2.getFechaReserva().toString().equals(reserva.getFechaReserva().toString()));
+			assertTrue(reserva2.getFechaEntrada().toString().equals(reserva.getFechaEntrada().toString()));
+			assertTrue(reserva2.getFechaSalida().toString().equals(reserva.getFechaSalida().toString()));
+		}
 	}
 
 	@Test
 	public void  updateReserva() 
 	{
-		DAOReserva d = new DAOReservaImp();
-		TransferReserva reserva  = obteneridReserva();	
-		TransferReserva reserva2 = new TransferReserva();
-		reserva2.setNumeroReserva(reserva.getNumeroReserva());
-		reserva2.setidusuario(reserva.getidusuario());
-		reserva2.setNumeroHabitacion(reserva.getNumeroHabitacion());
-		reserva2.setFechaReserva(reserva.getFechaReserva());	
-		reserva2.setFechaSalida(null);;
-		assertTrue(d.updateReserva(reserva2));
+		boolean prueba = false;
+		try {
+			DAOReserva d = new DAOReservaImp();
+			TransferReserva reserva  = obteneridReserva();	
+			TransferReserva reserva2 = new TransferReserva();
+			reserva2.setNumeroReserva(reserva.getNumeroReserva());
+			reserva2.setidusuario(reserva.getidusuario());
+			reserva2.setNumeroHabitacion(reserva.getNumeroHabitacion());
+			reserva2.setFechaReserva(reserva.getFechaReserva());	
+			reserva2.setFechaSalida(null);
+			prueba =d.updateReserva(reserva2);
+			
+		} catch (BSoDException e) {
+			assertTrue(e.getMensaje().equals("Error al actualizar la reserva"));
+		}
+		finally
+		{
+			assertTrue(prueba);
+			
+		}
 	}
 	
 	@After
