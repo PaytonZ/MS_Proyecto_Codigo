@@ -37,9 +37,14 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 	private JTextField textDireccion;
 	private JTextField textTelefono;
 	private Integer idCliente;
+	private JButton btnBorrarCliente;
+	
+	private JPanel contentPane;
 	
 	public PanelBajaClientes() {
 		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][][][]"));
+		
+		contentPane = this;
 		
 		JLabel lblConsultaClientes = new JLabel("Baja clientes");
 		add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
@@ -63,8 +68,12 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				String dniCliente = textDNIBusqueda.getText();
 				
 				if ( !"".equals(dniCliente) ) {
+					
 					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
 					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR, dniCliente);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "El campo DNI no puede ser vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -113,12 +122,16 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 		add(textTelefono, "cell 3 10,growx");
 		textTelefono.setColumns(10);
 		
-		JButton btnBorrarCliente = new JButton("Borrar cliente");
+		btnBorrarCliente = new JButton("Borrar cliente");
+		btnBorrarCliente.setEnabled(false);
 		btnBorrarCliente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, idCliente);
+				if ( idCliente != null )
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_CLIENTE, idCliente);
+				else
+					JOptionPane.showMessageDialog(contentPane, "Error al cargar el cliente, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		add(btnBorrarCliente, "cell 6 13");
@@ -138,6 +151,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
 				textDireccion.setText(cliente.getDireccion());
 				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
+				btnBorrarCliente.setEnabled(true);
 			}
 		}
 		else if ( datos instanceof Boolean ) {
@@ -152,6 +166,7 @@ public class PanelBajaClientes extends JPanel implements GUIInterfazClientes {
 				textApellidos.setText("");
 				textDireccion.setText("");
 				textTelefono.setText("");
+				btnBorrarCliente.setEnabled(false);
 				
 				JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}

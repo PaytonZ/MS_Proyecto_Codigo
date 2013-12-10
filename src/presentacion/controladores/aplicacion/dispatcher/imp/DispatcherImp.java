@@ -34,6 +34,7 @@ public class DispatcherImp extends Dispatcher {
 				|| eventoActual == IDEventos.EVENTO_MODIFICAR_CLIENTE
 				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE
 				|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE
+				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR
 				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR
 				|| eventoActual == IDEventos.ERROR_ALTA_CLIENTE
 				|| eventoActual == IDEventos.ERROR_BAJA_CLIENTE
