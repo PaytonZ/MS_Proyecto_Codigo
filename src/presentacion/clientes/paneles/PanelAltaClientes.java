@@ -141,26 +141,32 @@ public class PanelAltaClientes extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos == null) {
-			
-			JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+		if ( IDEventos.EVENTO_ALTA_CLIENTE == idEvento ) {
+		
+			if ( datos instanceof Integer ) {
+				
+				JOptionPane.showMessageDialog(contentPane, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+	
+				textDNI.setText("");
+				textPrimerApellido.setText("");
+				textSegundoApellido.setText("");
+				textNombre.setText("");
+				textDireccion.setText("");
+				textTelefono.setText("");
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
-		else if ( datos instanceof Integer ) {
+		else if ( IDEventos.ERROR_ALTA_CLIENTE == idEvento ) {
 			
-			JOptionPane.showMessageDialog(contentPane, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-
-			textDNI.setText("");
-			textPrimerApellido.setText("");
-			textSegundoApellido.setText("");
-			textNombre.setText("");
-			textDireccion.setText("");
-			textTelefono.setText("");
-		}
-		else {
-			
-			BSoDException bsod = (BSoDException) datos;
-			
-			JOptionPane.showMessageDialog(contentPane, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

@@ -8,11 +8,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -120,16 +122,34 @@ public class PanelConsultaClientes extends JPanel implements GUIPanelesInterfaz 
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof TransferCliente) {
+		if ( IDEventos.EVENTO_CONSULTAR_CLIENTE == idEvento ) {
+		
+			if ( datos instanceof TransferCliente) {
+				
+				TransferCliente cliente = (TransferCliente) datos;
+				
+				if ( cliente != null ) {
+					txtDni.setText(cliente.getDNI());
+					textNombre.setText(cliente.getNombre());
+					textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
+					textDireccion.setText(cliente.getDireccion());
+					textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
+				}
+					
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "No se pudo obtener el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else if ( IDEventos.ERROR_CONSULTAR_CLIENTE == idEvento ) {
 			
-			TransferCliente cliente = (TransferCliente) datos;
-			
-			if ( cliente != null ) {
-				txtDni.setText(cliente.getDNI());
-				textNombre.setText(cliente.getNombre());
-				textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
-				textDireccion.setText(cliente.getDireccion());
-				textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(this, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				
+				JOptionPane.showMessageDialog(this, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

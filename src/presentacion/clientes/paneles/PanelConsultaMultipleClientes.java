@@ -104,25 +104,41 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIPanelesI
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof List) {
+		if ( IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE == idEvento ) {
 			
-			@SuppressWarnings("unchecked")
-			List<TransferCliente> listaClientes = (List<TransferCliente>) datos;
-			
-			TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
-			listaClientes.toArray(clientes);
-			
-			list.setListData(clientes);
+			if ( datos != null ) {
+				if ( datos instanceof List) {
+					
+					@SuppressWarnings("unchecked")
+					List<TransferCliente> listaClientes = (List<TransferCliente>) datos;
+					
+					TransferCliente[] clientes = new TransferCliente[listaClientes.size()];
+					listaClientes.toArray(clientes);
+					
+					list.setListData(clientes);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "No se pudieron recuperar los clientes", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
-		else if ( datos instanceof BSoDException ) {
-			System.out.println( ((BSoDException) datos).getMensaje() );
-		}
-		else if ( datos instanceof Boolean ) {
+		else if ( IDEventos.ERROR_CONSULTAR_TODOS_CLIENTE == idEvento ) {
 			
-			JOptionPane.showMessageDialog(contentPane, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-		else {
-			JOptionPane.showMessageDialog(contentPane, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			if ( datos != null ) {
+				if ( datos instanceof BSoDException ) {
+					
+					JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

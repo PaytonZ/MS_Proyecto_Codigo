@@ -129,58 +129,48 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 		
 		if ( IDEventos.EVENTO_BAJA_HABITACION == idEvento ) {
 			
-			if ( datos != null ) {
-				if ( datos instanceof Boolean ) {
+			if ( datos instanceof Boolean ) {
+				
+				Boolean correcto = (Boolean) datos;
+				
+				if ( correcto ) {
+					textNumHabBusqueda.setText("");
+					textNumHabBusqueda.setEditable(true);
+					idHabitacion = null;
+					textPrecioNoche.setText("");
+					textTipoHab.setText("");
+					btnBorrarHab.setEnabled(false);
 					
-					Boolean correcto = (Boolean) datos;
+					JOptionPane.showMessageDialog(this, "La habitación se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				} 
+				else {
 					
-					if ( correcto ) {
-						textNumHabBusqueda.setText("");
-						textNumHabBusqueda.setEditable(true);
-						idHabitacion = null;
-						textPrecioNoche.setText("");
-						textTipoHab.setText("");
-						btnBorrarHab.setEnabled(false);
-						
-						JOptionPane.showMessageDialog(this, "La habitación se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-					} 
-					else {
-						
-						JOptionPane.showMessageDialog(this, "La habitación no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-					}
+					JOptionPane.showMessageDialog(this, "La habitación no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
 
-			if ( datos != null ) {
-				if ( datos instanceof TransferHabitacion ) {
-					
-					TransferHabitacion hab = (TransferHabitacion) datos;
-					
-					textTipoHab.setText( hab.getTipohabitacion().toString() );
-					textPrecioNoche.setText( String.valueOf(hab.getPrecio()) );
-					idHabitacion = hab.getNumHabitacion();
-					
-					textNumHabBusqueda.setEditable(false);
-					btnBorrarHab.setEnabled(true);
-				}
+			if ( datos instanceof TransferHabitacion ) {
+				
+				TransferHabitacion hab = (TransferHabitacion) datos;
+				
+				textTipoHab.setText( hab.getTipohabitacion().toString() );
+				textPrecioNoche.setText( String.valueOf(hab.getPrecio()) );
+				idHabitacion = hab.getNumHabitacion();
+				
+				textNumHabBusqueda.setEditable(false);
+				btnBorrarHab.setEnabled(true);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "No se ha podido obtener la habitación", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if (IDEventos.ERROR_BAJA_HABITACION == idEvento || IDEventos.ERROR_CONSULTAR_HABITACION_V_BAJA == idEvento ) {
-			
-			if ( datos != null ) {
 				
-				if ( datos instanceof BSoDException ) {
-					
-					JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				else {
-					JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
-				}
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);

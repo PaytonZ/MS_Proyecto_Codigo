@@ -14,6 +14,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -199,12 +200,42 @@ public class PanelModificacionClientes extends JPanel implements GUIPanelesInter
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof TransferCliente) {
+		if ( IDEventos.EVENTO_MODIFICAR_CLIENTE == idEvento ) {
 			
-			TransferCliente cliente = (TransferCliente) datos;
-			
-			if ( cliente != null ) {
+			if ( datos instanceof Boolean ) {
 				
+				Boolean correcto = (Boolean) datos;
+				
+				if ( correcto ) {
+					textDNIBusqueda.setText("");
+					textDNIBusqueda.setEditable(true);
+					textNombre.setText("");
+					textNombre.setEditable(true);
+					textPrimerApellido.setText("");
+					textPrimerApellido.setEditable(true);
+					textSegundoApellido.setText("");
+					textSegundoApellido.setEditable(true);
+					textDireccion.setText("");
+					textDireccion.setEditable(true);
+					textTelefono.setText("");
+					textTelefono.setEditable(true);
+					
+					JOptionPane.showMessageDialog(contentPane, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					
+					JOptionPane.showMessageDialog(contentPane, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				idCliente = null;
+			}
+		}
+		else if ( IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR == idEvento ) {
+			
+			if ( datos instanceof TransferCliente) {
+				
+				TransferCliente cliente = (TransferCliente) datos;
+				
+					
 				idCliente = cliente.getID();
 				textNombre.setText(cliente.getNombre());
 				textNombre.setEditable(true);
@@ -218,31 +249,15 @@ public class PanelModificacionClientes extends JPanel implements GUIPanelesInter
 				textTelefono.setEditable(true);
 			}
 		}
-		else if ( datos instanceof Boolean ) {
+		else if ( IDEventos.ERROR_MODIFICAR_CLIENTE == idEvento || IDEventos.ERROR_CONSULTAR_CLIENTE_V_MODIFICAR == idEvento ) {
 			
-			Boolean correcto = (Boolean) datos;
-			
-			if ( correcto ) {
-				textDNIBusqueda.setText("");
-				textDNIBusqueda.setEditable(true);
-				textNombre.setText("");
-				textNombre.setEditable(true);
-				textSegundoApellido.setText("");
-				textSegundoApellido.setEditable(true);
-				textSegundoApellido.setText("");
-				textSegundoApellido.setEditable(true);
-				textDireccion.setText("");
-				textDireccion.setEditable(true);
-				textTelefono.setText("");
-				textTelefono.setEditable(true);
+			if ( datos instanceof BSoDException ) {
 				
-				JOptionPane.showMessageDialog(contentPane, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
-				
-				JOptionPane.showMessageDialog(contentPane, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			idCliente = null;
 		}
 	}
 }

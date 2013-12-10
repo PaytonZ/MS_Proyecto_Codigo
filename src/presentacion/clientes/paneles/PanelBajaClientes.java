@@ -14,6 +14,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -140,11 +141,36 @@ public class PanelBajaClientes extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( datos instanceof TransferCliente) {
+		if ( IDEventos.EVENTO_BAJA_CLIENTE == idEvento ) {
 			
-			TransferCliente cliente = (TransferCliente) datos;
+			if ( datos instanceof Boolean ) {
+				
+				Boolean correcto = (Boolean) datos;
+				
+				if ( correcto ) {
+					textDNIBusqueda.setText("");
+					idCliente = null;
+					txtDni.setText("");
+					textNombre.setText("");
+					textApellidos.setText("");
+					textDireccion.setText("");
+					textTelefono.setText("");
+					btnBorrarCliente.setEnabled(false);
+					
+					JOptionPane.showMessageDialog(contentPane, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					
+					JOptionPane.showMessageDialog(contentPane, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+		else if ( IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR == idEvento ) {
 			
-			if ( cliente != null ) {
+			if ( datos instanceof TransferCliente) {
+				
+				TransferCliente cliente = (TransferCliente) datos;
+				
 				idCliente = cliente.getID();
 				txtDni.setText(cliente.getDNI());
 				textNombre.setText(cliente.getNombre());
@@ -154,25 +180,15 @@ public class PanelBajaClientes extends JPanel implements GUIPanelesInterfaz {
 				btnBorrarCliente.setEnabled(true);
 			}
 		}
-		else if ( datos instanceof Boolean ) {
+		else if ( IDEventos.ERROR_BAJA_CLIENTE == idEvento || IDEventos.ERROR_CONSULTAR_CLIENTE_V_BORRAR == idEvento ) {
 			
-			Boolean correcto = (Boolean) datos;
-			
-			if ( correcto ) {
-				textDNIBusqueda.setText("");
-				idCliente = null;
-				txtDni.setText("");
-				textNombre.setText("");
-				textApellidos.setText("");
-				textDireccion.setText("");
-				textTelefono.setText("");
-				btnBorrarCliente.setEnabled(false);
+			if ( datos instanceof BSoDException ) {
 				
-				JOptionPane.showMessageDialog(contentPane, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				
-				JOptionPane.showMessageDialog(contentPane, "El cliente no se ha borrado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
