@@ -126,6 +126,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 			{
 				resultado=false;
 				listareservas=null;
+				transacion.rollback();
 			}
 		} catch (Exception e) {
 			throw new BSoDException(e.toString());
