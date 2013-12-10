@@ -30,11 +30,15 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 	private JTextField textTelefono;
 	private JTextField textDNI;
 	private JTextField textPrimerApellido;
+	
+	private JPanel contentPane;
 
 	/**
 	 * Create the panel.
 	 */
 	public PanelAltaClientes() {
+		
+		contentPane = this;
 		
 		setPreferredSize(new Dimension(600, 400));
 		setMinimumSize(new Dimension(100, 100));
@@ -111,7 +115,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 					cliente.setDireccion(textDireccion.getText());
 					
 					if ( textPrimerApellido.getText().equals("") ) {
-						JOptionPane.showMessageDialog(null, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						cliente.setPrimerApellido(textPrimerApellido.getText().trim());
@@ -122,14 +126,14 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 						
 						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_CLIENTE, cliente);
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -141,11 +145,11 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 		
 		if ( datos == null) {
 			
-			JOptionPane.showMessageDialog(this, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if ( datos instanceof Integer ) {
 			
-			JOptionPane.showMessageDialog(this, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, "Cliente creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
 			textDNI.setText("");
 			textPrimerApellido.setText("");
@@ -158,7 +162,7 @@ public class PanelAltaClientes extends JPanel implements GUIInterfazClientes {
 			
 			BSoDException bsod = (BSoDException) datos;
 			
-			JOptionPane.showMessageDialog(this, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, bsod.getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

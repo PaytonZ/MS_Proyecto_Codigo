@@ -37,7 +37,12 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 	private Integer idCliente;
 	private JTextField textPrimerApellido;
 	
+	private JPanel contentPane;
+	
 	public PanelModificacionClientes() {
+		
+		contentPane = this;
+		
 		setLayout(new MigLayout("", "[][][60.00,grow][][36.00][][grow][]", "[][][][][18.00][17.00][][10.00][][9.00][][16.00][13.00][]"));
 		
 		JLabel lblModificacinDeClientes = new JLabel("Modificación de clientes");
@@ -157,7 +162,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 					cliente.setDireccion(textDireccion.getText());
 					
 					if ( textPrimerApellido.getText().equals("") ) {
-						JOptionPane.showMessageDialog(null, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						cliente.setPrimerApellido(textPrimerApellido.getText().trim());
@@ -169,14 +174,14 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 							cliente.setNumTelefono( Integer.valueOf(textTelefono.getText()) );
 						}
 						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(null, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(contentPane, "El teléfono contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 						
 						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_CLIENTE, cliente);
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -199,6 +204,7 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 			TransferCliente cliente = (TransferCliente) datos;
 			
 			if ( cliente != null ) {
+				
 				idCliente = cliente.getID();
 				textNombre.setText(cliente.getNombre());
 				textNombre.setEditable(true);
@@ -230,11 +236,11 @@ public class PanelModificacionClientes extends JPanel implements GUIInterfazClie
 				textTelefono.setText("");
 				textTelefono.setEditable(true);
 				
-				JOptionPane.showMessageDialog(this, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				
-				JOptionPane.showMessageDialog(this, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			idCliente = null;
 		}

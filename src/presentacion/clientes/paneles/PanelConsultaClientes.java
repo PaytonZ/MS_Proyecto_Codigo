@@ -37,6 +37,7 @@ public class PanelConsultaClientes extends JPanel implements GUIInterfazClientes
 	private JTextField textTelefono;
 	
 	public PanelConsultaClientes() {
+		
 		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][]"));
 		
 		JLabel lblConsultaClientes = new JLabel("Consulta clientes");

@@ -228,7 +228,7 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 					}
 					else {
 
-						JOptionPane.showMessageDialog(contentPane, "Ocurrión un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "Ocurrió un error al añadir la habitación", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 						
 						textNumHab.setText("");
 						textPrecioNoche.setText("");

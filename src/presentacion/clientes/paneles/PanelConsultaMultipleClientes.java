@@ -39,7 +39,11 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 	
 	private JList<TransferCliente> list;
 	
+	private JPanel contentPane;
+	
 	public PanelConsultaMultipleClientes() {
+		
+		contentPane = this;
 		
 		setLayout(new BorderLayout(0, 0));
 
@@ -115,10 +119,10 @@ public class PanelConsultaMultipleClientes extends JPanel implements GUIInterfaz
 		}
 		else if ( datos instanceof Boolean ) {
 			
-			JOptionPane.showMessageDialog(this, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, "El cliente se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
-			JOptionPane.showMessageDialog(this, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(contentPane, "Error al borrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
