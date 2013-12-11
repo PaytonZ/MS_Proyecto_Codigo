@@ -14,7 +14,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import negocio.excepciones.BSoDException;
+import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -155,7 +157,11 @@ public class PanelBajaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				
 				TransferHabitacion hab = (TransferHabitacion) datos;
 				
-				textTipoHab.setText( hab.getTipohabitacion().toString() );
+				if(hab instanceof TransferHabitacionSuite)
+					textTipoHab.setText( TipoHabitacion.HABITACION_SUITE.toString() );
+				else textTipoHab.setText( TipoHabitacion.HABITACION_NORMAL.toString() );
+		
+
 				textPrecioNoche.setText( String.valueOf(hab.getPrecio()) );
 				idHabitacion = hab.getNumHabitacion();
 				

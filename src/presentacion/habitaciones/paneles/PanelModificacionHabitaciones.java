@@ -128,12 +128,10 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 					switch ((TipoHabitacion) comboBox.getSelectedItem()) {
 					case HABITACION_NORMAL:
 						habitacion = new TransferHabitacionNormal();
-						habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 						break;
 
 					case HABITACION_SUITE:
 						habitacion = new TransferHabitacionSuite();
-						habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 						break;
 					}
 					
@@ -142,7 +140,7 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 						habitacion.setPrecio( Double.valueOf(textPrecio.getText().trim()) );
 						
 						if ( Double.valueOf(textPrecio.getText().trim()) >= 0 ) {
-							habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+//							habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
 							
 							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_HABITACION, habitacion);
 						}
@@ -211,7 +209,10 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 				
 				textPrecio.setText( String.valueOf(habitacion.getPrecio()) );
 				textPrecio.setEditable(true);
-				comboBox.setSelectedItem(habitacion.getTipohabitacion());
+				
+				if(habitacion instanceof TransferHabitacionSuite)
+					comboBox.setSelectedItem(TipoHabitacion.HABITACION_SUITE);
+				else comboBox.setSelectedItem(TipoHabitacion.HABITACION_NORMAL);
 				comboBox.setEnabled(true);
 				btnModificarHab.setEnabled(true);
 			}

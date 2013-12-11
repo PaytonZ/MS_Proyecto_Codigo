@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JLabel;
@@ -116,7 +118,9 @@ public class PanelConsultaHabitaciones extends JPanel implements GUIPanelesInter
 			TransferHabitacion t = (TransferHabitacion) datos;
 			numHabtext.setText(String.valueOf(t.getNumHabitacion()));
 			precioText.setText(String.valueOf(t.getPrecio()));
-			tipohabText.setText((t.getTipohabitacion().toString()));
+			if(t instanceof TransferHabitacionSuite)
+				tipohabText.setText( TipoHabitacion.HABITACION_SUITE.toString() );
+			else tipohabText.setText( TipoHabitacion.HABITACION_NORMAL.toString() );
 		}
 		}
 		
