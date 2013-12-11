@@ -133,8 +133,29 @@ public class SAClientesImp implements SAClientes {
 		Boolean correcto = false;
 		
 		try {
-			correcto =  dao.updateCliente(clienteActualizado);
-			transacion.commit();
+			if(clienteActualizado == null)
+			{
+				transacion.rollback();
+				throw new BSoDException("El cliente no existe");
+			}
+			else if(clienteActualizado.getDNI().equals("")
+					||clienteActualizado.getNombre().equals("")
+					||clienteActualizado.getPrimerApellido().equals("")
+					||clienteActualizado.getDireccion().equals("")) 
+			{
+				transacion.rollback();
+				throw new BSoDException("Falta informacion necesaria del usuario");
+			}
+			else if(clienteActualizado.getNumTelefono()< 0)
+			{
+				transacion.rollback();
+				throw new BSoDException("El telefono no puede ser un numero negativo");
+			}
+			else
+			{
+				correcto =  dao.updateCliente(clienteActualizado);
+				transacion.commit();
+			}
 		}
 		catch(BSoDException e ) {
 			transacion.rollback();
@@ -161,17 +182,24 @@ public class SAClientesImp implements SAClientes {
 		transacion.start();
 		Boolean resultado = null;
 		try
-		{		List<TransferReserva> l = FactoriaDAO.getInstance().generaDAOReserva().getAllReservasporCliente(idCliente);
-				if(l.isEmpty()) //Si el cliente no tiene reservas activas , se puede dar de baja.
-				{
-					resultado = dao.deleteCliente(idCliente);
-					transacion.commit();
-				}
-				else
-				{
-					resultado=false;
-					transacion.rollback();
-				}
+		{		
+			if(dao.getClienteByID(idCliente) == null)
+			{
+				throw new BSoDException("El cliente no existe");
+			}
+			List<TransferReserva> l = FactoriaDAO.getInstance().generaDAOReserva().getAllReservasporCliente(idCliente);
+			if(l.isEmpty()) //Si el cliente no tiene reservas activas , se puede dar de baja.
+			{
+				resultado = dao.deleteCliente(idCliente);
+				transacion.commit();
+			}
+			else
+			{
+				resultado=false;
+				transacion.rollback();
+				throw new BSoDException("El cliente tiene reservasm, no se puede borrar");
+			
+			}
 				
 		}
 		catch(BSoDException e)
