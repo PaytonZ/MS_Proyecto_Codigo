@@ -70,8 +70,8 @@ public class SAReservasImp implements SAReservas {
 		Integer idReserva = null;
 		try {
 
-			Date diaentradanuevareserva = (Date) reserva.getFechaEntrada();
-			Date diasalidanuevareserva = (Date) reserva.getFechaReserva();
+			Date diaentradanuevareserva = new Date( ((java.util.Date) reserva.getFechaEntrada()).getTime());
+			Date diasalidanuevareserva = new Date( ((java.util.Date) reserva.getFechaReserva()).getTime());
 
 			if (diasalidanuevareserva.after(diaentradanuevareserva)) {
 				List<TransferReserva> listareservasporhabitacion = dao
