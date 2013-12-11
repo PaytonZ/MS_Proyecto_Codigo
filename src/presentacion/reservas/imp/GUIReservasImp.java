@@ -53,8 +53,8 @@ switch (evento_actual) {
 		case ERROR_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS:
 			getPanelModificacionReservas().actualizarVentana(evento_actual, datos);
 			break;
-		case EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE:
-		case ERROR_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE:
+		case EVENTO_CONSULTAR_TODAS_RESERVAS:
+		case ERROR_CONSULTAR_TODAS_RESERVAS:
 			getPanelConsultaMultipleReservas().actualizarVentana(evento_actual, datos);
 			break;
 
