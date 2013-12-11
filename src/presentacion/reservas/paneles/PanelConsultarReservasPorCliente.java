@@ -23,6 +23,7 @@ import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAp
 
 public class PanelConsultarReservasPorCliente extends JPanel implements GUIPanelesInterfaz {
 	
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField textDNIBuscar;
 	private JList<TransferReserva> list;
@@ -106,7 +107,9 @@ public class PanelConsultarReservasPorCliente extends JPanel implements GUIPanel
 				
 				TransferReserva[] reservas = new TransferReserva[listaReservas.size()];
 				
-				list = new JList<>(reservas);
+				listaReservas.toArray(reservas);
+				
+				list.setListData(reservas);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "No se encontraron reservas para este cliente", "Error", JOptionPane.ERROR_MESSAGE);
