@@ -175,6 +175,7 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	@Override
 	public List<TransferReserva> obtenerTodaslasReservasPorCliente(Integer idCliente)
 			throws BSoDException {
 
@@ -220,9 +221,10 @@ public class SAReservasImp implements SAReservas {
 	}
 
 	@Override
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente)
-			throws BSoDException {
+	public List<TransferReserva> obtenerTodaslasReservas() throws BSoDException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }
