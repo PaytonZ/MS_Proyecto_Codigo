@@ -135,8 +135,8 @@ public class TestSAReservasimp {
 		catch
 		(Exception ex)
 		{
-			ex.printStackTrace(System.out);
-			System.out.println("Fallo: No se pudo insertar una reserva normal");
+//			ex.printStackTrace(System.out);
+			assertTrue("Fallo: No se pudo insertar una reserva normal", false);
 		}
 							
 	}

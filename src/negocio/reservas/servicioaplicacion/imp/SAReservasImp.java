@@ -70,10 +70,10 @@ public class SAReservasImp implements SAReservas {
 		Integer idReserva = null;
 		try {
 
-			Date diaentradanuevareserva = new Date( ((java.util.Date) reserva.getFechaEntrada()).getTime());
-			Date diasalidanuevareserva = new Date( ((java.util.Date) reserva.getFechaReserva()).getTime());
+			Date diaEntradaNuevaReserva = new Date( ((java.util.Date) reserva.getFechaEntrada()).getTime());
+			Date diaSalidaNuevaReserva = new Date( ((java.util.Date) reserva.getFechaSalida()).getTime());
 
-			if (diaentradanuevareserva.after(diasalidanuevareserva)) {
+			if (diaEntradaNuevaReserva.before(diaSalidaNuevaReserva)) {
 				
 				List<TransferReserva> listareservasporhabitacion = dao.getReservasporHabitacion(reserva.getNumeroHabitacion());
 				
@@ -87,12 +87,12 @@ public class SAReservasImp implements SAReservas {
 						
 						System.out.println(diaentrada);
 						System.out.println(diasalida);
-						System.out.println(diaentradanuevareserva);
-						System.out.println(diasalidanuevareserva);
+						System.out.println(diaEntradaNuevaReserva);
+						System.out.println(diaSalidaNuevaReserva);
 						
-						if ( (diaentrada.before(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva))
-							&& diaentrada.before(diaentradanuevareserva) && diasalida.before(diasalidanuevareserva)
-							&& diaentrada.after(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva)) {
+						if ( (diaentrada.before(diaEntradaNuevaReserva) && diasalida.after(diaSalidaNuevaReserva))
+							&& diaentrada.before(diaEntradaNuevaReserva) && diasalida.before(diaSalidaNuevaReserva)
+							&& diaentrada.after(diaEntradaNuevaReserva) && diasalida.after(diaSalidaNuevaReserva)) {
 							
 							throw new BSoDException("La habitación ya está reservada para algún intervalo del solicitdo");
 						}
