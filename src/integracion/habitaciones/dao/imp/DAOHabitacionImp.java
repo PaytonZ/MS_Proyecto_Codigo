@@ -111,11 +111,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				switch (rowHabitacion.getString("tipohabitacion")) {
 				case "HABITACION_NORMAL":
 					habitacion = new TransferHabitacionNormal();
-					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 					break;
 				case "HABITACION_SUITE":
 					habitacion = new TransferHabitacionSuite();
-					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 					break;
 				default:
 					habitacion = new TransferHabitacionNormal();
@@ -164,11 +162,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				switch (rowsHabitaciones.getString("tipohabitacion")) {
 				case "HABITACION_NORMAL":
 					habitacion = new TransferHabitacionNormal();
-					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 					break;
 				case "HABITACION_SUITE":
 					habitacion = new TransferHabitacionSuite();
-					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 					break;
 				default:
 					habitacion = new TransferHabitacionNormal();

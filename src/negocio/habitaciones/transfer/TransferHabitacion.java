@@ -9,7 +9,7 @@ package negocio.habitaciones.transfer;
 */
 public class TransferHabitacion {
 	
-	private TipoHabitacion tipohabitacion;
+	//protected TipoHabitacion tipohabitacion;
 	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -76,20 +76,20 @@ public class TransferHabitacion {
 	/**
 	 * @return the tipohabitacion
 	 */
-	public TipoHabitacion getTipohabitacion() {
-		return tipohabitacion;
-	}
-
-	/**
-	 * @param tipohabitacion the tipohabitacion to set
-	 */
-	public void setTipohabitacion(TipoHabitacion tipohabitacion) {
-		this.tipohabitacion = tipohabitacion;
-	}
+//	public TipoHabitacion getTipohabitacion() {
+//		return tipohabitacion;
+//	}
+//
+//	/**
+//	 * @param tipohabitacion the tipohabitacion to set
+//	 */
+//	public void setTipohabitacion(TipoHabitacion tipohabitacion) {
+//		this.tipohabitacion = tipohabitacion;
+//	}
 	
 	@Override
 	public String toString() {
 		
-		return getNumHabitacion() + " " + getTipohabitacion() + " " + getPrecio() + "€";
+		return getNumHabitacion() + " "  + " " + getPrecio() + "€";
 	}
 }

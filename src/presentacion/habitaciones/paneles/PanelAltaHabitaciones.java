@@ -150,12 +150,10 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 						switch ((TipoHabitacion) comboBox.getSelectedItem()) {
 						case HABITACION_NORMAL:
 							habitacion = new TransferHabitacionNormal();
-							habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 							break;
 
 						case HABITACION_SUITE:
 							habitacion = new TransferHabitacionSuite();
-							habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 							break;
 						}
 						
