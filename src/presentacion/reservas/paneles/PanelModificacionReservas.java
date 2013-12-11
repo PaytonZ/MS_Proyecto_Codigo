@@ -150,7 +150,7 @@ public class PanelModificacionReservas extends JPanel implements GUIPanelesInter
 					try{
 						reserva.setNumeroReserva(Integer.parseInt(textNReserva.getText().trim()));
 						reserva.setFechaEntrada(new Date(textFechaEntrada.getText().trim()));
-						reserva.setFechaSalida(fechaSalida);
+						reserva.setFechaSalida(new Date(textFechaSalida.getText().trim()));
 						try{
 							reserva.setNumeroHabitacion(Integer.parseInt(textNHabitacion.getText().trim()));
 						}catch(NumberFormatException nu){
