@@ -141,7 +141,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				entrada.setTime(calendarioEntrada.getDate());
 				
 				Calendar salida = Calendar.getInstance();
-				salida.setTime(calendarioEntrada.getDate());
+				salida.setTime(calendarioSalida.getDate());
 
 				if (!textDNI.getText().equals("")
 						&& !textNHabitacion.getText().equals("")
