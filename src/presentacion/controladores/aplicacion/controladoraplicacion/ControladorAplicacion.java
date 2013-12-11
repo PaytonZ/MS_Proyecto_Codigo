@@ -5,7 +5,6 @@ package presentacion.controladores.aplicacion.controladoraplicacion;
 
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.imp.ControladorAplicacionImp;
-import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

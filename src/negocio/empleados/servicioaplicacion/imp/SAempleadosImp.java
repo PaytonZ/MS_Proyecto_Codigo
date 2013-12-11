@@ -6,7 +6,6 @@ package negocio.empleados.servicioaplicacion.imp;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.empleados.transfer.TransferEmpleado;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

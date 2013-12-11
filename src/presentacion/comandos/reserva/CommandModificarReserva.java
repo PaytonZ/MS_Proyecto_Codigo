@@ -5,7 +5,6 @@ package presentacion.comandos.reserva;
 
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
-import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.reservas.transfer.TransferReserva;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
