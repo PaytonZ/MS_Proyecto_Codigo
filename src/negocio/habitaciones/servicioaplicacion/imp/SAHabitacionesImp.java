@@ -46,8 +46,8 @@ public class SAHabitacionesImp implements SAHabitaciones {
 
 		try {
 			if(habitacionNueva != null &&
-				habitacionNueva.getNumHabitacion() != null &&
-				habitacionNueva.getPrecio() != null){
+				habitacionNueva.getNumHabitacion() >-1 &&
+				habitacionNueva.getPrecio() > -1d){
 				
 				idHabitacion = dao.addHabitacion(habitacionNueva);
 				transacion.commit();

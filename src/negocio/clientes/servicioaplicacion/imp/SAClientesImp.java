@@ -45,11 +45,11 @@ public class SAClientesImp implements SAClientes {
 		
 		try {
 			if( clienteNuevo != null &&
-				clienteNuevo.getDNI() != null &&
-				clienteNuevo.getNombre() != null &&
-				clienteNuevo.getPrimerApellido() != null &&
-				clienteNuevo.getDireccion() != null &&
-				clienteNuevo.getNumTelefono() != null){
+				!clienteNuevo.getDNI().equals("") &&
+				!clienteNuevo.getNombre().equals("") &&
+				!clienteNuevo.getPrimerApellido().equals("") &&
+				!clienteNuevo.getDireccion().equals("") &&
+				clienteNuevo.getNumTelefono() >-1){
 				
 			
 					idCliente = dao.addCliente(clienteNuevo);
