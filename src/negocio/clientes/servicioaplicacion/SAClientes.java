@@ -60,11 +60,13 @@ public interface SAClientes {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param idCliente
+	 * @param dniCliente
 	 * @return
 	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferCliente obtenerCliente(String idCliente) throws BSoDException;
+	public TransferCliente obtenerCliente(String dniCliente) throws BSoDException;
+	
+	public TransferCliente obtenerClienteByID(Integer idCliente) throws BSoDException;
 }

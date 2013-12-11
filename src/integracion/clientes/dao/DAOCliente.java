@@ -35,6 +35,8 @@ public interface DAOCliente {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TransferCliente getCliente(String dniCliente)throws BSoDException;
+	
+	public TransferCliente getClienteByID(Integer idCliente)throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

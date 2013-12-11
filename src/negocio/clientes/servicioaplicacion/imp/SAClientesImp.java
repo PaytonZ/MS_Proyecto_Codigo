@@ -205,4 +205,26 @@ public class SAClientesImp implements SAClientes {
 		
 		return t;
 	}
+	
+	public TransferCliente obtenerClienteByID(Integer idCliente) throws BSoDException {
+		
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOCliente dao = FactoriaDAO.getInstance().generaDAOCliente();
+		TransferCliente t = null;
+		transacion.start();
+		try
+		{
+				t = dao.getClienteByID(idCliente);
+		}catch(BSoDException e)
+		{
+			throw e;
+		}
+		finally
+		{
+			tm.eliminaTransaccion();
+		}
+		
+		return t;
+	}
 }
