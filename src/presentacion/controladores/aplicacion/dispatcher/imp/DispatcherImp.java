@@ -54,12 +54,14 @@ public class DispatcherImp extends Dispatcher {
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS 
+				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS 
 				    || eventoActual == IDEventos.ERROR_ALTA_RESERVA
 				    || eventoActual == IDEventos.ERROR_BAJA_RESERVA
 				    || eventoActual == IDEventos.ERROR_MODIFICAR_RESERVA
 				    || eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA
 				    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS
 				    || eventoActual == IDEventos.ERROR_CONSULTAR_CLIENTE_V_ALTA_RESERVAS
+				    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS
 		    		|| eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS) {
 			
 			GUIReservas.getInstance().update(eventoActual, datos);
