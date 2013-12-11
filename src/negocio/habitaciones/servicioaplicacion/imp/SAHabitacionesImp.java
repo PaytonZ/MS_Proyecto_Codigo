@@ -45,17 +45,25 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		Integer idHabitacion = null;
 
 		try {
-			if(habitacionNueva != null &&
-				habitacionNueva.getNumHabitacion() >-1 &&
-				habitacionNueva.getPrecio() > -1d){
+			if(habitacionNueva == null){
+				transacion.rollback();
+				throw new BSoDException("La habitacion no existe");
+			}
+			else if(habitacionNueva.getNumHabitacion() <0 
+					|| habitacionNueva.getPrecio() < 0d){
 				
-				idHabitacion = dao.addHabitacion(habitacionNueva);
-				transacion.commit();
-				
+				transacion.rollback();
+				throw new BSoDException("Faltan daots necesarios");
+							
+			}
+			else if(dao.getHabitacion(habitacionNueva.getNumHabitacion()) != null){
+					
+				transacion.rollback();
+				throw new BSoDException("El cliente ya existe");
 			}
 			else{
-				idHabitacion = null;
-				transacion.rollback();
+				idHabitacion = dao.addHabitacion(habitacionNueva);
+				transacion.commit();
 			}
 		} catch (BSoDException e) {
 			transacion.rollback();

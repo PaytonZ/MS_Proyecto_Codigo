@@ -62,7 +62,7 @@ public class SAClientesImp implements SAClientes {
 				transacion.rollback();
 				throw new BSoDException("El telefono no puede ser un numero negativo");
 			}
-			else if((dao.getCliente(clienteNuevo.getDNI()) == null))
+			else if((dao.getCliente(clienteNuevo.getDNI()) != null))
 			{
 				transacion.rollback();
 				throw new BSoDException("El cliente ya existe");
