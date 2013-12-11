@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -93,7 +94,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 
 				if (!textDNI.getText().equals("")) {
 
-					String dniCliente = textDNI.getText();
+					String dniCliente = textDNI.getText().trim();
 
 					ControladorAplicacion.getInstance().handleRequest(
 							IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS,
@@ -135,12 +136,18 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 			public void actionPerformed(ActionEvent e) {
 
 				TransferReserva reserva = new TransferReserva();
+				
+				Calendar entrada = Calendar.getInstance();
+				entrada.setTime(calendarioEntrada.getDate());
+				
+				Calendar salida = Calendar.getInstance();
+				salida.setTime(calendarioEntrada.getDate());
 
 				if (!textDNI.getText().equals("")
 						&& !textNHabitacion.getText().equals("")
 						&& idCliente > -1
-						&& calendarioEntrada.getDate().compareTo(new Date()) >= 0
-						&& calendarioSalida.getDate().compareTo(calendarioEntrada.getDate()) >= 0) {
+						&& entrada.get(Calendar.DAY_OF_MONTH) >= Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+						&& salida.get(Calendar.DAY_OF_MONTH) > entrada.get(Calendar.DAY_OF_MONTH)) {
 
 					reserva.setidusuario(idCliente);
 					reserva.setFechaEntrada(calendarioEntrada.getDate());
@@ -160,13 +167,13 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 					
 					JOptionPane.showMessageDialog( null, "No se encontró el cliente solicitado", "Error", JOptionPane.ERROR_MESSAGE);
 					
-				} else if (calendarioEntrada.getDate().compareTo(new Date()) < 0) {
+				} else if (entrada.get(Calendar.DAY_OF_MONTH) < Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
 					
 					JOptionPane.showConfirmDialog( null, "La fecha de entrada no puede ser inferior a la fecha actual", "Aviso", JOptionPane.WARNING_MESSAGE);
 					
-				} else if (calendarioSalida.getDate().compareTo(calendarioEntrada.getDate()) < 0) {
+				} else if (salida.get(Calendar.DAY_OF_MONTH) <= entrada.get(Calendar.DAY_OF_MONTH)) {
 					
-					JOptionPane.showConfirmDialog( null, "La fecha de salida no puede ser inferior a la fecha de entrada", "Aviso", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showConfirmDialog( null, "La fecha de salida no puede ser inferior o igual a la fecha de entrada", "Aviso", JOptionPane.WARNING_MESSAGE);
 				} else {
 					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
