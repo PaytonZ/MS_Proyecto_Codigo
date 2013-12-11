@@ -5,13 +5,21 @@ package presentacion.reservas.paneles;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import negocio.clientes.transfer.TransferCliente;
+import negocio.excepciones.BSoDException;
+import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
+import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -51,6 +59,15 @@ public class PanelConsultaReservas extends JPanel implements GUIPanelesInterfaz 
 		textID.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Integer idreserva = Integer.parseInt(textID.getText());
+				
+				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_RESERVA, idreserva);
+			}
+		});
 		add(btnBuscar, "cell 5 3");
 		
 		JSeparator separator_1 = new JSeparator();
@@ -77,7 +94,7 @@ public class PanelConsultaReservas extends JPanel implements GUIPanelesInterfaz 
 		add(textNHabitacion, "cell 1 8 2 1,growx");
 		textNHabitacion.setColumns(10);
 		
-		JLabel lblFechaEntrada = new JLabel("Fecha ENtrada");
+		JLabel lblFechaEntrada = new JLabel("Fecha Entrada");
 		add(lblFechaEntrada, "cell 5 8,alignx trailing");
 		
 		textFechaEntrada = new JTextField();
@@ -96,9 +113,37 @@ public class PanelConsultaReservas extends JPanel implements GUIPanelesInterfaz 
 
 	}
 	public void actualizarVentana(IDEventos idEventos, Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+		if ( IDEventos.EVENTO_CONSULTAR_RESERVA == idEventos ) {
+			
+			if ( datos instanceof TransferReserva) {
+				
+				TransferReserva reserva = (TransferReserva) datos;
+				
+				if ( reserva != null ) {
+					textDNI.setText(reserva.getidusuario().toString());
+					textNHabitacion.setText(reserva.getNumeroHabitacion().toString());
+					textFechaEntrada.setText(reserva.getFechaEntrada().toString());
+					textFechaReserva.setText(reserva.getFechaReserva().toString());
+					textFechaSalida.setText(reserva.getFechaSalida().toString());
+					
+				}
+					
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "No se pudo obtener la reserva", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else if ( IDEventos.ERROR_CONSULTAR_RESERVA == idEventos ) {
+			
+			if ( datos instanceof BSoDException ) {
+				
+				JOptionPane.showMessageDialog(this, ((BSoDException)datos).getMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				
+				JOptionPane.showMessageDialog(this, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
+	
 }
