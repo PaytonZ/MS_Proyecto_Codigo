@@ -61,7 +61,7 @@ public class PanelConsultaMultiplesHabitaciones extends JPanel implements GUIPan
 		
 		panel.setLayout(new MigLayout("fillx", "[208.00,right]", "[]"));
 		
-		JButton btnNewButton = new JButton("Consultar clientes");
+		JButton btnNewButton = new JButton("Consultar habitaciones");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

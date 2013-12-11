@@ -101,7 +101,7 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see GUIInterfazClientes#actualizarVentana(Object datos)
+	 * @see GUIInterfazReservas#actualizarVentana(Object datos)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
