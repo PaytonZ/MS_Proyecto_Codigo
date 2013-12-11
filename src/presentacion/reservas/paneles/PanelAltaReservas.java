@@ -158,7 +158,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 
 				} else if (idCliente <= -1) {
 					
-					JOptionPane.showMessageDialog( null, "Deben verificarse los datos del cliente antes de proceder con la reserva", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog( null, "No se encontró el cliente solicitado", "Error", JOptionPane.ERROR_MESSAGE);
 					
 				} else if (calendarioEntrada.getDate().compareTo(new Date()) < 0) {
 					
