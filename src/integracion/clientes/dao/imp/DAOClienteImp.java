@@ -35,6 +35,7 @@ public class DAOClienteImp implements DAOCliente {
 	 */
 	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
 	private final String getClientebyDNIQuery = "SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true FOR UPDATE";
+	private final String getClienteByIDQuery = "SELECT * FROM clientes WHERE idclientes = ? AND activo = true FOR UPDATE";
 	private final String getClienteQuery = "SELECT * FROM clientes WHERE DNI = ? AND activo = true FOR UPDATE";
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
 	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true FOR UPDATE";
@@ -133,6 +134,41 @@ public class DAOClienteImp implements DAOCliente {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(getClienteQuery);
 			preparedStatement.setString(1, dniCliente);
+
+			ResultSet rowCliente = preparedStatement.executeQuery();
+
+			if (rowCliente.next()) {
+				cliente = new TransferCliente();
+
+				cliente.setID(rowCliente.getInt("idClientes"));
+				cliente.setDNI(rowCliente.getString("DNI"));
+				cliente.setDireccion(rowCliente.getString("direccion"));
+				cliente.setNombre(rowCliente.getString("nombre"));
+				cliente.setPrimerApellido(rowCliente.getString("1apellido"));
+				cliente.setSegundoApellido(rowCliente.getString("2apellido"));
+				cliente.setNumTelefono(rowCliente.getInt("telefono"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BSoDException("Error al cargar el usuario");
+		}
+
+		return cliente;
+	}
+	
+	public TransferCliente getClienteByID(Integer idCliente)throws BSoDException {
+
+
+		Transaction transaction = TransactionManager.getInstance()
+				.getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+
+		TransferCliente cliente = null;
+
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(getClienteByIDQuery);
+			preparedStatement.setInt(1, idCliente);
 
 			ResultSet rowCliente = preparedStatement.executeQuery();
 

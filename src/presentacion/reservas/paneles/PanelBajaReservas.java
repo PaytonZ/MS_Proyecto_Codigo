@@ -130,7 +130,7 @@ public class PanelBajaReservas extends JPanel implements GUIPanelesInterfaz {
 					try {
 						Integer idReserva = Integer.valueOf(textNReserva.getText().trim());
 						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.ERROR_BAJA_RESERVA, idReserva);
+						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_RESERVA, idReserva);
 					}
 					catch ( NumberFormatException nu) {
 						JOptionPane.showMessageDialog(contentPane, "El número de la reserva no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
@@ -176,7 +176,7 @@ public class PanelBajaReservas extends JPanel implements GUIPanelesInterfaz {
 				
 				TransferCliente cliente = (TransferCliente) datos;
 				
-				textDNI.setText(cliente.getDNI());
+				textDNI.setText( String.valueOf(cliente.getID()));
 			}
 		}
 		else if ( IDEventos.EVENTO_BAJA_RESERVA == idEventos ) {

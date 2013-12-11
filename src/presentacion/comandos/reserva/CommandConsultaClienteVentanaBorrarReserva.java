@@ -15,7 +15,7 @@ public class CommandConsultaClienteVentanaBorrarReserva  implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente((String) datos));
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerClienteByID((Integer) datos));
 	
 			
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR_RESERVAS);
