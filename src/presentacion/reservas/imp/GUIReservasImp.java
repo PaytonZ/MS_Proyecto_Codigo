@@ -37,6 +37,10 @@ switch (evento_actual) {
 			break;
 		case EVENTO_BAJA_RESERVA:
 		case ERROR_BAJA_RESERVA:
+		case EVENTO_CONSULTAR_RESERVA_V_BORRAR_RESERVAS:
+		case ERROR_CONSULTAR_RESERVA_V_BORRAR_RESERVAS:
+		case EVENTO_CONSULTAR_CLIENTE_V_BORRAR_RESERVAS:
+		case ERROR_CONSULTAR_CLIENTE_V_BORRAR_RESERVAS:
 			getPanelBajaReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_RESERVA:
