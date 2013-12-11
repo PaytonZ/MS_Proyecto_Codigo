@@ -234,7 +234,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 
 			if ( datos instanceof Integer) {
 			
-				JOptionPane.showMessageDialog(contentPane, "La reserva se realizó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(contentPane, "La reserva se realizó correctamente, su número de reserva es: " + (Integer)datos, "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "Ocurrió un error al reservar la habitación", "Error", JOptionPane.ERROR_MESSAGE);
