@@ -16,8 +16,7 @@ public class CommandConsultarClienteReserva implements Command{
 	public CommandResponse execute(Object datos) {
 		CommandResponse cr = new CommandResponse();
 		try {
-
-			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente((String)datos));
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente(datos.toString()));
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS);
 
 		} catch (BSoDException bsod) {
