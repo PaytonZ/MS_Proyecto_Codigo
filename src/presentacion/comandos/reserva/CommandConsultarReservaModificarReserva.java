@@ -6,7 +6,7 @@ import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
-public class CommandConsultarClienteModificarReserva implements Command{
+public class CommandConsultarReservaModificarReserva implements Command{
 
 
 	@Override
@@ -14,7 +14,7 @@ public class CommandConsultarClienteModificarReserva implements Command{
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente((String)datos));
+			cr.setDatos(FactorySA.getInstance().getSAReservas().obtenerReserva((Integer)datos));
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR_RESERVAS);
 
 		} catch (BSoDException bsod) {

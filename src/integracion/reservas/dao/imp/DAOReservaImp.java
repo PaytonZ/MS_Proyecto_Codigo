@@ -38,7 +38,7 @@ public class DAOReservaImp implements DAOReserva {
 	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
 	private final String getAllReservaPorClienteQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
-	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
+	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
 	private final String getHabporReservaQuery = "SELECT * from reservas where habitaciones_numhabitacion = ? FOR UPDATE";
 	private final String getallReservaquery = "SELECT * from reservas FOR UPDATE";
 
@@ -208,12 +208,14 @@ public class DAOReservaImp implements DAOReserva {
 		try {
 			PreparedStatement updatereserva = connection
 					.prepareStatement(updateReservaQuery);
-			updatereserva.setInt(6, reserva.getNumeroReserva());
 			updatereserva.setInt(1, reserva.getidusuario());
 			updatereserva.setInt(2, reserva.getNumeroHabitacion());
-			updatereserva.setDate(3, (Date) reserva.getFechaReserva());
-			updatereserva.setDate(4, (Date) reserva.getFechaEntrada());
-			updatereserva.setDate(5, (Date) reserva.getFechaSalida());
+			Date fechaEntrada = new Date(reserva.getFechaEntrada().getTime()); 			
+			updatereserva.setDate(3,fechaEntrada);
+			Date fechaSalida = new Date(reserva.getFechaSalida().getTime());
+			updatereserva.setDate(4,fechaSalida);
+			updatereserva.setInt(5, reserva.getNumeroReserva());
+			
 			exitoupdate = (updatereserva.executeUpdate() == 1);
 		} catch (SQLException e) {
 			e.printStackTrace();
