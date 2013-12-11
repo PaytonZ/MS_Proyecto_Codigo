@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import integracion.reservas.dao.DAOReserva;
@@ -33,7 +35,7 @@ public class DAOReservaImp implements DAOReserva {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	//private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
-	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
+	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ?, ?, ?)";
 	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
 	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
@@ -52,18 +54,47 @@ public class DAOReservaImp implements DAOReserva {
 
 			addreserva.setInt(1, reserva.getidusuario());
  			addreserva.setInt(2, reserva.getNumeroHabitacion());
-			//addreserva.setDate(3, reserva.getFechaReserva());
- 			Date temp = new java.sql.Date(reserva.getFechaEntrada().getTime());
-			addreserva.setDate(3, temp);
-			temp.setTime(reserva.getFechaSalida().getTime());
-			addreserva.setDate(4, temp);
+ 			
+ 			//Fecha con hora de reserva
+			Calendar fecha_reserva = reserva.getFechaReserva();
+			String str_reserva = "";			
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.YEAR) + "-";			
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.MONTH) + "-";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.DAY_OF_MONTH) + " ";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.HOUR_OF_DAY) + ":";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.MINUTE) + ":";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.SECOND);
+			addreserva.setString(3, str_reserva);
+			
+			
+			//Fecha con hora de entrada
+			Calendar fecha_entrada = reserva.getFechaEntrada();
+			String str_entrada = "";			
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.YEAR) + "-";			
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.MONTH) + "-";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.DAY_OF_MONTH) + " ";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.HOUR) + ":";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.MINUTE) + ":";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.SECOND);			
+			addreserva.setString(4, str_entrada);
+			
+			//Fecha con hora de salida
+			Calendar fecha_salida = reserva.getFechaSalida();
+			String str_salida = "";			
+			str_salida = str_salida + fecha_salida.get(Calendar.YEAR) + "-";			
+			str_salida = str_salida + fecha_salida.get(Calendar.MONTH) + "-";
+			str_salida = str_salida + fecha_salida.get(Calendar.DAY_OF_MONTH) + " ";
+			str_salida = str_salida + fecha_salida.get(Calendar.HOUR) + ":";
+			str_salida = str_salida + fecha_salida.get(Calendar.MINUTE) + ":";
+			str_salida = str_salida + fecha_salida.get(Calendar.SECOND);			
+			addreserva.setString(5, str_salida);
 
 			if (addreserva.executeUpdate() == 1) {
 
 				PreparedStatement getreservaDNIDate = c
 						.prepareStatement(getReservabyDNIDateQuery);
 				getreservaDNIDate.setInt(1, reserva.getidusuario());
-				getreservaDNIDate.setDate(2, new Date(reserva.getFechaReserva().getTime()));
+				getreservaDNIDate.setString(2, str_reserva);
 				ResultSet resultado = getreservaDNIDate.executeQuery();
 				
 
@@ -130,9 +161,21 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
 				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
 				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
-				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
-				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
-				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
+				//Manejo de fechas
+				Calendar cal = new GregorianCalendar();
+				java.util.Date temp = new java.util.Date();
+				temp.setTime(rowsReservas.getDate("fecha_entrada").getTime());
+				cal.setTime(temp);
+				reserva.setFechaReserva(cal);
+				
+				temp.setTime(rowsReservas.getDate("fecha_entrada").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+				
+				temp.setTime(rowsReservas.getDate("fecha_salida").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+				
 				listaReservas.add(reserva);
 			}
 			if(listaReservas.isEmpty())
@@ -174,9 +217,22 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setNumeroReserva(rowReserva.getInt("idreservas"));
 				reserva.setidusuario(rowReserva.getInt("clientes_idclientes"));
 				reserva.setNumeroHabitacion(rowReserva.getInt("habitaciones_numhabitacion"));
-				reserva.setFechaReserva(rowReserva.getDate("fecha_reserva"));
-				reserva.setFechaEntrada(rowReserva.getDate("fecha_entrada"));
-				reserva.setFechaSalida(rowReserva.getDate("fecha_salida"));
+				
+				//Manejo de fechas
+				Calendar cal = new GregorianCalendar();
+				java.util.Date temp = new java.util.Date();
+				temp.setTime(rowReserva.getDate("fecha_reserva").getTime());
+				cal.setTime(temp);
+				reserva.setFechaReserva(cal);
+				
+				temp.setTime(rowReserva.getDate("fecha_entrada").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+				
+				temp.setTime(rowReserva.getDate("fecha_salida").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -194,6 +250,8 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	
+	
 	public Boolean updateReserva(TransferReserva reserva) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
@@ -207,9 +265,40 @@ public class DAOReservaImp implements DAOReserva {
 			updatereserva.setInt(6, reserva.getNumeroReserva());
 			updatereserva.setInt(1, reserva.getidusuario());
 			updatereserva.setInt(2, reserva.getNumeroHabitacion());
-			updatereserva.setDate(3, (Date) reserva.getFechaReserva());
-			updatereserva.setDate(4, (Date) reserva.getFechaEntrada());
-			updatereserva.setDate(5, (Date) reserva.getFechaSalida());
+			
+ 			//Fecha con hora de reserva
+			Calendar fecha_reserva = reserva.getFechaReserva();
+			String str_reserva = "";			
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.YEAR) + "-";			
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.MONTH) + "-";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.DAY_OF_MONTH) + " ";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.HOUR_OF_DAY) + ":";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.MINUTE) + ":";
+			str_reserva = str_reserva + fecha_reserva.get(Calendar.SECOND);			
+			updatereserva.setString(3, str_reserva);
+			
+			//Fecha con hora de entrada
+			Calendar fecha_entrada = reserva.getFechaEntrada();
+			String str_entrada = "";			
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.YEAR) + "-";			
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.MONTH) + "-";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.DAY_OF_MONTH) + " ";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.HOUR) + ":";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.MINUTE) + ":";
+			str_entrada = str_entrada + fecha_entrada.get(Calendar.SECOND);				
+			updatereserva.setString(4, str_entrada);
+			
+			//Fecha con hora de salida
+			Calendar fecha_salida = reserva.getFechaSalida();
+			String str_salida = "";			
+			str_salida = str_salida + fecha_salida.get(Calendar.YEAR) + "-";			
+			str_salida = str_salida + fecha_salida.get(Calendar.MONTH) + "-";
+			str_salida = str_salida + fecha_salida.get(Calendar.DAY_OF_MONTH) + " ";
+			str_salida = str_salida + fecha_salida.get(Calendar.HOUR) + ":";
+			str_salida = str_salida + fecha_salida.get(Calendar.MINUTE) + ":";
+			str_salida = str_salida + fecha_salida.get(Calendar.SECOND);
+			updatereserva.setString(5, str_salida);
+			
 			exitoupdate = (updatereserva.executeUpdate() == 1);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,9 +328,22 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
 				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
 				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
-				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
-				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
-				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
+				
+				//Manejo de fechas
+				Calendar cal = new GregorianCalendar();
+				java.util.Date temp = new java.util.Date();
+				temp.setTime(rowsReservas.getDate("fecha_reserva").getTime());
+				cal.setTime(temp);
+				reserva.setFechaReserva(cal);
+				
+				temp.setTime(rowsReservas.getDate("fecha_entrada").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+				
+				temp.setTime(rowsReservas.getDate("fecha_salida").getTime());
+				cal.setTime(temp);
+				reserva.setFechaEntrada(cal);
+
 				listaReservas.add(reserva);
 			}
 		} catch (SQLException e) {
