@@ -197,6 +197,11 @@ public class TransferReserva {
 		// begin-user-code
 		this.fechaEntrada = fechaEntrada;
 		// end-user-code
-	}	
+	}
 
+	@Override
+	public String toString() {
+		
+		return getNumeroReserva() + " " + getidusuario() + " " + getNumeroHabitacion() + " " + getFechaReserva() + " " + getFechaEntrada() + " " + getFechaSalida();
+	}
 }
