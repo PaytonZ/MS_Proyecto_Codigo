@@ -3,13 +3,12 @@
  */
 package presentacion.reservas.paneles;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -19,8 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import com.toedter.calendar.JCalendar;
-
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
@@ -28,6 +25,8 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+
+import com.toedter.calendar.JCalendar;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -146,9 +145,9 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 					
 		
 						reserva.setidusuario(idCliente);
-						reserva.setFechaEntrada(calendarioEntrada.getDate());
-						reserva.setFechaSalida(calendarioSalida.getDate());
-						reserva.setFechaReserva(new Date());
+						reserva.setFechaEntrada(calendarioEntrada.getCalendar());
+						reserva.setFechaSalida(calendarioSalida.getCalendar());
+						reserva.setFechaReserva(Calendar.getInstance());
 					
 					try{
 						reserva.setNumeroHabitacion(Integer.parseInt(textNHabitacion.getText()));
