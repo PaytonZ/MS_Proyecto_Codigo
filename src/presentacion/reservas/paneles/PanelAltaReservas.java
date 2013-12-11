@@ -139,10 +139,8 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				if (!textDNI.getText().equals("")
 						&& !textNHabitacion.getText().equals("")
 						&& idCliente > -1
-						&& calendarioEntrada != null
 						&& calendarioEntrada.getDate().compareTo(new Date()) >= 0
-						&& calendarioSalida.getDate().compareTo(
-								calendarioEntrada.getDate()) >= 0) {
+						&& calendarioSalida.getDate().compareTo(calendarioEntrada.getDate()) >= 0) {
 
 					reserva.setidusuario(idCliente);
 					reserva.setFechaEntrada(calendarioEntrada.getDate());

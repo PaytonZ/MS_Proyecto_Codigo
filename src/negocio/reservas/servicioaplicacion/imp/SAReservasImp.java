@@ -73,27 +73,39 @@ public class SAReservasImp implements SAReservas {
 			Date diaentradanuevareserva = new Date( ((java.util.Date) reserva.getFechaEntrada()).getTime());
 			Date diasalidanuevareserva = new Date( ((java.util.Date) reserva.getFechaReserva()).getTime());
 
-			if (diasalidanuevareserva.after(diaentradanuevareserva)) {
-				List<TransferReserva> listareservasporhabitacion = dao
-						.getReservasporHabitacion(reserva.getNumeroHabitacion());
+			if (diaentradanuevareserva.after(diasalidanuevareserva)) {
+				
+				List<TransferReserva> listareservasporhabitacion = dao.getReservasporHabitacion(reserva.getNumeroHabitacion());
+				
 				if (!listareservasporhabitacion.isEmpty()) {
+					
 					for (TransferReserva reservaporhabitacion : listareservasporhabitacion) {
 						Date diaentrada = (Date) reservaporhabitacion
 								.getFechaEntrada();
 						Date diasalida = (Date) reservaporhabitacion
 								.getFechaSalida();
 
-						if ((diaentrada.before(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)
-								&& (diaentrada.after(diaentradanuevareserva) && diasalida.before(diaentradanuevareserva))
-								&& (diaentrada.after(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)) ))
-								
+						if ( (diaentrada.before(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva))
+							&& diaentrada.before(diaentradanuevareserva) && diasalida.before(diasalidanuevareserva)
+							&& diaentrada.after(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva)) {
+							
+							throw new BSoDException("La habitación ya está reservada para algún intervalo del solicitdo");
+						}
+						else {
+
 							idReserva = dao.addReserva(reserva);
 							transacion.commit();
 						}
 					}
 				}
+				else {
+
+					idReserva = dao.addReserva(reserva);
+					transacion.commit();
+				}
 			}
-		 catch (BSoDException e) {
+		}
+		catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
 		} finally {
