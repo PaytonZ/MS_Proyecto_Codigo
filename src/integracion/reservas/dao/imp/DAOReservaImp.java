@@ -55,7 +55,6 @@ public class DAOReservaImp implements DAOReserva {
 
 			addreserva.setInt(1, reserva.getidusuario());
 			addreserva.setInt(2, reserva.getNumeroHabitacion());
-			// addreserva.setDate(3, reserva.getFechaReserva());
 			Date temp = new java.sql.Date(reserva.getFechaEntrada().getTime());
 			addreserva.setDate(4, temp);
 			temp.setTime(reserva.getFechaSalida().getTime());
