@@ -43,8 +43,7 @@ public interface DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> getAllReservas(Integer idCliente)throws BSoDException;
-
+	public List<TransferReserva> getAllReservasporCliente(Integer idCliente) throws BSoDException;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -66,4 +65,6 @@ public interface DAOReserva {
 	public Boolean updateReserva(TransferReserva reserva) throws BSoDException;
 	
 	public List<TransferReserva> getReservasporHabitacion(Integer numhab) throws BSoDException;
+	public List<TransferReserva> getAllReservas() throws BSoDException;
+	
 }

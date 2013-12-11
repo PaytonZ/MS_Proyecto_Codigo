@@ -150,7 +150,7 @@ public class SAClientesImp implements SAClientes {
 		transacion.start();
 		Boolean resultado = null;
 		try
-		{		List<TransferReserva> l = FactoriaDAO.getInstance().generaDAOReserva().getAllReservas(idCliente);
+		{		List<TransferReserva> l = FactoriaDAO.getInstance().generaDAOReserva().getAllReservasporCliente(idCliente);
 				if(l.isEmpty()) //Si el cliente no tiene reservas activas , se puede dar de baja.
 				{
 					resultado = dao.deleteCliente(idCliente);

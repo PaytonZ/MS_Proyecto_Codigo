@@ -24,7 +24,7 @@ import presentacion.comandos.habitacion.CommandModificarHabitacion;
 import presentacion.comandos.reserva.CommandAltaReserva;
 import presentacion.comandos.reserva.CommandBajaReserva;
 import presentacion.comandos.reserva.CommandConsultaReserva;
-import presentacion.comandos.reserva.CommandConsultaTodasReservas;
+import presentacion.comandos.reserva.CommandConsultaTodasReservasPorCliente;
 import presentacion.comandos.reserva.CommandConsultarClienteReserva;
 import presentacion.comandos.reserva.CommandConsultarReservaModificar;
 import presentacion.comandos.reserva.CommandModificarReserva;
@@ -91,7 +91,7 @@ public class CommandFactoryImp extends CommandFactory {
 			c = new CommandConsultaReserva();
 			break;
 		case EVENTO_CONSULTAR_TODAS_RESERVAS:
-			c = new CommandConsultaTodasReservas();
+			c = new CommandConsultaTodasReservasPorCliente();
 			break;
 		case EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS:
 			c = new CommandConsultarClienteReserva();

@@ -41,6 +41,7 @@ public class DAOReservaImp implements DAOReserva {
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
 	private final String getHabporReservaQuery = "SELECT * from reservas where habitaciones_numhabitacion = ? FOR UPDATE";
 	
+	
 	public Integer addReserva(TransferReserva reserva) throws BSoDException{
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
@@ -112,7 +113,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> getAllReservas(Integer idCliente) throws BSoDException{
+	public List<TransferReserva> getAllReservasporCliente(Integer idCliente) throws BSoDException{
 
 		Transaction transaction = TransactionManager.getInstance().getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
@@ -249,5 +250,11 @@ public class DAOReservaImp implements DAOReserva {
 		
 		
 		
+	}
+
+	@Override
+	public List<TransferReserva> getAllReservas() throws BSoDException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

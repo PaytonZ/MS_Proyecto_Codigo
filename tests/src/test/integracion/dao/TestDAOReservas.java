@@ -170,7 +170,7 @@ public class TestDAOReservas {
 		List<TransferReserva> listareservas = null;
 		try {
 			TransferReserva reserva = obteneridReserva();	
-			listareservas = d.getAllReservas(reserva.getidusuario());
+			listareservas = d.getAllReservasporCliente(reserva.getidusuario());
 		} catch (BSoDException e) {
 			assertTrue(e.getMensaje().equals("Error al carga la reservas"));
 		}
