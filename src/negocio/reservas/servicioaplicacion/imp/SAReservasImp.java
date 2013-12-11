@@ -83,17 +83,19 @@ public class SAReservasImp implements SAReservas {
 						Date diasalida = (Date) reservaporhabitacion
 								.getFechaSalida();
 
-						if ((diaentrada.before(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)
-								&& (diaentrada.after(diaentradanuevareserva) && diasalida.before(diaentradanuevareserva))
-								&& (diaentrada.after(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)) ))
-								
+						if ((diaentrada.before(diaentradanuevareserva)
+								&& diasalida.after(diaentradanuevareserva)
+								&& (diaentrada.after(diaentradanuevareserva) && diasalida
+										.before(diaentradanuevareserva)) && (diaentrada
+								.after(diaentradanuevareserva) && diasalida
+								.after(diaentradanuevareserva))))
+
 							idReserva = dao.addReserva(reserva);
-							transacion.commit();
-						}
+						transacion.commit();
 					}
 				}
 			}
-		 catch (BSoDException e) {
+		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
 		} finally {
@@ -176,8 +178,8 @@ public class SAReservasImp implements SAReservas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	@Override
-	public List<TransferReserva> obtenerTodaslasReservasPorCliente(Integer idCliente)
-			throws BSoDException {
+	public List<TransferReserva> obtenerTodaslasReservasPorCliente(
+			Integer idCliente) throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -222,9 +224,21 @@ public class SAReservasImp implements SAReservas {
 
 	@Override
 	public List<TransferReserva> obtenerTodaslasReservas() throws BSoDException {
-		// TODO Auto-generated method stub
-		return null;
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+
+		transacion.start();
+		List<TransferReserva> listaReserva = null;
+		try {
+			listaReserva = dao.getAllReservas();
+		} catch (BSoDException e) {
+			throw e;
+		} finally {
+			tm.eliminaTransaccion();
+		}
+		return listaReserva;
+
 	}
 
-	
 }
