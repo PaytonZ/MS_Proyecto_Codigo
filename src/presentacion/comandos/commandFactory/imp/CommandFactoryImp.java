@@ -103,6 +103,7 @@ public class CommandFactoryImp extends CommandFactory {
 		case EVENTO_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS:
 			c = new CommandConsultarReservaModificar();
 			break;
+	
 			
 		/* HABITACIONES */
 

@@ -51,6 +51,7 @@ public class DispatcherImp extends Dispatcher {
 				    || eventoActual == IDEventos.EVENTO_BAJA_RESERVA
 				    || eventoActual == IDEventos.EVENTO_MODIFICAR_RESERVA
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA
+				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE
 				    || eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS 
 				    || eventoActual == IDEventos.ERROR_ALTA_RESERVA
