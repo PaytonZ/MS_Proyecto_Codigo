@@ -35,7 +35,7 @@ public class DAOClienteImp implements DAOCliente {
 	 */
 	private final String addClienteQuery = "INSERT INTO clientes (DNI ,nombre , direccion ,1apellido , 2apellido , telefono ) VALUES (?, ? , ? , ? , ? , ? )";
 	private final String getClientebyDNIQuery = "SELECT idclientes FROM clientes WHERE DNI = ? AND activo = true FOR UPDATE";
-	private final String getClienteByIDQuery = "SELECT * FROM clientes WHERE idcliente = ? AND activo = true FOR UPDATE";
+	private final String getClienteByIDQuery = "SELECT * FROM clientes WHERE idclientes = ? AND activo = true FOR UPDATE";
 	private final String getClienteQuery = "SELECT * FROM clientes WHERE DNI = ? AND activo = true FOR UPDATE";
 	private final String deleteClienteQuery = "UPDATE clientes SET activo = false WHERE idclientes = ?";
 	private final String getAllClientesQuery = "SELECT * FROM clientes WHERE activo = true FOR UPDATE";
