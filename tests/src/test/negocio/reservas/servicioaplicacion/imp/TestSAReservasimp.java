@@ -1,11 +1,8 @@
 package test.negocio.reservas.servicioaplicacion.imp;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
@@ -86,6 +83,10 @@ public class TestSAReservasimp {
 		//Comprobar que se puede consultar habitacion por su identificador (Numero habitacion)
 		allhabitaciones = sahab.obtenerTodaslasHabitaciones();
 		TransferHabitacion habitacion_recuperada = sahab.obtenerHabitacion(allhabitaciones.get(0).getNumHabitacion());
+		assertNotNull("La habitación es nula", habitacion_recuperada);
+		assertNotNull("La lista de habitaciones es nula", allhabitaciones);
+		assertFalse("La lista de habitaciones está vacia", allhabitaciones.isEmpty());
+		assertNotNull("El elemento 0 de la lista de habitaciones es nulo", allhabitaciones.get(0).getNumHabitacion());
 		assertEquals("No se ha podido insertar una habitacion o consultar habitacion por el numero de habitacion", 
 				habitacion_recuperada.getNumHabitacion(), allhabitaciones.get(0).getNumHabitacion());
 		
