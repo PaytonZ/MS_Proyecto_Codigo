@@ -206,8 +206,11 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(updateHabitacionQuery);
 			preparedStatement.setDouble(1, habitacion.getPrecio());
-			preparedStatement.setString(2, habitacion.getTipohabitacion().name());
 			preparedStatement.setInt(3, habitacion.getNumHabitacion());
+			
+			if(habitacion instanceof TransferHabitacionNormal)
+				preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.name());
+			else preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.name());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 

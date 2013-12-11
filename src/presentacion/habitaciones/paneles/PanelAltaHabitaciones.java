@@ -21,6 +21,7 @@ import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
+import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -140,27 +141,41 @@ public class PanelAltaHabitaciones extends JPanel implements GUIPanelesInterfaz 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					TransferHabitacion habitacion = new TransferHabitacion();
-					
 					if ( !textNumHab.getText().equals("") 
 							&& !textPrecioNoche.getText().equals("")
 							&& comboBox.getSelectedIndex() >= 0) {
 						
-						try {
-							habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
-							habitacion.setPrecio( Double.valueOf(textPrecioNoche.getText().trim()) );
-							
-							if ( Double.valueOf(textPrecioNoche.getText().trim()) >= 0 ) {
-								habitacion.setTipohabitacion( (TipoHabitacion) comboBox.getSelectedItem() );
+						TransferHabitacion habitacion = null;
+
+						switch ((TipoHabitacion) comboBox.getSelectedItem()) {
+						case HABITACION_NORMAL:
+							habitacion = new TransferHabitacionNormal();
+							break;
+
+						case HABITACION_SUITE:
+							habitacion = new TransferHabitacionSuite();
+							break;
+						}
+						
+						if ( habitacion != null ) {
+							try {
+								habitacion.setNumHabitacion(Integer.valueOf(textNumHab.getText().trim()) );
+								habitacion.setPrecio( Double.valueOf(textPrecioNoche.getText().trim()) );
 								
-								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
+								if ( Double.valueOf(textPrecioNoche.getText().trim()) >= 0 ) {
+									
+									ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_HABITACION, habitacion);
+								}
+								else {
+									JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precio negativo", "Error", JOptionPane.ERROR_MESSAGE);
+								}
 							}
-							else {
-								JOptionPane.showMessageDialog(contentPane, "No se puede introducir un precio negativo", "Error", JOptionPane.ERROR_MESSAGE);
+							catch(NumberFormatException nu) {
+								JOptionPane.showMessageDialog(contentPane, "Los campos número de habitación y precio contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
-						catch(NumberFormatException nu) {
-							JOptionPane.showMessageDialog(contentPane, "Los campos número de habitación y precio contiene caracteres no numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+						else {
+							JOptionPane.showMessageDialog(contentPane, "Nose ha elegido el tipo de habitación", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else {

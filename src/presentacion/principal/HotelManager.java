@@ -1,4 +1,4 @@
-package principal;
+package presentacion.principal;
 
 import java.awt.EventQueue;
 import java.util.logging.Level;
