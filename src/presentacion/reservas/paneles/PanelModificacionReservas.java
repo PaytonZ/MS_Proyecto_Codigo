@@ -29,8 +29,9 @@ public class PanelModificacionReservas extends JPanel implements GUIPanelesInter
 	private JTextField textFechaSalida;
 	private JTextField textNHabitacion;
 	private JTextField textFechaEntrada;
-	public PanelModificacionReservas(){
-setLayout(new MigLayout("", "[53.00][123.00,grow][47.00][51.00][48.00][56.00][189.00]", "[][][][][][][][][][][][][][][]"));
+	
+	public PanelModificacionReservas() {
+		setLayout(new MigLayout("", "[53.00][123.00,grow][47.00][51.00][48.00][56.00][189.00]", "[][][][][][][][][][][][][][][]"));
 		
 		JLabel lblModificacionDeReserva = new JLabel("Modificacion de reserva");
 		add(lblModificacionDeReserva, "cell 3 0 3 1");

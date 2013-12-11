@@ -96,7 +96,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				TransferCliente cliente= new TransferCliente();
 				if(!textDNI.getText().equals("")){
 					cliente.setDNI(textDNI.getText());
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_RESERVAS, cliente);
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS, cliente);
 				}
 				
 				
@@ -186,13 +186,13 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 	public void actualizarVentana(IDEventos idEventos, Object datos) {
 
 
-		if(idEventos == IDEventos.ERROR_CONSULTAR_CLIENTE_RESERVAS){
+		if(idEventos == IDEventos.ERROR_CONSULTAR_CLIENTE_V_ALTA_RESERVAS){
 			
 			if( datos instanceof BSoDException){
 				JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un cliente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if( idEventos == IDEventos.EVENTO_CONSULTAR_CLIENTE_RESERVAS){
+		else if( idEventos == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS){
 			
 			if( datos instanceof TransferCliente){
 				TransferCliente cliente = (TransferCliente) datos;

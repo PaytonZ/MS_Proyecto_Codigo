@@ -3,8 +3,6 @@
  */
 package presentacion.reservas.paneles;
 
-import java.awt.Button;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,7 +10,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 
@@ -25,7 +22,8 @@ import presentacion.comandos.IDEventos;
  */
 public class PanelConsultaReservas extends JPanel implements GUIPanelesInterfaz {
 	
-
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField textID;
 	private JTextField textDNI;
 	private JTextField textFechaEntrada;

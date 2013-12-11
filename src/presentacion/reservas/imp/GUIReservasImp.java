@@ -31,6 +31,8 @@ switch (evento_actual) {
 		
 		case EVENTO_ALTA_RESERVA:
 		case ERROR_ALTA_RESERVA:
+		case EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS:
+		case ERROR_CONSULTAR_CLIENTE_V_ALTA_RESERVAS:
 			getPanelAltaReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_BAJA_RESERVA:
@@ -43,6 +45,8 @@ switch (evento_actual) {
 			break;
 		case EVENTO_MODIFICAR_RESERVA:
 		case ERROR_MODIFICAR_RESERVA:
+		case EVENTO_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS:
+		case ERROR_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS:
 			getPanelModificacionReservas().actualizarVentana(evento_actual, datos);
 			break;
 		case EVENTO_CONSULTAR_TODAS_RESERVAS:

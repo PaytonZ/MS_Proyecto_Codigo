@@ -17,14 +17,13 @@ public class CommandConsultarClienteReserva implements Command{
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAClientes()
-					.obtenerCliente((String)datos));
-			cr.setEvento(IDEventos.EVENTO_BAJA_RESERVA);
+			cr.setDatos(FactorySA.getInstance().getSAClientes().obtenerCliente((String)datos));
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS);
 
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.ERROR_BAJA_RESERVA);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_CLIENTE_V_ALTA_RESERVAS);
 		}
 
 		return cr;
