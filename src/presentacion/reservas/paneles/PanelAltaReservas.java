@@ -219,6 +219,9 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 					textDNI.setText("");
 				}
 			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "No se encontró el cliente solicitado", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 
 		} else if (idEventos == IDEventos.EVENTO_ALTA_RESERVA) {
 
