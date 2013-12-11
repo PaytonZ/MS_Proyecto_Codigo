@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TipoHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacion;
+import negocio.habitaciones.transfer.TransferHabitacionNormal;
+import negocio.habitaciones.transfer.TransferHabitacionSuite;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
@@ -117,11 +119,21 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				TransferHabitacion habitacion = new TransferHabitacion();
-				
 				if ( !textNumHabBusqueda.getText().equals("") 
 						&& !textPrecio.getText().equals("")
 						&& comboBox.getSelectedIndex() >= 0) {
+					
+					TransferHabitacion habitacion = null;
+
+					switch ((TipoHabitacion) comboBox.getSelectedItem()) {
+					case HABITACION_NORMAL:
+						habitacion = new TransferHabitacionNormal();
+						break;
+
+					case HABITACION_SUITE:
+						habitacion = new TransferHabitacionSuite();
+						break;
+					}
 					
 					try {
 						habitacion.setNumHabitacion(Integer.valueOf(textNumHabBusqueda.getText().trim()) );
