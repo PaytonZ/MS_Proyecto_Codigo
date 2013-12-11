@@ -128,10 +128,12 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 					switch ((TipoHabitacion) comboBox.getSelectedItem()) {
 					case HABITACION_NORMAL:
 						habitacion = new TransferHabitacionNormal();
+						habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 						break;
 
 					case HABITACION_SUITE:
 						habitacion = new TransferHabitacionSuite();
+						habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 						break;
 					}
 					
@@ -193,11 +195,11 @@ public class PanelModificacionHabitaciones extends JPanel implements GUIPanelesI
 					comboBox.setEnabled(false);
 					btnModificarHab.setEnabled(false);
 					
-					JOptionPane.showMessageDialog(contentPane, "El cliente se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "La habitacion se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					
-					JOptionPane.showMessageDialog(contentPane, "El cliente no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "La habitacion no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}

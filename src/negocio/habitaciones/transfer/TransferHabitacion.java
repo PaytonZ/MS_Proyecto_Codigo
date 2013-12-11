@@ -9,7 +9,7 @@ package negocio.habitaciones.transfer;
 */
 public class TransferHabitacion {
 	
-	private TipoHabitacion tipohabitacion = TipoHabitacion.HABITACION_SUITE;
+	private TipoHabitacion tipohabitacion;
 	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
