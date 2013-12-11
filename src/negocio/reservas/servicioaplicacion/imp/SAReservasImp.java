@@ -85,6 +85,11 @@ public class SAReservasImp implements SAReservas {
 						Date diasalida = (Date) reservaporhabitacion
 								.getFechaSalida();
 						
+						System.out.println(diaentrada);
+						System.out.println(diasalida);
+						System.out.println(diaentradanuevareserva);
+						System.out.println(diasalidanuevareserva);
+						
 						if ( (diaentrada.before(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva))
 							&& diaentrada.before(diaentradanuevareserva) && diasalida.before(diasalidanuevareserva)
 							&& diaentrada.after(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva)) {

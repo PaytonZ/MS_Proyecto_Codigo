@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +60,11 @@ public class DAOReservaImp implements DAOReserva {
 			addreserva.setDate(4, temp);
 			temp.setTime(reserva.getFechaSalida().getTime());
 			addreserva.setDate(5, temp);
-			java.util.Date today = new java.util.Date();
-			java.sql.Date sqlToday = new java.sql.Date(today.getTime());
-			addreserva.setDate(3, sqlToday);
+			
+		
+			Timestamp stamp = new Timestamp(System.currentTimeMillis());
+			  Date date = new Date(stamp.getTime());
+			addreserva.setDate(3, date);
 
 			if (addreserva.executeUpdate() == 1) {
 
