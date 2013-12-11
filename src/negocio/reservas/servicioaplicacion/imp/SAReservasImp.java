@@ -69,36 +69,31 @@ public class SAReservasImp implements SAReservas {
 		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
 		Integer idReserva = null;
 		try {
-			List<TransferReserva> listareservasporhabitacion = dao.getReservasporHabitacion(reserva.getNumeroHabitacion());
-			if(!listareservasporhabitacion.isEmpty())
-			{
-				Date diaentradanuevareserva =(Date) reserva.getFechaEntrada();
-				Date diasalidanuevareserva = (Date) reserva.getFechaReserva();
-				for(TransferReserva reservaporhabitacion : listareservasporhabitacion)
-				{
-					Date diaentrada = (Date) reservaporhabitacion.getFechaEntrada();
-					Date diasalida = (Date) reservaporhabitacion.getFechaSalida();
-				
-					if((diaentrada.after(diaentradanuevareserva) && diasalida.before(diaentradanuevareserva)))
-							{
-						
-						
-							}
-						
-						
-						
-					
-					
-					
-					
-					
-					
+
+			Date diaentradanuevareserva = (Date) reserva.getFechaEntrada();
+			Date diasalidanuevareserva = (Date) reserva.getFechaReserva();
+
+			if (diasalidanuevareserva.after(diaentradanuevareserva)) {
+				List<TransferReserva> listareservasporhabitacion = dao
+						.getReservasporHabitacion(reserva.getNumeroHabitacion());
+				if (!listareservasporhabitacion.isEmpty()) {
+					for (TransferReserva reservaporhabitacion : listareservasporhabitacion) {
+						Date diaentrada = (Date) reservaporhabitacion
+								.getFechaEntrada();
+						Date diasalida = (Date) reservaporhabitacion
+								.getFechaSalida();
+
+						if ((diaentrada.before(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)
+								&& (diaentrada.after(diaentradanuevareserva) && diasalida.before(diaentradanuevareserva))
+								&& (diaentrada.after(diaentradanuevareserva) && diasalida.after(diaentradanuevareserva)) ))
+								
+							idReserva = dao.addReserva(reserva);
+							transacion.commit();
+						}
+					}
 				}
 			}
-			
-			idReserva = dao.addReserva(reserva);
-			transacion.commit();
-		} catch (BSoDException e) {
+		 catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
 		} finally {

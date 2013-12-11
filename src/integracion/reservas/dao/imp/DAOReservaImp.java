@@ -135,10 +135,6 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
 				listaReservas.add(reserva);
 			}
-			if(listaReservas.isEmpty())
-			{
-				listaReservas = null;
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new BSoDException("Error al cargar las reservas");

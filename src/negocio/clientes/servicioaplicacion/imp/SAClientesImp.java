@@ -141,6 +141,11 @@ public class SAClientesImp implements SAClientes {
 					resultado = dao.deleteCliente(idCliente);
 					transacion.commit();
 				}
+				else
+				{
+					resultado=false;
+					transacion.rollback();
+				}
 				
 		}
 		catch(BSoDException e)
