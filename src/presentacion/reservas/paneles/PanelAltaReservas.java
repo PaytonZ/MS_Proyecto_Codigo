@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,12 +41,15 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 	private static final long serialVersionUID = 1L;
 	private JTextField textNHabitacion;
 	private JTextField textDNI;
+	private JCalendar calendarioEntrada;
+	private JCalendar calendarioSalida;
 	
 	private JPanel contentPane;
 	//version de prueba
-	private boolean verificado;
+	private int idCliente;
+	
 	public PanelAltaReservas(){
-		
+		idCliente=-1;
 		contentPane=this;
 		setLayout(new MigLayout("", "[46px][:130.00:147.00,grow][24.00:n][52.00:n][:57.00:74.00][grow][grow]", "[14px][][24.00:30.00][][][][59.00:63.00:41.00][15.00:21.00][197.00:246.00][-41.00:-73.00:-17.00][28.00:152.00,grow][57.00:40.00,grow]"));
 		
@@ -63,7 +67,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				verificado=false;
+				idCliente=-1;
 				
 			}
 			
@@ -106,7 +110,7 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 		add(lblNHabitacion, "cell 4 3,alignx trailing");
 		
 		textNHabitacion = new JTextField();
-		add(textNHabitacion, "cell 5 3 2 1,growx");
+		add(textNHabitacion, "cell 5 3 2 1");
 		textNHabitacion.setColumns(10);
 		
 		JLabel lblFechaEntrada = new JLabel("Fecha de entrada");
@@ -136,11 +140,16 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 				
 				if ( !textDNI.getText().equals("") 
 						&& !textNHabitacion.getText().equals("") 
-						&& verificado) {
+						&& idCliente>-1
+						&& calendarioEntrada.getDate().compareTo(new Date())>=0
+						&& calendarioSalida.getDate().compareTo(calendarioEntrada.getDate())>=0) {
 					
-
-					reserva.setidusuario(Integer.parseInt(textDNI.getText()));
-
+		
+						reserva.setidusuario(idCliente);
+						reserva.setFechaEntrada(calendarioEntrada.getDate());
+						reserva.setFechaSalida(calendarioSalida.getDate());
+						reserva.setFechaReserva(new Date());
+					
 					try{
 						reserva.setNumeroHabitacion(Integer.parseInt(textNHabitacion.getText()));
 					}catch(NumberFormatException nu) {
@@ -149,8 +158,14 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_RESERVA, reserva);
 					
 				}
-				else if(!verificado){
+				else if(idCliente<=-1){
 					JOptionPane.showMessageDialog(null, "Deben verificarse los datos del cliente antes de proceder con la reserva", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(calendarioEntrada.getDate().compareTo(new Date())<0){
+					JOptionPane.showConfirmDialog(null, "La fecha de entrada no puede ser inferior a la fecha actual", "Aviso", JOptionPane.WARNING_MESSAGE);
+				}
+				else if(calendarioSalida.getDate().compareTo(calendarioEntrada.getDate())<0){
+					JOptionPane.showConfirmDialog(null, "La fecha de salida no puede ser inferior a la fecha de entrada", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
 					JOptionPane.showConfirmDialog(null, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -188,8 +203,14 @@ public class PanelAltaReservas extends JPanel implements GUIPanelesInterfaz {
 						"\nNombre: "+cliente.getNombre()+
 						"\nApellidos: "+cliente.getPrimerApellido()+" "+cliente.getSegundoApellido()+
 						"\nTelefono: "+cliente.getNumTelefono(), "Resumen de datos del cliente", JOptionPane.OK_OPTION);
-				verificado = true;
+				idCliente = cliente.getID();
 			}
+			
+		}
+		else if( idEventos == IDEventos.EVENTO_ALTA_RESERVA){
+		
+		}
+		else if( idEventos == IDEventos.EVENTO_ALTA_RESERVA){
 			
 		}
 	}
