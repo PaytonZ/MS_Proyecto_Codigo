@@ -44,22 +44,33 @@ public class SAClientesImp implements SAClientes {
 		Integer idCliente = null;
 		
 		try {
-			if( clienteNuevo != null &&
-				!clienteNuevo.getDNI().equals("") &&
-				!clienteNuevo.getNombre().equals("") &&
-				!clienteNuevo.getPrimerApellido().equals("") &&
-				!clienteNuevo.getDireccion().equals("") &&
-				clienteNuevo.getNumTelefono() >-1){
-				
-			
-					idCliente = dao.addCliente(clienteNuevo);
-					transacion.commit();
-					
-			}
-			else {
-				
-				idCliente = null;
+			if(clienteNuevo == null)
+			{
 				transacion.rollback();
+				throw new BSoDException("El cliente no existe");
+			}
+			else if(clienteNuevo.getDNI().equals("")
+					||clienteNuevo.getNombre().equals("")
+					||clienteNuevo.getPrimerApellido().equals("")
+					||clienteNuevo.getDireccion().equals("")) 
+			{
+				transacion.rollback();
+				throw new BSoDException("Falta informacion necesaria del usuario");
+			}
+			else if(clienteNuevo.getNumTelefono()< 0)
+			{
+				transacion.rollback();
+				throw new BSoDException("El telefono no puede ser un numero negativo");
+			}
+			else if((dao.getCliente(clienteNuevo.getDNI()) == null))
+			{
+				transacion.rollback();
+				throw new BSoDException("El cliente ya existe");
+			}
+			else 
+			{
+				idCliente = dao.addCliente(clienteNuevo);
+				transacion.commit();
 			}
 		} catch (BSoDException e) {
 			transacion.rollback();
