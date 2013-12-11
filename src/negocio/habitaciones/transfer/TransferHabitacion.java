@@ -48,14 +48,14 @@ public class TransferHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private double precio;
+	private Double precio;
 
 	/**
 	 * @return el precio
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public double getPrecio() {
+	public Double getPrecio() {
 		// begin-user-code
 		return precio;
 		// end-user-code
@@ -67,7 +67,7 @@ public class TransferHabitacion {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		// begin-user-code
 		this.precio = precio;
 		// end-user-code

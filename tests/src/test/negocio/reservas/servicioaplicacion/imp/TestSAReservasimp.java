@@ -62,7 +62,7 @@ public class TestSAReservasimp {
 		//Añadir 2 habitaciones. Vale para todos los demas test
 		TransferHabitacion th = new TransferHabitacionNormal();
 		th.setNumHabitacion(742341);
-		th.setPrecio(456);			
+		th.setPrecio(456d);			
 		TransferHabitacion th2 = th;
 		th2.setNumHabitacion(742345);
 		

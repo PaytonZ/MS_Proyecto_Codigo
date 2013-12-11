@@ -44,8 +44,23 @@ public class SAClientesImp implements SAClientes {
 		Integer idCliente = null;
 		
 		try {
-			idCliente = dao.addCliente(clienteNuevo);
-			transacion.commit();
+			if( clienteNuevo != null &&
+				clienteNuevo.getDNI() != null &&
+				clienteNuevo.getNombre() != null &&
+				clienteNuevo.getPrimerApellido() != null &&
+				clienteNuevo.getDireccion() != null &&
+				clienteNuevo.getNumTelefono() != null){
+				
+			
+					idCliente = dao.addCliente(clienteNuevo);
+					transacion.commit();
+					
+			}
+			else {
+				
+				idCliente = null;
+				transacion.rollback();
+			}
 		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;

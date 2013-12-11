@@ -11,7 +11,6 @@ import integracion.transacciones.transactionManager.TransactionManager;
 import java.util.List;
 
 import negocio.excepciones.BSoDException;
-import negocio.excepciones.TransaccionNoEliminadaException;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
@@ -46,8 +45,18 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		Integer idHabitacion = null;
 
 		try {
-			idHabitacion = dao.addHabitacion(habitacionNueva);
-			transacion.commit();
+			if(habitacionNueva != null &&
+				habitacionNueva.getNumHabitacion() != null &&
+				habitacionNueva.getPrecio() != null){
+				
+				idHabitacion = dao.addHabitacion(habitacionNueva);
+				transacion.commit();
+				
+			}
+			else{
+				idHabitacion = null;
+				transacion.rollback();
+			}
 		} catch (BSoDException e) {
 			transacion.rollback();
 			throw e;
