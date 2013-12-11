@@ -56,17 +56,19 @@ public class DAOReservaImp implements DAOReserva {
 
 			addreserva.setInt(1, reserva.getidusuario());
 			addreserva.setInt(2, reserva.getNumeroHabitacion());
-			addreserva.setTimestamp(3, new Timestamp(reserva.getFechaReserva().getTime()));
-			addreserva.setDate(4,(Date) reserva.getFechaEntrada());
-			addreserva.setDate(5,(Date) reserva.getFechaSalida());
+			Timestamp ahora = new Timestamp(reserva.getFechaReserva().getTime());
+			addreserva.setTimestamp(3, ahora);
+			Date temp = new Date(reserva.getFechaEntrada().getTime()); 			
+			addreserva.setDate(4,temp);
+			temp.setTime(reserva.getFechaSalida().getTime());
+			addreserva.setDate(5,temp);
 
 			if (addreserva.executeUpdate() == 1) {
 
 				PreparedStatement getreservaDNIDate = c
 						.prepareStatement(getReservabyDNIDateQuery);
 				getreservaDNIDate.setInt(1, reserva.getidusuario());
-				getreservaDNIDate.setTimestamp(2, new Timestamp(reserva.getFechaReserva()
-						.getTime()));
+				getreservaDNIDate.setTimestamp(2, ahora);
 				ResultSet resultado = getreservaDNIDate.executeQuery();
 
 				if (resultado.next())
