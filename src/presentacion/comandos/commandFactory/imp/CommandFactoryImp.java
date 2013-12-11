@@ -90,7 +90,7 @@ public class CommandFactoryImp extends CommandFactory {
 		case EVENTO_CONSULTAR_RESERVA:
 			c = new CommandConsultaReserva();
 			break;
-		case EVENTO_CONSULTAR_TODAS_RESERVAS:
+		case EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE:
 			c = new CommandConsultaTodasReservasPorCliente();
 			break;
 		case EVENTO_CONSULTAR_CLIENTE_V_ALTA_RESERVAS:
