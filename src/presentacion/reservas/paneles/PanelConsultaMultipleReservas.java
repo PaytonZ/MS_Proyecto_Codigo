@@ -84,11 +84,14 @@ private static final long serialVersionUID = 1L;
 		JLabel lblDni = new JLabel("nº reserva");
 		panel_1.add(lblDni);
 		
-		JLabel lblNombre = new JLabel("nº dni");
+		JLabel lblNombre = new JLabel("id usuario");
 		panel_1.add(lblNombre);
 		
 		JLabel lblApellidos = new JLabel("nº habitacion");
 		panel_1.add(lblApellidos);
+		
+		JLabel lblFechareserva = new JLabel("fecha_reserva");
+		panel_1.add(lblFechareserva);
 		
 		JLabel lblDireccin = new JLabel("fecha entrada");
 		panel_1.add(lblDireccin);
