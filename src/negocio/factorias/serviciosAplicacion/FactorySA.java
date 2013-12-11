@@ -4,12 +4,9 @@
 package negocio.factorias.serviciosAplicacion;
 
 import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.departamentos.servicioaplicacion.SADepartamentos;
-import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.factorias.serviciosAplicacion.imp.FactorySAImp;
 import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
 import negocio.reservas.servicioaplicacion.SAReservas;
-import negocio.tareas.servicioaplicacion.SATareas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -62,33 +59,6 @@ public abstract class FactorySA {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract SAReservas getSAReservas();
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public abstract SADepartamentos getSADepartamentos();
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public abstract SAEmpleados getSAEmpleados();
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public abstract SATareas getSATareas();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

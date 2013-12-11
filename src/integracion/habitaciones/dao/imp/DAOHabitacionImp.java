@@ -57,9 +57,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			addhabitacion.setInt(1, habitacion.getNumHabitacion());
 			addhabitacion.setDouble(2, habitacion.getPrecio());
 			
-			if(habitacion instanceof TransferHabitacionNormal)
-				addhabitacion.setString(3, TipoHabitacion.HABITACION_NORMAL.name());
-			else addhabitacion.setString(3, TipoHabitacion.HABITACION_SUITE.name());
+			if(habitacion instanceof TransferHabitacionSuite)
+				addhabitacion.setString(3, TipoHabitacion.HABITACION_SUITE.name());
+			else addhabitacion.setString(3, TipoHabitacion.HABITACION_NORMAL.name());
 	
 
 			if (addhabitacion.executeUpdate() == 1) {
@@ -108,13 +108,14 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			ResultSet rowHabitacion = preparedStatement.executeQuery();
 
 			if (rowHabitacion.next()) {
-				
 				switch (rowHabitacion.getString("tipohabitacion")) {
-				case "Normal":
+				case "HABITACION_NORMAL":
 					habitacion = new TransferHabitacionNormal();
+					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 					break;
-				case "Suite":
+				case "HABITACION_SUITE":
 					habitacion = new TransferHabitacionSuite();
+					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 					break;
 				default:
 					habitacion = new TransferHabitacionNormal();
@@ -161,16 +162,18 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				TransferHabitacion habitacion = new TransferHabitacion();
 				
 				switch (rowsHabitaciones.getString("tipohabitacion")) {
-				case "Normal":
+				case "HABITACION_NORMAL":
 					habitacion = new TransferHabitacionNormal();
+					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_NORMAL);
 					break;
-				case "Suite":
+				case "HABITACION_SUITE":
 					habitacion = new TransferHabitacionSuite();
+					habitacion.setTipohabitacion(TipoHabitacion.HABITACION_SUITE);
 					break;
 				default:
+					habitacion = new TransferHabitacionNormal();
 					break;
 				}
-
 				habitacion.setNumHabitacion(rowsHabitaciones.getInt("numhabitacion"));
 				habitacion.setPrecio(rowsHabitaciones.getDouble("precio"));
 		
@@ -208,9 +211,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			preparedStatement.setDouble(1, habitacion.getPrecio());
 			preparedStatement.setInt(3, habitacion.getNumHabitacion());
 			
-			if(habitacion instanceof TransferHabitacionNormal)
-				preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.name());
-			else preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.name());
+			if(habitacion instanceof TransferHabitacionSuite)
+				preparedStatement.setString(2, TipoHabitacion.HABITACION_SUITE.name());
+			else preparedStatement.setString(2, TipoHabitacion.HABITACION_NORMAL.name());
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 
