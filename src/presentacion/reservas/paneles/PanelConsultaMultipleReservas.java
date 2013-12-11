@@ -16,6 +16,8 @@ import presentacion.comandos.IDEventos;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class PanelConsultaMultipleReservas extends JPanel implements GUIPanelesInterfaz {
+	public PanelConsultaMultipleReservas() {
+	}
 	/**
 	 * (sin Javadoc)
 	 * 

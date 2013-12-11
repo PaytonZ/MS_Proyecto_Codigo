@@ -175,7 +175,7 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente)
+	public List<TransferReserva> obtenerTodaslasReservasPorCliente(Integer idCliente)
 			throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
@@ -187,7 +187,7 @@ public class SAReservasImp implements SAReservas {
 
 		List<TransferReserva> listaReserva = null;
 		try {
-			listaReserva = dao.getAllReservas(idCliente);
+			listaReserva = dao.getAllReservasporCliente(idCliente);
 		} catch (BSoDException e) {
 			throw e;
 		} finally {
@@ -217,5 +217,12 @@ public class SAReservasImp implements SAReservas {
 		}
 		return listaReserva;
 
+	}
+
+	@Override
+	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente)
+			throws BSoDException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
