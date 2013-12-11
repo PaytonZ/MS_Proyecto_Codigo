@@ -9,6 +9,7 @@ import presentacion.reservas.paneles.PanelAltaReservas;
 import presentacion.reservas.paneles.PanelBajaReservas;
 import presentacion.reservas.paneles.PanelConsultaMultipleReservas;
 import presentacion.reservas.paneles.PanelConsultaReservas;
+import presentacion.reservas.paneles.PanelConsultarReservasPorCliente;
 import presentacion.reservas.paneles.PanelModificacionReservas;
 
 /**
@@ -24,10 +25,11 @@ public class GUIReservasImp extends GUIReservas {
 	private PanelBajaReservas panelBaja;
 	private PanelModificacionReservas panelModificacion;
 	private PanelConsultaReservas panelConsulta;
-	private PanelConsultaMultipleReservas panelConsultaMultiple;// end-user-code
+	private PanelConsultaMultipleReservas panelConsultaMultiple;
+	private PanelConsultarReservasPorCliente panelConsultaReservasCliente;
 	
 	public void update(IDEventos evento_actual, Object datos) {
-switch (evento_actual) {
+		switch (evento_actual) {
 		
 		case EVENTO_ALTA_RESERVA:
 		case ERROR_ALTA_RESERVA:
@@ -56,6 +58,13 @@ switch (evento_actual) {
 		case EVENTO_CONSULTAR_TODAS_RESERVAS:
 		case ERROR_CONSULTAR_TODAS_RESERVAS:
 			getPanelConsultaMultipleReservas().actualizarVentana(evento_actual, datos);
+			break;
+		case EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE:
+		case ERROR_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE:
+		case EVENTO_CONSULTAR_CLIENTE_V_RESERVAS_CLIENTE:
+		case ERROR_CONSULTAR_CLIENTE_V_RESERVAS_CLIENTE:
+			
+			getPanelConsultaReservasCliente().actualizarVentana(evento_actual, datos);
 			break;
 
 		default:
@@ -107,5 +116,15 @@ switch (evento_actual) {
 		}
 		
 		return panelModificacion;
+	}
+	
+	public PanelConsultarReservasPorCliente getPanelConsultaReservasCliente() {
+
+
+		if ( panelConsultaReservasCliente == null ) {
+			panelConsultaReservasCliente = new PanelConsultarReservasPorCliente();
+		}
+		
+		return panelConsultaReservasCliente;
 	}
 }
