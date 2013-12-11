@@ -192,6 +192,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Modificación reservas", GUIReservas.getInstance().getPanelModificacionReservas());
 				tabbedPane.add("Consulta reservas", GUIReservas.getInstance().getPanelConsultaReservas());
 				tabbedPane.add("Consulta multiple reservas", GUIReservas.getInstance().getPanelConsultaMultipleReservas());
+				tabbedPane.add("Consulta reservas de cliente", GUIReservas.getInstance().getPanelConsultaReservasCliente());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();

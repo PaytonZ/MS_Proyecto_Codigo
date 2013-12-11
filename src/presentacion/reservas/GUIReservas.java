@@ -9,6 +9,7 @@ import presentacion.reservas.paneles.PanelAltaReservas;
 import presentacion.reservas.paneles.PanelBajaReservas;
 import presentacion.reservas.paneles.PanelConsultaMultipleReservas;
 import presentacion.reservas.paneles.PanelConsultaReservas;
+import presentacion.reservas.paneles.PanelConsultarReservasPorCliente;
 import presentacion.reservas.paneles.PanelModificacionReservas;
 
 /**
@@ -102,4 +103,14 @@ public abstract class GUIReservas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract PanelModificacionReservas getPanelModificacionReservas();
+	
+
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public abstract PanelConsultarReservasPorCliente getPanelConsultaReservasCliente();
 }

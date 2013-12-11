@@ -57,6 +57,8 @@ public class DispatcherImp extends Dispatcher {
 		    		|| eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS
     				|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_BORRAR_RESERVAS
     				|| eventoActual == IDEventos.EVENTO_CONSULTAR_RESERVA_V_BORRAR_RESERVAS
+					|| eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE
+					|| eventoActual == IDEventos.EVENTO_CONSULTAR_CLIENTE_V_RESERVAS_CLIENTE
 				    || eventoActual == IDEventos.ERROR_ALTA_RESERVA
 				    || eventoActual == IDEventos.ERROR_BAJA_RESERVA
 				    || eventoActual == IDEventos.ERROR_MODIFICAR_RESERVA
@@ -65,7 +67,9 @@ public class DispatcherImp extends Dispatcher {
 				    || eventoActual == IDEventos.ERROR_CONSULTAR_CLIENTE_V_ALTA_RESERVAS
 		    		|| eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA_V_MODIFICAR_RESERVAS
     				|| eventoActual == IDEventos.ERROR_CONSULTAR_CLIENTE_V_BORRAR_RESERVAS
-    				|| eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA_V_BORRAR_RESERVAS) {
+    				|| eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA_V_BORRAR_RESERVAS
+					|| eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE
+					|| eventoActual == IDEventos.ERROR_CONSULTAR_CLIENTE_V_RESERVAS_CLIENTE) {
 			
 			GUIReservas.getInstance().update(eventoActual, datos);
 		}
