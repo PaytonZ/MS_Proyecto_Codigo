@@ -72,7 +72,7 @@ private static final long serialVersionUID = 1L;
 			public void actionPerformed(ActionEvent e) {
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS, null);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE, null);
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
@@ -108,7 +108,7 @@ private static final long serialVersionUID = 1L;
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 
 		
-		if ( IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS == idEvento ) {
+		if ( IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE == idEvento ) {
 			
 			if ( datos instanceof List) {
 				
@@ -124,7 +124,7 @@ private static final long serialVersionUID = 1L;
 				JOptionPane.showMessageDialog(contentPane, "No se pudieron recuperar las reservas", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS == idEvento ) {
+		else if ( IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

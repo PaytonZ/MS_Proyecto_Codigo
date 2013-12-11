@@ -29,15 +29,15 @@ public class CommandConsultaTodasReservasPorCliente implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAReservas()
-					.obtenerTodaslasReservas((Integer) datos));
+			cr.setDatos(FactorySA.getInstance().getSAReservas().obtenerTodaslasReservasPorCliente((Integer) datos));
+	
 			
-			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS);
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE);
 
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS_POR_CLIENTE);
 		}
 
 		return cr;

@@ -32,17 +32,19 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	//private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
-	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
+	 private final String addReservaQuery =
+	 "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
+	// private final String addReservaQuery =
+	// "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
 	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
 	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
-	private final String getAllReservaQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
+	private final String getAllReservaPorClienteQuery = "SELECT * FROM reservas WHERE clientes_idclientes = ? FOR UPDATE";
 	private final String updateReservaQuery = "UPDATE reservas SET clientes_idclientes = ?, habitaciones_numhabitacion = ?, fecha_reserva = ?, fecha_entrada = ?, fecha_salida = ? WHERE idreservas = ?";
 	private final String getHabporReservaQuery = "SELECT * from reservas where habitaciones_numhabitacion = ? FOR UPDATE";
-	
-	
-	public Integer addReserva(TransferReserva reserva) throws BSoDException{
+	private final String getallReservaquery = "SELECT * from reservas FOR UPDATE";
+
+	public Integer addReserva(TransferReserva reserva) throws BSoDException {
 		Transaction t = TransactionManager.getInstance().getTransaccion();
 		Connection c = t.getResource();
 
@@ -52,21 +54,24 @@ public class DAOReservaImp implements DAOReserva {
 			PreparedStatement addreserva = c.prepareStatement(addReservaQuery);
 
 			addreserva.setInt(1, reserva.getidusuario());
- 			addreserva.setInt(2, reserva.getNumeroHabitacion());
-			//addreserva.setDate(3, reserva.getFechaReserva());
- 			Date temp = new java.sql.Date(reserva.getFechaEntrada().getTime());
+			addreserva.setInt(2, reserva.getNumeroHabitacion());
+			// addreserva.setDate(3, reserva.getFechaReserva());
+			Date temp = new java.sql.Date(reserva.getFechaEntrada().getTime());
 			addreserva.setDate(3, temp);
 			temp.setTime(reserva.getFechaSalida().getTime());
 			addreserva.setDate(4, temp);
+			java.util.Date today = new java.util.Date();
+			java.sql.Date sqlToday = new java.sql.Date(today.getTime());
+			addreserva.setDate(5, sqlToday);
 
 			if (addreserva.executeUpdate() == 1) {
 
 				PreparedStatement getreservaDNIDate = c
 						.prepareStatement(getReservabyDNIDateQuery);
 				getreservaDNIDate.setInt(1, reserva.getidusuario());
-				getreservaDNIDate.setDate(2, new Date(reserva.getFechaReserva().getTime()));
+				getreservaDNIDate.setDate(2, new Date(reserva.getFechaReserva()
+						.getTime()));
 				ResultSet resultado = getreservaDNIDate.executeQuery();
-				
 
 				if (resultado.next())
 					idreserva = resultado.getInt("idreservas");
@@ -87,8 +92,9 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean deleteReserva(Integer idReserva) throws BSoDException{
-		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+	public Boolean deleteReserva(Integer idReserva) throws BSoDException {
+		Transaction transaction = TransactionManager.getInstance()
+				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 		boolean borrado = false;
 		try {
@@ -113,16 +119,19 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> getAllReservasporCliente(Integer idCliente) throws BSoDException{
+	public List<TransferReserva> getAllReservasporCliente(Integer idCliente)
+			throws BSoDException {
 
-		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+		Transaction transaction = TransactionManager.getInstance()
+				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 
 		List<TransferReserva> listaReservas = new ArrayList<TransferReserva>();
 
 		try {
-			PreparedStatement todaslasreservas = connection.prepareStatement(getAllReservaQuery);
-			todaslasreservas.setInt(1, idCliente);		
+			PreparedStatement todaslasreservas = connection
+					.prepareStatement(getAllReservaPorClienteQuery);
+			todaslasreservas.setInt(1, idCliente);
 			ResultSet rowsReservas = todaslasreservas.executeQuery();
 			while (rowsReservas.next()) {
 
@@ -130,7 +139,8 @@ public class DAOReservaImp implements DAOReserva {
 
 				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
 				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
-				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
+				reserva.setNumeroHabitacion(rowsReservas
+						.getInt("habitaciones_numhabitacion"));
 				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
 				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
@@ -151,7 +161,7 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferReserva getReserva(Integer idReserva) throws BSoDException{
+	public TransferReserva getReserva(Integer idReserva) throws BSoDException {
 
 		Transaction transaction = TransactionManager.getInstance()
 				.getTransaccion();
@@ -170,7 +180,8 @@ public class DAOReservaImp implements DAOReserva {
 				reserva = new TransferReserva();
 				reserva.setNumeroReserva(rowReserva.getInt("idreservas"));
 				reserva.setidusuario(rowReserva.getInt("clientes_idclientes"));
-				reserva.setNumeroHabitacion(rowReserva.getInt("habitaciones_numhabitacion"));
+				reserva.setNumeroHabitacion(rowReserva
+						.getInt("habitaciones_numhabitacion"));
 				reserva.setFechaReserva(rowReserva.getDate("fecha_reserva"));
 				reserva.setFechaEntrada(rowReserva.getDate("fecha_entrada"));
 				reserva.setFechaSalida(rowReserva.getDate("fecha_salida"));
@@ -185,7 +196,8 @@ public class DAOReservaImp implements DAOReserva {
 
 	/**
 	 * (sin Javadoc)
-	 * @throws BSoDException 
+	 * 
+	 * @throws BSoDException
 	 * 
 	 * @see DAOReserva#updateReserva(TransferReserva reserva)
 	 * @generated 
@@ -219,15 +231,17 @@ public class DAOReservaImp implements DAOReserva {
 	@Override
 	public List<TransferReserva> getReservasporHabitacion(Integer numhab)
 			throws BSoDException {
-		
-		Transaction transaction = TransactionManager.getInstance().getTransaccion();
+
+		Transaction transaction = TransactionManager.getInstance()
+				.getTransaccion();
 		Connection connection = (Connection) transaction.getResource();
 
 		List<TransferReserva> listaReservas = new ArrayList<TransferReserva>();
 
 		try {
-			PreparedStatement todaslasreservas = connection.prepareStatement(getHabporReservaQuery);
-			todaslasreservas.setInt(1, numhab);		
+			PreparedStatement todaslasreservas = connection
+					.prepareStatement(getHabporReservaQuery);
+			todaslasreservas.setInt(1, numhab);
 			ResultSet rowsReservas = todaslasreservas.executeQuery();
 			while (rowsReservas.next()) {
 
@@ -235,7 +249,8 @@ public class DAOReservaImp implements DAOReserva {
 
 				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
 				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
-				reserva.setNumeroHabitacion(rowsReservas.getInt("habitaciones_numhabitacion"));
+				reserva.setNumeroHabitacion(rowsReservas
+						.getInt("habitaciones_numhabitacion"));
 				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
 				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
@@ -243,18 +258,41 @@ public class DAOReservaImp implements DAOReserva {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new BSoDException("Error al cargar las reservas de la habitacion");
+			throw new BSoDException(
+					"Error al cargar las reservas de la habitacion");
 		}
 
 		return listaReservas;
-		
-		
-		
+
 	}
 
 	@Override
 	public List<TransferReserva> getAllReservas() throws BSoDException {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction = TransactionManager.getInstance()
+				.getTransaccion();
+		Connection connection = (Connection) transaction.getResource();
+		List<TransferReserva> listaReservas = new ArrayList<TransferReserva>();
+		try {
+			PreparedStatement todaslasreservas = connection
+					.prepareStatement(getallReservaquery);
+			ResultSet rowsReservas = todaslasreservas.executeQuery();
+			while (rowsReservas.next()) {
+				TransferReserva reserva = new TransferReserva();
+
+				reserva.setNumeroReserva(rowsReservas.getInt("idreservas"));
+				reserva.setidusuario(rowsReservas.getInt("clientes_idclientes"));
+				reserva.setNumeroHabitacion(rowsReservas
+						.getInt("habitaciones_numhabitacion"));
+				reserva.setFechaReserva(rowsReservas.getDate("fecha_reserva"));
+				reserva.setFechaEntrada(rowsReservas.getDate("fecha_entrada"));
+				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
+				listaReservas.add(reserva);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BSoDException("Error al cargar las reservas");
+		}
+		return listaReservas;
 	}
 }

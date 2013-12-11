@@ -84,7 +84,7 @@ public class SAReservasImp implements SAReservas {
 								.getFechaEntrada();
 						Date diasalida = (Date) reservaporhabitacion
 								.getFechaSalida();
-
+						
 						if ( (diaentrada.before(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva))
 							&& diaentrada.before(diaentradanuevareserva) && diasalida.before(diasalidanuevareserva)
 							&& diaentrada.after(diaentradanuevareserva) && diasalida.after(diasalidanuevareserva)) {
@@ -187,8 +187,9 @@ public class SAReservasImp implements SAReservas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferReserva> obtenerTodaslasReservasPorCliente(Integer idCliente)
-			throws BSoDException {
+	@Override
+	public List<TransferReserva> obtenerTodaslasReservasPorCliente(
+			Integer idCliente) throws BSoDException {
 
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transacion = tm.nuevaTransaccion();
@@ -232,9 +233,22 @@ public class SAReservasImp implements SAReservas {
 	}
 
 	@Override
-	public List<TransferReserva> obtenerTodaslasReservas(Integer idCliente)
-			throws BSoDException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TransferReserva> obtenerTodaslasReservas() throws BSoDException {
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transacion = tm.nuevaTransaccion();
+		DAOReserva dao = FactoriaDAO.getInstance().generaDAOReserva();
+
+		transacion.start();
+		List<TransferReserva> listaReserva = null;
+		try {
+			listaReserva = dao.getAllReservas();
+		} catch (BSoDException e) {
+			throw e;
+		} finally {
+			tm.eliminaTransaccion();
+		}
+		return listaReserva;
+
 	}
+
 }
