@@ -93,7 +93,7 @@ public class TestSAReservasimp {
 		//Preparar la reserva
 		TransferReserva tr = new TransferReserva();
 		tr.setidusuario(allclientes.get(0).getID());
-		tr.setDNI(allclientes.get(0).getDNI());
+		//tr.setDNI(allclientes.get(0).getDNI());
 		tr.setNumeroHabitacion(allhabitaciones.get(0).getNumHabitacion());
 		
 		//fechas

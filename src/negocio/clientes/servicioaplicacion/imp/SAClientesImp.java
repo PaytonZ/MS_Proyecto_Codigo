@@ -14,6 +14,7 @@ import negocio.clientes.servicioaplicacion.SAClientes;
 import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.excepciones.TransaccionNoEliminadaException;
+import negocio.reservas.transfer.TransferReserva;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -134,9 +135,13 @@ public class SAClientesImp implements SAClientes {
 		transacion.start();
 		Boolean resultado = null;
 		try
-		{
-				resultado = dao.deleteCliente(idCliente);
-				transacion.commit();
+		{		List<TransferReserva> l = FactoriaDAO.getInstance().generaDAOReserva().getAllReservas(idCliente);
+				if(l.isEmpty()) //Si el cliente no tiene reservas activas , se puede dar de baja.
+				{
+					resultado = dao.deleteCliente(idCliente);
+					transacion.commit();
+				}
+				
 		}
 		catch(BSoDException e)
 		{

@@ -107,7 +107,7 @@ public class SAHabitacionesImp implements SAHabitaciones {
 		Boolean resultado = null;
 		try {
 			List<TransferReserva> listareservas = FactoriaDAO.getInstance().generaDAOReserva().getReservasporHabitacion(idHabitacion);
-			if(listareservas.isEmpty())
+			if(listareservas.isEmpty()) // Si la habitacion no tiene reservas activas
 			{
 			resultado = dao.deleteHabitacion(idHabitacion);
 			transacion.commit();
