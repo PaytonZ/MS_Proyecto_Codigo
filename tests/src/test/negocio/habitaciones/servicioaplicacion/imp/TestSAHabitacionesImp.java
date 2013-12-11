@@ -56,7 +56,7 @@ public class TestSAHabitacionesImp {
 		
 		
 		assertTrue("El numero de habitacion no es el mismo",h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
-		assertTrue("El precio no es el mismo",h1.getPrecio() == h.getPrecio());
+		assertTrue("El precio no es el mismo",h1.getPrecio().compareTo(h.getPrecio())==0);
 		
 	}
 	
@@ -134,7 +134,8 @@ public class TestSAHabitacionesImp {
 		assertNotNull("La habitacion no se obtenio",h1);
 
 		assertTrue("El numero de habitacion no es el actualizado",h1.getNumHabitacion().compareTo(numhabitacion) == 0);
-		assertTrue("El precio no es el actualizado",h1.getPrecio() == nuevoprecio);
+		
+		assertTrue("El precio no es el actualizado",h1.getPrecio().compareTo(nuevoprecio)==0);
 	
 
 

@@ -108,7 +108,7 @@ public class TestDAOHabitaciones {
 		assertNotNull(h1);
 
 		assertTrue(h1.getNumHabitacion().compareTo(h.getNumHabitacion()) == 0);
-		assertTrue(h1.getPrecio() == h.getPrecio());
+		assertTrue(h1.getPrecio().compareTo(h.getPrecio())==0);
 
 		assertTrue(correcto);
 		
