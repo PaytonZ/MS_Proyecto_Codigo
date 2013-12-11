@@ -32,9 +32,9 @@ public class DAOReservaImp implements DAOReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	// private final String addReservaQuery =
-	// "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
-	private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
+	 private final String addReservaQuery =
+	 "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , ? , ? , ?)";
+	//private final String addReservaQuery = "INSERT INTO reservas (clientes_idclientes ,habitaciones_numhabitacion , fecha_reserva ,fecha_entrada , fecha_salida) VALUES (?, ? , CURRENT_TIMESTAMP, ? , ?)";
 	private final String getReservaQuery = "SELECT * FROM reservas WHERE idreservas = ? FOR UPDATE";
 	private final String getReservabyDNIDateQuery = "SELECT idreservas FROM reservas WHERE clientes_idclientes = ? AND fecha_reserva = ? FOR UPDATE";
 	private final String deleteReservaQuery = "DELETE FROM reservas WHERE idreservas = ?";
@@ -59,6 +59,9 @@ public class DAOReservaImp implements DAOReserva {
 			addreserva.setDate(3, temp);
 			temp.setTime(reserva.getFechaSalida().getTime());
 			addreserva.setDate(4, temp);
+			java.util.Date today = new java.util.Date();
+			java.sql.Date sqlToday = new java.sql.Date(today.getTime());
+			addreserva.setDate(5, sqlToday);
 
 			if (addreserva.executeUpdate() == 1) {
 
