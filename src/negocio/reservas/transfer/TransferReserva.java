@@ -3,7 +3,7 @@
  */
 package negocio.reservas.transfer;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -112,14 +112,14 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Calendar fechaReserva;
+	private Date fechaReserva;
 
 	/**
 	 * @return el fechaReserva
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Calendar getFechaReserva() {
+	public Date getFechaReserva() {
 		// begin-user-code
 		return fechaReserva;
 		// end-user-code
@@ -131,7 +131,7 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setFechaReserva(Calendar fechaReserva) {
+	public void setFechaReserva(Date fechaReserva) {
 		// begin-user-code
 		this.fechaReserva = fechaReserva;
 		// end-user-code
@@ -143,14 +143,14 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Calendar fechaSalida;
+	private Date fechaSalida;
 
 	/**
 	 * @return el fechaSalida
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Calendar getFechaSalida() {
+	public Date getFechaSalida() {
 		// begin-user-code
 		return fechaSalida;
 		// end-user-code
@@ -162,7 +162,7 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		// begin-user-code
 		this.fechaSalida = fechaSalida;
 		// end-user-code
@@ -174,14 +174,14 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Calendar fechaEntrada;
+	private Date fechaEntrada;
 
 	/**
 	 * @return el fechaEntrada
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Calendar getFechaEntrada() {
+	public Date getFechaEntrada() {
 		// begin-user-code
 		return fechaEntrada;
 		// end-user-code
@@ -193,7 +193,7 @@ public class TransferReserva {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setFechaEntrada(Calendar fechaEntrada) {
+	public void setFechaEntrada(Date fechaEntrada) {
 		// begin-user-code
 		this.fechaEntrada = fechaEntrada;
 		// end-user-code
