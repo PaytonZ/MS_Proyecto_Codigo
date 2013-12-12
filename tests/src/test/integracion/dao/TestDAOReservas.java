@@ -1,5 +1,6 @@
 package test.integracion.dao;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import integracion.clientes.dao.DAOCliente;
@@ -225,7 +226,7 @@ public class TestDAOReservas {
 		}
 		finally
 		{
-			assertTrue(prueba);
+			assertFalse(prueba);
 			
 		}
 	}
