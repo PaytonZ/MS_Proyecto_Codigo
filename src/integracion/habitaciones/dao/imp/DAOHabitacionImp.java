@@ -10,7 +10,6 @@ import integracion.transacciones.transactionManager.TransactionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,8 +74,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					idHabitacion = resultado.getInt(1);
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al crear la habitacion");
 		}
 
@@ -125,8 +124,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				habitacion.setPrecio(rowHabitacion.getDouble("precio"));
 	
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar la habitacion");
 		}
 
@@ -176,8 +175,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				listaHabitaciones.add(habitacion);
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar las habitaciones");
 		}
 
@@ -213,8 +212,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al actualizar la habitacion");
 		}
 
@@ -242,8 +241,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			
 			correcto = (preparedStatement.executeUpdate() == 1);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al eliminar la habitacion");
 		}
 

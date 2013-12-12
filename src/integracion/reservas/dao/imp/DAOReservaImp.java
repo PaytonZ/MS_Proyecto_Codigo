@@ -3,18 +3,18 @@
  */
 package integracion.reservas.dao.imp;
 
+import integracion.reservas.dao.DAOReserva;
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import integracion.reservas.dao.DAOReserva;
-import integracion.transacciones.transaction.Transaction;
-import integracion.transacciones.transactionManager.TransactionManager;
 import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 
@@ -72,8 +72,8 @@ public class DAOReservaImp implements DAOReserva {
 					idreserva = resultado.getInt("idreservas");
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al hacer la reserva");
 		}
 
@@ -99,8 +99,8 @@ public class DAOReservaImp implements DAOReserva {
 
 			borrado = (deletereserva.executeUpdate() == 1);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al eliminar la reserva");
 		}
 
@@ -141,8 +141,8 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
 				listaReservas.add(reserva);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar las reservas");
 		}
 
@@ -181,8 +181,8 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setFechaEntrada(rowReserva.getDate("fecha_entrada"));
 				reserva.setFechaSalida(rowReserva.getDate("fecha_salida"));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar la reserva");
 		}
 
@@ -217,8 +217,8 @@ public class DAOReservaImp implements DAOReserva {
 			updatereserva.setInt(5, reserva.getNumeroReserva());
 			
 			exitoupdate = (updatereserva.executeUpdate() == 1);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al actualizar la reserva");
 		}
 
@@ -253,8 +253,8 @@ public class DAOReservaImp implements DAOReserva {
 				reserva.setFechaSalida(rowsReservas.getDate("fecha_salida"));
 				listaReservas.add(reserva);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException(
 					"Error al cargar las reservas de la habitacion");
 		}
@@ -286,8 +286,8 @@ public class DAOReservaImp implements DAOReserva {
 				listaReservas.add(reserva);
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar las reservas");
 		}
 		return listaReservas;

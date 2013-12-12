@@ -103,8 +103,8 @@ public class DAOClienteImp implements DAOCliente {
 				}
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al crear el usuario");
 			// TRATAR
 
@@ -148,8 +148,8 @@ public class DAOClienteImp implements DAOCliente {
 				cliente.setSegundoApellido(rowCliente.getString("2apellido"));
 				cliente.setNumTelefono(rowCliente.getInt("telefono"));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar el usuario");
 		}
 
@@ -183,8 +183,8 @@ public class DAOClienteImp implements DAOCliente {
 				cliente.setSegundoApellido(rowCliente.getString("2apellido"));
 				cliente.setNumTelefono(rowCliente.getInt("telefono"));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar el usuario");
 		}
 
@@ -213,8 +213,8 @@ public class DAOClienteImp implements DAOCliente {
 
 			correcto = (preparedStatement.executeUpdate() == 1);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al eliminar el usuario");
 		}
 
@@ -260,8 +260,8 @@ public class DAOClienteImp implements DAOCliente {
 				listaClientes.add(cliente);
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al cargar los usuarios");
 		}
 
@@ -314,8 +314,8 @@ public class DAOClienteImp implements DAOCliente {
 
 
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+//			e.printStackTrace();
 			throw new BSoDException("Error al actualizar el cliente");
 		} finally {
 
