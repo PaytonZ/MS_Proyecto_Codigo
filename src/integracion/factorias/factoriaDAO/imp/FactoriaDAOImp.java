@@ -5,6 +5,8 @@ package integracion.factorias.factoriaDAO.imp;
 
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
+import integracion.departamentos.dao.DAODepartamento;
+import integracion.departamentos.dao.imp.DAODepartamentoImp;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 import integracion.reservas.dao.DAOReserva;
 import integracion.reservas.dao.imp.DAOReservaImp;
@@ -63,7 +65,7 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public DAOReserva generaDAOTarea() {
+	public Object generaDAOTarea() {
 
 		return new DAOReservaImp();
 
@@ -77,10 +79,8 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Object generaDAOEmpleado() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		
 		return null;
-		// end-user-code
 	}
 
 	/**
@@ -90,10 +90,8 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object generaDAODepartamento() {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public DAODepartamento generaDAODepartamento() {
+		
+		return new DAODepartamentoImp();
 	}
 }

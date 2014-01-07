@@ -4,6 +4,7 @@
 package integracion.factorias.factoriaDAO;
 
 import integracion.clientes.dao.DAOCliente;
+import integracion.departamentos.dao.DAODepartamento;
 import integracion.factorias.factoriaDAO.imp.FactoriaDAOImp;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.reservas.dao.DAOReserva;
@@ -80,7 +81,7 @@ public abstract class FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract DAOReserva generaDAOTarea();
+	public abstract Object generaDAOTarea();
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -98,5 +99,5 @@ public abstract class FactoriaDAO {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Object generaDAODepartamento();
+	public abstract DAODepartamento generaDAODepartamento();
 }

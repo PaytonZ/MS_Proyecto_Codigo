@@ -4,9 +4,9 @@
 	<persistence-unit name="EclipseLink" transaction-type="RESOURCE_LOCAL">
 	 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-     <class>negocio.empleados.objetonegocio.Empleado</class>
+<!--      <class>negocio.empleados.objetonegocio.Empleado</class> -->
      <class>negocio.departamentos.objetonegocio.Departamento</class>
-     <class>negocio.tareas.objetonegocio.Tarea</class>
+<!--      <class>negocio.tareas.objetonegocio.Tarea</class> -->
 	 
 	 <properties>
 		 <property name="eclipselink.logging.level" value="FINE"/>

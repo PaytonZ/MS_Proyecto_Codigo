@@ -3,6 +3,15 @@
  */
 package negocio.departamentos.objetonegocio;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.eclipse.persistence.annotations.OptimisticLocking;
+import org.eclipse.persistence.annotations.OptimisticLockingType;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -10,6 +19,9 @@ package negocio.departamentos.objetonegocio;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@Entity
+@Table(name="departamentos")
+@OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Departamento {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -17,6 +29,8 @@ public class Departamento {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer ID;
 
 	/**

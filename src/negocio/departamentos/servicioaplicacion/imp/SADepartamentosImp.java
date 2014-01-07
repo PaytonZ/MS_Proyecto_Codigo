@@ -3,6 +3,12 @@
  */
 package negocio.departamentos.servicioaplicacion.imp;
 
+import integracion.factorias.factoriaDAO.FactoriaDAO;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 
@@ -13,7 +19,15 @@ import negocio.departamentos.servicioaplicacion.SADepartamentos;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class SAdepartamentosImp implements SADepartamentos {
+public class SADepartamentosImp implements SADepartamentos {
+
+	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
+	
+	public SADepartamentosImp() {
+		entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+	}
+	
 	/**
 	 * (sin Javadoc)
 	 * 
@@ -23,10 +37,14 @@ public class SAdepartamentosImp implements SADepartamentos {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void anadirDepartamento(Departamento departamentoNuevo) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+		
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		FactoriaDAO.getInstance().generaDAODepartamento().addDepartamento(departamentoNuevo, entityManager);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 
 	/**

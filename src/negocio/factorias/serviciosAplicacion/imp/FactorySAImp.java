@@ -9,7 +9,7 @@ import negocio.clientes.servicioaplicacion.imp.SAClientesImp;
 import negocio.reservas.servicioaplicacion.SAReservas;
 import negocio.reservas.servicioaplicacion.imp.SAReservasImp;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
-import negocio.departamentos.servicioaplicacion.imp.SAdepartamentosImp;
+import negocio.departamentos.servicioaplicacion.imp.SADepartamentosImp;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.empleados.servicioaplicacion.imp.SAempleadosImp;
 import negocio.tareas.servicioaplicacion.SATareas;
@@ -58,7 +58,7 @@ public class FactorySAImp extends FactorySA {
 	 */
 	public SADepartamentos getSADepartamentos() {
 
-		return new SAdepartamentosImp();
+		return new SADepartamentosImp();
 	}
 
 	/**
