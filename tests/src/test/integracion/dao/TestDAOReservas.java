@@ -38,7 +38,12 @@ public class TestDAOReservas {
 		
 		Transaction transaction = tm.nuevaTransaccion();
 		
-		transaction.start();
+		try {
+			transaction.start();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	@Test
 	public void addReserva() {
@@ -144,7 +149,12 @@ public class TestDAOReservas {
 		
 		Transaction transaction = tm.getTransaccion();
 		
-		transaction.commit();
+		try {
+			transaction.commit();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	@Test
 	public void  deleteReserva() {
@@ -234,7 +244,12 @@ public class TestDAOReservas {
 	public void closeConnection() {
 		
 		TransactionManager tm = TransactionManager.getInstance();
-		tm.eliminaTransaccion();
+		try {
+			tm.eliminaTransaccion();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 		
 	
 	}

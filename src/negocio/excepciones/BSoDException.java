@@ -1,6 +1,6 @@
 package negocio.excepciones;
 
-public class BSoDException extends Throwable {
+public class BSoDException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	

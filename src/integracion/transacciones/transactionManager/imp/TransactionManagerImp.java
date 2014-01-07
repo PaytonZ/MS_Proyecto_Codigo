@@ -9,6 +9,8 @@ import integracion.transacciones.transactionManager.TransactionManager;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import negocio.excepciones.BSoDException;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -73,12 +75,13 @@ public class TransactionManagerImp extends TransactionManager {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see TransactionManager#eliminaTransaccion()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean eliminaTransaccion() {
+	public Boolean eliminaTransaccion() throws BSoDException {
 		
 		Long threadId = Thread.currentThread().getId();
 		

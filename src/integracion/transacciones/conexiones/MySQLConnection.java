@@ -6,6 +6,8 @@ package integracion.transacciones.conexiones;
 import java.sql.*;
 import java.util.Properties;
 
+import negocio.excepciones.BSoDException;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -28,7 +30,7 @@ public class MySQLConnection {
 	private int portNumber = 3306;
 	private String dbname = "alex";
 
-	public Connection getConnection() {
+	public Connection getConnection() throws BSoDException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
 		connectionProps.put("user", this.username);
@@ -41,8 +43,8 @@ public class MySQLConnection {
 			conn.setAutoCommit(false);
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new BSoDException(e.toString());
 		}
 
 		return conn;

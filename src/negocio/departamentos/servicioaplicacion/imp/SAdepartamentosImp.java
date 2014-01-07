@@ -3,8 +3,8 @@
  */
 package negocio.departamentos.servicioaplicacion.imp;
 
+import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
-import negocio.departamentos.transfer.transferDepartamento;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -17,12 +17,12 @@ public class SAdepartamentosImp implements SADepartamentos {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see SADepartamentos#anadirDepartamento(transferDepartamento
+	 * @see SADepartamentos#anadirDepartamento(Departamento
 	 *      departamentoNuevo)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirDepartamento(transferDepartamento departamentoNuevo) {
+	public void anadirDepartamento(Departamento departamentoNuevo) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
@@ -46,12 +46,12 @@ public class SAdepartamentosImp implements SADepartamentos {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see SADepartamentos#actualizarDepartamento(transferDepartamento
+	 * @see SADepartamentos#actualizarDepartamento(Departamento
 	 *      departamento)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarDepartamento(transferDepartamento departamento) {
+	public void actualizarDepartamento(Departamento departamento) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
@@ -65,7 +65,7 @@ public class SAdepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public transferDepartamento obternerDepartamento(Object idDepartamento) {
+	public Departamento obternerDepartamento(Object idDepartamento) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;

@@ -34,7 +34,12 @@ public class TestDAOHabitaciones {
 		
 		Transaction transaction = tm.nuevaTransaccion();
 		
-		transaction.start();
+		try {
+			transaction.start();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	
 	@Test
@@ -181,14 +186,24 @@ public class TestDAOHabitaciones {
 		
 		Transaction transaction = tm.getTransaccion();
 		
-		transaction.commit();
+		try {
+			transaction.commit();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	
 	@After
 	public void closeConnection() {
 		
 		TransactionManager tm = TransactionManager.getInstance();
-		tm.eliminaTransaccion();
+		try {
+			tm.eliminaTransaccion();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 		
 	
 	}

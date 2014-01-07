@@ -3,8 +3,8 @@
  */
 package negocio.tareas.servicioaplicacion.imp;
 
+import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
-import negocio.tareas.transfer.TransferTarea;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -17,11 +17,11 @@ public class SATareasImp implements SATareas {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see SATareas#anadirTarea(TransferTarea tareaNueva)
+	 * @see SATareas#anadirTarea(Tarea tareaNueva)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirTarea(TransferTarea tareaNueva) {
+	public void anadirTarea(Tarea tareaNueva) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
@@ -45,11 +45,11 @@ public class SATareasImp implements SATareas {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see SATareas#actualizarTarea(TransferTarea tarea)
+	 * @see SATareas#actualizarTarea(Tarea tarea)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarTarea(TransferTarea tarea) {
+	public void actualizarTarea(Tarea tarea) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
@@ -63,7 +63,7 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferTarea obternerTarea(Object idTarea) {
+	public Tarea obternerTarea(Object idTarea) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;

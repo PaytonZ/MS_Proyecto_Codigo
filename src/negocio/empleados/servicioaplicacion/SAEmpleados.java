@@ -3,7 +3,8 @@
  */
 package negocio.empleados.servicioaplicacion;
 
-import negocio.empleados.transfer.TransferEmpleado;
+import negocio.empleados.objetonegocio.Empleado;
+
 
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean anadirEmpleado(TransferEmpleado empleadoNuevo);
+	public Boolean anadirEmpleado(Empleado empleadoNuevo);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -54,7 +55,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferEmpleado obtenerEmpleado(String dniEmpleado);
+	public Empleado obtenerEmpleado(String dniEmpleado);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -64,7 +65,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferEmpleado> obtenerEmpleadosporTareas(Integer idTarea);
+	public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

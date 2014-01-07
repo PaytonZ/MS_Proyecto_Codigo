@@ -44,7 +44,12 @@ public class TestComandosReservas {
 		
 		Transaction transaction = tm.nuevaTransaccion();
 		
-		transaction.start();
+		try {
+			transaction.start();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 	@Test
 	public void comandoAltaYBajaReserva() throws BSoDException
@@ -179,6 +184,11 @@ private Integer obtenerIdHabitacion() throws BSoDException {
 		
 		Transaction transaction = tm.getTransaccion();
 		
-		transaction.commit();
+		try {
+			transaction.commit();
+		} catch (BSoDException e) {
+//			e.printStackTrace();
+			assertTrue(false);
+		}
 	}
 }

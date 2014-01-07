@@ -3,7 +3,7 @@
  */
 package negocio.tareas.servicioaplicacion;
 
-import negocio.tareas.transfer.TransferTarea;
+import negocio.tareas.objetonegocio.Tarea;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -20,7 +20,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirTarea(TransferTarea tareaNueva);
+	public void anadirTarea(Tarea tareaNueva);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -39,7 +39,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarTarea(TransferTarea tarea);
+	public void actualizarTarea(Tarea tarea);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -49,7 +49,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferTarea obternerTarea(Object idTarea);
+	public Tarea obternerTarea(Object idTarea);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

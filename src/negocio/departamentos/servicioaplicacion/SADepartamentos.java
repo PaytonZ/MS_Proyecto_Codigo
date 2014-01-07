@@ -3,7 +3,7 @@
  */
 package negocio.departamentos.servicioaplicacion;
 
-import negocio.departamentos.transfer.transferDepartamento;
+import negocio.departamentos.objetonegocio.Departamento;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -20,7 +20,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirDepartamento(transferDepartamento departamentoNuevo);
+	public void anadirDepartamento(Departamento departamentoNuevo);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -39,7 +39,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarDepartamento(transferDepartamento departamento);
+	public void actualizarDepartamento(Departamento departamento);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -49,7 +49,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public transferDepartamento obternerDepartamento(Object idDepartamento);
+	public Departamento obternerDepartamento(Object idDepartamento);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

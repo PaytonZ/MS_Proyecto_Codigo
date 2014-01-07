@@ -3,6 +3,7 @@
  */
 package integracion.transacciones.transactionManager;
 
+import negocio.excepciones.BSoDException;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.imp.TransactionManagerImp;
 
@@ -54,10 +55,11 @@ public abstract class TransactionManager {
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Boolean eliminaTransaccion();
+	public abstract Boolean eliminaTransaccion() throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

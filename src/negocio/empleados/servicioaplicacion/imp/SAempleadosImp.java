@@ -3,8 +3,8 @@
  */
 package negocio.empleados.servicioaplicacion.imp;
 
+import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
-import negocio.empleados.transfer.TransferEmpleado;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ public class SAempleadosImp implements SAEmpleados {
 	/**
 	 * (sin Javadoc)
 	 * 
-	 * @see SAEmpleados#anadirEmpleado(TransferEmpleado empleadoNuevo)
+	 * @see SAEmpleados#anadirEmpleado(Empleado empleadoNuevo)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean anadirEmpleado(TransferEmpleado empleadoNuevo) {
+	public Boolean anadirEmpleado(Empleado empleadoNuevo) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -65,7 +65,7 @@ public class SAempleadosImp implements SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TransferEmpleado obtenerEmpleado(String dniEmpleado) {
+	public Empleado obtenerEmpleado(String dniEmpleado) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -79,7 +79,7 @@ public class SAempleadosImp implements SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<TransferEmpleado> obtenerEmpleadosporTareas(Integer idTarea) {
+	public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea) {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;

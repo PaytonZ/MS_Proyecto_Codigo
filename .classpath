@@ -10,5 +10,19 @@
 	<classpathentry kind="lib" path="forms-1.3.0.jar" sourcepath="forms-1.3.0-src.zip"/>
 	<classpathentry kind="lib" path="lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/JTattoo-1.6.8.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/javax.persistence_2.1.0.v201304241213.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/javax.persistence.source_2.1.0.v201304241213.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/org.eclipse.persistence.jpa.modelgen_2.5.1.v20130918-f2b9fc5.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/org.eclipse.persistence.jpa.modelgen.source_2.5.1.v20130918-f2b9fc5.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/org.eclipse.persistence.jpars_2.5.1.v20130918-f2b9fc5.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/jpa/org.eclipse.persistence.jpars.source_2.5.1.v20130918-f2b9fc5.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/com.sun.tools.xjc_2.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/com.sun.xml.bind_2.2.0.v201004141950.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/javax.activation_1.1.0.v201108011116.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/javax.mail_1.4.0.v201005080615.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/javax.xml.bind_2.2.0.v201105210648.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/moxy/javax.xml.stream_1.0.1.v201004272200.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/sdo/commonj.sdo_2.1.1.v201112051852.jar"/>
+	<classpathentry kind="lib" path="lib/jpalibs/eclipselink.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

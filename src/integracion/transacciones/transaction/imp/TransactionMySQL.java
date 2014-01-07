@@ -3,12 +3,13 @@
  */
 package integracion.transacciones.transaction.imp;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import integracion.transacciones.conexiones.MySQLConnection;
 import integracion.transacciones.transaction.Transaction;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -54,12 +55,13 @@ public class TransactionMySQL implements Transaction {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see Transaction#start()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void start() {
+	public void start() throws BSoDException {
 		try {
 
 			jdbConnection = new MySQLConnection().getConnection();
@@ -70,54 +72,55 @@ public class TransactionMySQL implements Transaction {
 				// error
 
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new BSoDException("Error al comenzar la conexión");
 		}
 
 	}
 
-	public void end() {
+	public void end() throws BSoDException {
 		try {
 			commit();
 			jdbConnection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new BSoDException("Error al cerrar la conexión");
 		}
 	}
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see Transaction#commit()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void commit() {
+	public void commit() throws BSoDException {
 		try {
 			PreparedStatement commit = jdbConnection
 					.prepareStatement(queryCommit);
 			commit.execute();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			rollback();
-			e.printStackTrace();
+			throw new BSoDException("Error al comenzar la conexión");
 		}
 	}
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see Transaction#rollback()
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void rollback() {
+	public void rollback() throws BSoDException {
 		try {
 			PreparedStatement rollback = jdbConnection
 					.prepareStatement(queryRollback);
 			rollback.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new BSoDException("Error al hacer rollback");
 		}
 	}
 
