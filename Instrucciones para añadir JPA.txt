@@ -1,0 +1,23 @@
+TODO SE HACE SOBRE IBM
+
+Bajarse Eclipselink 2.1.3
+
+Incluir las librerias en el proyecto:
+	Ventana - Preferencias - Java - Via de construccion - Biblioteca de usuario.
+	Nuevo - EclipseLink (Poner el nombre que quieras)
+	Añadir Archivos jar
+		jlib - eclipselink
+		jlib - jpa - los 3
+
+Cambiar las facetas.
+	Proyecto (click derecho) - Propiedades - Facetas del Proyecto
+
+	Si está tildado JPA, destildar y aplicar.
+	Tildar JPA - Hay más configuración disponible (está abajo, con fondo amarillo)
+	Plataforma : Generic 2.0
+	Seleccionar EclipseLink.
+
+Hacer lo que pone en las transparencias
+	Ventana - General - Preferencias - Transformación ... persistencia....
+	Ventana - General - Preferencias - Modelado - JPA.
+	
