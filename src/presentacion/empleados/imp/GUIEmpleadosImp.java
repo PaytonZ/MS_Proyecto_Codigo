@@ -37,37 +37,65 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 	}
 	@Override
 	public PanelAltaEmpleados getPanelAltaEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if ( panelAltaEmpleados == null ) {
+			panelAltaEmpleados = new PanelAltaEmpleados();
+		}
+		
+		return panelAltaEmpleados;
 	}
 	@Override
 	public PanelConsultaEmpleados getPanelConsultaEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if ( panelConsultaEmpleados == null) {
+			panelConsultaEmpleados = new PanelConsultaEmpleados();
+		}
+		
+		return panelConsultaEmpleados;
 	}
 	@Override
 	public PanelConsultaMultipleEmpleados getPanelConsultaMultipleEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if ( panelConsultaMultipleEmpleados == null) {
+			panelConsultaMultipleEmpleados = new PanelConsultaMultipleEmpleados();
+		}
+		
+		return panelConsultaMultipleEmpleados;
 	}
 	@Override
 	public PanelModificacionEmpleados getPanelModificacionEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if ( panelModificacionEmpleados == null) {
+			panelModificacionEmpleados = new PanelModificacionEmpleados();
+		}
+		
+		return panelModificacionEmpleados;
 	}
 	@Override
 	public PanelBajaEmpleados getPanelBajaEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if ( panelBajaEmpleados == null) {
+			panelBajaEmpleados = new PanelBajaEmpleados();
+		}
+		
+		return panelBajaEmpleados;
 	}
 	@Override
 	public PanelAltaTareaEmpleados getPanelAltaTareaEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if ( panelAltaTareaEmpleados == null) {
+			panelAltaTareaEmpleados = new PanelAltaTareaEmpleados();
+		}
+		
+		return panelAltaTareaEmpleados;
 	}
 	@Override
 	public PanelBajaTareaEmpleados getPanelBajaTareaEmpleados() {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (panelBajaTareaEmpleados == null) {
+			panelBajaTareaEmpleados = new PanelBajaTareaEmpleados();
+		}
+		
+		return panelBajaTareaEmpleados;
 	}
 }

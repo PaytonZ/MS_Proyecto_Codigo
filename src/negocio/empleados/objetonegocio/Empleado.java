@@ -205,4 +205,9 @@ public class Empleado {
 		this.idDepartamento = idDepartamento;
 		// end-user-code
 	}
+	
+	public enum TipoEmpleado {
+		COMPLETO,
+		HORAS
+	};
 }
