@@ -20,38 +20,66 @@ import presentacion.departamentos.paneles.PanelModificacionDepartamentos;
  */
 public class GUIDepartamentosImp extends GUIDepartamentos {
 	
-	private PanelModificacionDepartamentos frameModificacionDepartamentos;
-	private PanelConsultaMultiplesDepartamentos frameConsultaMultiplesDepartamentos;
-	private PanelConsultaDepartamento frameConsultaDepartamentos;
-	private PanelBajaDepartamentos frameBajaDepartamentos;
-	private PanelAltaDepartamentos frameAltaDepartamentos;
+	private PanelModificacionDepartamentos panelModificacionDepartamentos;
+	private PanelConsultaMultiplesDepartamentos panelConsultaMultiplesDepartamentos;
+	private PanelConsultaDepartamento panelConsultaDepartamentos;
+	private PanelBajaDepartamentos panelBajaDepartamentos;
+	private PanelAltaDepartamentos panleAltaDepartamentos;
 
 	public PanelModificacionDepartamentos getPanelModificacionDepartamentos() {
 		
-		return frameModificacionDepartamentos;
+		if ( panelModificacionDepartamentos == null) {
+			panelModificacionDepartamentos = new PanelModificacionDepartamentos();
+		}
+		
+		return panelModificacionDepartamentos;
 	}
 
 	public PanelConsultaMultiplesDepartamentos getPanelConsultaMultiplesDepartamentos() {
 		
-		return frameConsultaMultiplesDepartamentos;
+		if (panelConsultaMultiplesDepartamentos == null) {
+			panelConsultaMultiplesDepartamentos = new PanelConsultaMultiplesDepartamentos();
+		}
+		
+		return panelConsultaMultiplesDepartamentos;
 	}
 
 	public PanelConsultaDepartamento getPanelConsultaDepartamentos() {
 
-		return frameConsultaDepartamentos;
+		if (panelConsultaDepartamentos == null) {
+			panelConsultaDepartamentos = new PanelConsultaDepartamento();
+		}
+		
+		return panelConsultaDepartamentos;
 	}
 	
 	public PanelBajaDepartamentos getPanelBajaDepartamentos() {
 	
-		return frameBajaDepartamentos;
+		if ( panelBajaDepartamentos == null) {
+			panelBajaDepartamentos = new PanelBajaDepartamentos();
+		}
+		
+		return panelBajaDepartamentos;
 	}
 
 	public PanelAltaDepartamentos getPanelAltaDepartamentos() {
 	
-		return frameAltaDepartamentos;
+		if ( panleAltaDepartamentos == null) {
+			panleAltaDepartamentos = new PanelAltaDepartamentos();
+		}
+		
+		return panleAltaDepartamentos;
 	}
 
-	public void update(IDEventos evento_actual, Object datos) {
+	public void update(IDEventos eventoActual, Object datos) {
 		
+		/*switch (eventoActual) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}*/
 	}
 }

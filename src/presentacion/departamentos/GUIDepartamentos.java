@@ -22,7 +22,7 @@ public abstract class GUIDepartamentos {
 	
 	private static GUIDepartamentos selfInstance;
 
-	public GUIDepartamentos getInstance() {
+	public static GUIDepartamentos getInstance() {
 
 		crearGUIDepartamentos();
 		

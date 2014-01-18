@@ -23,8 +23,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import presentacion.clientes.GUICliente;
+import presentacion.departamentos.GUIDepartamentos;
+import presentacion.empleados.GUIEmpleados;
 import presentacion.habitaciones.GUIHabitaciones;
 import presentacion.reservas.GUIReservas;
+import presentacion.tareas.GUITareas;
 
 public class FramePrincipal extends JFrame {
 
@@ -34,6 +37,9 @@ public class FramePrincipal extends JFrame {
 	private JButton btnClientes;
 	private JButton btnHabitaciones;
 	private JButton btnReservas;
+	private JButton btnDepartamentos;
+	private JButton btnEmpleados;
+	private JButton btnTareas;
 
 	/**
 	 * Create the frame.
@@ -96,6 +102,7 @@ public class FramePrincipal extends JFrame {
 				if ( c != null ) {
 					
 					contentPane.remove(c);
+					contentPane.repaint();
 				}
 				
 				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
@@ -111,6 +118,9 @@ public class FramePrincipal extends JFrame {
 				// Activo los botonos de las otras secciones
 				btnHabitaciones.setEnabled(true);
 				btnReservas.setEnabled(true);
+				btnDepartamentos.setEnabled(true);
+				btnEmpleados.setEnabled(true);
+				btnTareas.setEnabled(true);
 			}
 		});
 		toolBar.add(btnClientes);
@@ -120,7 +130,7 @@ public class FramePrincipal extends JFrame {
 		btnHabitaciones.setForeground(Color.BLACK);
 		btnHabitaciones.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnHabitaciones.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnHabitaciones.setMnemonic(KeyEvent.VK_C);
+		btnHabitaciones.setMnemonic(KeyEvent.VK_H);
 		btnHabitaciones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHabitaciones.setToolTipText("Abre la sección de administración de clientes");
 
@@ -139,6 +149,7 @@ public class FramePrincipal extends JFrame {
 				if ( c != null ) {
 					
 					contentPane.remove(c);
+					contentPane.repaint();
 				}
 				
 				
@@ -155,6 +166,9 @@ public class FramePrincipal extends JFrame {
 				// Activo el resto de botones
 				btnClientes.setEnabled(true);
 				btnReservas.setEnabled(true);
+				btnDepartamentos.setEnabled(true);
+				btnEmpleados.setEnabled(true);
+				btnTareas.setEnabled(true);
 			}
 		});
 		
@@ -165,7 +179,7 @@ public class FramePrincipal extends JFrame {
 		btnReservas.setForeground(Color.BLACK);
 		btnReservas.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnReservas.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnReservas.setMnemonic(KeyEvent.VK_C);
+		btnReservas.setMnemonic(KeyEvent.VK_R);
 		btnReservas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReservas.setToolTipText("Abre la sección de administración de clientes");
 
@@ -183,6 +197,7 @@ public class FramePrincipal extends JFrame {
 				if ( c != null ) {
 					
 					contentPane.remove(c);
+					contentPane.repaint();
 				}
 				
 				
@@ -198,10 +213,137 @@ public class FramePrincipal extends JFrame {
 				
 				btnClientes.setEnabled(true);
 				btnHabitaciones.setEnabled(true);
+				btnDepartamentos.setEnabled(true);
+				btnEmpleados.setEnabled(true);
+				btnTareas.setEnabled(true);
 			}
 		});
 		
 		toolBar.add(btnReservas);
+		
+		btnDepartamentos = new JButton("Departamentos");
+		btnDepartamentos.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnDepartamentos.setToolTipText("Abre la sección de administración de departamentos");
+		btnDepartamentos.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Departamentos64Over.png")));
+		btnDepartamentos.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnDepartamentos.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Departamentos64.png")));
+		
+		btnDepartamentos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				btnDepartamentos.setEnabled(false);
+
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+					contentPane.repaint();
+				}
+				
+				
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta departamento", GUIDepartamentos.getInstance().getPanelAltaDepartamentos());
+				tabbedPane.add("Baja departamento", GUIDepartamentos.getInstance().getPanelBajaDepartamentos());
+				tabbedPane.add("Modificación departamentos", GUIDepartamentos.getInstance().getPanelModificacionDepartamentos());
+				tabbedPane.add("Consulta departamentos", GUIDepartamentos.getInstance().getPanelConsultaDepartamentos());
+				tabbedPane.add("Consulta multiple departamentos", GUIDepartamentos.getInstance().getPanelConsultaMultiplesDepartamentos());
+				
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
+				contentPane.validate();
+				
+				btnClientes.setEnabled(true);
+				btnHabitaciones.setEnabled(true);
+				btnReservas.setEnabled(true);
+				btnEmpleados.setEnabled(true);
+				btnTareas.setEnabled(true);
+			}
+		});
+		
+		toolBar.add(btnDepartamentos);
+		
+		btnEmpleados = new JButton("Empleados");
+		btnEmpleados.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnEmpleados.setMnemonic(KeyEvent.VK_E);
+		btnEmpleados.setToolTipText("Abre la sección de administración de empleados");
+		btnEmpleados.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnEmpleados.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Empleados64.png")));
+		btnEmpleados.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Empleados64Over.png")));
+		
+		btnEmpleados.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				btnEmpleados.setEnabled(false);
+
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+					contentPane.repaint();
+				}
+			
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta empleados", GUIEmpleados.getInstance().getPanelAltaEmpleados());
+				tabbedPane.add("Baja empleados", GUIEmpleados.getInstance().getPanelBajaEmpleados());
+				tabbedPane.add("Modificación empleados", GUIEmpleados.getInstance().getPanelModificacionEmpleados());
+				tabbedPane.add("Consulta empleados", GUIEmpleados.getInstance().getPanelConsultaEmpleados());
+				tabbedPane.add("Consulta multiple empleados", GUIEmpleados.getInstance().getPanelConsultaMultipleEmpleados());
+				
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
+				contentPane.validate();
+				
+				btnClientes.setEnabled(true);
+				btnHabitaciones.setEnabled(true);
+				btnReservas.setEnabled(true);
+				btnDepartamentos.setEnabled(true);
+				btnTareas.setEnabled(true);
+			}
+		});
+		
+		toolBar.add(btnEmpleados);
+		
+		btnTareas = new JButton("Tareas");
+		btnTareas.setRolloverIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Tareas64Over.png")));
+		btnTareas.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Tareas64.png")));
+		btnTareas.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnTareas.setHorizontalTextPosition(SwingConstants.CENTER);
+		
+		btnTareas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				btnTareas.setEnabled(false);
+
+				Component c = ((BorderLayout)contentPane.getLayout()).getLayoutComponent(BorderLayout.CENTER);
+				
+				if ( c != null ) {
+					
+					contentPane.remove(c);
+					contentPane.repaint();
+				}
+				
+				JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM);
+				tabbedPane.add("Alta tareas", GUITareas.getInstance().getPanelAltaTareas());
+				tabbedPane.add("Baja tareas", GUITareas.getInstance().getPanelBajaTareas());
+				tabbedPane.add("Modificación tareas", GUITareas.getInstance().getPanelModificacionTareas());
+				tabbedPane.add("Consulta tareas", GUITareas.getInstance().getPanelConsultaTarea());
+				tabbedPane.add("Consulta multiple tareas", GUITareas.getInstance().getPanelConsultaMultipleTareas());
+				
+				contentPane.add(tabbedPane, BorderLayout.CENTER);
+				contentPane.validate();
+				
+				btnClientes.setEnabled(true);
+				btnHabitaciones.setEnabled(true);
+				btnReservas.setEnabled(true);
+				btnDepartamentos.setEnabled(true);
+				btnEmpleados.setEnabled(true);
+			}
+		});
+		
+		toolBar.add(btnTareas);
 		
 		Component cajaFlecibleDr = Box.createGlue();
 		toolBar.add(cajaFlecibleDr);

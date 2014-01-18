@@ -3,6 +3,12 @@
  */
 package negocio.empleados.objetonegocio;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.eclipse.persistence.annotations.OptimisticLocking;
+import org.eclipse.persistence.annotations.OptimisticLockingType;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -10,6 +16,9 @@ package negocio.empleados.objetonegocio;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@Entity
+ @Table(name="empleados")
+ @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Empleado {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

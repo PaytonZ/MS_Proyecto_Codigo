@@ -3,6 +3,8 @@
  */
 package presentacion.tareas.paneles;
 
+import javax.swing.JPanel;
+
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 
@@ -13,7 +15,7 @@ import presentacion.comandos.IDEventos;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelConsultaMultipleTareas implements GUIPanelesInterfaz {
+public class PanelConsultaMultipleTareas extends JPanel implements GUIPanelesInterfaz {
 	/**
 	 * (sin Javadoc)
 	 * 
