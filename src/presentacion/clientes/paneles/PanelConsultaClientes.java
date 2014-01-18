@@ -40,13 +40,13 @@ public class PanelConsultaClientes extends JPanel implements GUIPanelesInterfaz 
 	
 	public PanelConsultaClientes() {
 		
-		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][]"));
+		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][24.00]"));
 		
 		JLabel lblConsultaClientes = new JLabel("Consulta clientes");
 		add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
 		
 		JSeparator separator = new JSeparator();
-		add(separator, "cell 0 2 7 1,growx,aligny center");
+		add(separator, "cell 0 2 8 1,growx,aligny center");
 		
 		JLabel lblDni = new JLabel("DNI: ");
 		add(lblDni, "cell 2 4,alignx trailing");

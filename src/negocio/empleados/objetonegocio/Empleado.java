@@ -3,8 +3,15 @@
  */
 package negocio.empleados.objetonegocio;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import negocio.tareas.objetonegocio.Tarea;
 
 import org.eclipse.persistence.annotations.OptimisticLocking;
 import org.eclipse.persistence.annotations.OptimisticLockingType;
@@ -17,9 +24,23 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @Entity
- @Table(name="empleados")
- @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
+@Table(name="empleados")
+@OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Empleado {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		
+		return id;
+	}
+	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -150,14 +171,14 @@ public class Empleado {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer tipo;
+	private TipoEmpleado tipo;
 
 	/**
 	 * @return el tipo
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getTipo() {
+	public TipoEmpleado getTipo() {
 		// begin-user-code
 		return tipo;
 		// end-user-code
@@ -169,7 +190,7 @@ public class Empleado {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setTipo(Integer tipo) {
+	public void setTipo(TipoEmpleado tipo) {
 		// begin-user-code
 		this.tipo = tipo;
 		// end-user-code
@@ -204,6 +225,28 @@ public class Empleado {
 		// begin-user-code
 		this.idDepartamento = idDepartamento;
 		// end-user-code
+	}
+	
+	private List<Tarea> listaTareas;
+	
+	public List<Tarea> getTareas() {
+		
+		return listaTareas;
+	}
+	
+	public void setTareas(List<Tarea> tareas) {
+		
+		listaTareas = tareas;
+	}
+	
+	public void addTarea(Tarea tarea) {
+		
+		listaTareas.add(tarea);
+	}
+	
+	public void addTareas(List<Tarea> tareas) {
+		
+		listaTareas.addAll(tareas);
 	}
 	
 	public enum TipoEmpleado {

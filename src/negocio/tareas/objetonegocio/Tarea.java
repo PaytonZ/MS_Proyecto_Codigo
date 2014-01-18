@@ -112,4 +112,10 @@ public class Tarea {
 		this.descripcion = descripcion;
 		// end-user-code
 	}
+	
+	@Override
+	public String toString() {
+		
+		return nombre + ", " + descripcion;
+	}
 }
