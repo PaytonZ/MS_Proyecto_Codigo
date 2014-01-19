@@ -33,7 +33,7 @@ public class Tarea {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getID() {
+	public Integer getId() {
 		// begin-user-code
 		return ID;
 		// end-user-code
@@ -45,7 +45,7 @@ public class Tarea {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setID(Integer ID) {
+	public void setId(Integer ID) {
 		// begin-user-code
 		this.ID = ID;
 		// end-user-code
