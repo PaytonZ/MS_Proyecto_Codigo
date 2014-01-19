@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -42,6 +43,9 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 	private JTextField textPrimerApellido;
 	
 	private JPanel contentPane;
+	
+	private JComboBox<TipoEmpleado> cbTipo;
+	private JComboBox<Departamento> cbDepartamento;
 
 	/**
 	 * Create the panel.
@@ -92,15 +96,18 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		JLabel lblDireccin = new JLabel("Tipo: ");
 		add(lblDireccin, "cell 0 7,alignx right,aligny center");
 		
-		JComboBox<TipoEmpleado> comboBox = new JComboBox<TipoEmpleado>();
-		comboBox.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
-		add(comboBox, "cell 2 7,growx");
+		cbTipo = new JComboBox<TipoEmpleado>();
+		cbTipo.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
+		add(cbTipo, "cell 2 7,growx");
 		
 		JLabel lblDepartamento = new JLabel("Departamento: ");
 		add(lblDepartamento, "cell 5 7,alignx trailing");
 		
-		JComboBox<Departamento> comboBox_1 = new JComboBox<Departamento>();
-		add(comboBox_1, "cell 6 7 2 1,growx");
+		ControladorAplicacion controlerAplicacion = ControladorAplicacion.getInstance();
+		controlerAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO, null);
+		
+		cbDepartamento = new JComboBox<Departamento>();
+		add(cbDepartamento, "cell 6 7 2 1,growx");
 		
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 0 10 8 1,growx,aligny center");
@@ -125,6 +132,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 					}
 					else {
 						empleado.setPrimerApellido(textPrimerApellido.getText().trim());
+						
 						if ( !textSegundoApellido.getText().equals("") )
 							empleado.setSegundoApellido(textSegundoApellido.getText().trim());
 						
@@ -139,10 +147,11 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		add(btnAceptar, "cell 7 11,alignx left,aligny top");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_ALTA_CLIENTE == idEvento ) {
+		if ( IDEventos.EVENTO_ALTA_EMPLEADOS == idEvento ) {
 		
 			if ( datos instanceof Integer ) {
 				
@@ -152,12 +161,31 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				textPrimerApellido.setText("");
 				textSegundoApellido.setText("");
 				textNombre.setText("");
+				
+				cbTipo.setSelectedItem(-1);
+				cbDepartamento.setSelectedIndex(-1);
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "Error al dar de alta un empleado", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_ALTA_CLIENTE == idEvento ) {
+		else if ( IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO == idEvento ) {
+			
+			if ( datos instanceof List) {
+				
+				List<Departamento> listaDepartamentos = (List<Departamento>) datos;
+				
+				DefaultComboBoxModel<Departamento> model = new DefaultComboBoxModel<Departamento>();
+				
+				for ( Departamento dep : listaDepartamentos ) {
+					
+					model.addElement(dep);
+				}
+				
+				cbDepartamento.setModel(model);
+			}
+		}
+		else if ( IDEventos.ERROR_ALTA_EMPLEADOS == idEvento || IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO == idEvento) {
 			
 			if ( datos instanceof BSoDException ) {
 				

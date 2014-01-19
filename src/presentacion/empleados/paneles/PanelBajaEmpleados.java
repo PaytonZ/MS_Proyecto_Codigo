@@ -36,7 +36,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 	private JTextField textNombre;
 	private JTextField textApellidos;
 	private JTextField textTipo;
-	private Integer idempleado;
+	private Integer idEmpleado;
 	private JButton btnBorrarCliente;
 	
 	private JPanel contentPane;
@@ -120,10 +120,10 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if ( idempleado != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_EMPLEADOS, idempleado);
+				if ( idEmpleado != null )
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_EMPLEADOS, idEmpleado);
 				else
-					JOptionPane.showMessageDialog(contentPane, "Error al cargar el cliente, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "Error al cargar el empleado, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		add(btnBorrarCliente, "cell 6 11");
@@ -140,7 +140,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				
 				if ( correcto ) {
 					textDNIBusqueda.setText("");
-					idempleado = null;
+					idEmpleado = null;
 					txtDni.setText("");
 					textNombre.setText("");
 					textApellidos.setText("");
@@ -161,7 +161,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				
 				Empleado empleado = (Empleado) datos;
 				
-				idempleado = empleado.getId();
+				idEmpleado = empleado.getId();
 				txtDni.setText(empleado.getDNI());
 				textNombre.setText(empleado.getNombre());
 				textApellidos.setText(empleado.getPrimerApellido() + " " + empleado.getSegundoApellido());

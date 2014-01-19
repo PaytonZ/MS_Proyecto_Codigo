@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import negocio.departamentos.objetonegocio.Departamento;
 import negocio.tareas.objetonegocio.Tarea;
 
 import org.eclipse.persistence.annotations.OptimisticLocking;
@@ -202,16 +203,16 @@ public class Empleado {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer idDepartamento;
+	private Departamento departamento;
 
 	/**
 	 * @return el idDepartamento
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getIdDepartamento() {
+	public Departamento getDepartamento() {
 		// begin-user-code
-		return idDepartamento;
+		return departamento;
 		// end-user-code
 	}
 
@@ -221,9 +222,9 @@ public class Empleado {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setIdDepartamento(Integer idDepartamento) {
+	public void setDepartamento(Departamento departamento) {
 		// begin-user-code
-		this.idDepartamento = idDepartamento;
+		this.departamento = departamento;
 		// end-user-code
 	}
 	

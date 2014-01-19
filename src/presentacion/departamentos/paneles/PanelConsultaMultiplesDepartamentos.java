@@ -79,20 +79,8 @@ public class PanelConsultaMultiplesDepartamentos extends JPanel implements GUIPa
 		add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
-		JLabel lblDni = new JLabel("DNI");
-		panel_1.add(lblDni);
-		
 		JLabel lblNombre = new JLabel("Nombre");
 		panel_1.add(lblNombre);
-		
-		JLabel lblApellidos = new JLabel("Apellidos");
-		panel_1.add(lblApellidos);
-		
-		JLabel lblDireccin = new JLabel("Dirección");
-		panel_1.add(lblDireccin);
-		
-		JLabel lblTelefono = new JLabel("Telefono");
-		panel_1.add(lblTelefono);
 	}
 
 	/**

@@ -6,14 +6,18 @@ package presentacion.empleados.paneles;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
+import negocio.departamentos.objetonegocio.Departamento;
+import negocio.empleados.objetonegocio.Empleado;
+import negocio.empleados.objetonegocio.Empleado.TipoEmpleado;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -35,14 +39,15 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 	private JTextField txtDni;
 	private JTextField textNombre;
 	private JTextField textApellidos;
-	private JTextField textDireccion;
-	private JTextField textTelefono;
+	
+	private JComboBox<TipoEmpleado> cbTipo;
+	private JComboBox<Departamento> cbDepartamento;
 	
 	public PanelConsultaEmpleados() {
 		
 		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][24.00]"));
 		
-		JLabel lblConsultaClientes = new JLabel("Consulta clientes");
+		JLabel lblConsultaClientes = new JLabel("Consulta empleados");
 		add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
 		
 		JSeparator separator = new JSeparator();
@@ -61,10 +66,10 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String dniCliente = textDNIBusqueda.getText();
+				String dniEmpleado = textDNIBusqueda.getText();
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE, dniCliente);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS, dniEmpleado);
 			}
 		});
 		add(btnBuscar, "cell 5 4");
@@ -81,36 +86,33 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 		txtDni.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		add(lblNombre, "cell 5 6,alignx trailing");
+		add(lblNombre, "cell 2 8,alignx trailing");
 		
 		textNombre = new JTextField();
 		textNombre.setEditable(false);
-		add(textNombre, "cell 6 6,growx");
+		add(textNombre, "cell 3 8,growx");
 		textNombre.setColumns(10);
 		
 		JLabel lblApellidos = new JLabel("Apellidos: ");
-		add(lblApellidos, "cell 2 8,alignx right");
+		add(lblApellidos, "cell 5 8,alignx right");
 		
 		textApellidos = new JTextField();
 		textApellidos.setEditable(false);
-		add(textApellidos, "cell 3 8,growx");
+		add(textApellidos, "cell 6 8,growx");
 		textApellidos.setColumns(10);
 		
-		JLabel lblDireccin = new JLabel("Dirección: ");
-		add(lblDireccin, "cell 5 8,alignx trailing");
+		JLabel lblTipo = new JLabel("Tipo: ");
+		add(lblTipo, "cell 2 10,alignx trailing");
 		
-		textDireccion = new JTextField();
-		textDireccion.setEditable(false);
-		add(textDireccion, "cell 6 8,growx");
-		textDireccion.setColumns(10);
+		cbTipo = new JComboBox<>();
+		cbTipo.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
+		add(cbTipo, "cell 3 10,growx");
 		
-		JLabel lblTelefono = new JLabel("Telefono: ");
-		add(lblTelefono, "cell 2 10,alignx trailing");
+		JLabel lblDepartamento = new JLabel("Departamento: ");
+		add(lblDepartamento, "cell 5 10,alignx trailing");
 		
-		textTelefono = new JTextField();
-		textTelefono.setEditable(false);
-		add(textTelefono, "cell 3 10,growx");
-		textTelefono.setColumns(10);
+		cbDepartamento = new JComboBox<>();
+		add(cbDepartamento, "cell 6 10,growx");
 	}
 
 	/**
@@ -124,17 +126,16 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 		
 		if ( IDEventos.EVENTO_CONSULTAR_EMPLEADOS == idEvento ) {
 		
-			if ( datos instanceof TransferCliente) {
+			if ( datos instanceof Empleado) {
 				
-				TransferCliente cliente = (TransferCliente) datos;
+				Empleado empleado = (Empleado) datos;
 				
-				if ( cliente != null ) {
-					txtDni.setText(cliente.getDNI());
-					textNombre.setText(cliente.getNombre());
-					textApellidos.setText(cliente.getPrimerApellido() + " " + cliente.getSegundoApellido());
-					textDireccion.setText(cliente.getDireccion());
-					textTelefono.setText( String.valueOf(cliente.getNumTelefono()) );
-				}
+				txtDni.setText(empleado.getDNI());
+				textNombre.setText(empleado.getNombre());
+				textApellidos.setText(empleado.getPrimerApellido() + " " + empleado.getSegundoApellido());
+				
+				cbTipo.setSelectedItem(empleado.getTipo());
+				cbDepartamento.setSelectedItem(empleado.getDepartamento());
 					
 			}
 			else {

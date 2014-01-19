@@ -3,6 +3,8 @@
  */
 package presentacion.empleados.paneles;
 
+import java.awt.Dimension;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -87,11 +89,11 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		txtDni.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		add(lblNombre, "cell 4 4 2 1,alignx trailing");
+		add(lblNombre, "cell 4 4,alignx trailing");
 		
 		textNombre = new JTextField();
 		textNombre.setEditable(false);
-		add(textNombre, "cell 6 4,growx");
+		add(textNombre, "cell 5 4 2 1,growx");
 		textNombre.setColumns(10);
 		
 		JLabel lblApellidos = new JLabel("Apellidos: ");
@@ -133,10 +135,17 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		tt.addElement(d);
 		tt.addElement(e);*/
 		
+		ScrollPane scroll = new ScrollPane();
+		scroll.setPreferredSize(new Dimension(20, 20));
+		scroll.setMinimumSize(new Dimension(20, 20));
+		
 		listaTareasDisponibles = new JList<Tarea>();
 		listaTareasDisponibles.setModel(new DefaultListModel<Tarea>());
 		listaTareasDisponibles.setEnabled(false);
-		add(listaTareasDisponibles, "cell 1 9 3 4,grow");
+		
+		scroll.add(listaTareasDisponibles);
+		
+		add(scroll, "cell 1 9 3 4,grow");
 		
 		/*Tarea a = new Tarea();
 		a.setNombre("a");
@@ -147,11 +156,18 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		DefaultListModel<Tarea> t = new DefaultListModel<>();
 		t.addElement(a);
 		t.addElement(b);*/
+
+		ScrollPane scroll2 = new ScrollPane();
+		scroll2.setMinimumSize(new Dimension(20, 20));
+		scroll2.setPreferredSize(new Dimension(20, 20));
 		
 		listaTareasAsignadas = new JList<Tarea>();
 		listaTareasAsignadas.setModel(new DefaultListModel<Tarea>());
 		listaTareasAsignadas.setEnabled(false);
-		add(listaTareasAsignadas, "cell 5 9 2 4,grow");
+		
+		scroll2.add(listaTareasAsignadas);
+		
+		add(scroll2, "cell 5 9 2 4,grow");
 		
 		JButton btnAnadir = new JButton(">>");
 		btnAnadir.addActionListener(new ActionListener() {
