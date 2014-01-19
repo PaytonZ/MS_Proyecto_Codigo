@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
@@ -33,7 +32,7 @@ public class PanelConsultaDepartamento extends JPanel implements GUIPanelesInter
 
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField textDNIBusqueda;
+	private JTextField textNombreBusqueda;
 	private JTextField textNombre;
 	
 	public PanelConsultaDepartamento() {
@@ -49,9 +48,9 @@ public class PanelConsultaDepartamento extends JPanel implements GUIPanelesInter
 		JLabel lblDni = new JLabel("Nombre: ");
 		add(lblDni, "cell 2 4,alignx trailing");
 		
-		textDNIBusqueda = new JTextField();
-		add(textDNIBusqueda, "cell 3 4,growx");
-		textDNIBusqueda.setColumns(10);
+		textNombreBusqueda = new JTextField();
+		add(textNombreBusqueda, "cell 3 4,growx");
+		textNombreBusqueda.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -59,10 +58,15 @@ public class PanelConsultaDepartamento extends JPanel implements GUIPanelesInter
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String dniCliente = textDNIBusqueda.getText();
+				String dniCliente = textNombreBusqueda.getText();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO, dniCliente);
+				if ( !textNombreBusqueda.getText().trim().equals("") ) {
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO, dniCliente);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El campo nombre no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		add(btnBuscar, "cell 5 4");

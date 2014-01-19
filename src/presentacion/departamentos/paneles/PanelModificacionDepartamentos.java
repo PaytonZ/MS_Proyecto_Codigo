@@ -63,10 +63,16 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 				
 				textNombreBusqueda.setEditable(false);
 				
-				String dniCliente = textNombreBusqueda.getText();
+				String nombreDepartamento = textNombreBusqueda.getText().trim();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_CLIENTE_V_MODIFICAR, dniCliente);
+				if ( !nombreDepartamento.equals("")) {
+				
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO_V_MODIFICAR, nombreDepartamento);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "No se puede dejar el campo nombre vacío", "Aviso", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		add(buttonBuscar, "cell 5 3");
@@ -133,7 +139,7 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_MODIFICAR_CLIENTE == idEvento ) {
+		if ( IDEventos.EVENTO_MODIFICAR_DEPARTAMENTO == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -42,6 +43,8 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 	private JTextField textNombre;
 	private JTextField textApellidos;
 	
+	private Empleado emp;
+	
 	private List<Tarea> tareasEmpleado;
 	private JList<Tarea> listaTareasAsignadas;
 	private JList<Tarea> listaTareasDisponibles;
@@ -69,10 +72,16 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String dniCliente = textDNIBusqueda.getText();
+				String dniEmpleado = textDNIBusqueda.getText().trim();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA, dniCliente);
+				if ( !dniEmpleado.equals("")) {
+				
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA, dniEmpleado);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El campo DNI no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		add(btnBuscar, "cell 5 2");
@@ -105,6 +114,23 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		textApellidos.setColumns(10);
 		
 		JButton btnAsignarTareas = new JButton("Asignar tareas");
+		btnAsignarTareas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				tareasEmpleado = new ArrayList<Tarea>();
+				if ( listaTareasAsignadas.getModel().getSize() > 0) {
+					
+					for (int i = 0; i < listaTareasAsignadas.getModel().getSize(); i++) {
+						tareasEmpleado.add(listaTareasAsignadas.getModel().getElementAt(i));
+					}
+				}
+				
+				emp.setTareas(tareasEmpleado);
+				
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADOS, emp);
+			}
+		});
 		btnAsignarTareas.setEnabled(false);
 		add(btnAsignarTareas, "cell 6 6,alignx right");
 		
@@ -255,13 +281,13 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 			
 			if ( datos instanceof Empleado) {
 				
-				Empleado empleado = (Empleado) datos;
+				emp = (Empleado) datos;
 				
-				txtDni.setText(empleado.getDNI());
-				textNombre.setText(empleado.getNombre());
-				textApellidos.setText(empleado.getPrimerApellido() + " " + empleado.getSegundoApellido());
+				txtDni.setText(emp.getDNI());
+				textNombre.setText(emp.getNombre());
+				textApellidos.setText(emp.getPrimerApellido() + " " + emp.getSegundoApellido());
 				
-				tareasEmpleado = empleado.getTareas();
+				tareasEmpleado = emp.getTareas();
 				
 				DefaultListModel<Tarea> model = (DefaultListModel<Tarea>)listaTareasAsignadas.getModel();
 				

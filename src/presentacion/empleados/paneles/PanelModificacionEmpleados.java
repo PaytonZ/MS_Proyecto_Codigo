@@ -71,10 +71,17 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				
 				textDNIBusqueda.setEditable(false);
 				
-				String dniEmpleado = textDNIBusqueda.getText();
+				String dniEmpleado = textDNIBusqueda.getText().trim();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR, dniEmpleado);
+				if ( !dniEmpleado.equals("")) {
+				
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR, dniEmpleado);
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "El campo DNI no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		add(buttonBuscar, "cell 4 3");

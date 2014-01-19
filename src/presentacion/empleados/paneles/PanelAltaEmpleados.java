@@ -104,7 +104,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		add(lblDepartamento, "cell 5 7,alignx trailing");
 		
 		ControladorAplicacion controlerAplicacion = ControladorAplicacion.getInstance();
-		controlerAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO, null);
+		//controlerAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO, null);
 		
 		cbDepartamento = new JComboBox<Departamento>();
 		add(cbDepartamento, "cell 6 7 2 1,growx");

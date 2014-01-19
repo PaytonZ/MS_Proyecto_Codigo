@@ -66,10 +66,16 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String dniEmpleado = textDNIBusqueda.getText();
+				String dniEmpleado = textDNIBusqueda.getText().trim();
 				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS, dniEmpleado);
+				if ( !dniEmpleado.equals("")) {
+				
+					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS, dniEmpleado);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El campo DNI no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		add(btnBuscar, "cell 5 4");
