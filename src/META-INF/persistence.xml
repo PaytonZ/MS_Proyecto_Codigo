@@ -11,15 +11,15 @@
 	 <properties>
 		 <property name="eclipselink.logging.level" value="FINE"/>
 		 
-		 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotelmanagerDB" />
-	     <property name="javax.persistence.jdbc.user" value="hibernate" />
-	     <property name="javax.persistence.jdbc.password" value="" />
+		 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> 
+<!--- 	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotelmanagerDB" /> -->
+<!--- 	     <property name="javax.persistence.jdbc.user" value="hibernate" />-->
+<!---      <property name="javax.persistence.jdbc.password" value="" />-->
 	     
 <!-- 	     Conexión de Zabala -->
-<!-- 	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://test.motopoliza.com:3306/alex" /> -->
-<!-- 	     <property name="javax.persistence.jdbc.user" value="Alex" /> -->
-<!-- 	     <property name="javax.persistence.jdbc.password" value="zabalamanco" /> -->
+	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://test.motopoliza.com:3306/alex" />
+	     <property name="javax.persistence.jdbc.user" value="Alex" /> -->
+	     <property name="javax.persistence.jdbc.password" value="zabalamanco" /> -->
 		 
 <!-- 		 Borrar y crear la BBDD cada vez que se arranca la aplicación -->
 		 <property name="eclipselink.ddl-generator" value="drop-and-create-tables"/>

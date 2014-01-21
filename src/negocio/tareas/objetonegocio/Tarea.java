@@ -4,6 +4,7 @@
 package negocio.tareas.objetonegocio;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.eclipse.persistence.annotations.OptimisticLocking;
@@ -26,6 +27,7 @@ public class Tarea {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	@Id
 	private Integer ID;
 
 	/**
