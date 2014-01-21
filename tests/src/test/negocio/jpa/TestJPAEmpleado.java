@@ -1,5 +1,8 @@
 package test.negocio.jpa;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Random;
 
 import javax.persistence.EntityManager;
@@ -41,6 +44,16 @@ public class TestJPAEmpleado {
 		Query query = em.createQuery("Select e FROM Empleado e WHERE e.DNI = :arg");
 		query.setParameter("arg",e.getDNI() );
 		
+		Empleado e1 = (Empleado) query.getSingleResult();
+		
+		assertNotNull(e1);
+
+		assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
+		
+		assertTrue(e.getPrimerApellido().equalsIgnoreCase(e1.getPrimerApellido()));
+		assertTrue(e.getSegundoApellido().equalsIgnoreCase(e1.getSegundoApellido()));
+
+
 		
 		entityManagerFactory.close();
 	}
