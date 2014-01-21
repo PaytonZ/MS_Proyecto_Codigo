@@ -29,6 +29,15 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Empleado {
 	
+	public Empleado()
+	{
+		DNI= "";
+		nombre="";
+		primerApellido="";
+		segundoApellido="";
+		
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -41,6 +50,8 @@ public class Empleado {
 		
 		return id;
 	}
+	
+	
 	
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
