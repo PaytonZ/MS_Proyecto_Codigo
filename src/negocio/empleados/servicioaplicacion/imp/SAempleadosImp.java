@@ -5,6 +5,7 @@ package negocio.empleados.servicioaplicacion.imp;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
+import negocio.excepciones.BSoDException;
 
 import integracion.factorias.factoriaDAO.FactoriaDAO;
 
@@ -53,7 +54,9 @@ public class SAempleadosImp implements SAEmpleados {
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-		entityManager.remove(dniEmpleado);
+		Empleado emp = entityManager.find(Empleado.class,dniEmpleado);
+		
+		entityManager.remove(emp);
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
@@ -77,16 +80,22 @@ public class SAempleadosImp implements SAEmpleados {
 
 	/**
 	 * (sin Javadoc)
+	 * @throws BSoDException 
 	 * 
 	 * @see SAEmpleados#obtenerEmpleado(String dniEmpleado)
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado obtenerEmpleado(String dniEmpleado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public Empleado obtenerEmpleado(String dniEmpleado) throws BSoDException {
+		
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		Empleado emp = entityManager.find(Empleado.class,dniEmpleado);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+
+		return emp;
 	}
 
 	/**
