@@ -41,7 +41,7 @@ public class SADepartamentosImp implements SADepartamentos {
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-		FactoriaDAO.getInstance().generaDAODepartamento().addDepartamento(departamentoNuevo, entityManager);
+		entityManager.persist(departamentoNuevo);
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();

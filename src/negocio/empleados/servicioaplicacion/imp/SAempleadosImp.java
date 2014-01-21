@@ -6,7 +6,13 @@ package negocio.empleados.servicioaplicacion.imp;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 
+import integracion.factorias.factoriaDAO.FactoriaDAO;
+
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -16,18 +22,24 @@ import java.util.List;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SAempleadosImp implements SAEmpleados {
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see SAEmpleados#anadirEmpleado(Empleado empleadoNuevo)
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
+	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
+	
+	public SAempleadosImp(){
+		
+	entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+	}
 	public Boolean anadirEmpleado(Empleado empleadoNuevo) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		entityManager.persist(empleadoNuevo);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+		return true;
 	}
 
 	/**
@@ -38,10 +50,15 @@ public class SAempleadosImp implements SAEmpleados {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Boolean borrarEmpleado(String dniEmpleado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		entityManager.remove(dniEmpleado);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+		return true;
 	}
 
 	/**
