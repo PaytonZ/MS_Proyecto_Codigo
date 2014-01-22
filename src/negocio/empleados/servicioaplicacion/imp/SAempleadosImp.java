@@ -7,7 +7,6 @@ import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.excepciones.BSoDException;
 
-import integracion.factorias.factoriaDAO.FactoriaDAO;
 
 import java.util.List;
 
@@ -31,16 +30,18 @@ public class SAempleadosImp implements SAEmpleados {
 		
 	entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
 	}
-	public Boolean anadirEmpleado(Empleado empleadoNuevo) {
+	public Empleado anadirEmpleado(Empleado empleadoNuevo) {
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
 		entityManager.persist(empleadoNuevo);
 		
 		entityManager.getTransaction().commit();
+		
+		Empleado emp = entityManager.find(Empleado.class, empleadoNuevo.getId());
 		entityManager.close();
 		
-		return true;
+		return emp;
 	}
 
 	/**
@@ -71,11 +72,21 @@ public class SAempleadosImp implements SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarEmpleado(Integer empleado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+	public Empleado actualizarEmpleado(Empleado empleadoActualizar) {
+		
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		Empleado emp = entityManager.find(Empleado.class,empleadoActualizar.getId());
+		emp = empleadoActualizar;
+		
+		entityManager.persist(emp);
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		
+		return emp;
+		
 	}
 
 	/**
@@ -86,7 +97,7 @@ public class SAempleadosImp implements SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado obtenerEmpleado(String dniEmpleado) throws BSoDException {
+	public Empleado obtenerEmpleado(String dniEmpleado){
 		
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();

@@ -4,6 +4,7 @@
 package negocio.empleados.servicioaplicacion;
 
 import negocio.empleados.objetonegocio.Empleado;
+import negocio.excepciones.BSoDException;
 
 
 
@@ -25,7 +26,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean anadirEmpleado(Empleado empleadoNuevo);
+	public Empleado anadirEmpleado(Empleado empleadoNuevo);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -45,13 +46,14 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarEmpleado(Integer empleado);
+	public Empleado actualizarEmpleado(Empleado empleadoActualizar);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @param dniEmpleado
 	 * @return
+	 * @throws BSoDException 
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
