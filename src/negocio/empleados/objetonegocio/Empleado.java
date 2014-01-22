@@ -260,7 +260,6 @@ public class Empleado {
 		
 		listaTareas.addAll(tareas);
 	}
-	
 	public enum TipoEmpleado {
 		COMPLETO,
 		HORAS
