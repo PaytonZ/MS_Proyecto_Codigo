@@ -285,5 +285,10 @@ public class Empleado {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+
+	public void removeTarea(Tarea tarea) {
+		this.listaTareas.remove(tarea);
+		
+	}
 	
 }
