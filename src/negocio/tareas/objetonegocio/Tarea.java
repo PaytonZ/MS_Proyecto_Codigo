@@ -3,9 +3,14 @@
  */
 package negocio.tareas.objetonegocio;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import negocio.empleados.objetonegocio.Empleado;
 
 import org.eclipse.persistence.annotations.OptimisticLocking;
 import org.eclipse.persistence.annotations.OptimisticLockingType;
@@ -119,5 +124,25 @@ public class Tarea {
 	public String toString() {
 		
 		return nombre + ", " + descripcion;
+	}
+	
+	@ManyToMany(mappedBy="listaTareas")
+	private List<Empleado> listaEmpleados;
+	
+	public List<Empleado> getEmpleados() {
+		
+		return listaEmpleados;
+	}
+	public void setEmpleados(List<Empleado> empleados) {
+		
+		listaEmpleados = empleados;
+	}
+	public void addEmpleado(Empleado empleado) {
+		
+		listaEmpleados.add(empleado);
+	}
+	public void addEmpleados(List<Empleado> empleados) {
+		
+		listaEmpleados.addAll(empleados);
 	}
 }

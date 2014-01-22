@@ -6,9 +6,11 @@ package negocio.empleados.objetonegocio;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import negocio.departamentos.objetonegocio.Departamento;
@@ -239,6 +241,7 @@ public class Empleado {
 		// end-user-code
 	}
 	
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Tarea> listaTareas;
 	
 	public List<Tarea> getTareas() {

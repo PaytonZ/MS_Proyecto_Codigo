@@ -91,8 +91,10 @@ public class TestJPAEmpleado {
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
 		em.getTransaction().begin();
+		
 		Empleado e3 = em.find(Empleado.class, e.getId());
-		e3.getTareas().remove(1);
+		// NO BORRRA WHYYYYY WTF N GOYGOU GHIULHBUJNHBJ LVGH NVH Y
+		e3.getTareas().remove((Object)t);
 		em.merge(e3);
 		em.getTransaction().commit();
 		//
@@ -116,12 +118,13 @@ public class TestJPAEmpleado {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
-		Query query = em.createQuery("Select e FROM Tarea e WHERE e.ID = :arg");
+		Query query = em.createQuery("Select e FROM Empleado e JOIN Tarea t WHERE t.ID = :arg");
 		query.setParameter("arg",t.getId());
 		
 		
 		em.getTransaction().begin();
 		List<Empleado> empleado =  query.getResultList();
+		
 		em.getTransaction().commit();
 		
 		em.close();
