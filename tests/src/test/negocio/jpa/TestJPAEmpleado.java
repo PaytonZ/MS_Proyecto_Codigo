@@ -19,151 +19,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class TestJPAEmpleado {
-	private Empleado crearEmpleado()
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		Empleado e = new Empleado();
-		e.setDNI("54545454");
-		e.setNombre("asdasd");
-		e.setPrimerApellido("asdasd");
-		e.setSegundoApellido("asdasd");
-		
-		em.getTransaction().begin();
-		em.persist(e);
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-		
-		assertNotNull(e);
-		return e;
-	}
-	private Empleado buscarEmpleado(Integer id)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		em.getTransaction().begin();
-		Empleado e2 = em.find(Empleado.class, id);
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-		return e2;
-	}
-	private void modificarEmpleado(Empleado e2)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		e2.setDNI("60606060");
-		em.getTransaction().begin();
-		em.merge(e2);
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-	}
-	private Tarea añadirTareaEmpleado(Empleado e2)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		Tarea tarea = new Tarea();
-		tarea.setId(100);
-		tarea.setDescripcion("limpia lere lere");
-		tarea.setNombre("Limpiar");
-		e2.addTarea(tarea);
-		
-		em.getTransaction().begin();
-		em.merge(e2);
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-		return tarea;
-	}
-	private void borrarTareaAEmpleado(Empleado e,Tarea t)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		em.getTransaction().begin();
-		
-		Empleado e3 = em.find(Empleado.class, e.getId());
-		// NO BORRRA WHYYYYY WTF N GOYGOU GHIULHBUJNHBJ LVGH NVH Y
-		e3.getTareas().remove((Object)t);
-		em.merge(e3);
-		em.getTransaction().commit();
-		//
-		em.close();
-		entityManagerFactory.close();
-	}
-	private void borrarEmpleado(Empleado e2)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		em.getTransaction().begin();
-		em.remove(e2);
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-	}
-	private List<Empleado> obtenerEmpleadosPorTarea(Tarea t)
-	{
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		Query query = em.createQuery("Select e FROM Empleado e JOIN Tarea t WHERE t.ID = :arg");
-		query.setParameter("arg",t.getId());
-		
-		
-		em.getTransaction().begin();
-		List<Empleado> empleado =  query.getResultList();
-		
-		em.getTransaction().commit();
-		
-		em.close();
-		entityManagerFactory.close();
-		return empleado;
-	}
 	@Test
-	public void testModuloEmpleados()
+	public void crearEmpleado()
 	{
-		//inicializar EntityManager
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		//Crear Empleado
-		Empleado empleado1 = crearEmpleado(); 
 		
-		//obtener empleado
-		Empleado empleado2 = buscarEmpleado(empleado1.getId());
-		
-		//Modificar Empleado
-		modificarEmpleado(empleado2);
-		
-		//Añadir tarea a empleado
-		Tarea tarea1 = añadirTareaEmpleado(empleado2);
-		
-		//Obtener Empleados por tarea
-		List<Empleado> empleados = obtenerEmpleadosPorTarea(tarea1);
-
-		
-		//Borrar empleado a tarea
-		borrarTareaAEmpleado(empleado2, tarea1);
-		
-		//Borrar Empleado
-		borrarEmpleado(empleado2);
-		//
-	}
-	/*
-	@Test
-	public void testAddEmpleado()
-	{
 		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
 		Empleado e = new Empleado();
 		
@@ -177,14 +36,10 @@ public class TestJPAEmpleado {
 		em.getTransaction().begin();
 		
 		em.persist(e);
-		
-		
-		
+				
 		em.getTransaction().commit();
 		
-			
-		
-		
+						
 		Query query = em.createQuery("Select e FROM Empleado e WHERE e.DNI = :arg");
 		query.setParameter("arg",e.getDNI() );
 		
@@ -201,5 +56,55 @@ public class TestJPAEmpleado {
 		
 		entityManagerFactory.close();
 	}
-	*/
+	@Test
+	public void bajaEmpleado()
+	{
+		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+		Empleado e = new Empleado();
+		
+		e.setDNI(String.valueOf(new Random().nextInt(99999)));
+		e.setNombre("asdasd");
+		e.setPrimerApellido("asdasd");
+		e.setSegundoApellido("asdasd");
+		
+		
+		EntityManager em = entityManagerFactory.createEntityManager() ;
+		em.getTransaction().begin();
+		
+		em.persist(e);
+				
+		em.getTransaction().commit();
+		
+		
+		em = entityManagerFactory.createEntityManager() ;
+		
+		em.getTransaction().begin();
+		
+		Query query = em.createQuery("Update Empleado e SET e.activo=false WHERE e.DNI = :arg");
+		query.setParameter("arg",e.getDNI() );
+		
+		int j = query.executeUpdate();
+		
+		em.getTransaction().commit();
+		
+		Query query1 = em.createQuery("Select e FROM Empleado e WHERE e.DNI = :arg");
+		query1.setParameter("arg",e.getDNI() );
+		
+		Empleado e1 = (Empleado) query1.getSingleResult();
+		
+		assertNotNull(e1);
+
+		assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
+		
+		assertTrue(e.getPrimerApellido().equalsIgnoreCase(e1.getPrimerApellido()));
+		assertTrue(e.getSegundoApellido().equalsIgnoreCase(e1.getSegundoApellido()));
+		assertTrue(!e1.isActivo());
+		
+	
+		entityManagerFactory.close();
+		
+		
+	}
+	
+	
 }

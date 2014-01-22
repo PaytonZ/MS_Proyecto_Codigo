@@ -37,7 +37,7 @@ public class Empleado {
 		nombre="";
 		primerApellido="";
 		segundoApellido="";
-		
+		activo=true;
 	}
 	
 	@Id
@@ -267,4 +267,23 @@ public class Empleado {
 		COMPLETO,
 		HORAS
 	};
+	
+	private boolean activo;
+
+	public List<Tarea> getListaTareas() {
+		return listaTareas;
+	}
+
+	public void setListaTareas(List<Tarea> listaTareas) {
+		this.listaTareas = listaTareas;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
 }
