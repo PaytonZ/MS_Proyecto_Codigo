@@ -249,11 +249,6 @@ public class Empleado {
 		return listaTareas;
 	}
 	
-	public void setTareas(List<Tarea> tareas) {
-		
-		listaTareas = tareas;
-	}
-	
 	public void addTarea(Tarea tarea) {
 		
 		listaTareas.add(tarea);

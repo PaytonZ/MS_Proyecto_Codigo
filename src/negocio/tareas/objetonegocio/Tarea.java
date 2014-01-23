@@ -145,4 +145,8 @@ public class Tarea {
 		
 		listaEmpleados.addAll(empleados);
 	}
+	
+	public boolean equals(Tarea t) {
+		return ID == t.getId();
+	}
 }
