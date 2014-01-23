@@ -126,7 +126,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 					}
 				}
 				
-				emp.setTareas(tareasEmpleado);
+				emp.addTareas(tareasEmpleado);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADOS, emp);
 			}

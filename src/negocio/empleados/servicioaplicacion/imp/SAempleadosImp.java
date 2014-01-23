@@ -24,15 +24,15 @@ import javax.persistence.Persistence;
  */
 public class SAempleadosImp implements SAEmpleados {
 	
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
 	
-	public SAempleadosImp(){
-		
-	entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
-	}
+	
+	public SAempleadosImp(){}
+	
 	public Empleado anadirEmpleado(Empleado empleadoNuevo) {
-		entityManager = entityManagerFactory.createEntityManager();
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		
 		entityManager.persist(empleadoNuevo);
@@ -53,7 +53,10 @@ public class SAempleadosImp implements SAEmpleados {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Boolean borrarEmpleado(String dniEmpleado) {
-		entityManager = entityManagerFactory.createEntityManager();
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		
 		Empleado emp = entityManager.find(Empleado.class,dniEmpleado);
@@ -75,7 +78,9 @@ public class SAempleadosImp implements SAEmpleados {
 	 */
 	public Empleado actualizarEmpleado(Empleado empleadoActualizar) {
 		
-		entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		
 		Empleado emp = entityManager.find(Empleado.class,empleadoActualizar.getId());
@@ -100,7 +105,9 @@ public class SAempleadosImp implements SAEmpleados {
 	 */
 	public Empleado obtenerEmpleado(String dniEmpleado){
 		
-		entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		Empleado emp = entityManager.find(Empleado.class,dniEmpleado);
 		
@@ -133,7 +140,9 @@ public class SAempleadosImp implements SAEmpleados {
 	 */
 public Boolean anadirTareaEmpleado(String dniEmpleado, Integer idTarea) {
 		
-		entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+	
 		entityManager.getTransaction().begin();
 		
 		Empleado emp = entityManager.find(Empleado.class,dniEmpleado);
@@ -156,7 +165,9 @@ public Boolean anadirTareaEmpleado(String dniEmpleado, Integer idTarea) {
 	 */
 	public Boolean borrarTareaEmpleado(String empleado, Integer idTarea) {
 		
-		entityManager = entityManagerFactory.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		
 		Empleado emp = entityManager.find(Empleado.class,empleado);
