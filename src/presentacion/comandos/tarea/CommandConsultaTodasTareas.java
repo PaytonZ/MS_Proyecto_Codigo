@@ -3,7 +3,10 @@
  */
 package presentacion.comandos.tarea;
 
+import negocio.excepciones.BSoDException;
+import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /** 
@@ -19,9 +22,19 @@ public class CommandConsultaTodasTareas implements Command {
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		CommandResponse cr = new CommandResponse();
+		try {
+
+		    cr.setDatos(FactorySA.getInstance().getSATareas().obtenerTodaslasTareas());
+		    cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_TAREAS);
+
+		} catch (BSoDException bsod) {
+
+		    cr.setDatos(bsod);
+		    cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_TAREAS);
+		}
+		
+		return cr;
 	}
 }

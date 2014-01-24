@@ -23,7 +23,7 @@ public class CommandRConsultarEmpleadoVAsignarTarea implements Command {
 
 		CommandResponse cr = command.execute(datos);
 		
-		if ( cr.getEvento().equals(IDEventos.EVENTO_CONSULTAR_EMPLEADO) ) {
+		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_EMPLEADO) ) {
 			
 			cr.setEvento(IDEventos.ERROR_ASIGNARTAREA_EMPLEADO);
 		}

@@ -3,6 +3,9 @@
  */
 package negocio.tareas.servicioaplicacion.imp;
 
+import java.util.List;
+
+import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
 
@@ -21,11 +24,12 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirTarea(Tarea tareaNueva) {
+	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
 		// end-user-code
+	    return null;
 	}
 
 	/**
@@ -35,7 +39,7 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object borrarTarea(Object idTarea) {
+	public Boolean borrarTarea(String nombreTarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -49,11 +53,13 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarTarea(Tarea tarea) {
+	public Tarea actualizarTarea(Tarea tarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
 		// end-user-code
+	    
+	    return null;
 	}
 
 	/**
@@ -63,7 +69,7 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Tarea obternerTarea(Object idTarea) {
+	public Tarea obternerTarea(String nombreTarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -77,11 +83,12 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTodaslasTareas() {
+	public List<Tarea> obtenerTodaslasTareas() throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
 		// end-user-code
+	    return null;
 	}
 
 	/**
@@ -91,10 +98,9 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTareasPorEmpleados(Object idEmpleado) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+	public List<Tarea> obtenerTareasPorEmpleados(String DNIEmpleado)
+		throws BSoDException {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
 }
