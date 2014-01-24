@@ -34,7 +34,7 @@ public class SATareasImp implements SATareas {
 	 */
 	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
 	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;

@@ -23,7 +23,7 @@ public class TestJPAEmpleado {
 	public void crearEmpleado()
 	{
 		
-		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 		Empleado e = new Empleado();
 		
 		e.setDNI(String.valueOf(new Random().nextInt(99999)));
@@ -59,7 +59,7 @@ public class TestJPAEmpleado {
 	@Test
 	public void bajaEmpleado()
 	{
-		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 		Empleado e = new Empleado();
 		
 		e.setDNI(String.valueOf(new Random().nextInt(99999)));

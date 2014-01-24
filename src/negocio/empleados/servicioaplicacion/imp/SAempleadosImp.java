@@ -31,7 +31,7 @@ public class SAempleadosImp implements SAEmpleados {
     public Empleado anadirEmpleado(Empleado empleadoNuevo) throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 	Empleado resultado = null;
@@ -87,7 +87,7 @@ public class SAempleadosImp implements SAEmpleados {
 
 	Boolean borradoCorrecto = true;
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
@@ -130,7 +130,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
@@ -172,7 +172,7 @@ public class SAempleadosImp implements SAEmpleados {
     public Empleado obtenerEmpleado(String dniEmpleado) throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 	TypedQuery<Empleado> query = null;
@@ -207,7 +207,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 	TypedQuery<Empleado> query = null;
@@ -229,7 +229,7 @@ public class SAempleadosImp implements SAEmpleados {
 	Boolean borradoCorrecto = true;
 
 	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 	TypedQuery<Empleado> query = null;

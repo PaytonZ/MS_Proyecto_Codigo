@@ -10,7 +10,7 @@ import presentacion.FramePrincipal;
 
 public class HotelManager {
 
-    public final static String NOMBRE_CONEXION_ECLIPSELINK = "BSoD_PERSISTENCE_UNIT";
+    public final static String UNIDAD_PERSISTENCIA_ECLIPSELINK = "BSoD_PERSISTENCE_UNIT";
 
     private static Logger logger = Logger.getLogger(HotelManager.class
 	    .getName());
