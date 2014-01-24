@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="lib/JTattoo-1.6.8.jar"/>
 	<classpathentry kind="lib" path="lib/jpalibs/jpa/javax.persistence_2.1.0.v201304241213.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/6/api/"/>
+			<attribute name="javadoc_location" value="http://docs.oracle.com/javaee/7/api/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jpalibs/jpa/javax.persistence.source_2.1.0.v201304241213.jar"/>
