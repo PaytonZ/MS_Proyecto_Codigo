@@ -7,6 +7,8 @@ import presentacion.clientes.GUICliente;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 import presentacion.controladores.aplicacion.dispatcher.Dispatcher;
+import presentacion.departamentos.GUIDepartamentos;
+import presentacion.empleados.GUIEmpleados;
 import presentacion.habitaciones.GUIHabitaciones;
 import presentacion.reservas.GUIReservas;
 
@@ -89,6 +91,65 @@ public class DispatcherImp extends Dispatcher {
 	    		|| eventoActual == IDEventos.ERROR_CONSULTAR_RESERVA_V_BORRAR_RESERVAS) {
 			
 			GUIHabitaciones.getInstance().update(eventoActual, datos);
+		}
+		else if(eventoActual == IDEventos.EVENTO_ALTA_DEPARTAMENTO
+			    || eventoActual == IDEventos.EVENTO_BAJA_DEPARTAMENTO
+			    || eventoActual == IDEventos.EVENTO_MODIFICAR_DEPARTAMENTO
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTO
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO_V_BORRAR
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO_V_MODIFICAR
+			    || eventoActual == IDEventos.ERROR_ALTA_DEPARTAMENTO
+			    || eventoActual == IDEventos.ERROR_BAJA_DEPARTAMENTO
+			    || eventoActual == IDEventos.ERROR_MODIFICAR_DEPARTAMENTO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_DEPARTAMENTO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_DEPARTAMENTO_V_BORRAR
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_DEPARTAMENTO_V_MODIFICAR) {
+			
+			GUIDepartamentos.getInstance().update(eventoActual, datos);
+		}
+		else if(eventoActual == IDEventos.EVENTO_ALTA_EMPLEADO
+			    || eventoActual == IDEventos.EVENTO_BAJA_EMPLEADO
+			    || eventoActual == IDEventos.EVENTO_MODIFICAR_EMPLEADO
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADO
+			    || eventoActual == IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_EMPLEADOS
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TAREAS_V_ASIGARTAREA
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA
+    	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_BORRAR
+    	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR
+    	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_ALTA_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_BAJA_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_MODIFICAR_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_ASIGNARTAREA_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_EMPLEADOS
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA
+	    		    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_BORRAR
+		    	    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO) {
+			
+			GUIEmpleados.getInstance().update(eventoActual, datos);
+		}
+		else if(eventoActual == IDEventos.EVENTO_ALTA_TAREA
+			    || eventoActual == IDEventos.EVENTO_BAJA_TAREA
+			    || eventoActual == IDEventos.EVENTO_MODIFICAR_TAREA
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TAREA
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODAS_TAREAS
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TAREAS_V_BORRAR
+			    || eventoActual == IDEventos.EVENTO_CONSULTAR_TAREAS_V_MODIFICAR
+			    || eventoActual == IDEventos.ERROR_ALTA_TAREA
+			    || eventoActual == IDEventos.ERROR_BAJA_TAREA
+			    || eventoActual == IDEventos.ERROR_MODIFICAR_TAREA
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREA
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODAS_TAREAS
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREAS_V_BORRAR
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREAS_V_MODIFICAR) {
+			
+			GUIEmpleados.getInstance().update(eventoActual, datos);
 		}
 	}
 }
