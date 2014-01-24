@@ -20,11 +20,11 @@ import presentacion.reservas.paneles.PanelModificacionReservas;
  */
 public class GUIReservasImp extends GUIReservas {
 
-	private PanelAltaReservas panelAlta;
-	private PanelBajaReservas panelBaja;
-	private PanelModificacionReservas panelModificacion;
-	private PanelConsultaReservas panelConsulta;
-	private PanelConsultaMultipleReservas panelConsultaMultiple;// end-user-code
+	private static PanelAltaReservas panelAlta;
+	private static PanelBajaReservas panelBaja;
+	private static PanelModificacionReservas panelModificacion;
+	private static PanelConsultaReservas panelConsulta;
+	private static PanelConsultaMultipleReservas panelConsultaMultiple;// end-user-code
 	
 	public void update(IDEventos evento_actual, Object datos) {
 switch (evento_actual) {

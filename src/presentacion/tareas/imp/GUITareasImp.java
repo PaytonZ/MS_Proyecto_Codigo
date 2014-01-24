@@ -20,11 +20,11 @@ import presentacion.tareas.paneles.PanelModificacionTareas;
  */
 public class GUITareasImp extends GUITareas {
 	
-	private PanelAltaTareas panelAlta;
-	private PanelBajaTareas panelBaja;
-	private PanelConsultaMultipleTareas panelConsultaMultiples;
-	private PanelConsultaTarea panelConsulta;
-	private PanelModificacionTareas panelModificacion;
+	private static PanelAltaTareas panelAlta;
+	private static PanelBajaTareas panelBaja;
+	private static PanelConsultaMultipleTareas panelConsultaMultiples;
+	private static PanelConsultaTarea panelConsulta;
+	private static PanelModificacionTareas panelModificacion;
 	
 	@Override
 	public PanelAltaTareas getPanelAltaTareas() {

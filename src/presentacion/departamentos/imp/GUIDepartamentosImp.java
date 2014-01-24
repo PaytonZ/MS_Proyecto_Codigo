@@ -20,11 +20,11 @@ import presentacion.departamentos.paneles.PanelModificacionDepartamentos;
  */
 public class GUIDepartamentosImp extends GUIDepartamentos {
 	
-	private PanelModificacionDepartamentos panelModificacionDepartamentos;
-	private PanelConsultaMultiplesDepartamentos panelConsultaMultiplesDepartamentos;
-	private PanelConsultaDepartamento panelConsultaDepartamentos;
-	private PanelBajaDepartamentos panelBajaDepartamentos;
-	private PanelAltaDepartamentos panleAltaDepartamentos;
+	private static PanelModificacionDepartamentos panelModificacionDepartamentos;
+	private static PanelConsultaMultiplesDepartamentos panelConsultaMultiplesDepartamentos;
+	private static PanelConsultaDepartamento panelConsultaDepartamentos;
+	private static PanelBajaDepartamentos panelBajaDepartamentos;
+	private static PanelAltaDepartamentos panleAltaDepartamentos;
 
 	public PanelModificacionDepartamentos getPanelModificacionDepartamentos() {
 		

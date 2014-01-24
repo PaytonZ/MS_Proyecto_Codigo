@@ -20,11 +20,11 @@ import presentacion.habitaciones.paneles.PanelModificacionHabitaciones;
  */
 public class GUIHabitacionesImp extends GUIHabitaciones {
 
-	private PanelAltaHabitaciones panelAlta;
-	private PanelBajaHabitaciones panelBaja;
-	private PanelModificacionHabitaciones panelModificacion;
-	private PanelConsultaHabitaciones panelConsulta;
-	private PanelConsultaMultiplesHabitaciones panelConsultaMultiple;
+	private static PanelAltaHabitaciones panelAlta;
+	private static PanelBajaHabitaciones panelBaja;
+	private static PanelModificacionHabitaciones panelModificacion;
+	private static PanelConsultaHabitaciones panelConsulta;
+	private static PanelConsultaMultiplesHabitaciones panelConsultaMultiple;
 	
 	@Override
 	public void update(IDEventos eventoActual, Object datos) {

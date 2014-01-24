@@ -21,11 +21,11 @@ import presentacion.comandos.IDEventos;
  */
 public class GUIClienteImp extends GUICliente {
 	
-	private PanelAltaClientes panelAlta;
-	private PanelBajaClientes panelBaja;
-	private PanelModificacionClientes panelModificacion;
-	private PanelConsultaClientes panelConsulta;
-	private PanelConsultaMultipleClientes panelConsultaMoltiple;
+	private static PanelAltaClientes panelAlta;
+	private static PanelBajaClientes panelBaja;
+	private static PanelModificacionClientes panelModificacion;
+	private static PanelConsultaClientes panelConsulta;
+	private static PanelConsultaMultipleClientes panelConsultaMoltiple;
 
 	public PanelAltaClientes getPanelAltaClientes() {
 		
