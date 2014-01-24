@@ -27,7 +27,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado anadirEmpleado(Empleado empleadoNuevo);
+	public Empleado anadirEmpleado(Empleado empleadoNuevo)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -37,7 +37,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarEmpleado(String dniEmpleado);
+	public Boolean borrarEmpleado(String dniEmpleado)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -47,7 +47,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarEmpleado(Empleado empleadoActualizar);
+	public Boolean actualizarEmpleado(Empleado empleadoActualizar)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -58,7 +58,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado obtenerEmpleado(String dniEmpleado);
+	public Empleado obtenerEmpleado(String dniEmpleado)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -68,7 +68,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea);
+	public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -79,7 +79,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean anadirTareaEmpleado(String dniEmpleado, Integer idTarea);
+	public Boolean anadirTareaEmpleado(String dniEmpleado, Integer idTarea)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -90,5 +90,5 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarTareaEmpleado(String dniEmpleado, Integer idTarea);
+	public Boolean borrarTareaEmpleado(String dniEmpleado, Integer idTarea)  throws BSoDException;
 }

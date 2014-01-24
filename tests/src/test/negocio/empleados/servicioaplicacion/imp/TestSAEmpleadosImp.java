@@ -7,6 +7,7 @@ import java.util.Random;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.empleados.servicioaplicacion.imp.SAempleadosImp;
+import negocio.excepciones.BSoDException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +26,13 @@ public class TestSAEmpleadosImp {
 	e.setPrimerApellido("asdasd");
 	e.setSegundoApellido("asdasd");
 
-	Empleado e1 = saempleados.anadirEmpleado(e);
+	Empleado e1 = null;
+	try {
+	    e1 = saempleados.anadirEmpleado(e);
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
 
 	assertNotNull(e1);
 	assertTrue(e1.getId() >= 0);
@@ -36,9 +43,19 @@ public class TestSAEmpleadosImp {
 	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
 		e1.getSegundoApellido()));
 
-	assertTrue(saempleados.borrarEmpleado(e.getDNI()));
-	assertFalse(saempleados.borrarEmpleado(String.valueOf(new Random()
-		.nextInt(99999))));
+	try {
+	    assertTrue(saempleados.borrarEmpleado(e.getDNI()));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	try {
+	    assertFalse(saempleados.borrarEmpleado(String.valueOf(new Random()
+	    	.nextInt(99999))));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
 
     }
 
