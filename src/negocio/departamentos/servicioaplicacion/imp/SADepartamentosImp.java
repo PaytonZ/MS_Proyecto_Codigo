@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import presentacion.principal.HotelManager;
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.excepciones.BSoDException;
@@ -26,7 +27,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	private EntityManager entityManager;
 	
 	public SADepartamentosImp() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+		entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	}
 	
 	/**
