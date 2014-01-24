@@ -1,6 +1,7 @@
 package test.negocio.departamentos.servicioaplicacion.imp;
 
 import negocio.departamentos.objetonegocio.Departamento;
+import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 
 import org.junit.Test;
@@ -15,7 +16,13 @@ public class TestSADepartamentoImp {
 		
 		Departamento d = crearDepartamento();
 		
-		FactorySA.getInstance().getSADepartamentos().anadirDepartamento(d);
+		try {
+			FactorySA.getInstance().getSADepartamentos().anadirDepartamento(d);
+			
+		} catch (BSoDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test

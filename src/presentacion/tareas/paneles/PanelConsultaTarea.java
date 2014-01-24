@@ -63,7 +63,7 @@ public class PanelConsultaTarea extends JPanel implements GUIPanelesInterfaz {
 				if ( !nombreTarea.equals("")) {
 				
 					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TAREAS, nombreTarea);
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TAREA, nombreTarea);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "El campo nombre no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -100,7 +100,7 @@ public class PanelConsultaTarea extends JPanel implements GUIPanelesInterfaz {
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_CONSULTAR_TAREAS == idEvento ) {
+		if ( IDEventos.EVENTO_CONSULTAR_TAREA == idEvento ) {
 		
 			if ( datos instanceof Tarea) {
 				
@@ -114,7 +114,7 @@ public class PanelConsultaTarea extends JPanel implements GUIPanelesInterfaz {
 				JOptionPane.showMessageDialog(this, "No se pudo obtener la tarea", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_TAREAS == idEvento ) {
+		else if ( IDEventos.ERROR_CONSULTAR_TAREA == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

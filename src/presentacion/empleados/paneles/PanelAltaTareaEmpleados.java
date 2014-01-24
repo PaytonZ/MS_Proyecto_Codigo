@@ -128,7 +128,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				
 				emp.addTareas(tareasEmpleado);
 				
-				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADOS, emp);
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO, emp);
 			}
 		});
 		btnAsignarTareas.setEnabled(false);
@@ -240,7 +240,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 	@SuppressWarnings("unchecked")
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_ASIGNARTAREA_EMPLEADOS == idEvento) {
+		if ( IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO == idEvento) {
 			
 			if ( datos instanceof Boolean && (Boolean) datos) {
 			
@@ -325,7 +325,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		}*/
 		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA == idEvento
 				//|| IDEventos.ERROR_CONSULTAR_TAREAEMPLEADO_V_EMPLEADO_ASIGARTAREA == idEvento
-				|| IDEventos.ERROR_ASIGNARTAREA_EMPLEADOS == idEvento
+				|| IDEventos.ERROR_ASIGNARTAREA_EMPLEADO == idEvento
 				|| IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA == idEvento) {
 			
 			if ( datos instanceof BSoDException ) {

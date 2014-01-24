@@ -3,7 +3,7 @@
  */
 package negocio.departamentos.servicioaplicacion.imp;
 
-import integracion.factorias.factoriaDAO.FactoriaDAO;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -36,7 +37,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirDepartamento(Departamento departamentoNuevo) {
+	public Departamento anadirDepartamento(Departamento departamentoNuevo) throws BSoDException {
 		
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -45,6 +46,8 @@ public class SADepartamentosImp implements SADepartamentos {
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		
+		return departamentoNuevo;
 	}
 
 	/**
@@ -54,7 +57,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object borrarDepartamento(Object idDepartamento) {
+	public Boolean borrarDepartamento(Integer idDepartamento) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -69,11 +72,13 @@ public class SADepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarDepartamento(Departamento departamento) {
+	public Departamento actualizarDepartamento(Departamento departamento) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
 		// end-user-code
+		
+		return departamento;
 	}
 
 	/**
@@ -83,7 +88,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Departamento obternerDepartamento(Object idDepartamento) {
+	public Departamento obternerDepartamento(String nombreDepartamento) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 		return null;
@@ -97,10 +102,12 @@ public class SADepartamentosImp implements SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTodoslosDepartamentos() {
+	public List<Departamento> obtenerTodoslosDepartamentos() throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 
 		// end-user-code
+		
+		return null;
 	}
 }

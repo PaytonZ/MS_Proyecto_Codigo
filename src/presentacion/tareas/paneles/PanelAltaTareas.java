@@ -85,7 +85,7 @@ public class PanelAltaTareas extends JPanel implements GUIPanelesInterfaz {
 					tarea.setNombre(textNombre.getText());
 					tarea.setDescripcion(textDescripcion.getText());
 					
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_TAREAS, tarea);
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_TAREA, tarea);
 				}
 				else {
 					JOptionPane.showMessageDialog(contentPane, "No se pueden dejar campos sin rellenar", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -98,7 +98,7 @@ public class PanelAltaTareas extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_ALTA_TAREAS == idEvento ) {
+		if ( IDEventos.EVENTO_ALTA_TAREA == idEvento ) {
 		
 			if ( datos instanceof Integer ) {
 				
@@ -111,7 +111,7 @@ public class PanelAltaTareas extends JPanel implements GUIPanelesInterfaz {
 				JOptionPane.showMessageDialog(contentPane, "Error al dar de alta una tarea", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_ALTA_TAREAS == idEvento ) {
+		else if ( IDEventos.ERROR_ALTA_TAREA == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

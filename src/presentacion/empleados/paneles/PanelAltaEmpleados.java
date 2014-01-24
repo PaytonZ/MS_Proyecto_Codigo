@@ -136,7 +136,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 						if ( !textSegundoApellido.getText().equals("") )
 							empleado.setSegundoApellido(textSegundoApellido.getText().trim());
 						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_EMPLEADOS, empleado);
+						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_EMPLEADO, empleado);
 					}
 				}
 				else {
@@ -151,7 +151,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_ALTA_EMPLEADOS == idEvento ) {
+		if ( IDEventos.EVENTO_ALTA_EMPLEADO == idEvento ) {
 		
 			if ( datos instanceof Integer ) {
 				
@@ -185,7 +185,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				cbDepartamento.setModel(model);
 			}
 		}
-		else if ( IDEventos.ERROR_ALTA_EMPLEADOS == idEvento || IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO == idEvento) {
+		else if ( IDEventos.ERROR_ALTA_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO == idEvento) {
 			
 			if ( datos instanceof BSoDException ) {
 				

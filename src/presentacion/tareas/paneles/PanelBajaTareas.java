@@ -103,7 +103,7 @@ public class PanelBajaTareas extends JPanel implements GUIPanelesInterfaz {
 			public void actionPerformed(ActionEvent e) {
 				
 				if ( idTarea != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_TAREAS, idTarea);
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_TAREA, idTarea);
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al borrar la tarea, búsquela otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -114,7 +114,7 @@ public class PanelBajaTareas extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_BAJA_TAREAS == idEvento ) {
+		if ( IDEventos.EVENTO_BAJA_TAREA == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				
@@ -147,7 +147,7 @@ public class PanelBajaTareas extends JPanel implements GUIPanelesInterfaz {
 				btnBorrarTarea.setEnabled(true);
 			}
 		}
-		else if ( IDEventos.ERROR_BAJA_TAREAS == idEvento || IDEventos.ERROR_CONSULTAR_TAREAS_V_BORRAR == idEvento ) {
+		else if ( IDEventos.ERROR_BAJA_TAREA == idEvento || IDEventos.ERROR_CONSULTAR_TAREAS_V_BORRAR == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

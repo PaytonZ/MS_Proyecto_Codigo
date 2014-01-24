@@ -171,7 +171,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 							if ( !textSegundoApellido.getText().equals("") )
 								empleado.setSegundoApellido(textSegundoApellido.getText().trim());
 							
-							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_EMPLEADOS, empleado);
+							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_EMPLEADO, empleado);
 						}
 					}
 					catch (ClassCastException cce) {
@@ -204,7 +204,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_MODIFICAR_EMPLEADOS == idEvento ) {
+		if ( IDEventos.EVENTO_MODIFICAR_EMPLEADO == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				
@@ -253,7 +253,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				cbDepartamento.setEnabled(true);
 			}
 		}
-		else if ( IDEventos.ERROR_MODIFICAR_EMPLEADOS == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento ) {
+		else if ( IDEventos.ERROR_MODIFICAR_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

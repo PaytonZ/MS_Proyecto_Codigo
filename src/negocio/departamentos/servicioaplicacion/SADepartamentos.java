@@ -3,7 +3,10 @@
  */
 package negocio.departamentos.servicioaplicacion;
 
+import java.util.List;
+
 import negocio.departamentos.objetonegocio.Departamento;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -20,7 +23,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirDepartamento(Departamento departamentoNuevo);
+	public Departamento anadirDepartamento(Departamento departamentoNuevo) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -30,7 +33,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object borrarDepartamento(Object idDepartamento);
+	public Boolean borrarDepartamento(Integer idDepartamento) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -39,7 +42,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarDepartamento(Departamento departamento);
+	public Departamento actualizarDepartamento(Departamento departamento) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -49,7 +52,7 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Departamento obternerDepartamento(Object idDepartamento);
+	public Departamento obternerDepartamento(String nombreDepartamento) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -57,5 +60,5 @@ public interface SADepartamentos {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTodoslosDepartamentos();
+	public List<Departamento> obtenerTodoslosDepartamentos() throws BSoDException;
 }

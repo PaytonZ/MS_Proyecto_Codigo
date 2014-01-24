@@ -121,7 +121,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 			public void actionPerformed(ActionEvent e) {
 				
 				if ( idEmpleado != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_EMPLEADOS, idEmpleado);
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_EMPLEADO, idEmpleado);
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar el empleado, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -132,7 +132,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_BAJA_EMPLEADOS == idEvento ) {
+		if ( IDEventos.EVENTO_BAJA_EMPLEADO == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				
@@ -169,7 +169,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				btnBorrarCliente.setEnabled(true);
 			}
 		}
-		else if ( IDEventos.ERROR_BAJA_EMPLEADOS == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_BORRAR == idEvento ) {
+		else if ( IDEventos.ERROR_BAJA_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_BORRAR == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

@@ -95,7 +95,7 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 			public void actionPerformed(ActionEvent e) {
 				
 				if ( idTarea != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_TAREAS, idTarea);
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_TAREA, idTarea);
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar la tarea, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -114,7 +114,7 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 	@Override
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_MODIFICAR_TAREAS == idEvento ) {
+		if ( IDEventos.EVENTO_MODIFICAR_TAREA == idEvento ) {
 			
 			if ( datos instanceof Boolean ) {
 				
@@ -152,7 +152,7 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 				btnModificarTarea.setEnabled(true);
 			}
 		}
-		else if ( IDEventos.ERROR_MODIFICAR_TAREAS == idEvento || IDEventos.ERROR_CONSULTAR_TAREAS_V_MODIFICAR == idEvento ) {
+		else if ( IDEventos.ERROR_MODIFICAR_TAREA == idEvento || IDEventos.ERROR_CONSULTAR_TAREAS_V_MODIFICAR == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

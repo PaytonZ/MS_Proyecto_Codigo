@@ -71,7 +71,7 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 				if ( !dniEmpleado.equals("")) {
 				
 					ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADOS, dniEmpleado);
+					controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADO, dniEmpleado);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "El campo DNI no puede quedar vacío", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -130,7 +130,7 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_CONSULTAR_EMPLEADOS == idEvento ) {
+		if ( IDEventos.EVENTO_CONSULTAR_EMPLEADO == idEvento ) {
 		
 			if ( datos instanceof Empleado) {
 				
@@ -148,7 +148,7 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 				JOptionPane.showMessageDialog(this, "No se pudo obtener el empleado", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADOS == idEvento ) {
+		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				
