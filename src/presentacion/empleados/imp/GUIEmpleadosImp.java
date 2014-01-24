@@ -29,12 +29,6 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 	private PanelModificacionEmpleados panelModificacionEmpleados;
 	private PanelConsultaEmpleados panelConsultaEmpleados;
 	private PanelAltaEmpleados panelAltaEmpleados;
-	
-	@Override
-	public void update(IDEventos evento_actual, Object datos) {
-		// TODO Auto-generated method stub
-		
-	}
 	@Override
 	public PanelAltaEmpleados getPanelAltaEmpleados() {
 
@@ -97,5 +91,49 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 		}
 		
 		return panelBajaTareaEmpleados;
+	}
+	
+	@Override
+	public void update(IDEventos eventoActual, Object datos) {
+
+	    switch (eventoActual) {
+        	case EVENTO_ALTA_EMPLEADO:
+        	case ERROR_ALTA_EMPLEADO:
+        	case EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO:
+        	case ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO:
+        	    getPanelAltaEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_BAJA_EMPLEADO:
+        	case ERROR_BAJA_EMPLEADO:
+        	case EVENTO_CONSULTAR_EMPLEADOS_V_BORRAR:
+        	case ERROR_CONSULTAR_EMPLEADOS_V_BORRAR:
+        	    getPanelBajaEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_MODIFICAR_EMPLEADO:
+        	case ERROR_MODIFICAR_EMPLEADO:
+        	case EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR:
+        	case ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR:
+        	    getPanelModificacionEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_CONSULTAR_EMPLEADO:
+        	case ERROR_CONSULTAR_EMPLEADO:
+        	    getPanelConsultaEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_ASIGNARTAREA_EMPLEADO:
+        	case ERROR_ASIGNARTAREA_EMPLEADO:
+        	case EVENTO_CONSULTAR_TAREAS_V_ASIGARTAREA:
+        	case ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA:
+        	case EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA:
+        	case ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA:
+        	    getPanelAltaTareaEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_CONSULTAR_TODOS_EMPLEADOS:
+        	case ERROR_CONSULTAR_TODOS_EMPLEADOS:
+        	    getPanelConsultaMultipleEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+    	    default:
+    		break;
+	    
+	    }
 	}
 }

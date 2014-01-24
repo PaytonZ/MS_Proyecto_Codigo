@@ -73,13 +73,35 @@ public class GUIDepartamentosImp extends GUIDepartamentos {
 
 	public void update(IDEventos eventoActual, Object datos) {
 		
-		/*switch (eventoActual) {
-		case value:
-			
-			break;
+		switch (eventoActual) {
+		
+		case EVENTO_ALTA_DEPARTAMENTO:
+		case ERROR_ALTA_DEPARTAMENTO:
+		    getPanelAltaDepartamentos().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_BAJA_DEPARTAMENTO:
+		case ERROR_BAJA_DEPARTAMENTO:
+		case EVENTO_CONSULTAR_DEPARTAMENTO_V_BORRAR:
+		case ERROR_CONSULTAR_DEPARTAMENTO_V_BORRAR:
+		    getPanelBajaDepartamentos().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_MODIFICAR_DEPARTAMENTO:
+		case ERROR_MODIFICAR_DEPARTAMENTO:
+		case EVENTO_CONSULTAR_DEPARTAMENTO_V_MODIFICAR:
+		case ERROR_CONSULTAR_DEPARTAMENTO_V_MODIFICAR:
+		    getPanelModificacionDepartamentos().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_CONSULTAR_DEPARTAMENTO:
+		case ERROR_CONSULTAR_DEPARTAMENTO:
+		    getPanelConsultaDepartamentos().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_CONSULTAR_TODOS_DEPARTAMENTO:
+		case ERROR_CONSULTAR_TODOS_DEPARTAMENTO:
+		    getPanelConsultaMultiplesDepartamentos().actualizarVentana(eventoActual, datos);
+		    break;
 
 		default:
-			break;
-		}*/
+		    break;
+		}
 	}
 }

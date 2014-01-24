@@ -3,6 +3,7 @@
  */
 package presentacion.tareas.imp;
 
+import presentacion.comandos.IDEventos;
 import presentacion.tareas.GUITareas;
 import presentacion.tareas.paneles.PanelAltaTareas;
 import presentacion.tareas.paneles.PanelBajaTareas;
@@ -24,12 +25,6 @@ public class GUITareasImp extends GUITareas {
 	private PanelConsultaMultipleTareas panelConsultaMultiples;
 	private PanelConsultaTarea panelConsulta;
 	private PanelModificacionTareas panelModificacion;
-	
-	@Override
-	public void update(Object idVentana, Object datos) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@Override
 	public PanelAltaTareas getPanelAltaTareas() {
@@ -79,6 +74,41 @@ public class GUITareasImp extends GUITareas {
 		}
 		
 		return panelModificacion;
+	}
+	
+	@Override
+	public void update(IDEventos eventoActual, Object datos) {
+	    
+		switch (eventoActual) {
+		
+		case EVENTO_ALTA_TAREA:
+		case ERROR_ALTA_TAREA:
+		    getPanelAltaTareas().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_BAJA_TAREA:
+		case ERROR_BAJA_TAREA:
+		case EVENTO_CONSULTAR_TAREAS_V_BORRAR:
+		case ERROR_CONSULTAR_TAREAS_V_BORRAR:
+		    getPanelBajaTareas().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_MODIFICAR_TAREA:
+		case ERROR_MODIFICAR_TAREA:
+		case EVENTO_CONSULTAR_TAREAS_V_MODIFICAR:
+		case ERROR_CONSULTAR_TAREAS_V_MODIFICAR:
+		    getPanelModificacionTareas().actualizarVentana(eventoActual, datos);
+		    break;
+		case EVENTO_CONSULTAR_TAREA:
+		case ERROR_CONSULTAR_TAREA:
+		    getPanelConsultaTarea().actualizarVentana(eventoActual, datos);
+		    break;
+		case ERROR_CONSULTAR_TODAS_TAREAS:
+		case ERROR_CONSULTAR_TODOS_DEPARTAMENTO:
+		    getPanelConsultaMultipleTareas().actualizarVentana(eventoActual, datos);
+		    break;
+
+		default:
+		    break;
+		}
 	}
 
 }

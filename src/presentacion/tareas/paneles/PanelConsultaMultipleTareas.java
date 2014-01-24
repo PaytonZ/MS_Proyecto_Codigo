@@ -71,7 +71,7 @@ public class PanelConsultaMultipleTareas extends JPanel implements GUIPanelesInt
 			public void actionPerformed(ActionEvent e) {
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_TAREAS, null);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODAS_TAREAS, null);
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
@@ -96,7 +96,7 @@ public class PanelConsultaMultipleTareas extends JPanel implements GUIPanelesInt
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_CONSULTAR_TODOS_TAREAS == idEvento ) {
+		if ( IDEventos.EVENTO_CONSULTAR_TODAS_TAREAS == idEvento ) {
 			
 			if ( datos instanceof List) {
 				
@@ -112,7 +112,7 @@ public class PanelConsultaMultipleTareas extends JPanel implements GUIPanelesInt
 				JOptionPane.showMessageDialog(contentPane, "No se pudieron recuperar las tareas", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_TODOS_TAREAS == idEvento ) {
+		else if ( IDEventos.ERROR_CONSULTAR_TODAS_TAREAS == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

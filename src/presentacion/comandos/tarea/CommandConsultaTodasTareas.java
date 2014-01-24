@@ -27,12 +27,12 @@ public class CommandConsultaTodasTareas implements Command {
 		try {
 
 		    cr.setDatos(FactorySA.getInstance().getSATareas().obtenerTodaslasTareas());
-		    cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_TAREAS);
+		    cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODAS_TAREAS);
 
 		} catch (BSoDException bsod) {
 
 		    cr.setDatos(bsod);
-		    cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_TAREAS);
+		    cr.setEvento(IDEventos.ERROR_CONSULTAR_TODAS_TAREAS);
 		}
 		
 		return cr;

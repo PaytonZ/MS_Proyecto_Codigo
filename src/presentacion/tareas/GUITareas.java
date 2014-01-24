@@ -3,6 +3,7 @@
  */
 package presentacion.tareas;
 
+import presentacion.comandos.IDEventos;
 import presentacion.tareas.imp.GUITareasImp;
 import presentacion.tareas.paneles.PanelAltaTareas;
 import presentacion.tareas.paneles.PanelBajaTareas;
@@ -35,7 +36,7 @@ public abstract class GUITareas {
 		}
 	}
 
-	public abstract void update(Object idVentana, Object datos);
+	public abstract void update(IDEventos eventoActual, Object datos);
 	
 	public abstract PanelAltaTareas getPanelAltaTareas();
 

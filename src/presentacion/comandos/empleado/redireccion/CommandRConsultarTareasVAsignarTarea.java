@@ -19,11 +19,11 @@ public class CommandRConsultarTareasVAsignarTarea  implements Command {
 	@Override
 	public CommandResponse execute(Object datos) {
 
-		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS);
+		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_TODAS_TAREAS);
 
 		CommandResponse cr = command.execute(datos);
 		
-		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS) ) {
+		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_TODAS_TAREAS) ) {
 			
 			cr.setEvento(IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA);
 		}
