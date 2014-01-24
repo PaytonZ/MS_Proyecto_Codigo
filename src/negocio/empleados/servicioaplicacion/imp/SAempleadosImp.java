@@ -25,15 +25,14 @@ import javax.persistence.Persistence;
 public class SAempleadosImp implements SAEmpleados {
 	
 	
-	
-	public SAempleadosImp(){}
-	
-	public Empleado anadirEmpleado(Empleado empleadoNuevo) {
+	public Integer anadirEmpleado(Empleado empleadoNuevo) {
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();
+		
+		
 		
 		entityManager.persist(empleadoNuevo);
 		
@@ -42,7 +41,7 @@ public class SAempleadosImp implements SAEmpleados {
 		Empleado emp = entityManager.find(Empleado.class, empleadoNuevo.getId());
 		entityManager.close();
 		
-		return emp;
+		return -1;
 	}
 
 	/**
@@ -76,7 +75,7 @@ public class SAempleadosImp implements SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado actualizarEmpleado(Empleado empleadoActualizar) {
+	public Boolean actualizarEmpleado(Empleado empleadoActualizar) {
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink"); 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -91,7 +90,7 @@ public class SAempleadosImp implements SAEmpleados {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		
-		return emp;
+		return true;
 		
 	}
 

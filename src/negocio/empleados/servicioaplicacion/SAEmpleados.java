@@ -8,6 +8,7 @@ import negocio.excepciones.BSoDException;
 
 
 
+
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado anadirEmpleado(Empleado empleadoNuevo);
+	public Integer anadirEmpleado(Empleado empleadoNuevo);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -46,7 +47,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Empleado actualizarEmpleado(Empleado empleadoActualizar);
+	public Boolean actualizarEmpleado(Empleado empleadoActualizar);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -89,5 +90,5 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarTareaEmpleado(String empleado, Integer idTarea);
+	public Boolean borrarTareaEmpleado(String dniEmpleado, Integer idTarea);
 }
