@@ -33,14 +33,14 @@ public class CommandAltaTareaEmpleado implements Command {
 
 		    Empleado emp = (Empleado) datos;
 		    
-		    List<Tarea> tareas = emp.getListaTareas();
+		   // List<Tarea> tareas = emp.getListaTareas();
 		    
-		    emp.setListaTareas(new ArrayList<Tarea>());
+		    //emp.setListaTareas(new ArrayList<Tarea>());
 		    
-		    cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirTareaEmpleado(emp.getDNI(), tareas));
+		  //  cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirTareaEmpleado(emp.getDNI(), tareas));
 		    cr.setEvento(IDEventos.EVENTO_ALTA_DEPARTAMENTO);
 
-		} catch (BSoDException bsod) {
+		} catch (Exception bsod) { // cambiar por bsod
 
 		    cr.setDatos(bsod);
 		    cr.setEvento(IDEventos.ERROR_ALTA_DEPARTAMENTO);

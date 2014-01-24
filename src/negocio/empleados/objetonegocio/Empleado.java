@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -27,14 +28,20 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author NASAIII
+ * @author BSoD Software 
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @Entity
 @Table(name = "empleados", uniqueConstraints = { @UniqueConstraint(columnNames = "DNI") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
-@NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg")
+@NamedQueries({
+    
+@NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea") 
+
+})
+
 public class Empleado implements Serializable {
 
     /**

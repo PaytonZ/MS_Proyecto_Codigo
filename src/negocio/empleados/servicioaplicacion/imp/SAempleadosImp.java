@@ -20,7 +20,7 @@ import presentacion.principal.HotelManager;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author NASAIII
+ * @author BSoD Software 
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
@@ -223,7 +223,7 @@ public class SAempleadosImp implements SAEmpleados {
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
     public Boolean anadirTareaEmpleado(String dniEmpleado,
-	    List<Tarea> listaTareas) throws BSoDException {
+	List<Tarea> listaTareas) throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
