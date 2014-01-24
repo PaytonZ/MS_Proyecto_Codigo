@@ -13,8 +13,12 @@ import org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider;
 import presentacion.FramePrincipal;
 
 
+
+
 public class HotelManager {
 
+	public final static  String NOMBRE_CONEXION_ECLIPSELINK = "BSoD_PERSISTENCE_UNIT";
+	
 	private static Logger logger = Logger.getLogger(HotelManager.class.getName());
 	
 	public static void main(String[] args) {

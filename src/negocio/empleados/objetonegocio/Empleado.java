@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import negocio.departamentos.objetonegocio.Departamento;
@@ -29,6 +30,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Entity
 @Table(name="empleados")
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
+@NamedQuery(name="Empleado.BuscarDNI", query="Select e FROM Empleado e WHERE e.DNI = :arg")
 public class Empleado {
 	
 	public Empleado()

@@ -17,13 +17,15 @@ import negocio.tareas.objetonegocio.Tarea;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import presentacion.principal.HotelManager;
 @RunWith(JUnit4.class)
 public class TestJPAEmpleado {
 	@Test
 	public void crearEmpleado()
 	{
 		
-		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
 		Empleado e = new Empleado();
 		
 		e.setDNI(String.valueOf(new Random().nextInt(99999)));
@@ -59,7 +61,7 @@ public class TestJPAEmpleado {
 	@Test
 	public void bajaEmpleado()
 	{
-		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory("EclipseLink");
+		EntityManagerFactory  entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
 		Empleado e = new Empleado();
 		
 		e.setDNI(String.valueOf(new Random().nextInt(99999)));
