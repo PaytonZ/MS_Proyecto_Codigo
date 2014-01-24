@@ -5,6 +5,14 @@ package negocio.tareas.servicioaplicacion.imp;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import presentacion.principal.HotelManager;
+import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
@@ -25,11 +33,49 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+	    EntityManagerFactory entityManagerFactory = Persistence
+			.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+		EntityManager entityManager = entityManagerFactory
+			.createEntityManager();
+		Tarea resultado = null;
+		TypedQuery<Tarea> query = null;
 
-		// end-user-code
-	    return null;
+		/*
+		 * Se busca en la BD el empleado , si ya existia se le activa.
+		 */
+		tareaNueva.setActivo(true);
+		try {
+		    entityManager.getTransaction().begin();
+		    query = entityManager.createNamedQuery(
+			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
+		    query.setParameter("nombre", tareaNueva.getNombre());
+		    resultado = query.getSingleResult();
+
+		    tareaNueva.setId(resultado.getId());
+
+		} catch (NoResultException ex) {// No se encontro el empleado.
+		    entityManager.persist(tareaNueva);
+
+		    entityManager.getTransaction().commit();
+
+		    query = entityManager.createNamedQuery(
+			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
+		    query.setParameter("nombre", tareaNueva.getNombre());
+		    resultado = query.getSingleResult();
+
+		    tareaNueva.setId(resultado.getId());
+		    entityManager.close();
+
+		} finally // Se realizará en ambos casos
+		{
+		    entityManager = entityManagerFactory.createEntityManager();
+		    entityManager.getTransaction().begin();
+		    entityManager.merge(tareaNueva);
+		    entityManager.getTransaction().commit();
+		    entityManager.close();
+		    entityManagerFactory.close();
+		}
+		return tareaNueva;
 	}
 
 	/**

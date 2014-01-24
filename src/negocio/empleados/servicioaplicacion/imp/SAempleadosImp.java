@@ -3,7 +3,9 @@
  */
 package negocio.empleados.servicioaplicacion.imp;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +22,7 @@ import presentacion.principal.HotelManager;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author BSoD Software 
+ * @author BSoD Software
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
@@ -223,24 +225,36 @@ public class SAempleadosImp implements SAEmpleados {
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
     public Boolean anadirTareaEmpleado(String dniEmpleado,
-	List<Tarea> listaTareas) throws BSoDException {
+	    List<Tarea> listaTareas) throws BSoDException {
+	Boolean borradoCorrecto = true;
 
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
+	TypedQuery<Empleado> query = null;
+	Empleado resultado = null;
 
-	entityManager.getTransaction().begin();
+	try {
+	    entityManager.getTransaction().begin();
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query.setParameter("arg", dniEmpleado);
+	    resultado = query.getSingleResult();
 
-	Empleado emp = entityManager.find(Empleado.class, dniEmpleado);
-	// Tarea tar = entityManager.find(Tarea.class, idTarea);
+	    resultado.setTarea(new HashSet<Tarea>(listaTareas));
 
-	// emp.addTarea(tar);
-	entityManager.merge(emp);
-	entityManager.getTransaction().commit();
-	entityManager.close();
+	    entityManager.getTransaction().commit();
+	    entityManager.close();
+	    entityManagerFactory.close();
 
-	return true;
+	} catch (NoResultException ex) {
+	    borradoCorrecto = false;
+	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
+		    + dniEmpleado);
+	}
+
+	return borradoCorrecto;
     }
 
 }

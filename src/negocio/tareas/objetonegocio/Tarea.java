@@ -6,11 +6,7 @@ package negocio.tareas.objetonegocio;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import negocio.empleados.objetonegocio.Empleado;
 
@@ -20,15 +16,24 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author BSoD Software 
+ * @author BSoD Software
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @Entity
-@Table(name = "tareas")
+@Table(name = "tareas" , uniqueConstraints = { @UniqueConstraint(columnNames = "nombre") })
+@NamedQueries({
+	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBynombre", query = "select obj from Tarea obj where obj.nombre = :nombre"),
+	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBydescripcion", query = "select obj from Tarea obj where obj.descripcion = :descripcion"),
+	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findByactivo", query = "select obj from Tarea obj where obj.activo = :activo") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Tarea {
+
+    public static final String QUERY_BUSCAR_TAREA_POR_NOMBRE = "negocio.tareas.objetonegocio.Tarea.findBynombre";
+
     /**
+     * 
+     * 
      * <!-- begin-UML-doc --> <!-- end-UML-doc -->
      * 
      * @generated 
@@ -130,9 +135,19 @@ public class Tarea {
     }
 
     @ManyToMany(mappedBy = "tarea")
-	private Set<Empleado> listaEmpleados;
+    private Set<Empleado> listaEmpleados;
 
     public boolean equals(Tarea t) {
 	return ID == t.getId();
+    }
+
+    private Boolean activo;
+
+    public Boolean getActivo() {
+	return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+	this.activo = activo;
     }
 }

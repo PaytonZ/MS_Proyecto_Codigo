@@ -279,4 +279,12 @@ public class Empleado implements Serializable {
 	this.activo = activo;
     }
 
+    public Set<Tarea> getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(Set<Tarea> tarea) {
+        this.tarea = tarea;
+    }
+
 }
