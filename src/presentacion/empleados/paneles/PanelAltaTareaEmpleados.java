@@ -126,7 +126,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 					}
 				}
 				
-				emp.addTareas(tareasEmpleado);
+				//emp.addTareas(tareasEmpleado);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO, emp);
 			}
@@ -287,7 +287,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				textNombre.setText(emp.getNombre());
 				textApellidos.setText(emp.getPrimerApellido() + " " + emp.getSegundoApellido());
 				
-				tareasEmpleado = emp.getTareas();
+				//tareasEmpleado = emp.getTareas();
 				
 				DefaultListModel<Tarea> model = (DefaultListModel<Tarea>)listaTareasAsignadas.getModel();
 				

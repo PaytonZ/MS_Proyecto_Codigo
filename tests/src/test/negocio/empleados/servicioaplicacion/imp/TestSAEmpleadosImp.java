@@ -51,7 +51,7 @@ public class TestSAEmpleadosImp {
 	}
 	try {
 	    assertFalse(saempleados.borrarEmpleado(String.valueOf(new Random()
-	    	.nextInt(99999))));
+		    .nextInt(99999))));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
@@ -59,4 +59,47 @@ public class TestSAEmpleadosImp {
 
     }
 
+    @Test
+    public void altaYConsulta() {
+
+	SAEmpleados saempleados = new SAempleadosImp();
+	Empleado e = new Empleado();
+
+	e.setDNI(String.valueOf(new Random().nextInt(99999)));
+	e.setNombre("asdasd");
+	e.setPrimerApellido("asdasd");
+	e.setSegundoApellido("asdasd");
+
+	Empleado e1 = null;
+	try {
+	    e1 = saempleados.anadirEmpleado(e);
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+
+	assertNotNull(e1);
+	assertTrue(e1.getId() >= 0);
+	assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
+
+	assertTrue(e.getPrimerApellido().equalsIgnoreCase(
+		e1.getPrimerApellido()));
+	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
+		e1.getSegundoApellido()));
+
+	try {
+	    e1 = saempleados.obtenerEmpleado(e.getDNI());
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	assertTrue(e1.getId() >= 0);
+	assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
+
+	assertTrue(e.getPrimerApellido().equalsIgnoreCase(
+		e1.getPrimerApellido()));
+	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
+		e1.getSegundoApellido()));
+
+    }
 }

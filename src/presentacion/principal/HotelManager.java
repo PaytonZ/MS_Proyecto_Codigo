@@ -8,38 +8,32 @@ import javax.swing.UIManager;
 
 import presentacion.FramePrincipal;
 
-
-
-
 public class HotelManager {
 
-	public final static  String NOMBRE_CONEXION_ECLIPSELINK = "BSoD_PERSISTENCE_UNIT";
-	
-	private static Logger logger = Logger.getLogger(HotelManager.class.getName());
-	
-	public static void main(String[] args) {
-		
-		
-		
+    public final static String NOMBRE_CONEXION_ECLIPSELINK = "BSoD_PERSISTENCE_UNIT";
 
+    private static Logger logger = Logger.getLogger(HotelManager.class
+	    .getName());
 
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					try {
-						UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-					} catch (Exception e) {
-						logger.log(Level.WARNING,
-								"No se ha podido cargar el look and feel personalizado.");
-					}
-					
-					FramePrincipal frame = new FramePrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public static void main(String[] args) {
+
+	EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		try {
+		    try {
+			UIManager
+				.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		    } catch (Exception e) {
+			logger.log(Level.WARNING,
+				"No se ha podido cargar el look and feel personalizado.");
+		    }
+
+		    FramePrincipal frame = new FramePrincipal();
+		    frame.setVisible(true);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+	    }
+	});
+    }
 }

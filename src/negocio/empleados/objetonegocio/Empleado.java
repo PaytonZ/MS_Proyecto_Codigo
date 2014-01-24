@@ -3,7 +3,9 @@
  */
 package negocio.empleados.objetonegocio;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.tareas.objetonegocio.Tarea;
@@ -28,10 +32,18 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @Entity
-@Table(name = "empleados")
+@Table(name = "empleados", uniqueConstraints = { @UniqueConstraint(columnNames = "DNI") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg")
-public class Empleado {
+public class Empleado implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -361764100211108078L;
+    /**
+     * 
+     */
 
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "Empleado.BuscarDNI";
 
@@ -217,6 +229,7 @@ public class Empleado {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
+    @ManyToOne(fetch = FetchType.LAZY)
     private Departamento departamento;
 
     /**
@@ -242,23 +255,8 @@ public class Empleado {
 	// end-user-code
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Tarea> listaTareas;
-
-    public List<Tarea> getTareas() {
-
-	return listaTareas;
-    }
-
-    public void addTarea(Tarea tarea) {
-
-	listaTareas.add(tarea);
-    }
-
-    public void addTareas(List<Tarea> tareas) {
-
-	listaTareas.addAll(tareas);
-    }
+    @ManyToMany
+    private Set<Tarea> tarea;
 
     public enum TipoEmpleado {
 	COMPLETO, HORAS
@@ -266,25 +264,12 @@ public class Empleado {
 
     private boolean activo;
 
-    public List<Tarea> getListaTareas() {
-	return listaTareas;
-    }
-
-    public void setListaTareas(List<Tarea> listaTareas) {
-	this.listaTareas = listaTareas;
-    }
-
     public boolean isActivo() {
 	return activo;
     }
 
     public void setActivo(boolean activo) {
 	this.activo = activo;
-    }
-
-    public void removeTarea(Tarea tarea) {
-	this.listaTareas.remove(tarea);
-
     }
 
 }
