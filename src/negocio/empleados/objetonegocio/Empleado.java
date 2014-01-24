@@ -4,9 +4,9 @@
 package negocio.empleados.objetonegocio;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -236,7 +236,7 @@ public class Empleado implements Serializable {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, optional = true)
     private Departamento departamento;
 
     /**
@@ -262,7 +262,7 @@ public class Empleado implements Serializable {
 	// end-user-code
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY)
     private Set<Tarea> tarea;
 
     public enum TipoEmpleado {

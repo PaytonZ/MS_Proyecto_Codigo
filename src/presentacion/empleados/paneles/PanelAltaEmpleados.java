@@ -26,6 +26,7 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+import javax.swing.ImageIcon;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -103,10 +104,27 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		JLabel lblDepartamento = new JLabel("Departamento: ");
 		add(lblDepartamento, "cell 5 7,alignx trailing");
 		
-		ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO, null);
-		
 		cbDepartamento = new JComboBox<Departamento>();
 		add(cbDepartamento, "cell 6 7 2 1,growx");
+		
+		JButton btnCargaDep = new JButton("");
+		btnCargaDep.setToolTipText("Carga los departamentos disponibles");
+		btnCargaDep.setPreferredSize(new Dimension(35, 35));
+		btnCargaDep.setMaximumSize(new Dimension(30, 30));
+		btnCargaDep.setMinimumSize(new Dimension(18, 18));
+		btnCargaDep.setSize(new Dimension(35, 35));
+		btnCargaDep.setIcon(new ImageIcon(PanelAltaEmpleados.class.getResource("/images/icons/RecargaDepartamentos.png")));
+		
+		btnCargaDep.addActionListener(new ActionListener() {
+		    
+		    @Override
+		    public void actionPerformed(ActionEvent arg0) {
+
+			ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO, null);
+		    }
+		});
+		
+		add(btnCargaDep, "cell 8 7");
 		
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 0 10 8 1,growx,aligny center");
@@ -121,10 +139,14 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				if ( !textDNI.getText().equals("") 
 						&& !textPrimerApellido.getText().equals("")
 						&& !textSegundoApellido.getText().equals("") 
-						&& !textNombre.getText().equals("")) {
+						&& !textNombre.getText().equals("")
+						&& cbTipo.getSelectedIndex() > -1
+						&& cbDepartamento.getSelectedIndex() > -1) {
 					
 					empleado.setDNI(textDNI.getText());
 					empleado.setNombre(textNombre.getText());
+					empleado.setTipo( (TipoEmpleado)cbTipo.getSelectedItem());
+					empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
 					
 					if ( textPrimerApellido.getText().equals("") ) {
 						JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -152,7 +174,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		
 		if ( IDEventos.EVENTO_ALTA_EMPLEADO == idEvento ) {
 		
-			if ( datos instanceof Integer ) {
+			if ( datos instanceof Empleado ) {
 				
 				JOptionPane.showMessageDialog(contentPane, "Empleado creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 	

@@ -213,6 +213,9 @@ public class SAempleadosImp implements SAEmpleados {
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
 
+	entityManager.close();
+	entityManagerFactory.close();
+	
 	return null;
 
     }

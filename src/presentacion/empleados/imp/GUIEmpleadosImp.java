@@ -22,12 +22,12 @@ import presentacion.empleados.paneles.PanelModificacionEmpleados;
  */
 public class GUIEmpleadosImp extends GUIEmpleados {
 
-	private static PanelBajaTareaEmpleados panelBajaTareaEmpleados;
-	private static PanelAltaTareaEmpleados panelAltaTareaEmpleados;
-	private static PanelBajaEmpleados panelBajaEmpleados;
-	private static PanelConsultaMultipleEmpleados panelConsultaMultipleEmpleados;
-	private static PanelModificacionEmpleados panelModificacionEmpleados;
-	private static PanelConsultaEmpleados panelConsultaEmpleados;
+	private PanelBajaTareaEmpleados panelBajaTareaEmpleados;
+	private PanelAltaTareaEmpleados panelAltaTareaEmpleados;
+	private PanelBajaEmpleados panelBajaEmpleados;
+	private PanelConsultaMultipleEmpleados panelConsultaMultipleEmpleados;
+	private PanelModificacionEmpleados panelModificacionEmpleados;
+	private PanelConsultaEmpleados panelConsultaEmpleados;
 	private static PanelAltaEmpleados panelAltaEmpleados;
 	
 	@Override

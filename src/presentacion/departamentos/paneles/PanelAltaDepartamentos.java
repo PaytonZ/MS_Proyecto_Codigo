@@ -87,7 +87,7 @@ public class PanelAltaDepartamentos extends JPanel implements GUIPanelesInterfaz
 		
 		if ( IDEventos.EVENTO_ALTA_DEPARTAMENTO == idEvento ) {
 		
-			if ( datos instanceof Integer ) {
+			if ( datos instanceof Departamento ) {
 				
 				JOptionPane.showMessageDialog(contentPane, "Departamento creado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 	

@@ -23,11 +23,7 @@ import negocio.excepciones.BSoDException;
  */
 public class SADepartamentosImp implements SADepartamentos {
 
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
-	
 	public SADepartamentosImp() {
-		entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	}
 	
 	/**
@@ -39,14 +35,16 @@ public class SADepartamentosImp implements SADepartamentos {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Departamento anadirDepartamento(Departamento departamentoNuevo) throws BSoDException {
+	    	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 		
-		entityManager = entityManagerFactory.createEntityManager();
+	    	EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
 		entityManager.persist(departamentoNuevo);
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		entityManagerFactory.close();
 		
 		return departamentoNuevo;
 	}
@@ -104,11 +102,18 @@ public class SADepartamentosImp implements SADepartamentos {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public List<Departamento> obtenerTodoslosDepartamentos() throws BSoDException {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-
-		// end-user-code
+	    
+	    	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 		
-		return null;
+	    	EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		List<Departamento> departamentos = entityManager.createNamedQuery("Departamento.findAll", Departamento.class).getResultList();
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityManagerFactory.close();
+		
+		return departamentos;
 	}
 }
