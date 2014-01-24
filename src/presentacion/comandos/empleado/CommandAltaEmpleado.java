@@ -28,12 +28,12 @@ public class CommandAltaEmpleado implements Command {
 		try {
 
 			cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirEmpleado( (Empleado) datos));
-			cr.setEvento(IDEventos.EVENTO_ALTA_DEPARTAMENTO);
+			cr.setEvento(IDEventos.EVENTO_ALTA_EMPLEADO);
 
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.ERROR_ALTA_DEPARTAMENTO);
+			cr.setEvento(IDEventos.ERROR_ALTA_EMPLEADO);
 		}
 		
 		return cr;

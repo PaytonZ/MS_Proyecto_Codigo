@@ -23,7 +23,7 @@ public class CommandRConsultarTareasVAsignarTarea  implements Command {
 
 		CommandResponse cr = command.execute(datos);
 		
-		if ( cr.getEvento().equals(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) ) {
+		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_TODAS_RESERVAS) ) {
 			
 			cr.setEvento(IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA);
 		}

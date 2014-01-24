@@ -3,6 +3,9 @@
  */
 package negocio.tareas.servicioaplicacion;
 
+import java.util.List;
+
+import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 
 /**
@@ -20,7 +23,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void anadirTarea(Tarea tareaNueva);
+	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -30,7 +33,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object borrarTarea(Object idTarea);
+	public Boolean borrarTarea(String nombreTarea) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -39,7 +42,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void actualizarTarea(Tarea tarea);
+	public Tarea actualizarTarea(Tarea tarea) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -49,7 +52,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Tarea obternerTarea(Object idTarea);
+	public Tarea obternerTarea(String nombreTarea) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -57,7 +60,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTodaslasTareas();
+	public List<Tarea> obtenerTodaslasTareas() throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -66,5 +69,5 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void obtenerTareasPorEmpleados(Object idEmpleado);
+	public List<Tarea> obtenerTareasPorEmpleados(String DNIEmpleado) throws BSoDException;
 }
