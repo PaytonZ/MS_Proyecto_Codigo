@@ -1,19 +1,7 @@
 package test.negocio.reservas.servicioaplicacion.imp;
 
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
-import negocio.clientes.servicioaplicacion.SAClientes;
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
-import negocio.factorias.serviciosAplicacion.FactorySA;
-import negocio.habitaciones.servicioaplicacion.SAHabitaciones;
-import negocio.habitaciones.transfer.TransferHabitacion;
-import negocio.habitaciones.transfer.TransferHabitacionNormal;
-import negocio.reservas.servicioaplicacion.SAReservas;
-import negocio.reservas.transfer.TransferReserva;
 
 import org.junit.Test;
 

@@ -4,11 +4,7 @@ import java.awt.EventQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.UIManager;
-
-import org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider;
 
 import presentacion.FramePrincipal;
 

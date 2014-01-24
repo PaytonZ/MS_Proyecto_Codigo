@@ -3,20 +3,18 @@
  */
 package negocio.empleados.servicioaplicacion.imp;
 
-import negocio.empleados.objetonegocio.Empleado;
-import negocio.empleados.servicioaplicacion.SAEmpleados;
-import negocio.excepciones.BSoDException;
-import negocio.tareas.objetonegocio.Tarea;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import negocio.empleados.objetonegocio.Empleado;
+import negocio.empleados.servicioaplicacion.SAEmpleados;
+import negocio.excepciones.BSoDException;
+import negocio.tareas.objetonegocio.Tarea;
 import presentacion.principal.HotelManager;
 
 /**
@@ -205,10 +203,16 @@ public class SAempleadosImp implements SAEmpleados {
      */
     public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea)
 	    throws BSoDException {
-	// begin-user-code
-	// TODO Ap�ndice de m�todo generado autom�ticamente
+
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
+	TypedQuery<Empleado> query = null;
+	Empleado resultado = null;
+
 	return null;
-	// end-user-code
+
     }
 
     /**
@@ -218,8 +222,8 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean anadirTareaEmpleado(String dniEmpleado, Integer idTarea)
-	    throws BSoDException {
+    public Boolean anadirTareaEmpleado(String dniEmpleado,
+	    List<Tarea> listaTareas) throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
@@ -229,37 +233,9 @@ public class SAempleadosImp implements SAEmpleados {
 	entityManager.getTransaction().begin();
 
 	Empleado emp = entityManager.find(Empleado.class, dniEmpleado);
-	Tarea tar = entityManager.find(Tarea.class, idTarea);
+	// Tarea tar = entityManager.find(Tarea.class, idTarea);
 
-	emp.addTarea(tar);
-	entityManager.merge(emp);
-	entityManager.getTransaction().commit();
-	entityManager.close();
-
-	return true;
-    }
-
-    /**
-     * (sin Javadoc)
-     * 
-     * @see SAEmpleados#borrarTareaEmpleado(String empleado, Integer idTarea)
-     * @generated 
-     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-     */
-    public Boolean borrarTareaEmpleado(String empleado, Integer idTarea)
-	    throws BSoDException {
-
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory
-		.createEntityManager();
-
-	entityManager.getTransaction().begin();
-
-	Empleado emp = entityManager.find(Empleado.class, empleado);
-	Tarea tar = entityManager.find(Tarea.class, idTarea);
-
-	emp.removeTarea(tar);
+	// emp.addTarea(tar);
 	entityManager.merge(emp);
 	entityManager.getTransaction().commit();
 	entityManager.close();

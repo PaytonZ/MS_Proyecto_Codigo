@@ -3,7 +3,6 @@ package test.negocio.jpa;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
 import java.util.Random;
 
 import javax.persistence.EntityManager;
@@ -12,7 +11,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import negocio.empleados.objetonegocio.Empleado;
-import negocio.tareas.objetonegocio.Tarea;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
