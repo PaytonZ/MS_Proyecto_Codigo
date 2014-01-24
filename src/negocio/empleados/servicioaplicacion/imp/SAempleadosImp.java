@@ -67,12 +67,13 @@ public class SAempleadosImp implements SAEmpleados {
 	{
 	    entityManager = entityManagerFactory.createEntityManager();
 	    entityManager.getTransaction().begin();
-	    entityManager.persist(empleadoNuevo);
+	    entityManager.merge(empleadoNuevo);
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
-	}
 
+	}
 	return empleadoNuevo;
+
     }
 
     /**
@@ -84,21 +85,37 @@ public class SAempleadosImp implements SAEmpleados {
      */
     public Boolean borrarEmpleado(String dniEmpleado) {
 
+	Boolean borradoCorrecto = true;
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.NOMBRE_CONEXION_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
-	entityManager.getTransaction().begin();
+	TypedQuery<Empleado> query = null;
+	Empleado resultado = null;
+	/*
+	 * Se realiza una baja logica del empleado Si no se encuentra o no se
+	 * puede dar de baja , boolean a false.
+	 */
+	try {
+	    entityManager.getTransaction().begin();
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query.setParameter("arg", dniEmpleado);
+	    resultado = query.getSingleResult();
 
-	Empleado emp = entityManager.find(Empleado.class, dniEmpleado);
+	} catch (NoResultException ex) {
+	    borradoCorrecto = false;
+	}
 
-	entityManager.remove(emp);
+	if (resultado != null) {
+	    resultado.setActivo(false);
+	    entityManager.merge(resultado);
 
-	entityManager.getTransaction().commit();
-	entityManager.close();
-
-	return true;
+	    entityManager.getTransaction().commit();
+	    entityManager.close();
+	}
+	return borradoCorrecto;
     }
 
     /**

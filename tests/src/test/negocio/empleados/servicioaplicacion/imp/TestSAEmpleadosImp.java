@@ -1,5 +1,7 @@
 package test.negocio.empleados.servicioaplicacion.imp;
 
+import static org.junit.Assert.*;
+
 import java.util.Random;
 
 import negocio.empleados.objetonegocio.Empleado;
@@ -12,18 +14,32 @@ import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class TestSAEmpleadosImp {
-	@Test
-	public void addEmpleados() {
+    @Test
+    public void altaYbaja() {
 
-		SAEmpleados saempleados = new SAempleadosImp();
-		Empleado e = new Empleado();
+	SAEmpleados saempleados = new SAempleadosImp();
+	Empleado e = new Empleado();
 
-		e.setDNI(String.valueOf(new Random().nextInt(99999)));
-		e.setNombre("asdasd");
-		e.setPrimerApellido("asdasd");
-		e.setSegundoApellido("asdasd");
+	e.setDNI(String.valueOf(new Random().nextInt(99999)));
+	e.setNombre("asdasd");
+	e.setPrimerApellido("asdasd");
+	e.setSegundoApellido("asdasd");
 
-		saempleados.anadirEmpleado(e);
-	}
+	Empleado e1 = saempleados.anadirEmpleado(e);
+
+	assertNotNull(e1);
+	assertTrue(e1.getId() >= 0);
+	assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
+
+	assertTrue(e.getPrimerApellido().equalsIgnoreCase(
+		e1.getPrimerApellido()));
+	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
+		e1.getSegundoApellido()));
+
+	assertTrue(saempleados.borrarEmpleado(e.getDNI()));
+	assertFalse(saempleados.borrarEmpleado(String.valueOf(new Random()
+		.nextInt(99999))));
+
+    }
 
 }
