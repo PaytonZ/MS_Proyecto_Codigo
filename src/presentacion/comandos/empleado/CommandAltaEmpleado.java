@@ -3,7 +3,11 @@
  */
 package presentacion.comandos.empleado;
 
+import negocio.empleados.objetonegocio.Empleado;
+import negocio.excepciones.BSoDException;
+import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /** 
@@ -19,9 +23,19 @@ public class CommandAltaEmpleado implements Command {
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
 	public CommandResponse execute(Object datos) {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
-		return null;
-		// end-user-code
+
+		CommandResponse cr = new CommandResponse();
+		try {
+
+			cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirEmpleado( (Empleado) datos));
+			cr.setEvento(IDEventos.EVENTO_ALTA_DEPARTAMENTO);
+
+		} catch (BSoDException bsod) {
+
+			cr.setDatos(bsod);
+			cr.setEvento(IDEventos.ERROR_ALTA_DEPARTAMENTO);
+		}
+		
+		return cr;
 	}
 }

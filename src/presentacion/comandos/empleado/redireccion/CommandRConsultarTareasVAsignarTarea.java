@@ -4,6 +4,8 @@
 package presentacion.comandos.empleado.redireccion;
 
 import presentacion.comandos.Command;
+import presentacion.comandos.IDEventos;
+import presentacion.comandos.commandFactory.CommandFactory;
 import presentacion.comandos.commandFactory.CommandResponse;
 
 /** 
@@ -16,7 +18,20 @@ public class CommandRConsultarTareasVAsignarTarea  implements Command {
 
 	@Override
 	public CommandResponse execute(Object datos) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS);
+
+		CommandResponse cr = command.execute(datos);
+		
+		if ( cr.getEvento().equals(IDEventos.EVENTO_CONSULTAR_TODAS_RESERVAS) ) {
+			
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA);
+		}
+		else {
+			
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TAREAS_V_ASIGARTAREA);
+		}
+		
+		return cr;
 	}
 }
