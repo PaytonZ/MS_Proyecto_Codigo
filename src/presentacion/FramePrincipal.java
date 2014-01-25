@@ -59,6 +59,14 @@ public class FramePrincipal extends JFrame {
 		menuBar.add(mnArchivo);
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {
+		    
+		    @Override
+		    public void actionPerformed(ActionEvent arg0) {
+			System.exit(0);
+			
+		    }
+		});
 		mntmSalir.setIcon(new ImageIcon(FramePrincipal.class.getResource("/images/icons/Salir16.png")));
 		mnArchivo.add(mntmSalir);
 		contentPane = new JPanel();

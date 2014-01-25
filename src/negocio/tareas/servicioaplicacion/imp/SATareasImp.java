@@ -283,7 +283,6 @@ public class SATareasImp implements SATareas {
 
 	    try {
 	
-		
 		query = entityManager.createNamedQuery(
 			    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 		query.setParameter("DNI", DNIEmpleado);
