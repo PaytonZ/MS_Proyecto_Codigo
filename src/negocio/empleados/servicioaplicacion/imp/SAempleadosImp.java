@@ -51,16 +51,10 @@ public class SAempleadosImp implements SAEmpleados {
 	    if(resultado.isActivo()){
 		
 	    entityManager.getTransaction().rollback();
-	    entityManager.close();
-	    entityManagerFactory.close();
 	    throw new BSoDException("El empleado ya existe en la base de datos");
 	    
 	    }else{
-		
 		entityManager.merge(empleadoNuevo);
-		entityManager.detach(empleadoNuevo);
-		entityManager.close();
-		entityManagerFactory.close();
 	    }
 	   
 	    
@@ -76,12 +70,19 @@ public class SAempleadosImp implements SAEmpleados {
 	    query.setParameter("arg", empleadoNuevo.getDNI());
 	    resultado = query.getSingleResult();*/
 	    //empleadoNuevo.setId(resultado.getId());
+
+	}catch (Exception ex) {
 	    
+	    entityManager.getTransaction().rollback();
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	    
+	}finally {
 	    entityManager.detach(empleadoNuevo);
 	    entityManager.close();
 	    entityManagerFactory.close();
-
 	}
 
 	return empleadoNuevo;
@@ -121,8 +122,6 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
-	    entityManager.close();
-	    entityManagerFactory.close();
 
 	    borradoCorrecto = true;
 
@@ -133,7 +132,14 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception e) {
 	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(e.getMessage());
+	    if(e instanceof BSoDException) throw e;
+	    else{
+		throw new BSoDException(e.getMessage());
+	    }
+	}finally {
+	    
+	    entityManager.close();
+	    entityManagerFactory.close();
 	}
 
 	return borradoCorrecto;
@@ -184,7 +190,13 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    throw new BSoDException(
 		    "No se ha podido actualizar el empleado, por que no existe");
-
+	}catch (Exception ex) {
+		    
+	    entityManager.getTransaction().rollback();
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    entityManager.detach(empleadoActualizar);
 	    entityManager.close();
@@ -220,8 +232,9 @@ public class SAempleadosImp implements SAEmpleados {
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
 	    resultado = query.getSingleResult();
-
-	    entityManager.getTransaction().commit();
+	    
+	    //Que necesidad hay para un commit?
+	    //entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
@@ -230,9 +243,12 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
 		    + dniEmpleado);
 	} catch (Exception ex) {
-
+	    
 	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    if (resultado != null)
 		entityManager.detach(resultado);
@@ -259,8 +275,8 @@ public class SAempleadosImp implements SAEmpleados {
 		    Empleado.QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_, Empleado.class);
 
 	    resultados = query.getResultList();
-
-	    entityManager.getTransaction().commit();
+	    //Otra vez, commit pa que?
+	    //entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
@@ -270,7 +286,10 @@ public class SAempleadosImp implements SAEmpleados {
 	} catch (Exception ex) {
 
 	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    for (Empleado emp : resultados) {
 		entityManager.detach(emp);
@@ -320,8 +339,10 @@ public class SAempleadosImp implements SAEmpleados {
 	} catch (Exception ex) {
 
 	    entityManager.getTransaction().rollback();
-
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 
 	    entityManager.close();
@@ -401,7 +422,10 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    asignadasCorrecto = false;
 
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		throw new BSoDException(ex.getMessage());
+	    }
 	}
 
 	return asignadasCorrecto;
