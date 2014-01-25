@@ -14,6 +14,7 @@ import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 import presentacion.principal.HotelManager;
+import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
@@ -204,7 +205,6 @@ public class SATareasImp implements SATareas {
 		resultado = query.getSingleResult();
 		    
 	    }catch(NoResultException ex){
-		    
 		throw new BSoDException("No se ha podido encontrar la tarea en la base de datos");
 	    }catch(IllegalStateException e){
 		//Solo ocurre si la transaccion no llega inicializada! 
@@ -224,9 +224,21 @@ public class SATareasImp implements SATareas {
 	public List<Tarea> obtenerTodaslasTareas() throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-
+	    EntityManagerFactory entityManagerFactory = 
+		    Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+		
+	    	EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		List<Tarea> tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
+		
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityManagerFactory.close();
+		
+	return tareas;
 		// end-user-code
-	    return null;
+	    
 	}
 
 	/**

@@ -30,6 +30,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Table(name = "tareas" , uniqueConstraints = { @UniqueConstraint(columnNames = "nombre") })
 @NamedQueries({
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBynombre", query = "select obj from Tarea obj where obj.nombre = :nombre"),
+	@NamedQuery(name = "Tarea.findAll", query = "select obj from Tarea obj"),
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBydescripcion", query = "select obj from Tarea obj where obj.descripcion = :descripcion"),
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findByactivo", query = "select obj from Tarea obj where obj.activo = :activo") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
