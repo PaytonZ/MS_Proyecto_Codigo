@@ -61,7 +61,6 @@ public class TestSAEmpleadosImp {
 		    .nextInt(99999))));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
 	}
 
     }

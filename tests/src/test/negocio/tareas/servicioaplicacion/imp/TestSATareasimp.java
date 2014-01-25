@@ -1,5 +1,6 @@
 package test.negocio.tareas.servicioaplicacion.imp;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -17,7 +18,7 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class TestSATareasimp {
     @Test
-    public void addTarea() {
+    public void gestionTareas_AltaModificacion_Baja() {
 
 	SATareas satareas = new SATareasImp();
 	
@@ -36,6 +37,36 @@ public class TestSATareasimp {
 	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
 	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
 	assertTrue(t1.getId() >  0 );
+	
+	
+	//Modificar tarea
+	t.setDescripcion(String.valueOf(new Random().nextInt(99999)));
+	try {
+	   t1= satareas.actualizarTarea(t);
+	} catch (BSoDException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	assertNotNull(t1);
+	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
+	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
+	assertTrue(t1.getId() >  0 );
+	
+	
+	//Borrar Tarea
+	try {
+	    assertTrue(satareas.borrarTarea(t.getNombre()));
+	} catch (BSoDException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	
+	try {
+	    assertFalse(satareas.borrarTarea(String.valueOf(new Random().nextInt(99999))));
+	} catch (BSoDException e) {
+	    // TODO Auto-generated catch block
+	   
+	}
 	
     }
 

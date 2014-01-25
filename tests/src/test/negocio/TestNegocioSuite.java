@@ -9,9 +9,10 @@ import test.negocio.empleados.servicioaplicacion.imp.TestSAEmpleadosImp;
 import test.negocio.habitaciones.servicioaplicacion.imp.TestSAHabitacionesImp;
 import test.negocio.jpa.TestJPAEmpleado;
 import test.negocio.reservas.servicioaplicacion.imp.TestSAReservasimp;
+import test.negocio.tareas.servicioaplicacion.imp.TestSATareasimp;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestSAClientesImp.class, TestSAHabitacionesImp.class, TestSAReservasimp.class , TestJPAEmpleado.class , TestSAEmpleadosImp.class})
+@SuiteClasses({ TestSAClientesImp.class, TestSAHabitacionesImp.class, TestSAReservasimp.class , TestJPAEmpleado.class , TestSAEmpleadosImp.class, TestSATareasimp.class})
 public class TestNegocioSuite {
 
 	// Nothing to do here
