@@ -63,6 +63,7 @@ public class SATareasImp implements SATareas {
 		    tareaNueva.setId(resultado.getId());
 		    //No hace falta el merge, en principio basta con un refresh
 		    entityManager.refresh(tareaNueva);
+		    entityManager.detach(tareaNueva);
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    entityManagerFactory.close();
@@ -137,12 +138,14 @@ public class SATareasImp implements SATareas {
 		try {
 		    entityManager.getTransaction().begin();
 		   
-		    resultado = obtenerTarea(tarea.getNombre(),entityManager);
+		    resultado=obtenerTarea(tarea.getNombre(),entityManager);
 		    
-		    /*si existe la damos de baja*/
-		    resultado.setActivo(false);
+		   //Si existe hacemos un merge
+		    tarea.setId(resultado.getId());
 		    entityManager.getTransaction().commit();
-		    entityManager.refresh(tarea);
+		    entityManager.merge(tarea);
+		    //No hace falta el detach pro el merge no linkea la entidad por parametro
+		    //entityManager.detach(tarea);
 		    entityManager.close();
 		    entityManagerFactory.close();
 		    
