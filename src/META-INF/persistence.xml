@@ -9,7 +9,7 @@
      <class>negocio.tareas.objetonegocio.Tarea</class>
 	 
 	 <properties>
-	 	 <property name="eclipselink.logging.level" value="SEVERE"/>
+	 	 <property name="eclipselink.logging.level" value="FINE"/>
 		  <!-- 	  eclipselink.logging.level ->   Cambiar este valor a OFF cuando se entrege la APP -->
 	
 		 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> 
