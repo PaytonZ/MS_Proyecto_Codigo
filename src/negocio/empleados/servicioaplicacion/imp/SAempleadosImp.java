@@ -235,6 +235,45 @@ public class SAempleadosImp implements SAEmpleados {
 	}
 	return resultado;
     }
+    
+    public List<Empleado> obtenerTodosEmpleados() throws BSoDException {
+
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
+
+	TypedQuery<Empleado> query = null;
+	List<Empleado> resultados = null;
+
+	try {
+	    entityManager.getTransaction().begin();
+	    query = entityManager.createNamedQuery("negocio.empleados.objetonegocio.Empleado.findAll", Empleado.class);
+
+	    resultados = query.getResultList();
+
+	    entityManager.getTransaction().commit();
+
+	} catch (NoResultException ex) {
+
+	    entityManager.getTransaction().rollback();
+
+	    throw new BSoDException("No se encontraron empleados");
+	} catch (Exception ex) {
+
+	    entityManager.getTransaction().rollback();
+	    throw new BSoDException(ex.getMessage());
+	} finally {
+	    for ( Empleado emp : resultados) {
+		entityManager.detach(emp);
+	    }
+
+	    entityManager.close();
+	    entityManagerFactory.close();
+	}
+	return resultados;
+	
+    }
 
     /**
      * (sin Javadoc)

@@ -39,8 +39,8 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
     
 @NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
-
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findAll", query = "select obj from Empleado obj"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDNI", query = "select obj from Empleado obj where obj.DNI = :DNI"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBynombre", query = "select obj from Empleado obj where obj.nombre = :nombre"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByprimerApellido", query = "select obj from Empleado obj where obj.primerApellido = :primerApellido"),
@@ -304,6 +304,6 @@ public class Empleado implements Serializable {
     @Override
     public String toString() {
 	
-	return DNI + " " + nombre + " " + primerApellido + " " + segundoApellido;
+	return DNI + " " + nombre + " " + primerApellido + " " + segundoApellido + " " + tipo;
     }
 }
