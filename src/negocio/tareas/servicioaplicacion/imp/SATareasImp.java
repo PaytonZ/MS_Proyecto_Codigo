@@ -253,7 +253,7 @@ public class SATareasImp implements SATareas {
 		entityManager.getTransaction().begin();
 		
 		List<Tarea> tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
-		
+		for(Tarea t : tareas)entityManager.detach(t);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		entityManagerFactory.close();

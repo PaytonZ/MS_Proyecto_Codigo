@@ -98,13 +98,11 @@ public class SADepartamentosImp implements SADepartamentos {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean borrarDepartamento(Departamento datos) throws BSoDException {
+    public Boolean borrarDepartamento(Departamento departamento) throws BSoDException {
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
-
-	Boolean borrado = false;
 
 	try {
 	    entityManager.getTransaction().begin();
@@ -113,27 +111,27 @@ public class SADepartamentosImp implements SADepartamentos {
 		    .createNamedQuery(
 			    "negocio.departamentos.objetonegocio.Departamento.findBynombre",
 			    Departamento.class);
-	    query.setParameter("nombre", datos.getNombre());
+	    query.setParameter("nombre", departamento.getNombre());
 
-	    Departamento d = query.getSingleResult();
+	    Departamento depto = query.getSingleResult();
 
-	    d.setActivo(false);
+	    depto.setActivo(false);
 
-	    entityManager.merge(d);
+	    entityManager.merge(depto);
 
 	    entityManager.getTransaction().commit();
 
-	    borrado = true;
 	} catch (NoResultException nr) {
 
 	    entityManager.getTransaction().rollback();
+	   throw new BSoDException(nr.getMessage());
 	} finally {
 
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
 
-	return borrado;
+	return true;
     }
 
     /**
@@ -162,8 +160,8 @@ public class SADepartamentosImp implements SADepartamentos {
 	    resultado = query.getSingleResult();
 
 	    resultado.setNombre(departamento.getNombre());
-
-	    entityManager.merge(resultado);
+	    // resultado esta attached, no hace falta mergear
+	    //entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 
@@ -171,12 +169,13 @@ public class SADepartamentosImp implements SADepartamentos {
 
 	    entityManager.getTransaction().rollback();
 
-	    throw new BSoDException("No se ha podido actualizar el departamento, por que no existe");
+	    throw new BSoDException("No existe el departamento");
 
 	} catch (Exception e) {
 
 	    entityManager.getTransaction().rollback();
-
+	    entityManager.close();
+	    entityManagerFactory.close();
 	    throw new BSoDException(e.getMessage());
 	} finally {
 	    if ( resultado != null )
@@ -213,8 +212,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    query.setParameter("nombre", nombreDepartamento);
 	    
 	    d = query.getSingleResult();
-
-	    entityManager.getTransaction().commit();
+	    
 
 	} catch (NoResultException nr) {
 
@@ -222,7 +220,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    
 	    throw new BSoDException("No existe el departamento");
 	} finally {
-
+	    entityManager.detach(d);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}

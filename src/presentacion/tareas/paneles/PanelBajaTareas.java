@@ -163,6 +163,7 @@ public class PanelBajaTareas extends JPanel implements GUIPanelesInterfaz {
 				
 				JOptionPane.showMessageDialog(contentPane, "Error genérico", "Error", JOptionPane.ERROR_MESSAGE);
 			}
+			btnBorrarTarea.setEnabled(false);
 		}
 	}
 }
