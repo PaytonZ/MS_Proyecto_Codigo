@@ -153,7 +153,7 @@ public class TestSAEmpleadosImp {
 
 	assertNotNull(t1);
 	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
-
+	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
 	List<Tarea> l = new ArrayList<>();
 
 	l.add(t1);
@@ -176,7 +176,7 @@ public class TestSAEmpleadosImp {
 	}
 
 	assertNotNull(j);
-	
+
 	assertTrue(j.get(0).equals(e1));
 
     }
