@@ -129,7 +129,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 					}
 				}
 				
-				//emp.addTareas(tareasEmpleado);
+				emp.setTarea(tareasEmpleado);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO, emp);
 			}
@@ -231,7 +231,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				listaTareasAsignadas.setEnabled(false);
 				btnAsignarTareas.setEnabled(false);
 				
-				JOptionPane.showMessageDialog(this, "Las tareas se asignaron al empleado", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Las tareas se asignaron al empleado", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 			else {
