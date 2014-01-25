@@ -72,10 +72,9 @@ public class SAempleadosImp implements SAEmpleados {
 	    //empleadoNuevo.setId(resultado.getId());
 
 	}catch (Exception ex) {
-	    
-	    entityManager.getTransaction().rollback();
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		 entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	    
@@ -131,9 +130,10 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("El empleado no existe, no se puede borrar");
 
 	} catch (Exception e) {
-	    entityManager.getTransaction().rollback();
+	    
 	    if(e instanceof BSoDException) throw e;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(e.getMessage());
 	    }
 	}finally {
@@ -192,9 +192,10 @@ public class SAempleadosImp implements SAEmpleados {
 		    "No se ha podido actualizar el empleado, por que no existe");
 	}catch (Exception ex) {
 		    
-	    entityManager.getTransaction().rollback();
+	    
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	} finally {
@@ -244,9 +245,10 @@ public class SAempleadosImp implements SAEmpleados {
 		    + dniEmpleado);
 	} catch (Exception ex) {
 	    
-	    entityManager.getTransaction().rollback();
+	   
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	} finally {
@@ -285,9 +287,10 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se encontraron empleados");
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
+	    
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	} finally {
@@ -338,9 +341,10 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
+	    
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	} finally {
@@ -418,12 +422,13 @@ public class SAempleadosImp implements SAEmpleados {
 		    + dniEmpleado);
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
+	    
 
 	    asignadasCorrecto = false;
 
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
+		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	}
