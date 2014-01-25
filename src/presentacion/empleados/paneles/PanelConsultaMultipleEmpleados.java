@@ -66,7 +66,7 @@ public class PanelConsultaMultipleEmpleados extends JPanel implements GUIPaneles
 		
 		panel.setLayout(new MigLayout("fillx", "[208.00,right]", "[]"));
 		
-		JButton btnNewButton = new JButton("Consultar clientes");
+		JButton btnNewButton = new JButton("Consultar empleados");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
