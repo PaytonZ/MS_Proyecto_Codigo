@@ -13,6 +13,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import negocio.empleados.objetonegocio.Empleado;
@@ -22,12 +24,8 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
 
 public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPanelesInterfaz {
-
-
 	private static final long serialVersionUID = 1L;
 	
 	private JList<Empleado> list;

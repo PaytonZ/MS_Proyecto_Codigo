@@ -62,6 +62,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    empleadoNuevo.setId(resultado.getId());
 	    entityManager.close();
 
+	} catch (Exception ex) {
+	    throw new BSoDException(ex.getMessage());
 	} finally // Se realizará en ambos casos
 	{
 	    entityManager = entityManagerFactory.createEntityManager();
@@ -85,8 +87,10 @@ public class SAempleadosImp implements SAEmpleados {
     public Boolean borrarEmpleado(String dniEmpleado) throws BSoDException {
 
 	Boolean borradoCorrecto = false;
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory.createEntityManager();
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
 
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
@@ -96,29 +100,31 @@ public class SAempleadosImp implements SAEmpleados {
 	 */
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
-	    
+
 	    resultado = query.getSingleResult();
-	    
+
 	    resultado.setActivo(false);
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 	    entityManagerFactory.close();
-	    
+
 	    borradoCorrecto = true;
 
 	} catch (NoResultException ex) {
 	    
+	    entityManager.getTransaction().rollback();
 	    throw new BSoDException("El empleado no existe, no se puede borrar");
-	    
+
 	} catch (Exception e) {
-	    
+	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(e.getMessage());
 	}
-	
+
 	return borradoCorrecto;
     }
 
@@ -132,22 +138,26 @@ public class SAempleadosImp implements SAEmpleados {
     public Empleado actualizarEmpleado(Empleado empleadoActualizar)
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory.createEntityManager();
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
 
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
-	
+
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", empleadoActualizar.getDNI());
-	    
+
 	    resultado = query.getSingleResult();
-	    
+
 	    resultado.setNombre(empleadoActualizar.getNombre());
 	    resultado.setPrimerApellido(empleadoActualizar.getPrimerApellido());
-	    resultado.setSegundoApellido(empleadoActualizar.getSegundoApellido());
+	    resultado.setSegundoApellido(empleadoActualizar
+		    .getSegundoApellido());
 	    resultado.setTipo(empleadoActualizar.getTipo());
 	    resultado.setDepartamento(empleadoActualizar.getDepartamento());
 
@@ -164,7 +174,7 @@ public class SAempleadosImp implements SAEmpleados {
 	} catch (Exception e) {
 	    
 	    entityManager.getTransaction().rollback();
-
+	    
 	    throw new BSoDException(e.getMessage());
 	}
 	finally {
@@ -204,8 +214,12 @@ public class SAempleadosImp implements SAEmpleados {
 	} catch (NoResultException ex) {
 	    
 	    entityManager.getTransaction().rollback();
-	    
+
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
+	} catch (Exception ex) {
+	    
+	    entityManager.getTransaction().rollback();
+	    throw new BSoDException(ex.getMessage());
 	}
 	finally {
 	    entityManager.close();
@@ -222,7 +236,7 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public List<Empleado> obtenerEmpleadosporTareas(Integer idTarea)
+    public List<Empleado> obtenerEmpleadosporTareas(Tarea tarea)
 	    throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
@@ -232,15 +246,21 @@ public class SAempleadosImp implements SAEmpleados {
 	List<Empleado> resultados = null;
 
 	try {
-	    
-	} catch (Exception e) {
-	    
-	    entityManager.getTransaction().begin();
-	    
-	    query = entityManager.createNamedQuery("negocio.empleados.objetonegocio.Empleado.findBytarea", Empleado.class);
-	    query.setParameter("arg", idTarea);
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_TAREA, Empleado.class);
+	    query.setParameter("tarea", tarea);
 	    
 	    resultados = query.getResultList();
+	} catch (NoResultException ex) {
+	    entityManager.getTransaction().rollback();
+	    
+	    throw new BSoDException("No se pudo encontrar la tarea  "  + tarea.toString());
+	    
+	} catch (Exception ex) {
+	    
+	    entityManager.getTransaction().rollback();
+	    
+	    throw new BSoDException(ex.getMessage());
 	}
 	finally {
 	    entityManager.close();
@@ -282,12 +302,14 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManagerFactory.close();
 
 	} catch (NoResultException ex) {
+	    entityManager.getTransaction().rollback();
 	    borradoCorrecto = false;
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
 		    + dniEmpleado);
+	} catch (Exception ex) {
+	    throw new BSoDException(ex.getMessage());
 	}
 
 	return borradoCorrecto;
     }
-
 }
