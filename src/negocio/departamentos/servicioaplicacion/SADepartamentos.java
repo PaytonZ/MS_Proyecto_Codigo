@@ -28,12 +28,12 @@ public interface SADepartamentos {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param idDepartamento
+	 * @param datos
 	 * @return
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarDepartamento(Integer idDepartamento) throws BSoDException;
+	public Boolean borrarDepartamento(Departamento datos) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
