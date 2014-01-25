@@ -124,6 +124,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	} catch (NoResultException nr) {
 
 	    entityManager.getTransaction().rollback();
+	   throw new BSoDException(nr.getMessage());
 	} finally {
 
 	    entityManager.close();
@@ -211,8 +212,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    query.setParameter("nombre", nombreDepartamento);
 	    
 	    d = query.getSingleResult();
-
-	    entityManager.getTransaction().commit();
+	    
 
 	} catch (NoResultException nr) {
 
@@ -220,7 +220,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    
 	    throw new BSoDException("No existe el departamento");
 	} finally {
-
+	    entityManager.detach(d);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
