@@ -310,6 +310,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Modificación empleados", GUIEmpleados.getInstance().getPanelModificacionEmpleados());
 				tabbedPane.add("Consulta empleados", GUIEmpleados.getInstance().getPanelConsultaEmpleados());
 				tabbedPane.add("Consulta multiple empleados", GUIEmpleados.getInstance().getPanelConsultaMultipleEmpleados());
+				tabbedPane.add("Consulta empleados por tarea", GUIEmpleados.getInstance().getPanelConsutlaEmpleadosPorTarea());
 				tabbedPane.add("Asignar tareas", GUIEmpleados.getInstance().getPanelAltaTareaEmpleados());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
