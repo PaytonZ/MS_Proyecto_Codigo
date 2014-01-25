@@ -11,6 +11,7 @@ import presentacion.departamentos.GUIDepartamentos;
 import presentacion.empleados.GUIEmpleados;
 import presentacion.habitaciones.GUIHabitaciones;
 import presentacion.reservas.GUIReservas;
+import presentacion.tareas.GUITareas;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -155,7 +156,7 @@ public class DispatcherImp extends Dispatcher {
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREAS_V_BORRAR
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_TAREAS_V_MODIFICAR) {
 			
-			GUIEmpleados.getInstance().update(eventoActual, datos);
+			GUITareas.getInstance().update(eventoActual, datos);
 		}
 	}
 }

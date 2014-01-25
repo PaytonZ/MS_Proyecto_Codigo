@@ -102,7 +102,7 @@ public class GUITareasImp extends GUITareas {
 		    getPanelConsultaTarea().actualizarVentana(eventoActual, datos);
 		    break;
 		case ERROR_CONSULTAR_TODAS_TAREAS:
-		case ERROR_CONSULTAR_TODOS_DEPARTAMENTO:
+		case EVENTO_CONSULTAR_TODAS_TAREAS:
 		    getPanelConsultaMultipleTareas().actualizarVentana(eventoActual, datos);
 		    break;
 

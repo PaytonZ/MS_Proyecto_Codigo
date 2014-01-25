@@ -61,6 +61,7 @@ public class SADepartamentosImp implements SADepartamentos {
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
     public Boolean borrarDepartamento(Departamento datos) throws BSoDException {
+<<<<<<< HEAD
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory
@@ -96,6 +97,21 @@ public class SADepartamentosImp implements SADepartamentos {
 	}
 
 	return borrado;
+=======
+	// begin-user-code
+	// TODO Revisar
+	EntityManagerFactory emf= Persistence.createEntityManagerFactory("SADepartamentos");
+	EntityManager em = emf.createEntityManager();
+	em.getTransaction().begin();
+	String query = "DELETE FROM Departamamentos where Departamento = " + datos.toString();
+	em.persist(datos);
+	em.getTransaction().commit();
+	em.persist(em);
+	// No hay close en transacciones de entitymanager?? 
+	
+	return null;
+	// end-user-code
+>>>>>>> b3777c712836066a89c8298dc95cc3780263bde5
     }
 
     /**

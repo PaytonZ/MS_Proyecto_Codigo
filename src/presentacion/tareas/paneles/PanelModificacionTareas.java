@@ -93,9 +93,14 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 		btnModificarTarea.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if ( idTarea != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_TAREA, idTarea);
+				Tarea tarea;
+				if ( idTarea != null ){
+				    tarea= new Tarea();
+				tarea.setId(idTarea);
+				tarea.setNombre(textNombre.getText());
+				tarea.setDescripcion(textDescripcion.getText());
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_TAREA, tarea);
+				}
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar la tarea, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -116,11 +121,8 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 		
 		if ( IDEventos.EVENTO_MODIFICAR_TAREA == idEvento ) {
 			
-			if ( datos instanceof Boolean ) {
+			if ( datos instanceof Tarea ) {
 				
-				Boolean correcto = (Boolean) datos;
-				
-				if ( correcto ) {
 					textNombreBusqueda.setText("");
 					idTarea = null;
 					textNombre.setText("");
@@ -132,11 +134,6 @@ public class PanelModificacionTareas extends JPanel implements GUIPanelesInterfa
 					
 					JOptionPane.showMessageDialog(contentPane, "La tarea se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else {
-					
-					JOptionPane.showMessageDialog(contentPane, "La tarea no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_TAREAS_V_MODIFICAR == idEvento ) {
 			

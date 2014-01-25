@@ -30,6 +30,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Table(name = "tareas" , uniqueConstraints = { @UniqueConstraint(columnNames = "nombre") })
 @NamedQueries({
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBynombre", query = "select obj from Tarea obj where obj.nombre = :nombre AND obj.activo = true"),
+	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBynombreAlta", query = "select obj from Tarea obj where obj.nombre = :nombre"),
 	@NamedQuery(name = "Tarea.findAll", query = "select obj from Tarea obj where obj.activo = true"),
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBydescripcion", query = "select obj from Tarea obj where obj.descripcion = :descripcion"),
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findByactivo", query = "select obj from Tarea obj where obj.activo = :activo") })
@@ -37,7 +38,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 public class Tarea {
 
     public static final String QUERY_BUSCAR_TAREA_POR_NOMBRE = "negocio.tareas.objetonegocio.Tarea.findBynombre";
-
+    public static final String QUERY_BUSCAR_TAREA_POR_NOMBRE_ALTA = "negocio.tareas.objetonegocio.Tarea.findBynombreAlta";
     /**
      * 
      * 

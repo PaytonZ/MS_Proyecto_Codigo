@@ -100,7 +100,7 @@ public class PanelAltaTareas extends JPanel implements GUIPanelesInterfaz {
 		
 		if ( IDEventos.EVENTO_ALTA_TAREA == idEvento ) {
 		
-			if ( datos instanceof Integer ) {
+			if ( datos instanceof Tarea ) {
 				
 				JOptionPane.showMessageDialog(contentPane, "Tarea creada correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 	
