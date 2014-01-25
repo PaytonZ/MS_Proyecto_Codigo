@@ -28,7 +28,6 @@ public class TestSAEmpleadosImp {
 
 	SAEmpleados saempleados = new SAempleadosImp();
 	Empleado e = new Empleado();
-
 	e.setDNI(String.valueOf(new Random().nextInt(99999)));
 	e.setNombre("asdasd");
 	e.setPrimerApellido("asdasd");
