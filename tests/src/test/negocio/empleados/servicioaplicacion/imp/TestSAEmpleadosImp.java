@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -154,7 +153,7 @@ public class TestSAEmpleadosImp {
 	assertNotNull(t1);
 	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
 	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
-	List<Tarea> l = new ArrayList<>();
+	Set<Tarea> l = new HashSet<>();
 
 	l.add(t1);
 
