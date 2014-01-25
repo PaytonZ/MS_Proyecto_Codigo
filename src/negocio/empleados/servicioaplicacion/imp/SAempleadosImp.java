@@ -44,36 +44,44 @@ public class SAempleadosImp implements SAEmpleados {
 	try {
 	    entityManager.getTransaction().begin();
 	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI_TODOS, Empleado.class);
-	    query.setParameter("arg", empleadoNuevo.getDNI());
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI_NOACTIVO, Empleado.class);
+	    query.setParameter("dni", empleadoNuevo.getDNI());
 	    resultado = query.getSingleResult();
-
-	    empleadoNuevo.setId(resultado.getId());
-
+	    
+	    if(resultado.isActivo()){
+		
+	    entityManager.getTransaction().rollback();
+	    entityManager.close();
+	    entityManagerFactory.close();
+	    throw new BSoDException("El empleado ya existe en la base de datos");
+	    
+	    }else{
+		
+		entityManager.merge(empleadoNuevo);
+		entityManager.detach(empleadoNuevo);
+		entityManager.close();
+		entityManagerFactory.close();
+	    }
+	   
+	    
 	} catch (NoResultException ex) {// No se encontro el empleado.
 	    entityManager.persist(empleadoNuevo);
 
 	    entityManager.getTransaction().commit();
-
-	    query = entityManager.createNamedQuery(
+	    
+	    
+	    //Después del persist la entidad esta mergeada no hace falta actualizar nada
+	   /* query = entityManager.createNamedQuery(
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", empleadoNuevo.getDNI());
-	    resultado = query.getSingleResult();
-
-	    empleadoNuevo.setId(resultado.getId());
-	    entityManager.close();
-
-	} catch (Exception ex) {
-	    throw new BSoDException(ex.getMessage());
-	} finally // Se realizará en ambos casos
-	{
-	    entityManager = entityManagerFactory.createEntityManager();
-	    entityManager.getTransaction().begin();
-	    entityManager.merge(empleadoNuevo);
-	    entityManager.getTransaction().commit();
+	    resultado = query.getSingleResult();*/
+	    //empleadoNuevo.setId(resultado.getId());
+	    
+	    
 	    entityManager.detach(empleadoNuevo);
 	    entityManager.close();
 	    entityManagerFactory.close();
+
 	}
 
 	return empleadoNuevo;
