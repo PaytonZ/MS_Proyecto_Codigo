@@ -45,7 +45,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo"),
-	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj")})
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj where obj.DNI = :arg")})
 public class Empleado implements Serializable {
 
     /**
