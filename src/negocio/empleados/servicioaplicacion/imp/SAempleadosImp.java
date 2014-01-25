@@ -345,8 +345,8 @@ public class SAempleadosImp implements SAEmpleados {
 	try {
 	    entityManager.getTransaction().begin();
 	    
-	    query = entityManager.createQuery("Empleado.BuscarDNI", Empleado.class);
-	    query.setParameter("DNI", dniEmpleado);
+	    query = entityManager.createQuery("negocio.empleados.objetonegocio.Empleado.findByDni", Empleado.class);
+	    query.setParameter("arg", dniEmpleado);
 	    
 	    resultado = query.getSingleResult();
 	    
@@ -356,7 +356,7 @@ public class SAempleadosImp implements SAEmpleados {
 		
 		try {
 		    TypedQuery<Tarea> tar = entityManager.createQuery("negocio.tareas.objetonegocio.Tarea.findBynombre", Tarea.class);
-		    tar.setParameter("nombre", Tarea.class);
+		    tar.setParameter("nombre", tarea.getNombre());
 		    
 		    tarea = tar.getSingleResult();
 		    
@@ -386,9 +386,11 @@ public class SAempleadosImp implements SAEmpleados {
 	    
 	    entityManager.getTransaction().rollback();
 	    
+	    ex.printStackTrace();
+	    
 	    asignadasCorrecto = false;
 	    
-	    throw new BSoDException(ex.getMessage());
+//	    throw new BSoDException(ex.getMessage());
 	}
 
 	return asignadasCorrecto;

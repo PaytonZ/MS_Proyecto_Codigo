@@ -37,11 +37,10 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQueries({
     
-@NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg AND e.activo = true"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDni", query = "select obj from Empleado obj where obj.DNI = :arg and obj.activo = true"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findAll", query = "select obj from Empleado obj"),
-@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDNI", query = "select obj from Empleado obj where obj.DNI = :DNI"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBynombre", query = "select obj from Empleado obj where obj.nombre = :nombre"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByprimerApellido", query = "select obj from Empleado obj where obj.primerApellido = :primerApellido"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
@@ -60,7 +59,7 @@ public class Empleado implements Serializable {
      * 
      */
 
-    public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "Empleado.BuscarDNI";
+    public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "negocio.empleados.objetonegocio.Empleado.findByDni";
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_TAREA = "negocio.empleados.objetonegocio.Empleado.findBytarea";
     public Empleado() {
 	DNI = "";
