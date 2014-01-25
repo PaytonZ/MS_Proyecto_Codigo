@@ -28,12 +28,12 @@ public class CommandModificarDepartamento implements Command {
 		try {
 
 			cr.setDatos(FactorySA.getInstance().getSADepartamentos().actualizarDepartamento((Departamento) datos));
-			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTO);
+			cr.setEvento(IDEventos.EVENTO_MODIFICAR_DEPARTAMENTO);
 
 		} catch (BSoDException bsod) {
 
 			cr.setDatos(bsod);
-			cr.setEvento(IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTO);
+			cr.setEvento(IDEventos.ERROR_MODIFICAR_DEPARTAMENTO);
 		}
 		
 		return cr;

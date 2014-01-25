@@ -105,7 +105,6 @@ public class SADepartamentosImp implements SADepartamentos {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-//    public Departamento actualizarDepartamento(String nombreAnterior, Departamento departamento)
     public Departamento actualizarDepartamento(Departamento departamento)
 	    throws BSoDException {
 

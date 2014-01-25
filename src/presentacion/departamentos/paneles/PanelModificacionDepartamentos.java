@@ -119,6 +119,7 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 						&& !textNombre.getText().equals("")) {
 					
 					departamento.setNombre(textNombre.getText());
+					departamento.setID(idDepartamento);
 						
 					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_DEPARTAMENTO, departamento);
 				}
@@ -143,11 +144,11 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 		
 		if ( IDEventos.EVENTO_MODIFICAR_DEPARTAMENTO == idEvento ) {
 			
-			if ( datos instanceof Boolean ) {
+			if ( datos instanceof Departamento ) {
 				
-				Boolean correcto = (Boolean) datos;
+				Departamento departamento = (Departamento) datos;
 				
-				if ( correcto ) {
+				if ( departamento != null ) {
 					textNombreBusqueda.setText("");
 					textNombreBusqueda.setEditable(true);
 					textNombre.setText("");
@@ -156,12 +157,12 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 					
 					JOptionPane.showMessageDialog(contentPane, "El departamento se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
-				else {
-					
-					JOptionPane.showMessageDialog(contentPane, "El departamento no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				idDepartamento = null;
 			}
+			else {
+			    
+			    JOptionPane.showMessageDialog(contentPane, "El departamento no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			idDepartamento = null;
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_DEPARTAMENTO_V_MODIFICAR == idEvento ) {
 			
