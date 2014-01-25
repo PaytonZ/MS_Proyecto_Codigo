@@ -6,18 +6,14 @@ package presentacion.empleados.paneles;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
-import negocio.empleados.objetonegocio.Empleado.TipoEmpleado;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -40,8 +36,9 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 	private JTextField textNombre;
 	private JTextField textApellidos;
 	
-	private JComboBox<TipoEmpleado> cbTipo;
-	private JComboBox<Departamento> cbDepartamento;
+	private Empleado empleado;
+	private JTextField textTipo;
+	private JTextField textDepartamento;
 	
 	public PanelConsultaEmpleados() {
 		
@@ -110,15 +107,18 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 		JLabel lblTipo = new JLabel("Tipo: ");
 		add(lblTipo, "cell 2 10,alignx trailing");
 		
-		cbTipo = new JComboBox<>();
-		cbTipo.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
-		add(cbTipo, "cell 3 10,growx");
+		textTipo = new JTextField();
+		textTipo.setEditable(false);
+		add(textTipo, "cell 3 10,growx");
+		textTipo.setColumns(10);
 		
 		JLabel lblDepartamento = new JLabel("Departamento: ");
 		add(lblDepartamento, "cell 5 10,alignx trailing");
 		
-		cbDepartamento = new JComboBox<>();
-		add(cbDepartamento, "cell 6 10,growx");
+		textDepartamento = new JTextField();
+		textDepartamento.setEditable(false);
+		add(textDepartamento, "cell 6 10,growx");
+		textDepartamento.setColumns(10);
 	}
 
 	/**
@@ -134,15 +134,14 @@ public class PanelConsultaEmpleados extends JPanel implements GUIPanelesInterfaz
 		
 			if ( datos instanceof Empleado) {
 				
-				Empleado empleado = (Empleado) datos;
+				empleado = (Empleado) datos;
 				
 				txtDni.setText(empleado.getDNI());
 				textNombre.setText(empleado.getNombre());
 				textApellidos.setText(empleado.getPrimerApellido() + " " + empleado.getSegundoApellido());
+				textTipo.setText(empleado.getTipo().name());
+				textDepartamento.setText(empleado.getDepartamento().getNombre());
 				
-				cbTipo.setSelectedItem(empleado.getTipo());
-				cbDepartamento.setSelectedItem(empleado.getDepartamento());
-					
 			}
 			else {
 				JOptionPane.showMessageDialog(this, "No se pudo obtener el empleado", "Error", JOptionPane.ERROR_MESSAGE);
