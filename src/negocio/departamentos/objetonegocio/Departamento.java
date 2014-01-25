@@ -126,8 +126,16 @@ public class Departamento {
 	}
 	
 	@Override
-	public boolean equals(Object d) {
-	    return nombre.equals( ((Departamento)d).getNombre());
+	public boolean equals(Object o) {
+	    
+	    Departamento dep = new Departamento();
+	    
+	    if( o != null && o instanceof Departamento) {
+		
+		dep = (Departamento) o;
+	    }
+	    
+	    return nombre.equals(dep.getNombre());
 	}
 	
 	public String toString() {

@@ -286,5 +286,16 @@ public class Empleado implements Serializable {
     public void setTarea(Set<Tarea> tarea) {
         this.tarea = tarea;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+	
+	return DNI.equals( ((Empleado)o).getDNI() );
+    }
 
+    @Override
+    public String toString() {
+	
+	return DNI + " " + nombre + " " + primerApellido + " " + segundoApellido;
+    }
 }
