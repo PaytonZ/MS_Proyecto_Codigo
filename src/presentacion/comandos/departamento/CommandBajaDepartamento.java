@@ -3,6 +3,7 @@
  */
 package presentacion.comandos.departamento;
 
+import negocio.departamentos.objetonegocio.Departamento;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
@@ -26,7 +27,7 @@ public class CommandBajaDepartamento implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSADepartamentos().borrarDepartamento((Integer) datos));
+			cr.setDatos(FactorySA.getInstance().getSADepartamentos().borrarDepartamento((Departamento) datos));
 			cr.setEvento(IDEventos.EVENTO_BAJA_DEPARTAMENTO);
 
 		} catch (BSoDException bsod) {
