@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import negocio.empleados.objetonegocio.Empleado;
 
@@ -27,7 +28,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @Entity
-@Table(name="departamentos")
+@Table(name="departamentos" , uniqueConstraints = { @UniqueConstraint(columnNames = "nombre") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQueries({
 	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByid", query = "select obj from Departamento obj where obj.id = :id and obj.activo = true"),
