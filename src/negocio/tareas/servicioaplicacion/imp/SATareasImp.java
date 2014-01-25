@@ -14,7 +14,6 @@ import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 import presentacion.principal.HotelManager;
-import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
