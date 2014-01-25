@@ -54,7 +54,9 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("El empleado ya existe en la base de datos");
 	    
 	    }else{
+		empleadoNuevo.setId(resultado.getId());
 		entityManager.merge(empleadoNuevo);
+		entityManager.getTransaction().commit();
 	    }
 	   
 	    
