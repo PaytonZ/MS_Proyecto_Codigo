@@ -52,7 +52,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Tarea obternerTarea(String nombreTarea) throws BSoDException;
+	public Tarea obtenerTarea(String nombreTarea) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
