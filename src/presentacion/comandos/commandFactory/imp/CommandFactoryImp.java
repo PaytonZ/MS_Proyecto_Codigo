@@ -21,6 +21,7 @@ import presentacion.comandos.departamento.CommandModificarDepartamento;
 import presentacion.comandos.departamento.redireccion.CommandRConsultarDepartamentoVBorrar;
 import presentacion.comandos.departamento.redireccion.CommandRConsultarDepartamentoVModificar;
 import presentacion.comandos.empleado.CommandAltaEmpleado;
+import presentacion.comandos.empleado.CommandAltaTareaEmpleado;
 import presentacion.comandos.empleado.CommandBajaEmpleado;
 import presentacion.comandos.empleado.CommandConsultaEmpleado;
 import presentacion.comandos.empleado.CommandConsultaEmpleadoPorTarea;
@@ -230,6 +231,9 @@ public class CommandFactoryImp extends CommandFactory {
 	    break;
 	case EVENTO_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA:
 	    c = new CommandRConsultarTareasVConsultarEmpleadosPorTarea();
+	    break;
+	case EVENTO_ASIGNARTAREA_EMPLEADO:
+	    c = new CommandAltaTareaEmpleado();
 	    break;
 
 	/* TAREAS */

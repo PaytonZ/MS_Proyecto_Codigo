@@ -3,15 +3,12 @@
  */
 package negocio.empleados.servicioaplicacion;
 
+import java.util.List;
+import java.util.Set;
+
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
-
-
-
-
 import negocio.tareas.objetonegocio.Tarea;
-
-import java.util.List;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -83,7 +80,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	  public Boolean anadirTareaEmpleado(String dniEmpleado, List<Tarea> listaTareas) throws BSoDException;
+	  public Boolean anadirTareaEmpleado(String dniEmpleado, Set<Tarea> listaTareas) throws BSoDException;
 
 	
 }

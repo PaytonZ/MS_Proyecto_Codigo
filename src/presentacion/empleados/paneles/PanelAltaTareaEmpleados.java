@@ -7,8 +7,9 @@ import java.awt.Dimension;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -45,9 +46,11 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 	
 	private Empleado emp;
 	
-	private List<Tarea> tareasEmpleado;
+	private Set<Tarea> tareasEmpleado;
 	private JList<Tarea> listaTareasAsignadas;
 	private JList<Tarea> listaTareasDisponibles;
+	
+	private JButton btnAsignarTareas;
 	
 	public PanelAltaTareaEmpleados() {
 		
@@ -113,12 +116,12 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		add(textApellidos, "cell 2 6,growx");
 		textApellidos.setColumns(10);
 		
-		JButton btnAsignarTareas = new JButton("Asignar tareas");
+		btnAsignarTareas = new JButton("Asignar tareas");
 		btnAsignarTareas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				tareasEmpleado = new ArrayList<Tarea>();
+				tareasEmpleado = new HashSet<>();
 				if ( listaTareasAsignadas.getModel().getSize() > 0) {
 					
 					for (int i = 0; i < listaTareasAsignadas.getModel().getSize(); i++) {
@@ -143,24 +146,6 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		JLabel lblTareasAsignadas = new JLabel("Tareas asignadas");
 		add(lblTareasAsignadas, "cell 5 8 2 1,alignx center");
 		
-		ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-		//controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TAREAS_V_ASIGARTAREA, null);
-
-		/*
-		Tarea c = new Tarea();
-		c.setNombre("c");
-		
-		Tarea d = new Tarea();
-		d.setNombre("d");
-		
-		Tarea e = new Tarea();
-		e.setNombre("e");
-		
-		DefaultListModel<Tarea> tt = new DefaultListModel<>();
-		tt.addElement(c);
-		tt.addElement(d);
-		tt.addElement(e);*/
-		
 		ScrollPane scroll = new ScrollPane();
 		scroll.setPreferredSize(new Dimension(20, 20));
 		scroll.setMinimumSize(new Dimension(20, 20));
@@ -172,16 +157,6 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 		scroll.add(listaTareasDisponibles);
 		
 		add(scroll, "cell 1 9 3 4,grow");
-		
-		/*Tarea a = new Tarea();
-		a.setNombre("a");
-		
-		Tarea b = new Tarea();
-		b.setNombre("b");
-		
-		DefaultListModel<Tarea> t = new DefaultListModel<>();
-		t.addElement(a);
-		t.addElement(b);*/
 
 		ScrollPane scroll2 = new ScrollPane();
 		scroll2.setMinimumSize(new Dimension(20, 20));
@@ -247,8 +222,14 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				((DefaultListModel<Tarea>)listaTareasDisponibles.getModel()).removeAllElements();
 				((DefaultListModel<Tarea>)listaTareasAsignadas.getModel()).removeAllElements();
 				
+				textDNIBusqueda.setText("");
+				txtDni.setText("");
+				textNombre.setText("");
+				textApellidos.setText("");
+				
 				listaTareasDisponibles.setEnabled(false);
 				listaTareasAsignadas.setEnabled(false);
+				btnAsignarTareas.setEnabled(false);
 				
 				JOptionPane.showMessageDialog(this, "Las tareas se asignaron al empleado", "Error", JOptionPane.ERROR_MESSAGE);
 				
@@ -275,6 +256,9 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				listaTareasDisponibles.setModel(model);
 				
 				listaTareasDisponibles.setEnabled(true);
+				listaTareasAsignadas.setEnabled(true);
+				
+				btnAsignarTareas.setEnabled(true);
 			}
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA == idEvento) {
@@ -287,7 +271,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				textNombre.setText(emp.getNombre());
 				textApellidos.setText(emp.getPrimerApellido() + " " + emp.getSegundoApellido());
 				
-				//tareasEmpleado = emp.getTareas();
+				tareasEmpleado = emp.getTarea();
 				
 				DefaultListModel<Tarea> model = (DefaultListModel<Tarea>)listaTareasAsignadas.getModel();
 				
@@ -298,33 +282,14 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 				}
 				
 				listaTareasAsignadas.setModel(model);
+				
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TAREAS_V_ASIGARTAREA, null);
 			}
 			else {
 				JOptionPane.showMessageDialog(this, "No se pudo obtener el empleado", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		/*else if ( IDEventos.EVENTO_CONSULTAR_TAREAEMPLEADO_V_EMPLEADO_ASIGARTAREA == idEvento ) {
-		
-			if ( datos instanceof List) {
-				
-				tareasEmpleado = (List<Tarea>) datos;
-				
-				DefaultListModel<Tarea> model = (DefaultListModel<Tarea>)listaTareasAsignadas.getModel();
-				
-				model.removeAllElements();
-				
-				for ( Tarea tarea : tareasEmpleado ) {
-					model.addElement(tarea);
-				}
-				
-				listaTareasAsignadas.setModel(model);
-			}
-			else {
-				JOptionPane.showMessageDialog(this, "No se pudo obtener las tareas disponibles", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-		}*/
 		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA == idEvento
-				//|| IDEventos.ERROR_CONSULTAR_TAREAEMPLEADO_V_EMPLEADO_ASIGARTAREA == idEvento
 				|| IDEventos.ERROR_ASIGNARTAREA_EMPLEADO == idEvento
 				|| IDEventos.ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA == idEvento) {
 			

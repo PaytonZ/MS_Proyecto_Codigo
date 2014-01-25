@@ -3,11 +3,10 @@
  */
 package presentacion.comandos.empleado;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import negocio.empleados.objetonegocio.Empleado;
-import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import negocio.tareas.objetonegocio.Tarea;
 import presentacion.comandos.Command;
@@ -33,17 +32,17 @@ public class CommandAltaTareaEmpleado implements Command {
 
 		    Empleado emp = (Empleado) datos;
 		    
-		   // List<Tarea> tareas = emp.getListaTareas();
+		    Set<Tarea> tareas = emp.getTarea();
 		    
-		    //emp.setListaTareas(new ArrayList<Tarea>());
+		    emp.setTarea(new HashSet<Tarea>());
 		    
-		  //  cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirTareaEmpleado(emp.getDNI(), tareas));
-		    cr.setEvento(IDEventos.EVENTO_ALTA_DEPARTAMENTO);
+		    cr.setDatos(FactorySA.getInstance().getSAEmpleados().anadirTareaEmpleado(emp.getDNI(), tareas));
+		    cr.setEvento(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO);
 
 		} catch (Exception bsod) { // cambiar por bsod
 
 		    cr.setDatos(bsod);
-		    cr.setEvento(IDEventos.ERROR_ALTA_DEPARTAMENTO);
+		    cr.setEvento(IDEventos.ERROR_ASIGNARTAREA_EMPLEADO);
 		}
 		
 		return cr;

@@ -25,11 +25,11 @@ public class CommandRConsultarEmpleadoVAsignarTarea implements Command {
 		
 		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_EMPLEADO) ) {
 			
-			cr.setEvento(IDEventos.ERROR_ASIGNARTAREA_EMPLEADO);
+			cr.setEvento(IDEventos.ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA);
 		}
 		else {
 			
-			cr.setEvento(IDEventos.EVENTO_ASIGNARTAREA_EMPLEADO);
+			cr.setEvento(IDEventos.EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA);
 		}
 		
 		return cr;

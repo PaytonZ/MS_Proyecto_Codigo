@@ -229,7 +229,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getMessage());
 	} finally {
-	    entityManager.detach(resultado);
+	    if ( resultado != null)
+		entityManager.detach(resultado);
 
 	    entityManager.close();
 	    entityManagerFactory.close();
@@ -331,7 +332,7 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean anadirTareaEmpleado(String dniEmpleado, List<Tarea> listaTareas) throws BSoDException {
+    public Boolean anadirTareaEmpleado(String dniEmpleado, Set<Tarea> listaTareas) throws BSoDException {
 	
 	Boolean asignadasCorrecto = false;
 
