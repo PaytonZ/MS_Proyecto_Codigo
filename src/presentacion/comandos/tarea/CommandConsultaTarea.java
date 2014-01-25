@@ -26,7 +26,7 @@ public class CommandConsultaTarea implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-		    cr.setDatos(FactorySA.getInstance().getSATareas().obternerTarea( (String) datos) );
+		    cr.setDatos(FactorySA.getInstance().getSATareas().obtenerTarea( (String) datos) );
 		    cr.setEvento(IDEventos.EVENTO_CONSULTAR_TAREA);
 
 		} catch (BSoDException bsod) {

@@ -169,7 +169,7 @@ public class TestSAEmpleadosImp {
 
 	List<Empleado> j = null;
 	try {
-	    j = saempleados.obtenerEmpleadosporTareas(t1.getId());
+	    j = saempleados.obtenerEmpleadosporTareas(t1);
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
