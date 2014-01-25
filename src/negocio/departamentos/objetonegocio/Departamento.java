@@ -30,12 +30,17 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Table(name="departamentos")
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQueries({
-	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByid", query = "select obj from Departamento obj where obj.id = :id"),
+	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByid", query = "select obj from Departamento obj where obj.id = :id and obj.activo = true"),
 	@NamedQuery(name = "Departamento.findAll", query = "select obj from Departamento obj"),
-	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findBynombre", query = "select obj from Departamento obj where obj.nombre = :nombre"),
+	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findBynombre", query = "select obj from Departamento obj where obj.nombre = :nombre and obj.activo = true"),
 	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByempleado", query = "select obj from Departamento obj where obj.empleado = :empleado"),
 	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByactivo", query = "select obj from Departamento obj where obj.activo = :activo") })
 public class Departamento {
+    
+    public Departamento() {
+	activo = true;
+    }
+    
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 

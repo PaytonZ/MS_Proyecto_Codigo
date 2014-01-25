@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
@@ -35,7 +34,7 @@ public class PanelBajaDepartamentos extends JPanel implements
 
     private JTextField textNombreBusqueda;
     private JTextField textNombre;
-    private Integer idDepartamento;
+    private Departamento departamento;
     private JButton btnBorrarCliente;
 
     private JPanel contentPane;
@@ -100,9 +99,9 @@ public class PanelBajaDepartamentos extends JPanel implements
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 
-		if (idDepartamento != null)
+		if (departamento != null)
 		    ControladorAplicacion.getInstance().handleRequest(
-			    IDEventos.EVENTO_BAJA_DEPARTAMENTO, idDepartamento);
+			    IDEventos.EVENTO_BAJA_DEPARTAMENTO, departamento);
 		else
 		    JOptionPane
 			    .showMessageDialog(
@@ -125,7 +124,7 @@ public class PanelBajaDepartamentos extends JPanel implements
 
 		if (correcto) {
 		    textNombreBusqueda.setText("");
-		    idDepartamento = null;
+		    departamento = null;
 		    textNombre.setText("");
 		    btnBorrarCliente.setEnabled(false);
 
@@ -147,7 +146,7 @@ public class PanelBajaDepartamentos extends JPanel implements
 
 		Departamento departamento = (Departamento) datos;
 
-		idDepartamento = departamento.getID();
+		this.departamento = departamento;
 		textNombre.setText(departamento.getNombre());
 		btnBorrarCliente.setEnabled(true);
 	    } else if (datos == null) {

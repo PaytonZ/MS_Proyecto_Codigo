@@ -36,6 +36,8 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 	
 	private JPanel contentPane;
 	
+	private JButton btnModificarCliente;
+	
 	public PanelModificacionDepartamentos() {
 		
 		contentPane = this;
@@ -102,7 +104,7 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 		textNombre.setColumns(10);
 		add(textNombre, "cell 2 6 2 1,growx");
 		
-		JButton btnModificarCliente = new JButton("Modificar departamento");
+		btnModificarCliente = new JButton("Modificar departamento");
 		btnModificarCliente.setEnabled(false);
 		btnModificarCliente.addActionListener(new ActionListener() {
 			@Override
@@ -150,6 +152,7 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 					textNombreBusqueda.setEditable(true);
 					textNombre.setText("");
 					textNombre.setEditable(true);
+					btnModificarCliente.setEnabled(false);
 					
 					JOptionPane.showMessageDialog(contentPane, "El departamento se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -170,6 +173,7 @@ public class PanelModificacionDepartamentos extends JPanel implements GUIPaneles
 				textNombre.setText(departamento.getNombre());
 				textNombre.setEditable(true);
 				
+				btnModificarCliente.setEnabled(true);
 			}
 		}
 		else if ( IDEventos.ERROR_MODIFICAR_DEPARTAMENTO == idEvento || IDEventos.ERROR_CONSULTAR_DEPARTAMENTO_V_MODIFICAR == idEvento ) {
