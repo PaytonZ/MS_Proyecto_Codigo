@@ -60,7 +60,16 @@ public class SADepartamentosImp implements SADepartamentos {
      */
     public Boolean borrarDepartamento(Departamento datos) throws BSoDException {
 	// begin-user-code
-	// TODO Ap�ndice de m�todo generado autom�ticamente
+	// TODO Revisar
+	EntityManagerFactory emf= Persistence.createEntityManagerFactory("SADepartamentos");
+	EntityManager em = emf.createEntityManager();
+	em.getTransaction().begin();
+	String query = "DELETE FROM Departamamentos where Departamento = " + datos.toString();
+	em.persist(datos);
+	em.getTransaction().commit();
+	em.persist(em);
+	// No hay close en transacciones de entitymanager?? 
+	
 	return null;
 	// end-user-code
     }
