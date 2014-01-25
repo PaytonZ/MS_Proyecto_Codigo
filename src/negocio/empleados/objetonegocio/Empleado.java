@@ -38,7 +38,15 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @NamedQueries({
     
 @NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg"),
-@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea") 
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
+
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDNI", query = "select obj from Empleado obj where obj.DNI = :DNI"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBynombre", query = "select obj from Empleado obj where obj.nombre = :nombre"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByprimerApellido", query = "select obj from Empleado obj where obj.primerApellido = :primerApellido"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento"),
+@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo")
 
 })
 

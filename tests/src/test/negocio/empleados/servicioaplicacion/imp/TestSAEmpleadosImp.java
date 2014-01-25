@@ -1,12 +1,12 @@
 package test.negocio.empleados.servicioaplicacion.imp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
@@ -169,7 +169,7 @@ public class TestSAEmpleadosImp {
 
 	List<Empleado> j = null;
 	try {
-	    j = saempleados.obtenerEmpleadosporTareas(t1.getId());
+	    j = saempleados.obtenerEmpleadosporTareas(t1);
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	    e2.printStackTrace();

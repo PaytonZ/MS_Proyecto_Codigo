@@ -46,6 +46,8 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 	private JComboBox<Departamento> cbDepartamento;
 	private JComboBox<TipoEmpleado> cbTipo;
 	
+	private JButton btnModificarEmpleado;
+	
 	public PanelModificacionEmpleados() {
 		
 		contentPane = this;
@@ -142,7 +144,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 		textSegundoApellido.setColumns(10);
 		add(textSegundoApellido, "cell 5 8,growx");
 		
-		JButton btnModificarEmpleado = new JButton("Modificar empleado");
+		btnModificarEmpleado = new JButton("Modificar empleado");
 		btnModificarEmpleado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -227,6 +229,8 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				cbDepartamento.setSelectedIndex(-1);
 				cbDepartamento.setEnabled(false);
 				
+				btnModificarEmpleado.setEnabled(false);
+				
 				JOptionPane.showMessageDialog(contentPane, "El empleado se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 			    }
 			}
@@ -254,6 +258,8 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				cbTipo.setEnabled(true);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO, null);
+				
+				btnModificarEmpleado.setEnabled(true);
 			}
 		}
 		else if (IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO == idEvento) {
