@@ -102,8 +102,14 @@ public class PanelBajaTareas extends JPanel implements GUIPanelesInterfaz {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if ( idTarea != null )
-					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_TAREA, idTarea);
+				Tarea tarea;
+				if ( idTarea != null ){
+				    	tarea= new Tarea();
+					tarea.setId(idTarea);
+					tarea.setDescripcion(textDescripcion.getText());
+					tarea.setNombre(textNombre.getText());
+					ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_BAJA_TAREA, tarea);
+				}
 				else
 					JOptionPane.showMessageDialog(contentPane, "Error al borrar la tarea, búsquela otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}

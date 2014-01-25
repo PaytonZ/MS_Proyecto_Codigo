@@ -33,7 +33,7 @@ public interface SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarTarea(String nombreTarea) throws BSoDException;
+	public Boolean borrarTarea(Tarea tarea) throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

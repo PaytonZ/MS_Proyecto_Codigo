@@ -8,6 +8,7 @@ import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
+import negocio.tareas.objetonegocio.Tarea;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -26,7 +27,7 @@ public class CommandBajaTarea implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-		    cr.setDatos(FactorySA.getInstance().getSATareas().borrarTarea((String) datos));
+		    cr.setDatos(FactorySA.getInstance().getSATareas().borrarTarea((Tarea) datos));
 		    cr.setEvento(IDEventos.EVENTO_BAJA_TAREA);
 
 		} catch (BSoDException bsod) {

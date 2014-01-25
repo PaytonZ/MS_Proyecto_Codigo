@@ -97,14 +97,15 @@ public class TestSATareasimp {
 	assertTrue(t1.getDescripcion().equalsIgnoreCase(t.getDescripcion()));
 
 	try {
-	    assertTrue(saTareas.borrarTarea(t.getNombre()));
+	    assertTrue(saTareas.borrarTarea(t));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	    System.out.println(e2.getMensaje());
 	}
 	try {
-	    assertFalse(saTareas.borrarTarea(String.valueOf(new Random()
-		    .nextInt(99999))));
+	    Tarea taux= new Tarea();
+	    taux.setNombre(String.valueOf(new Random().nextInt(99999)));
+	    assertFalse(saTareas.borrarTarea(taux));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	}

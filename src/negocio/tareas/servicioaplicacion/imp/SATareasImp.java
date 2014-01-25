@@ -42,18 +42,35 @@ public class SATareasImp implements SATareas {
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
-
+		tareaNueva.setActivo(true);
+		//Necesita su propia query porque debe buscar elementos dados de baja tambien
+		TypedQuery<Tarea> query = null;
 		try {
 		    entityManager.getTransaction().begin();
-		    resultado = obtenerTarea(tareaNueva.getNombre(),entityManager);
-		    //Si no canta es que existe la tarea 
-		    entityManager.getTransaction().rollback();
-		    //Cierre de entidades de persistencia
-		    entityManager.close();
-		    entityManagerFactory.close();
-		    
-		} catch (BSoDException ex) {// No se encontro la tarea.
-		    if(ex.getMensaje().contains("transaccion")) throw ex;
+		    query = entityManager.createNamedQuery(
+			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE_ALTA, Tarea.class);
+		    query.setParameter("nombre", tareaNueva.getNombre());
+		    resultado = query.getSingleResult();
+		    //Si no canta es que existe la tarea
+		    if(resultado.getActivo()){
+			entityManager.getTransaction().rollback();
+			 //Cierre de entidades de persistencia
+			 entityManager.close();
+			 entityManagerFactory.close();
+			 throw new BSoDException("Ya existe la tarea en la base de datos");
+		    }
+		    else{
+			resultado.setActivo(true);
+			resultado.setDescripcion(tareaNueva.getDescripcion());
+			entityManager.merge(resultado);
+			entityManager.getTransaction().commit();
+			//Cierre de entidades de persistencia
+			entityManager.detach(resultado);
+			entityManager.close();
+			entityManagerFactory.close();
+			return resultado;
+		    }
+		} catch (NoResultException ex) {// No se encontro la tarea.
 		    entityManager.persist(tareaNueva);
 		    
 		    entityManager.getTransaction().commit();
@@ -68,8 +85,7 @@ public class SATareasImp implements SATareas {
 		    entityManager.close();
 		    entityManagerFactory.close();
 		    return tareaNueva;
-		} 
-		throw new BSoDException("Ya existe la tarea en la base de datos");  
+		}   
 	}
 	
 
@@ -80,7 +96,7 @@ public class SATareasImp implements SATareas {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean borrarTarea(String nombreTarea) throws BSoDException {
+	public Boolean borrarTarea(Tarea tarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
 	    EntityManagerFactory entityManagerFactory = Persistence
@@ -92,7 +108,7 @@ public class SATareasImp implements SATareas {
 		try {
 		    entityManager.getTransaction().begin();
 		   
-		    resultado = obtenerTarea(nombreTarea,entityManager);
+		    resultado = obtenerTarea(tarea.getNombre(),entityManager);
 		    
 		    /*si existe la damos de baja*/
 		    resultado.setActivo(false);
@@ -134,6 +150,7 @@ public class SATareasImp implements SATareas {
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
+		tarea.setActivo(true);
 		
 		try {
 		    entityManager.getTransaction().begin();
@@ -142,13 +159,12 @@ public class SATareasImp implements SATareas {
 		    
 		   //Si existe hacemos un merge
 		    tarea.setId(resultado.getId());
-		    entityManager.getTransaction().commit();
 		    entityManager.merge(tarea);
+		    entityManager.getTransaction().commit();
 		    //No hace falta el detach pro el merge no linkea la entidad por parametro
 		    //entityManager.detach(tarea);
 		    entityManager.close();
 		    entityManagerFactory.close();
-		    
 		}catch(BSoDException e){
 		    
 		    if(e.getMensaje().contains("transaccion")) throw e;
