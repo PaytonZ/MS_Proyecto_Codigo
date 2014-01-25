@@ -61,6 +61,8 @@ public interface SAEmpleados {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Empleado obtenerEmpleado(String dniEmpleado)  throws BSoDException;
+	
+	public List<Empleado> obtenerTodosEmpleados() throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

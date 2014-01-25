@@ -26,7 +26,7 @@ public class CommandConsultaTodosEmpleados implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAEmpleados().borrarEmpleado((String) datos));
+			cr.setDatos(FactorySA.getInstance().getSAEmpleados().obtenerTodosEmpleados());
 			cr.setEvento(IDEventos.EVENTO_CONSULTAR_TODOS_EMPLEADOS);
 
 		} catch (BSoDException bsod) {

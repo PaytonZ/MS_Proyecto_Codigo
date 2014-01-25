@@ -1,12 +1,12 @@
 package test.negocio.empleados.servicioaplicacion.imp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
@@ -61,7 +61,6 @@ public class TestSAEmpleadosImp {
 		    .nextInt(99999))));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
 	}
 
     }
@@ -153,7 +152,7 @@ public class TestSAEmpleadosImp {
 
 	assertNotNull(t1);
 	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
-
+	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
 	List<Tarea> l = new ArrayList<>();
 
 	l.add(t1);
@@ -176,7 +175,7 @@ public class TestSAEmpleadosImp {
 	}
 
 	assertNotNull(j);
-	
+
 	assertTrue(j.get(0).equals(e1));
 
     }
