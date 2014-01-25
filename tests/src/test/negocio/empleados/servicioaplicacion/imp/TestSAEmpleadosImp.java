@@ -111,8 +111,8 @@ public class TestSAEmpleadosImp {
     }
 
     @Test
-    public void altaYaddTarea() {
-	
+    public void anadirandObtenerTarea() {
+
 	SAEmpleados saempleados = new SAempleadosImp();
 	Empleado e = new Empleado();
 
@@ -137,33 +137,28 @@ public class TestSAEmpleadosImp {
 		e1.getPrimerApellido()));
 	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
 		e1.getSegundoApellido()));
-	
+
 	Tarea t = new Tarea();
 	t.setDescripcion("asdasd");
 	t.setNombre(String.valueOf(new Random().nextInt(99999)));
-	
+
 	SATareas satareas = new SATareasImp();
 	Tarea t1 = null;
 	try {
-	  t1=  satareas.anadirTarea(t);
+	    t1 = satareas.anadirTarea(t);
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
 	}
-	
-	
+
 	assertNotNull(t1);
 	assertTrue(t.getDescripcion().equalsIgnoreCase((t1.getDescripcion())));
-	
-	
-	
-	
-	
+
 	List<Tarea> l = new ArrayList<>();
-	
+
 	l.add(t1);
-	
-	 Boolean b = null;
+
+	Boolean b = null;
 	try {
 	    b = saempleados.anadirTareaEmpleado(e.getDNI(), l);
 	} catch (BSoDException e2) {
@@ -171,11 +166,16 @@ public class TestSAEmpleadosImp {
 	    e2.printStackTrace();
 	}
 	assertTrue(b);
-	
-	
 
-	
-	
-	
+	List<Empleado> j = null;
+	try {
+	    j = saempleados.obtenerEmpleadosporTareas(t1.getId());
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+
+	assertNotNull(j);
+
     }
 }

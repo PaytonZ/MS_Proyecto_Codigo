@@ -53,7 +53,7 @@ public class Empleado implements Serializable {
      */
 
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "Empleado.BuscarDNI";
-
+    public static final String QUERY_BUSCAR_EMPLEADOS_POR_TAREA = "negocio.empleados.objetonegocio.Empleado.findBytarea";
     public Empleado() {
 	DNI = "";
 	nombre = "";
