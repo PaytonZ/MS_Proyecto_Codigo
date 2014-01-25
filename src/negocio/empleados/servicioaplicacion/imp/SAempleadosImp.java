@@ -116,11 +116,12 @@ public class SAempleadosImp implements SAEmpleados {
 	    borradoCorrecto = true;
 
 	} catch (NoResultException ex) {
-
+	    
+	    entityManager.getTransaction().rollback();
 	    throw new BSoDException("El empleado no existe, no se puede borrar");
 
 	} catch (Exception e) {
-
+	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(e.getMessage());
 	}
 
@@ -163,6 +164,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
+	    entityManager.close();
+	    entityManagerFactory.close();
 
 	} catch (NoResultException ex) {
 	    
@@ -171,9 +174,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se ha podido actualizar el empleado, por que no existe");
 	    
 	} catch (Exception e) {
-	    
 	    entityManager.getTransaction().rollback();
-
+	    
 	    throw new BSoDException(e.getMessage());
 	}
 	finally {
@@ -211,6 +213,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().commit();
 	    
 	} catch (NoResultException ex) {
+
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
 	} catch (Exception ex) {
 	    
@@ -245,11 +248,14 @@ public class SAempleadosImp implements SAEmpleados {
 	    query = entityManager.createNamedQuery(
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_TAREA, Empleado.class);
 	    query.setParameter("tarea", tarea);
-	    resultados = query.getResultList();
 	    
+	    resultados = query.getResultList();
 	} catch (NoResultException ex) {
-	    throw new BSoDException("No se pudo encontrar la tarea  " + tarea.toString());
+	    entityManager.getTransaction().rollback();
+	    throw new BSoDException("No se pudo encontrar la tarea  "
+		    + tarea.toString());
 	} catch (Exception ex) {
+	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getMessage());
 	}
 	finally {
@@ -292,6 +298,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManagerFactory.close();
 
 	} catch (NoResultException ex) {
+	    entityManager.getTransaction().rollback();
 	    borradoCorrecto = false;
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
 		    + dniEmpleado);
