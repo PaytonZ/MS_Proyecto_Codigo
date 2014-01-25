@@ -4,8 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import negocio.empleados.objetonegocio.Empleado;
+import negocio.empleados.servicioaplicacion.SAEmpleados;
+import negocio.empleados.servicioaplicacion.imp.SAempleadosImp;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
@@ -17,6 +22,7 @@ import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class TestSATareasimp {
+   /*
     @Test
     public void gestionTareas_AltaModificacion_Baja() {
 
@@ -68,6 +74,74 @@ public class TestSATareasimp {
 	   
 	}
 	
+    }*/
+    @Test
+    public void altaYbaja() {
+
+	SATareas saTareas = new SATareasImp();
+	Tarea t = new Tarea();
+
+	t.setNombre(String.valueOf(new Random().nextInt(99999)));
+	t.setDescripcion("Profesión futura");
+	Tarea t1 = null;
+	try {
+	    t1 = saTareas.anadirTarea(t);
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+
+	assertNotNull(t1);
+	assertTrue(t1.getId() >= 0);
+	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
+	assertTrue(t1.getDescripcion().equalsIgnoreCase(t.getDescripcion()));
+
+	try {
+	    assertTrue(saTareas.borrarTarea(t.getNombre()));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    System.out.println(e2.getMensaje());
+	}
+	try {
+	    assertFalse(saTareas.borrarTarea(String.valueOf(new Random()
+		    .nextInt(99999))));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	}
+
+    }
+    @Test
+    public void altaYConsulta() {
+
+	SATareas saTareas= new SATareasImp();
+	Tarea t = new Tarea();
+
+	t.setNombre(String.valueOf(new Random().nextInt(99999)));
+	t.setDescripcion("Profesión futura");
+	
+	Tarea t1 = null;
+	try {
+	    t1 = saTareas.anadirTarea(t);
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+
+	assertNotNull(t1);
+	assertTrue(t1.getId() >= 0);
+
+	try {
+	    t1 = saTareas.obtenerTarea(t.getNombre());
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	assertTrue(t1.getId() >= 0);
+	assertTrue(t.getNombre().equalsIgnoreCase(t1.getNombre()));
+
+	assertTrue(t.getDescripcion().equalsIgnoreCase(
+		t1.getDescripcion()));
+
     }
 
 }

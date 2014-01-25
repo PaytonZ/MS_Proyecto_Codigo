@@ -35,6 +35,7 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
     	
+	@SuppressWarnings("finally")
 	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
 	    EntityManagerFactory entityManagerFactory = Persistence
 			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
@@ -50,7 +51,6 @@ public class SATareasImp implements SATareas {
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    entityManagerFactory.close();
-		    throw new BSoDException("Ya existe la tarea en la base de datos");  
 		    
 		} catch (BSoDException ex) {// No se encontro la tarea.
 		    if(ex.getMensaje().contains("transaccion")) throw ex;
@@ -67,9 +67,9 @@ public class SATareasImp implements SATareas {
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    entityManagerFactory.close();
-
+		    return tareaNueva;
 		} 
-		return tareaNueva;
+		throw new BSoDException("Ya existe la tarea en la base de datos");  
 	}
 	
 
@@ -183,8 +183,14 @@ public class SATareasImp implements SATareas {
 		try{
 		    entityManager.getTransaction().begin();
 		    resultado=obtenerTarea(nombreTarea,entityManager);
+		    entityManager.detach(resultado);
+		    entityManager.close();
+		    entityManagerFactory.close();
 		}
 		catch(BSoDException e){
+		    entityManager.getTransaction().rollback();
+		    entityManager.close();
+		    entityManagerFactory.close();
 		    throw e;
 		}
 		return resultado;
@@ -277,59 +283,4 @@ public class SATareasImp implements SATareas {
 	    return (List<Tarea>) resultado.getTarea();
 	}
 	
-	
-	//CODIGO SUSTITUIDO TEMPORALMENTE
-	/*
-	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
-	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-		EntityManager entityManager = entityManagerFactory
-			.createEntityManager();
-		Tarea resultado = null;
-		TypedQuery<Tarea> query = null;
-
-		try {
-		    entityManager.getTransaction().begin();
-		    query = entityManager.createNamedQuery(
-			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
-		    query.setParameter("nombre", tareaNueva.getNombre());
-		    resultado = query.getSingleResult();
-		    
-		    /*En caso de hacer rollback
-		      entityManager.getTransaction().rollback();
-		      entityManager.close();
-		      entityManagerFactory.close();
-		      throw new BSoDException("Ya existe la tarea en la base de datos");
-		    
-		    
-		} catch (NoResultException ex) {// No se encontro la tarea.
-		    entityManager.persist(tareaNueva);
-
-		    entityManager.getTransaction().commit();
-
-		    query = entityManager.createNamedQuery(
-			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
-		    query.setParameter("nombre", tareaNueva.getNombre());
-		    resultado = query.getSingleResult();
-
-		    tareaNueva.setId(resultado.getId());
-		    entityManager.merge(tareaNueva);
-		    entityManager.getTransaction().commit();
-		  
-		    
-		    /*En caso de usar las excepciones del persist
-		     * 
-		     *
-		}catch(EntityExistsException ex){
-		    entityManager.getTransaction().rollback();
-		    throw new BSoDException("Ya existe la tarea en la base de datos");
-		
-
-		} finally // Se cierran las unidades de persistencia
-		{		    
-		    entityManager.close();
-		    entityManagerFactory.close();
-		}
-		return tareaNueva;
-	}*/
 }
