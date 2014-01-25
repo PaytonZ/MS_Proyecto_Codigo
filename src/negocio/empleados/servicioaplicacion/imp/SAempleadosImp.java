@@ -333,7 +333,7 @@ public class SAempleadosImp implements SAEmpleados {
      */
     public Boolean anadirTareaEmpleado(String dniEmpleado, List<Tarea> listaTareas) throws BSoDException {
 	
-	Boolean asignadasCorrecto = false;
+	Boolean asignadasCorrecto = true;
 
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
 	EntityManager entityManager = entityManagerFactory.createEntityManager();
