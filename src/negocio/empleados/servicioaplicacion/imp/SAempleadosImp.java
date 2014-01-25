@@ -44,7 +44,7 @@ public class SAempleadosImp implements SAEmpleados {
 	try {
 	    entityManager.getTransaction().begin();
 	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI_TODOS, Empleado.class);
 	    query.setParameter("arg", empleadoNuevo.getDNI());
 	    resultado = query.getSingleResult();
 
@@ -361,7 +361,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    for (Tarea tarea : listaTareas) {
 
 		try {
-		    TypedQuery<Tarea> tarQuery = entityManager.createQuery(
+		    TypedQuery<Tarea> tarQuery = entityManager.createNamedQuery(
 			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
 		    tarQuery.setParameter("nombre", tarea.getNombre());
 
