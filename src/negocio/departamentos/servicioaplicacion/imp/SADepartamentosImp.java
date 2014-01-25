@@ -204,18 +204,37 @@ public class SADepartamentosImp implements SADepartamentos {
 
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
-	entityManager.getTransaction().begin();
 
-	List<Departamento> departamentos = entityManager.createNamedQuery(
-		"Departamento.findAll", Departamento.class).getResultList();
+	List<Departamento> departamentos = null;
+	
+	try {
+	    entityManager.getTransaction().begin();
+	    departamentos = entityManager.createNamedQuery("Departamento.findAll", Departamento.class).getResultList();
 
-	entityManager.getTransaction().commit();
-	entityManager.close();
-	entityManagerFactory.close();
+	    entityManager.getTransaction().commit();
 
+	} catch (NoResultException ex) {
+
+	    entityManager.getTransaction().rollback();
+
+	    throw new BSoDException("No se encontraron empleados");
+	} catch (Exception ex) {
+
+	    entityManager.getTransaction().rollback();
+	    
+	    throw new BSoDException(ex.getMessage());
+	} finally {
+	    
+	    for ( Departamento dpto : departamentos) {
+		entityManager.detach(dpto);
+	    }
+
+	    entityManager.close();
+	    entityManagerFactory.close();
+	}
+	
 	return departamentos;
     }
 

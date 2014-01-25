@@ -70,7 +70,7 @@ public class PanelConsultaMultiplesDepartamentos extends JPanel implements GUIPa
 			public void actionPerformed(ActionEvent e) {
 				
 				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_CLIENTE, null);
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTO, null);
 			}
 		});
 		panel.add(btnNewButton, "cell 0 1,alignx center");
