@@ -40,6 +40,8 @@ public class FramePrincipal extends JFrame {
 	private JButton btnDepartamentos;
 	private JButton btnEmpleados;
 	private JButton btnTareas;
+	
+	private FramePrincipal mySelf;
 
 	/**
 	 * Create the frame.
@@ -63,6 +65,23 @@ public class FramePrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+
+		JMenu mnAbout = new JMenu("About");
+		menuBar.add(mnAbout);
+
+		mySelf = this;
+		
+		JMenuItem mntmDesarrolladores = new JMenuItem("BSoD Software");
+		mntmDesarrolladores.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				// Muestro el panel de bsodsoftware.
+				new PanelAbout(mySelf).setVisible(true);
+			}
+		});
+		mnAbout.add(mntmDesarrolladores);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setAlignmentY(Component.CENTER_ALIGNMENT);
