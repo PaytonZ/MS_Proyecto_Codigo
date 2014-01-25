@@ -164,15 +164,17 @@ public class SAempleadosImp implements SAEmpleados {
 	    query.setParameter("arg", empleadoActualizar.getDNI());
 
 	    resultado = query.getSingleResult();
-
+	    empleadoActualizar.setId(resultado.getId());
+	    /* Vais a lo dificil, jpa esta para algo
 	    resultado.setNombre(empleadoActualizar.getNombre());
 	    resultado.setPrimerApellido(empleadoActualizar.getPrimerApellido());
 	    resultado.setSegundoApellido(empleadoActualizar
 		    .getSegundoApellido());
 	    resultado.setTipo(empleadoActualizar.getTipo());
 	    resultado.setDepartamento(empleadoActualizar.getDepartamento());
+	    */
 
-	    entityManager.merge(resultado);
+	    entityManager.merge(empleadoActualizar);
 
 	    entityManager.getTransaction().commit();
 
@@ -183,18 +185,13 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException(
 		    "No se ha podido actualizar el empleado, por que no existe");
 
-	} catch (Exception e) {
-
-	    entityManager.getTransaction().rollback();
-
-	    throw new BSoDException(e.getMessage());
 	} finally {
-	    entityManager.detach(resultado);
+	    entityManager.detach(empleadoActualizar);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
 
-	return resultado;
+	return empleadoActualizar;
 
     }
 
