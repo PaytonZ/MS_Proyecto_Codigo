@@ -19,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
+import negocio.tareas.objetonegocio.Tarea;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -32,6 +33,8 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 	
 	private JPanel contentPane;
 	private JTextField textNombreTarea;
+	
+	private Tarea tarea;
 	
 	public PanelConsultaEmpleadosPorTarea() {
 		
@@ -60,6 +63,24 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 		textNombreTarea.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			    
+			    if ( !textNombreTarea.getText().trim().equals("") ) {
+				
+				String nombreTarea = textNombreTarea.getText();
+				
+				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
+				
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA, nombreTarea);
+				
+				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_EMPLEADO_POR_TAREA, tarea);
+			    }
+			    else {
+				JOptionPane.showMessageDialog(contentPane, "No se indicó una tarea", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			    }
+			}
+		});
 		panelTarea.add(btnBuscar, "cell 2 3,alignx center");
 		
 		JScrollPane scrollPane = new JScrollPane(list);
@@ -73,18 +94,6 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 		
 		LC layoutconstraits = new LC();
 		layoutconstraits.fillX();
-		
-		panel.setLayout(new MigLayout("fillx", "[208.00,right]", "[]"));
-		
-		JButton btnNewButton = new JButton("Consultar clientes");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				ControladorAplicacion controladorAplicacion = ControladorAplicacion.getInstance();
-				controladorAplicacion.handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_EMPLEADOS, null);
-			}
-		});
-		panel.add(btnNewButton, "cell 0 1,alignx center");
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
@@ -118,7 +127,7 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 	 */
 	public void actualizarVentana(IDEventos idEvento, Object datos) {
 		
-		if ( IDEventos.EVENTO_CONSULTAR_TODOS_EMPLEADOS == idEvento ) {
+		if ( IDEventos.EVENTO_CONSULTAR_EMPLEADO_POR_TAREA == idEvento ) {
 			
 			if ( datos instanceof List) {
 				
@@ -134,7 +143,17 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 				JOptionPane.showMessageDialog(contentPane, "No se pudieron recuperar los empleados", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_TODOS_EMPLEADOS == idEvento ) {
+		else if ( IDEventos.EVENTO_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA == idEvento) {
+		    
+		    if ( datos instanceof Tarea) {
+			
+			tarea = (Tarea) datos;
+		    }
+		    else {
+			JOptionPane.showMessageDialog(contentPane, "La tarea no existe", "Error", JOptionPane.ERROR_MESSAGE);
+		    }
+		}
+		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO_POR_TAREA == idEvento ) {
 			
 			if ( datos instanceof BSoDException ) {
 				

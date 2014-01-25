@@ -10,6 +10,7 @@ import presentacion.empleados.paneles.PanelAltaTareaEmpleados;
 import presentacion.empleados.paneles.PanelBajaEmpleados;
 import presentacion.empleados.paneles.PanelBajaTareaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleados;
+import presentacion.empleados.paneles.PanelConsultaEmpleadosPorTarea;
 import presentacion.empleados.paneles.PanelConsultaMultipleEmpleados;
 import presentacion.empleados.paneles.PanelModificacionEmpleados;
 
@@ -28,7 +29,8 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 	private PanelConsultaMultipleEmpleados panelConsultaMultipleEmpleados;
 	private PanelModificacionEmpleados panelModificacionEmpleados;
 	private PanelConsultaEmpleados panelConsultaEmpleados;
-	private static PanelAltaEmpleados panelAltaEmpleados;
+	private PanelAltaEmpleados panelAltaEmpleados;
+	private PanelConsultaEmpleadosPorTarea panelConsultaEmpleadosPorTarea;
 	
 	@Override
 	public PanelAltaEmpleados getPanelAltaEmpleados() {
@@ -95,6 +97,16 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 	}
 	
 	@Override
+	public PanelConsultaEmpleadosPorTarea getPanelConsutlaEmpleadosPorTarea() {
+	    
+	    if ( panelConsultaEmpleadosPorTarea == null) {
+		panelConsultaEmpleadosPorTarea = new PanelConsultaEmpleadosPorTarea();
+	    }
+	    
+	    return panelConsultaEmpleadosPorTarea;
+	}
+	
+	@Override
 	public void update(IDEventos eventoActual, Object datos) {
 
 	    switch (eventoActual) {
@@ -133,6 +145,12 @@ public class GUIEmpleadosImp extends GUIEmpleados {
         	case EVENTO_CONSULTAR_TODOS_EMPLEADOS:
         	case ERROR_CONSULTAR_TODOS_EMPLEADOS:
         	    getPanelConsultaMultipleEmpleados().actualizarVentana(eventoActual, datos);
+        	    break;
+        	case EVENTO_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA:
+        	case ERROR_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA:
+        	case EVENTO_CONSULTAR_EMPLEADO_POR_TAREA:
+        	case ERROR_CONSULTAR_EMPLEADO_POR_TAREA:
+        	    getPanelConsutlaEmpleadosPorTarea();
         	    break;
     	    default:
     		break;

@@ -10,6 +10,7 @@ import presentacion.empleados.paneles.PanelAltaTareaEmpleados;
 import presentacion.empleados.paneles.PanelBajaEmpleados;
 import presentacion.empleados.paneles.PanelBajaTareaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleados;
+import presentacion.empleados.paneles.PanelConsultaEmpleadosPorTarea;
 import presentacion.empleados.paneles.PanelConsultaMultipleEmpleados;
 import presentacion.empleados.paneles.PanelModificacionEmpleados;
 
@@ -108,4 +109,6 @@ public abstract class GUIEmpleados {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract PanelBajaTareaEmpleados getPanelBajaTareaEmpleados();
+	
+	public abstract PanelConsultaEmpleadosPorTarea getPanelConsutlaEmpleadosPorTarea();
 }

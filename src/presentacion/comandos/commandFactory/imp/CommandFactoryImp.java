@@ -23,6 +23,7 @@ import presentacion.comandos.departamento.redireccion.CommandRConsultarDepartame
 import presentacion.comandos.empleado.CommandAltaEmpleado;
 import presentacion.comandos.empleado.CommandBajaEmpleado;
 import presentacion.comandos.empleado.CommandConsultaEmpleado;
+import presentacion.comandos.empleado.CommandConsultaEmpleadoPorTarea;
 import presentacion.comandos.empleado.CommandConsultaTodosEmpleados;
 import presentacion.comandos.empleado.CommandModificarEmpleado;
 import presentacion.comandos.empleado.redireccion.CommandRConsultarDepartamentosVAltaEmpleado;
@@ -31,6 +32,7 @@ import presentacion.comandos.empleado.redireccion.CommandRConsultarEmpleadoVAsig
 import presentacion.comandos.empleado.redireccion.CommandRConsultarEmpleadosVBorrar;
 import presentacion.comandos.empleado.redireccion.CommandRConsultarEmpleadosVModificar;
 import presentacion.comandos.empleado.redireccion.CommandRConsultarTareasVAsignarTarea;
+import presentacion.comandos.empleado.redireccion.CommandRConsultarTareasVConsultarEmpleadosPorTarea;
 import presentacion.comandos.habitacion.CommandAltaHabitacion;
 import presentacion.comandos.habitacion.CommandBajaHabitacion;
 import presentacion.comandos.habitacion.CommandConsultaHabitacion;
@@ -222,6 +224,12 @@ public class CommandFactoryImp extends CommandFactory {
 	    break;
 	case EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO:
 	    c = new CommandRConsultarDepartamentosVModificarEmpleado();
+	    break;
+	case EVENTO_CONSULTAR_EMPLEADO_POR_TAREA:
+	    c = new CommandConsultaEmpleadoPorTarea();
+	    break;
+	case EVENTO_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA:
+	    c = new CommandRConsultarTareasVConsultarEmpleadosPorTarea();
 	    break;
 
 	/* TAREAS */
