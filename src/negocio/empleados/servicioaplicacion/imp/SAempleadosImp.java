@@ -70,9 +70,11 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().begin();
 	    entityManager.merge(empleadoNuevo);
 	    entityManager.getTransaction().commit();
+	    entityManager.detach(empleadoNuevo);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
+
 	return empleadoNuevo;
 
     }
@@ -116,7 +118,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    borradoCorrecto = true;
 
 	} catch (NoResultException ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException("El empleado no existe, no se puede borrar");
 
@@ -166,18 +168,19 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
-	    
-	    throw new BSoDException("No se ha podido actualizar el empleado, por que no existe");
-	    
+
+	    throw new BSoDException(
+		    "No se ha podido actualizar el empleado, por que no existe");
+
 	} catch (Exception e) {
-	    
+
 	    entityManager.getTransaction().rollback();
-	    
+
 	    throw new BSoDException(e.getMessage());
-	}
-	finally {
+	} finally {
+	    entityManager.detach(resultado);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
@@ -197,35 +200,39 @@ public class SAempleadosImp implements SAEmpleados {
      */
     public Empleado obtenerEmpleado(String dniEmpleado) throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory.createEntityManager();
-	
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
+
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
 
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
 	    resultado = query.getSingleResult();
 
 	    entityManager.getTransaction().commit();
-	    
+
 	} catch (NoResultException ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
 
-	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
+	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
+		    + dniEmpleado);
 	} catch (Exception ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getMessage());
-	}
-	finally {
+	} finally {
+	    entityManager.detach(resultado);
+
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
-
 	return resultado;
     }
 
@@ -239,9 +246,11 @@ public class SAempleadosImp implements SAEmpleados {
     public List<Empleado> obtenerEmpleadosporTareas(Tarea tarea)
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory.createEntityManager();
-	
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
+
 	TypedQuery<Empleado> query = null;
 	List<Empleado> resultados = null;
 
@@ -249,24 +258,29 @@ public class SAempleadosImp implements SAEmpleados {
 	    query = entityManager.createNamedQuery(
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_TAREA, Empleado.class);
 	    query.setParameter("tarea", tarea);
-	    
+
 	    resultados = query.getResultList();
+	    for (Empleado e : resultados) {
+		entityManager.detach(e);
+	    }
+
 	} catch (NoResultException ex) {
 	    entityManager.getTransaction().rollback();
-	    
-	    throw new BSoDException("No se pudo encontrar la tarea  "  + tarea.toString());
-	    
+
+	    throw new BSoDException("No se pudo encontrar la tarea  "
+		    + tarea.toString());
+
 	} catch (Exception ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
-	    
+
 	    throw new BSoDException(ex.getMessage());
-	}
-	finally {
+	} finally {
+
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
-	
+
 	return resultados;
     }
 
