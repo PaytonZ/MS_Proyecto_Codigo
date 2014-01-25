@@ -34,9 +34,12 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findByid", query = "select obj from Departamento obj where obj.id = :id and obj.activo = true"),
 	@NamedQuery(name = "Departamento.findAll", query = "select obj from Departamento obj where obj.activo = true"),
 	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findBynombre", query = "select obj from Departamento obj where obj.nombre = :nombre and obj.activo = true"),
+	@NamedQuery(name = "negocio.departamentos.objetonegocio.Departamento.findBynombreAlta", query = "select obj from Departamento obj where obj.nombre = :nombre"),
 })
 public class Departamento {
     
+    public static final String QUERY_BUSCAR_DEPARTAMENTO_POR_NOMBRE_ALTA ="negocio.departamentos.objetonegocio.Departamento.findBynombreAlta";
+
     public Departamento() {
 	activo = true;
     }

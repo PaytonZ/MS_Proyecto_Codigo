@@ -5,6 +5,7 @@ package negocio.departamentos.servicioaplicacion.imp;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -14,6 +15,7 @@ import javax.persistence.TypedQuery;
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.excepciones.BSoDException;
+import negocio.tareas.objetonegocio.Tarea;
 import presentacion.principal.HotelManager;
 
 /**
@@ -39,18 +41,54 @@ public class SADepartamentosImp implements SADepartamentos {
 	    throws BSoDException {
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-
+	
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
-	entityManager.getTransaction().begin();
+	Departamento resultado = null;
+	departamentoNuevo.setActivo(true);
+	//Necesita su propia query porque debe buscar elementos dados de baja tambien
+	TypedQuery<Departamento> query = null;
+	try {
+	    entityManager.getTransaction().begin();
+	    query = entityManager.createNamedQuery(
+		    Departamento.QUERY_BUSCAR_DEPARTAMENTO_POR_NOMBRE_ALTA, Departamento.class);
+	    query.setParameter("nombre", departamentoNuevo.getNombre());
+	    resultado = query.getSingleResult();
+	    //Si no canta es que existe la tarea
+	    if(resultado.getActivo()){
+		entityManager.getTransaction().rollback();
+		 //Cierre de entidades de persistencia
+		 entityManager.close();
+		 entityManagerFactory.close();
+		 throw new BSoDException("Ya existe el departamento en la base de datos");
+	    }
+	    else{
+		resultado.setActivo(true);
+		entityManager.merge(resultado);
+		entityManager.getTransaction().commit();
+		//Cierre de entidades de persistencia
+		entityManager.detach(resultado);
+		entityManager.close();
+		entityManagerFactory.close();
+		return resultado;
+	    }
+	} catch (NoResultException ex) {// No se encontro la tarea.
+	    entityManager.persist(departamentoNuevo);
+	    
+	    entityManager.getTransaction().commit();
 
-	entityManager.persist(departamentoNuevo);
+	    resultado = query.getSingleResult();
 
-	entityManager.getTransaction().commit();
-	entityManager.close();
-	entityManagerFactory.close();
-
-	return departamentoNuevo;
+	    departamentoNuevo.setID(resultado.getID());
+	    //No hace falta el merge, en principio basta con un refresh//
+	    entityManager.refresh(departamentoNuevo);
+	    entityManager.detach(departamentoNuevo);
+	    //Cierre de entidades de persistencia
+	    entityManager.close();
+	    entityManagerFactory.close();
+	    return departamentoNuevo;
+	}   
+	
     }
 
     /**

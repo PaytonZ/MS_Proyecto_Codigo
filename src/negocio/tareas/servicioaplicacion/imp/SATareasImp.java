@@ -35,7 +35,6 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
     	
-	@SuppressWarnings("finally")
 	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
 	    EntityManagerFactory entityManagerFactory = Persistence
 			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
