@@ -150,12 +150,16 @@ public class SATareasImp implements SATareas {
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
+		TypedQuery<Tarea> query = null;
 		tarea.setActivo(true);
 		
 		try {
 		    entityManager.getTransaction().begin();
-		   
-		    resultado=obtenerTarea(tarea.getNombre(),entityManager);
+		    //Busca la tarea por id, el entity por parámetro tiene el nombre modificado
+		    query = entityManager.createNamedQuery(
+			    Tarea.QUERY_BUSCAR_TAREA_POR_ID, Tarea.class);
+		    query.setParameter("id", tarea.getId());
+		    resultado = query.getSingleResult();
 		    
 		   //Si existe hacemos un merge
 		    tarea.setId(resultado.getId());
@@ -165,14 +169,12 @@ public class SATareasImp implements SATareas {
 		    //entityManager.detach(tarea);
 		    entityManager.close();
 		    entityManagerFactory.close();
-		}catch(BSoDException e){
-		    
-		    if(e.getMensaje().contains("transaccion")) throw e;
+		}catch(NoResultException e){
 		    entityManager.getTransaction().rollback();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    entityManagerFactory.close();
-		    throw e;
+		    throw new BSoDException("Ya existe la tarea en la base de datos");
 		    
 		}catch(RollbackException e){
 		    //Solo ocurre si falla el commit!
