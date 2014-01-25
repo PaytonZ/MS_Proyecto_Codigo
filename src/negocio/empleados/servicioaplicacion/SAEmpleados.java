@@ -49,7 +49,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean actualizarEmpleado(Empleado empleadoActualizar)  throws BSoDException;
+	public Empleado actualizarEmpleado(Empleado empleadoActualizar)  throws BSoDException;
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -81,7 +81,7 @@ public interface SAEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	  public Boolean anadirTareaEmpleado(String dniEmpleado,List<Tarea> listaTareas) throws BSoDException;
+	  public Boolean anadirTareaEmpleado(String dniEmpleado, List<Tarea> listaTareas) throws BSoDException;
 
 	
 }

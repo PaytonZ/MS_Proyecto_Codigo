@@ -209,32 +209,33 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 		
 		if ( IDEventos.EVENTO_MODIFICAR_EMPLEADO == idEvento ) {
 			
-			if ( datos instanceof Boolean ) {
+			if ( datos instanceof Empleado ) {
 				
-				Boolean correcto = (Boolean) datos;
+			    Empleado correcto = (Empleado) datos;
 				
-				if ( correcto ) {
-					textDNIBusqueda.setText("");
-					textNombre.setText("");
-					textNombre.setEditable(false);
-					textPrimerApellido.setText("");
-					textPrimerApellido.setEditable(false);
-					textSegundoApellido.setText("");
-					textSegundoApellido.setEditable(false);
-					
-					cbTipo.setSelectedIndex(-1);
-					cbTipo.setEnabled(false);
-					cbDepartamento.setSelectedIndex(-1);
-					cbDepartamento.setEnabled(false);
-					
-					JOptionPane.showMessageDialog(contentPane, "El empleado se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-				}
-				else {
-					
-					JOptionPane.showMessageDialog(contentPane, "El empleado no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				empleado = null;
+			    if ( correcto != null ) {
+				textDNIBusqueda.setText("");
+				textNombre.setText("");
+				textNombre.setEditable(false);
+				textPrimerApellido.setText("");
+				textPrimerApellido.setEditable(false);
+				textSegundoApellido.setText("");
+				textSegundoApellido.setEditable(false);
+				
+				cbTipo.setSelectedIndex(-1);
+				cbTipo.setEnabled(false);
+				cbDepartamento.setSelectedIndex(-1);
+				cbDepartamento.setEnabled(false);
+				
+				JOptionPane.showMessageDialog(contentPane, "El empleado se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			    }
 			}
+			else {
+				
+				JOptionPane.showMessageDialog(contentPane, "El empleado no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			empleado = null;
+			
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento ) {
 			
@@ -271,7 +272,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 			
 			cbDepartamento.setEnabled(true);
 			cbDepartamento.setModel(model);
-			cbDepartamento.setSelectedItem(empleado);
+			cbDepartamento.setSelectedItem(empleado.getDepartamento());
 		    }
 		}
 		else if ( IDEventos.ERROR_MODIFICAR_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento || IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO == idEvento) {

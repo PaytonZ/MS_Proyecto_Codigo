@@ -125,6 +125,11 @@ public class Departamento {
 		// end-user-code
 	}
 	
+	@Override
+	public boolean equals(Object d) {
+	    return nombre.equals( ((Departamento)d).getNombre());
+	}
+	
 	public String toString() {
 	    return nombre;
 	}

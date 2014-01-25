@@ -5,7 +5,6 @@ package negocio.empleados.servicioaplicacion.imp;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -85,11 +84,9 @@ public class SAempleadosImp implements SAEmpleados {
      */
     public Boolean borrarEmpleado(String dniEmpleado) throws BSoDException {
 
-	Boolean borradoCorrecto = true;
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory
-		.createEntityManager();
+	Boolean borradoCorrecto = false;
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
@@ -99,23 +96,29 @@ public class SAempleadosImp implements SAEmpleados {
 	 */
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
+	    
 	    resultado = query.getSingleResult();
-
-	} catch (NoResultException ex) {
-	    borradoCorrecto = false;
-	}
-
-	if (resultado != null) {
+	    
 	    resultado.setActivo(false);
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 	    entityManagerFactory.close();
+	    
+	    borradoCorrecto = true;
+
+	} catch (NoResultException ex) {
+	    
+	    throw new BSoDException("El empleado no existe, no se puede borrar");
+	    
+	} catch (Exception e) {
+	    
+	    throw new BSoDException(e.getMessage());
 	}
+	
 	return borradoCorrecto;
     }
 
@@ -126,37 +129,43 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean actualizarEmpleado(Empleado empleadoActualizar)
+    public Empleado actualizarEmpleado(Empleado empleadoActualizar)
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory
-		.createEntityManager();
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
-	Boolean borradoCorrecto = true;
+	
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", empleadoActualizar.getDNI());
+	    
 	    resultado = query.getSingleResult();
+	    
+	    resultado.setNombre(empleadoActualizar.getNombre());
+	    resultado.setPrimerApellido(empleadoActualizar.getPrimerApellido());
+	    resultado.setSegundoApellido(empleadoActualizar.getSegundoApellido());
+	    resultado.setTipo(empleadoActualizar.getTipo());
+	    resultado.setDepartamento(empleadoActualizar.getDepartamento());
 
-	} catch (NoResultException ex) {
-	    borradoCorrecto = false;
-	}
-	if (resultado != null) {
-
-	    entityManager.merge(empleadoActualizar);
+	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 	    entityManagerFactory.close();
+
+	} catch (NoResultException ex) {
+	    throw new BSoDException("No se ha podido actualizar el empleado, por que no existe");
+	    
+	} catch (Exception e) {
+
+	    throw new BSoDException(e.getMessage());
 	}
 
-	return borradoCorrecto;
+	return resultado;
 
     }
 

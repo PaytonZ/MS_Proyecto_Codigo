@@ -3,10 +3,16 @@
  */
 package negocio.tareas.objetonegocio;
 
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import negocio.empleados.objetonegocio.Empleado;
 
@@ -137,8 +143,9 @@ public class Tarea {
     @ManyToMany(mappedBy = "tarea")
     private Set<Empleado> listaEmpleados;
 
-    public boolean equals(Tarea t) {
-	return ID == t.getId();
+    @Override
+    public boolean equals(Object t) {
+	return ID == ((Tarea)t).getId();
     }
 
     private Boolean activo;
