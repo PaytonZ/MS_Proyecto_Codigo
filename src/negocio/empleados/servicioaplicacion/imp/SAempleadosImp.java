@@ -334,18 +334,17 @@ public class SAempleadosImp implements SAEmpleados {
 	
 	Boolean asignadasCorrecto = false;
 
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory
-		.createEntityManager();
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
+	
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
 
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
+	    
 	    resultado = query.getSingleResult();
 
 	    resultado.setTarea(new HashSet<Tarea>(listaTareas));
