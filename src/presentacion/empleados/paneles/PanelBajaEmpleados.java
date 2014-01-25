@@ -41,7 +41,6 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
     private JButton btnBorrarCliente;
 
     private JPanel contentPane;
-    private JCheckBox checkboxActivo;
 
     public PanelBajaEmpleados() {
 	setLayout(new MigLayout("", "[][][][grow][][][grow][]",
@@ -136,12 +135,6 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 			    "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 	});
-
-	JLabel lblActivo = new JLabel("Activo");
-	add(lblActivo, "cell 2 10,alignx trailing");
-
-	checkboxActivo = new JCheckBox("");
-	add(checkboxActivo, "cell 3 10");
 	add(btnBorrarCliente, "cell 6 11");
     }
 
@@ -161,7 +154,6 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		    textNombre.setText("");
 		    textApellidos.setText("");
 		    textTipo.setText("");
-		    checkboxActivo.setSelected(false);
 		    btnBorrarCliente.setEnabled(false);
 
 		    JOptionPane.showMessageDialog(contentPane,
@@ -186,7 +178,6 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 		textApellidos.setText(empleado.getPrimerApellido() + " "
 			+ empleado.getSegundoApellido());
 		textTipo.setText(empleado.getTipo().name());
-		checkboxActivo.setSelected(empleado.isActivo());
 		btnBorrarCliente.setEnabled(true);
 	    }
 	} else if (IDEventos.ERROR_BAJA_EMPLEADO == idEvento

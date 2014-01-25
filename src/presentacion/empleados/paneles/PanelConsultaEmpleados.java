@@ -19,7 +19,6 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-import javax.swing.JCheckBox;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -41,8 +40,6 @@ public class PanelConsultaEmpleados extends JPanel implements
     private Empleado empleado;
     private JTextField textTipo;
     private JTextField textDepartamento;
-
-    private JCheckBox checkboxActivo;
 
     public PanelConsultaEmpleados() {
 
@@ -95,12 +92,6 @@ public class PanelConsultaEmpleados extends JPanel implements
 	txtDni.setEditable(false);
 	add(txtDni, "cell 3 6,growx");
 	txtDni.setColumns(10);
-
-	JLabel lblActivo = new JLabel("Activo:");
-	add(lblActivo, "cell 5 6,alignx right");
-
-	checkboxActivo = new JCheckBox("");
-	add(checkboxActivo, "cell 6 6");
 
 	JLabel lblNombre = new JLabel("Nombre: ");
 	add(lblNombre, "cell 2 8,alignx trailing");
@@ -157,7 +148,6 @@ public class PanelConsultaEmpleados extends JPanel implements
 		textTipo.setText(empleado.getTipo().name());
 		textDepartamento
 			.setText(empleado.getDepartamento().getNombre());
-		checkboxActivo.setSelected(empleado.isActivo());
 
 	    } else {
 		JOptionPane.showMessageDialog(this,
