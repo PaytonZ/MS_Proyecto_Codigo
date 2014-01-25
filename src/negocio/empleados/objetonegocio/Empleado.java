@@ -28,7 +28,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author BSoD Software 
+ * @author BSoD Software
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
@@ -36,17 +36,15 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Table(name = "empleados", uniqueConstraints = { @UniqueConstraint(columnNames = "DNI") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQueries({
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDni", query = "select e from Empleado e where e.DNI = :arg and e.activo = true"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findAll", query = "select obj from Empleado obj where obj.activo = true"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBynombre", query = "select obj from Empleado obj where obj.nombre = :nombre"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByprimerApellido", query = "select obj from Empleado obj where obj.primerApellido = :primerApellido"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento"),
-    @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo")
-})
-
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDni", query = "select e from Empleado e where e.DNI = :arg and e.activo = true"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findAll", query = "select obj from Empleado obj where obj.activo = true"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBynombre", query = "select obj from Empleado obj where obj.nombre = :nombre"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByprimerApellido", query = "select obj from Empleado obj where obj.primerApellido = :primerApellido"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento"),
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo") })
 public class Empleado implements Serializable {
 
     /**
@@ -58,7 +56,9 @@ public class Empleado implements Serializable {
      */
 
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "negocio.empleados.objetonegocio.Empleado.findByDni";
+    public static final String QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_ = "negocio.empleados.objetonegocio.Empleado.findAll";
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_TAREA = "negocio.empleados.objetonegocio.Empleado.findBytarea";
+
     public Empleado() {
 	DNI = "";
 	nombre = "";
@@ -285,22 +285,23 @@ public class Empleado implements Serializable {
     }
 
     public Set<Tarea> getTarea() {
-        return tarea;
+	return tarea;
     }
 
     public void setTarea(Set<Tarea> tarea) {
-        this.tarea = tarea;
+	this.tarea = tarea;
     }
-    
+
     @Override
     public boolean equals(Object o) {
-	
-	return DNI.equals( ((Empleado)o).getDNI() );
+
+	return DNI.equals(((Empleado) o).getDNI());
     }
 
     @Override
     public String toString() {
-	
-	return DNI + " " + nombre + " " + primerApellido + " " + segundoApellido + " " + tipo;
+
+	return DNI + " " + nombre + " " + primerApellido + " "
+		+ segundoApellido + " " + tipo;
     }
 }

@@ -229,7 +229,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getMessage());
 	} finally {
-	    if ( resultado != null)
+	    if (resultado != null)
 		entityManager.detach(resultado);
 
 	    entityManager.close();
@@ -237,7 +237,7 @@ public class SAempleadosImp implements SAEmpleados {
 	}
 	return resultado;
     }
-    
+
     public List<Empleado> obtenerTodosEmpleados() throws BSoDException {
 
 	EntityManagerFactory entityManagerFactory = Persistence
@@ -250,7 +250,8 @@ public class SAempleadosImp implements SAEmpleados {
 
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery("negocio.empleados.objetonegocio.Empleado.findAll", Empleado.class);
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_, Empleado.class);
 
 	    resultados = query.getResultList();
 
@@ -266,7 +267,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getMessage());
 	} finally {
-	    for ( Empleado emp : resultados) {
+	    for (Empleado emp : resultados) {
 		entityManager.detach(emp);
 	    }
 
@@ -274,7 +275,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManagerFactory.close();
 	}
 	return resultados;
-	
+
     }
 
     /**
@@ -332,62 +333,69 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean anadirTareaEmpleado(String dniEmpleado, Set<Tarea> listaTareas) throws BSoDException {
-	
+    public Boolean anadirTareaEmpleado(String dniEmpleado,
+	    Set<Tarea> listaTareas) throws BSoDException {
+
 	Boolean asignadasCorrecto = false;
 
-	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-	EntityManager entityManager = entityManagerFactory.createEntityManager();
-	
+	EntityManagerFactory entityManagerFactory = Persistence
+		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManager entityManager = entityManagerFactory
+		.createEntityManager();
+
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
-	
+
 	try {
 	    entityManager.getTransaction().begin();
-	    
-	    query = entityManager.createQuery("select e from Empleado e where e.DNI = :arg and e.activo = true", Empleado.class);
+
+	    query = entityManager.createNamedQuery(
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+
 	    query.setParameter("arg", dniEmpleado);
-	    
+
 	    resultado = query.getSingleResult();
-	    
+
 	    Set<Tarea> tareas = new HashSet<>();
-	    
-	    for ( Tarea tarea : listaTareas) {
-		
+
+	    for (Tarea tarea : listaTareas) {
+
 		try {
-		    TypedQuery<Tarea> tarQuery = entityManager.createQuery("select obj from Tarea obj where obj.nombre = :nombre AND obj.activo = true", Tarea.class);
+		    TypedQuery<Tarea> tarQuery = entityManager.createQuery(
+			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE, Tarea.class);
 		    tarQuery.setParameter("nombre", tarea.getNombre());
-		    
+
 		    tarea = tarQuery.getSingleResult();
-		    
+
 		    tareas.add(tarea);
+		} catch (NoResultException nr) {
 		}
-		catch (NoResultException nr) {}
 	    }
-	    
+
 	    resultado.setTarea(tareas);
-	    
+
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 	    entityManagerFactory.close();
-	    
+
 	    asignadasCorrecto = true;
 
 	} catch (NoResultException ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
-	    
+
 	    asignadasCorrecto = false;
-	    
-	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
+
+	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
+		    + dniEmpleado);
 	} catch (Exception ex) {
-	    
+
 	    entityManager.getTransaction().rollback();
-	    
+
 	    asignadasCorrecto = false;
-	    
+
 	    throw new BSoDException(ex.getMessage());
 	}
 
