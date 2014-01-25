@@ -120,6 +120,7 @@ public class DispatcherImp extends Dispatcher {
     	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_BORRAR
     	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR
     	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO
+    	    		    || eventoActual == IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO
 			    || eventoActual == IDEventos.ERROR_ALTA_EMPLEADO
 			    || eventoActual == IDEventos.ERROR_BAJA_EMPLEADO
 			    || eventoActual == IDEventos.ERROR_MODIFICAR_EMPLEADO
@@ -130,7 +131,8 @@ public class DispatcherImp extends Dispatcher {
 			    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA
 	    		    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_BORRAR
 		    	    || eventoActual == IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR
-			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO) {
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO
+			    || eventoActual == IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO) {
 			
 			GUIEmpleados.getInstance().update(eventoActual, datos);
 		}

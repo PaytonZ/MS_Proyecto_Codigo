@@ -101,7 +101,6 @@ public class GUIEmpleadosImp extends GUIEmpleados {
         	case EVENTO_ALTA_EMPLEADO:
         	case ERROR_ALTA_EMPLEADO:
         	case EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO:
-        	case ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO:
         	    getPanelAltaEmpleados().actualizarVentana(eventoActual, datos);
         	    break;
         	case EVENTO_BAJA_EMPLEADO:
@@ -114,6 +113,9 @@ public class GUIEmpleadosImp extends GUIEmpleados {
         	case ERROR_MODIFICAR_EMPLEADO:
         	case EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR:
         	case ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR:
+        	case ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_ALTA_EMPLEADO:
+        	case EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO:
+        	case ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO:
         	    getPanelModificacionEmpleados().actualizarVentana(eventoActual, datos);
         	    break;
         	case EVENTO_CONSULTAR_EMPLEADO:

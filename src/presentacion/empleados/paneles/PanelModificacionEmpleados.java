@@ -5,7 +5,9 @@ package presentacion.empleados.paneles;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,7 +38,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 	private JTextField textDNIBusqueda;
 	private JTextField textNombre;
 	private JTextField textSegundoApellido;
-	private Integer idEmpleado;
+	private Empleado empleado;
 	private JTextField textPrimerApellido;
 	
 	private JPanel contentPane;
@@ -48,7 +50,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 		
 		contentPane = this;
 		
-		setLayout(new MigLayout("", "[][][121.00,grow][36.00][][grow][]", "[][][][][18.00][17.00][][10.00][][9.00][][16.00][13.00][]"));
+		setLayout(new MigLayout("", "[][][121.00,grow][36.00][][grow][10.00][]", "[][][][][18.00][17.00][][10.00][][9.00][][16.00][13.00][]"));
 		
 		JLabel lblModificacinDeClientes = new JLabel("Modificación de empleados");
 		add(lblModificacinDeClientes, "cell 0 0 6 1,alignx center");
@@ -91,7 +93,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				idEmpleado = null;
+				empleado = null;
 				textDNIBusqueda.setText("");
 				textDNIBusqueda.setEditable(true);
 				textNombre.setText("");
@@ -127,6 +129,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 		add(lblTipo, "cell 1 8,alignx trailing");
 		
 		cbTipo = new JComboBox<>();
+		cbTipo.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
 		cbTipo.setEnabled(false);
 		add(cbTipo, "cell 2 8,growx");
 		
@@ -148,7 +151,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				
 				Empleado empleado = new Empleado();
 				
-				if ( idEmpleado != null 
+				if ( empleado != null 
 						&& !textDNIBusqueda.getText().equals("")
 						&& !textPrimerApellido.getText().equals("")
 						&& !textSegundoApellido.getText().equals("") 
@@ -230,16 +233,15 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 					
 					JOptionPane.showMessageDialog(contentPane, "El empleado no se ha modificado correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				idEmpleado = null;
+				empleado = null;
 			}
 		}
 		else if ( IDEventos.EVENTO_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento ) {
 			
 			if ( datos instanceof Empleado) {
 				
-				Empleado empleado = (Empleado) datos;
+				empleado = (Empleado) datos;
 				
-				idEmpleado = empleado.getId();
 				textNombre.setText(empleado.getNombre());
 				textNombre.setEditable(true);
 				textPrimerApellido.setText(empleado.getPrimerApellido());
@@ -249,11 +251,30 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				
 				cbTipo.setSelectedItem(empleado.getTipo());
 				cbTipo.setEnabled(true);
-				cbDepartamento.setSelectedItem(empleado.getDepartamento());
-				cbDepartamento.setEnabled(true);
+				
+				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO, null);
 			}
 		}
-		else if ( IDEventos.ERROR_MODIFICAR_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento ) {
+		else if (IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO == idEvento) {
+		    
+		    if ( datos instanceof List) {
+			
+			@SuppressWarnings("unchecked")
+			List<Departamento> listaDepartamentos = (List<Departamento>) datos;
+			
+			DefaultComboBoxModel<Departamento> model = new DefaultComboBoxModel<Departamento>();
+			
+			for ( Departamento dep : listaDepartamentos ) {
+				
+				model.addElement(dep);
+			}
+			
+			cbDepartamento.setEnabled(true);
+			cbDepartamento.setModel(model);
+			cbDepartamento.setSelectedItem(empleado);
+		    }
+		}
+		else if ( IDEventos.ERROR_MODIFICAR_EMPLEADO == idEvento || IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_MODIFICAR == idEvento || IDEventos.ERROR_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO == idEvento) {
 			
 			if ( datos instanceof BSoDException ) {
 				

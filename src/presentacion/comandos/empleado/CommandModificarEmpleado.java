@@ -3,6 +3,7 @@
  */
 package presentacion.comandos.empleado;
 
+import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
 import presentacion.comandos.Command;
@@ -26,7 +27,7 @@ public class CommandModificarEmpleado implements Command {
 		CommandResponse cr = new CommandResponse();
 		try {
 
-			cr.setDatos(FactorySA.getInstance().getSAEmpleados().borrarEmpleado((String) datos));
+			cr.setDatos(FactorySA.getInstance().getSAEmpleados().actualizarEmpleado((Empleado) datos));
 			cr.setEvento(IDEventos.EVENTO_MODIFICAR_EMPLEADO);
 
 		} catch (BSoDException bsod) {
