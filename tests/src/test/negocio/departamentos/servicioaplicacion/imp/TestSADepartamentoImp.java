@@ -4,23 +4,18 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.departamentos.servicioaplicacion.imp.SADepartamentosImp;
-import negocio.empleados.objetonegocio.Empleado;
-import negocio.empleados.servicioaplicacion.SAEmpleados;
-import negocio.empleados.servicioaplicacion.imp.SAempleadosImp;
 import negocio.excepciones.BSoDException;
-import negocio.factorias.serviciosAplicacion.FactorySA;
-import negocio.tareas.objetonegocio.Tarea;
-import negocio.tareas.servicioaplicacion.SATareas;
-import negocio.tareas.servicioaplicacion.imp.SATareasImp;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
 
 @RunWith(JUnit4.class)
 public class TestSADepartamentoImp {
@@ -92,4 +87,21 @@ public void altaYbaja() {
 
 
    }
+  
+  @Test
+  public void obtenerTodosDepartamentos() {
+      
+      SADepartamentos sadepartamento = new SADepartamentosImp();
+      
+      List<Departamento> l = new ArrayList<>();
+      try{
+	  l =  sadepartamento.obtenerTodoslosDepartamentos();
+      } catch (BSoDException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+      }
+      assertNotNull(l);
+      assertFalse(l.isEmpty());
+      
+  }
 }
