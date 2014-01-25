@@ -37,7 +37,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @NamedQueries({
     
-@NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg"),
+@NamedQuery(name = "Empleado.BuscarDNI", query = "Select e FROM Empleado e WHERE e.DNI = :arg AND e.activo = true"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByid", query = "select obj from Empleado obj where obj.id = :id"),
 @NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findAll", query = "select obj from Empleado obj"),

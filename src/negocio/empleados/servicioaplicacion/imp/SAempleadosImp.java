@@ -340,22 +340,33 @@ public class SAempleadosImp implements SAEmpleados {
 	
 	TypedQuery<Empleado> query = null;
 	Empleado resultado = null;
-
+	
 	try {
 	    entityManager.getTransaction().begin();
-//	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
-//	    query.setParameter("arg", dniEmpleado);
-//	    
-//	    resultado = query.getSingleResult();
-//
-//	    resultado.setTarea(new HashSet<Tarea>(listaTareas));
+	    
+	    query = entityManager.createQuery("Empleado.BuscarDNI", Empleado.class);
+	    query.setParameter("DNI", dniEmpleado);
+	    
+	    resultado = query.getSingleResult();
 	    
 	    Set<Tarea> tareas = new HashSet<>();
 	    
 	    for ( Tarea tarea : listaTareas) {
 		
-		
+		try {
+		    TypedQuery<Tarea> tar = entityManager.createQuery("negocio.tareas.objetonegocio.Tarea.findBynombre", Tarea.class);
+		    tar.setParameter("nombre", Tarea.class);
+		    
+		    tarea = tar.getSingleResult();
+		    
+		    tareas.add(tarea);
+		}
+		catch (NoResultException nr) {}
 	    }
+	    
+	    resultado.setTarea(tareas);
+	    
+	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
@@ -364,10 +375,18 @@ public class SAempleadosImp implements SAEmpleados {
 	    asignadasCorrecto = true;
 
 	} catch (NoResultException ex) {
+	    
 	    entityManager.getTransaction().rollback();
+	    
 	    asignadasCorrecto = false;
+	    
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
 	} catch (Exception ex) {
+	    
+	    entityManager.getTransaction().rollback();
+	    
+	    asignadasCorrecto = false;
+	    
 	    throw new BSoDException(ex.getMessage());
 	}
 
