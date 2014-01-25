@@ -20,80 +20,81 @@ import negocio.habitaciones.servicioaplicacion.imp.SAHabitacionesImp;
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
- * @author BSoD Software 
+ * @author BSoD Software
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class FactorySAImp extends FactorySA {
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSAClientes()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SAClientes getSAClientes() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSAClientes()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SAClientes getSAClientes() {
 
-		return new SAClientesImp();
-	}
+	return new SAClientesImp();
+    }
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSAReservas()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SAReservas getSAReservas() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSAReservas()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SAReservas getSAReservas() {
 
-		return new SAReservasImp();
-	}
+	return new SAReservasImp();
+    }
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSADepartamentos()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SADepartamentos getSADepartamentos() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSADepartamentos()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SADepartamentos getSADepartamentos() {
 
-		return new SADepartamentosImp();
-	}
+	return new SADepartamentosImp();
+    }
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSAEmpleados()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SAEmpleados getSAEmpleados() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSAEmpleados()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SAEmpleados getSAEmpleados() {
 
-		return new SAempleadosImp();
-	}
+	return new SAempleadosImp();
+    }
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSATareas()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SATareas getSATareas() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSATareas()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SATareas getSATareas() {
 
-		return new SATareasImp();
-	}
+	return new SATareasImp();
+    }
 
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see FactorySA#getSAHabitaciones()
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public SAHabitaciones getSAHabitaciones() {
+    /**
+     * (sin Javadoc)
+     * 
+     * @see FactorySA#getSAHabitaciones()
+     * @generated 
+     *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+     */
+    public SAHabitaciones getSAHabitaciones() {
 
-		return new SAHabitacionesImp();
-	}
+	return new SAHabitacionesImp();
+    }
+
 }

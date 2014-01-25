@@ -19,6 +19,7 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+import javax.swing.JCheckBox;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -40,6 +41,8 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 	private JButton btnBorrarCliente;
 	
 	private JPanel contentPane;
+	private JCheckBox checkboxActivo;
+	
 	
 	public PanelBajaEmpleados() {
 		setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][]"));
@@ -126,6 +129,12 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 					JOptionPane.showMessageDialog(contentPane, "Error al cargar el empleado, búsquelo otra vez", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
+		
+		JLabel lblActivo = new JLabel("Activo");
+		add(lblActivo, "cell 2 10,alignx trailing");
+		
+		checkboxActivo = new JCheckBox("");
+		add(checkboxActivo, "cell 3 10");
 		add(btnBorrarCliente, "cell 6 11");
 	}
 
@@ -145,6 +154,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 					textNombre.setText("");
 					textApellidos.setText("");
 					textTipo.setText("");
+					checkboxActivo.setSelected(false);
 					btnBorrarCliente.setEnabled(false);
 					
 					JOptionPane.showMessageDialog(contentPane, "El empleado se ha borrado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -166,6 +176,7 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				textNombre.setText(empleado.getNombre());
 				textApellidos.setText(empleado.getPrimerApellido() + " " + empleado.getSegundoApellido());
 				textTipo.setText( empleado.getTipo().name());
+				checkboxActivo.setSelected(empleado.isActivo());
 				btnBorrarCliente.setEnabled(true);
 			}
 		}
