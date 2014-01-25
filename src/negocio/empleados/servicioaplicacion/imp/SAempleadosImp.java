@@ -5,6 +5,7 @@ package negocio.empleados.servicioaplicacion.imp;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -342,22 +343,30 @@ public class SAempleadosImp implements SAEmpleados {
 
 	try {
 	    entityManager.getTransaction().begin();
-	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
-	    query.setParameter("arg", dniEmpleado);
+//	    query = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
+//	    query.setParameter("arg", dniEmpleado);
+//	    
+//	    resultado = query.getSingleResult();
+//
+//	    resultado.setTarea(new HashSet<Tarea>(listaTareas));
 	    
-	    resultado = query.getSingleResult();
-
-	    resultado.setTarea(new HashSet<Tarea>(listaTareas));
+	    Set<Tarea> tareas = new HashSet<>();
+	    
+	    for ( Tarea tarea : listaTareas) {
+		
+		
+	    }
 
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 	    entityManagerFactory.close();
+	    
+	    asignadasCorrecto = true;
 
 	} catch (NoResultException ex) {
 	    entityManager.getTransaction().rollback();
 	    asignadasCorrecto = false;
-	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
-		    + dniEmpleado);
+	    throw new BSoDException("No se pudo encontrar el empleado con DNI " + dniEmpleado);
 	} catch (Exception ex) {
 	    throw new BSoDException(ex.getMessage());
 	}
