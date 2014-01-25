@@ -61,7 +61,7 @@ public class SATareasImp implements SATareas {
 		    resultado = obtenerTarea(tareaNueva.getNombre(),entityManager);
 
 		    tareaNueva.setId(resultado.getId());
-		    //No hace falta el merge, en principio basta con un refresh
+		    //No hace falta el merge, en principio basta con un refresh//
 		    entityManager.refresh(tareaNueva);
 		    entityManager.detach(tareaNueva);
 		    //Cierre de entidades de persistencia
