@@ -330,9 +330,9 @@ public class SAempleadosImp implements SAEmpleados {
      * @generated 
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
-    public Boolean anadirTareaEmpleado(String dniEmpleado,
-	    List<Tarea> listaTareas) throws BSoDException {
-	Boolean borradoCorrecto = true;
+    public Boolean anadirTareaEmpleado(String dniEmpleado, List<Tarea> listaTareas) throws BSoDException {
+	
+	Boolean asignadasCorrecto = false;
 
 	EntityManagerFactory entityManagerFactory = Persistence
 		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
@@ -356,13 +356,13 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (NoResultException ex) {
 	    entityManager.getTransaction().rollback();
-	    borradoCorrecto = false;
+	    asignadasCorrecto = false;
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
 		    + dniEmpleado);
 	} catch (Exception ex) {
 	    throw new BSoDException(ex.getMessage());
 	}
 
-	return borradoCorrecto;
+	return asignadasCorrecto;
     }
 }
