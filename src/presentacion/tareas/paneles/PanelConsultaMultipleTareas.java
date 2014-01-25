@@ -66,7 +66,7 @@ public class PanelConsultaMultipleTareas extends JPanel implements GUIPanelesInt
 		
 		panel.setLayout(new MigLayout("fillx", "[208.00,right]", "[]"));
 		
-		JButton btnNewButton = new JButton("Consultar clientes");
+		JButton btnNewButton = new JButton("Consultar múltiples tareas");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
