@@ -19,11 +19,11 @@ public class CommandRConsultarTareasVConsultarEmpleadosPorTarea  implements Comm
 	@Override
 	public CommandResponse execute(Object datos) {
 
-		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_EMPLEADO_POR_TAREA);
+		Command command = CommandFactory.getInstance().nuevoComando(IDEventos.EVENTO_CONSULTAR_TAREA);
 
 		CommandResponse cr = command.execute(datos);
 		
-		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_EMPLEADO_POR_TAREA) ) {
+		if ( cr.getEvento().equals(IDEventos.ERROR_CONSULTAR_TAREA) ) {
 			
 			cr.setEvento(IDEventos.ERROR_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA);
 		}

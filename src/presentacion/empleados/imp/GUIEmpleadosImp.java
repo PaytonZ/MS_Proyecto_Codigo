@@ -150,7 +150,7 @@ public class GUIEmpleadosImp extends GUIEmpleados {
         	case ERROR_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA:
         	case EVENTO_CONSULTAR_EMPLEADO_POR_TAREA:
         	case ERROR_CONSULTAR_EMPLEADO_POR_TAREA:
-        	    getPanelConsutlaEmpleadosPorTarea();
+        	    getPanelConsutlaEmpleadosPorTarea().actualizarVentana(eventoActual, datos);;
         	    break;
     	    default:
     		break;
