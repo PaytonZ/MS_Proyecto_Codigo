@@ -253,7 +253,7 @@ public class SATareasImp implements SATareas {
 		entityManager.getTransaction().begin();
 		
 		List<Tarea> tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
-		
+		for(Tarea t : tareas)entityManager.detach(t);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		entityManagerFactory.close();
@@ -283,7 +283,6 @@ public class SATareasImp implements SATareas {
 
 	    try {
 	
-		
 		query = entityManager.createNamedQuery(
 			    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 		query.setParameter("DNI", DNIEmpleado);

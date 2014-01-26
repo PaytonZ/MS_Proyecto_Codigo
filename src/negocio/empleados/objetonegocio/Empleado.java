@@ -48,7 +48,8 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo"),
-	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj")})
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj where obj.DNI = :dni")})
+
 public class Empleado implements Serializable {
 
     /**
@@ -62,7 +63,7 @@ public class Empleado implements Serializable {
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "negocio.empleados.objetonegocio.Empleado.findByDni";
     public static final String QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_ = "negocio.empleados.objetonegocio.Empleado.findAll";
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_TAREA = "negocio.empleados.objetonegocio.Empleado.findBytarea";
-    public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI_TODOS = "negocio.empleados.objetonegocio.Empleado.findalleveninactive";
+    public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI_NOACTIVO = "negocio.empleados.objetonegocio.Empleado.findalleveninactive";
 
     public Empleado() {
 	DNI = "";

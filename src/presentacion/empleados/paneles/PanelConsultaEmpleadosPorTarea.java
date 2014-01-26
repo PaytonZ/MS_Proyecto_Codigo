@@ -153,7 +153,7 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 			JOptionPane.showMessageDialog(contentPane, "La tarea no existe", "Error", JOptionPane.ERROR_MESSAGE);
 		    }
 		}
-		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO_POR_TAREA == idEvento ) {
+		else if ( IDEventos.ERROR_CONSULTAR_EMPLEADO_POR_TAREA == idEvento || IDEventos.ERROR_CONSULTAR_TAREA_V_CONSULTAR_EMPLEADOS_POR_TAREA==idEvento) {
 			
 			if ( datos instanceof BSoDException ) {
 				

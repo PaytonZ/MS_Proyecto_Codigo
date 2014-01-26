@@ -104,6 +104,8 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				textPrimerApellido.setEditable(false);
 				textSegundoApellido.setText("");
 				textSegundoApellido.setEditable(false);
+				cbTipo.setEnabled(false);
+				cbDepartamento.setEnabled(false);
 			}
 		});
 		add(btnNuevaBsqueda, "cell 5 3");

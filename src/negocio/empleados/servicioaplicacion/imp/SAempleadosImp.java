@@ -44,33 +44,43 @@ public class SAempleadosImp implements SAEmpleados {
 	try {
 	    entityManager.getTransaction().begin();
 	    query = entityManager.createNamedQuery(
-		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI_TODOS, Empleado.class);
-	    query.setParameter("arg", empleadoNuevo.getDNI());
+		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI_NOACTIVO, Empleado.class);
+	    query.setParameter("dni", empleadoNuevo.getDNI());
 	    resultado = query.getSingleResult();
-
-	    empleadoNuevo.setId(resultado.getId());
-
+	    
+	    if(resultado.isActivo()){
+		
+	    entityManager.getTransaction().rollback();
+	    throw new BSoDException("El empleado ya existe en la base de datos");
+	    
+	    }else{
+		empleadoNuevo.setId(resultado.getId());
+		entityManager.merge(empleadoNuevo);
+		entityManager.getTransaction().commit();
+	    }
+	   
+	    
 	} catch (NoResultException ex) {// No se encontro el empleado.
 	    entityManager.persist(empleadoNuevo);
 
 	    entityManager.getTransaction().commit();
-
-	    query = entityManager.createNamedQuery(
+	    
+	    
+	    //Después del persist la entidad esta mergeada no hace falta actualizar nada
+	   /* query = entityManager.createNamedQuery(
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", empleadoNuevo.getDNI());
-	    resultado = query.getSingleResult();
+	    resultado = query.getSingleResult();*/
+	    //empleadoNuevo.setId(resultado.getId());
 
-	    empleadoNuevo.setId(resultado.getId());
-	    entityManager.close();
-
-	} catch (Exception ex) {
-	    throw new BSoDException(ex.getMessage());
-	} finally // Se realizará en ambos casos
-	{
-	    entityManager = entityManagerFactory.createEntityManager();
-	    entityManager.getTransaction().begin();
-	    entityManager.merge(empleadoNuevo);
-	    entityManager.getTransaction().commit();
+	}catch (Exception ex) {
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		 entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
+	    
+	}finally {
 	    entityManager.detach(empleadoNuevo);
 	    entityManager.close();
 	    entityManagerFactory.close();
@@ -113,8 +123,6 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
-	    entityManager.close();
-	    entityManagerFactory.close();
 
 	    borradoCorrecto = true;
 
@@ -124,8 +132,16 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("El empleado no existe, no se puede borrar");
 
 	} catch (Exception e) {
-	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(e.getMessage());
+	    
+	    if(e instanceof BSoDException) throw e;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(e.getMessage());
+	    }
+	}finally {
+	    
+	    entityManager.close();
+	    entityManagerFactory.close();
 	}
 
 	return borradoCorrecto;
@@ -156,15 +172,17 @@ public class SAempleadosImp implements SAEmpleados {
 	    query.setParameter("arg", empleadoActualizar.getDNI());
 
 	    resultado = query.getSingleResult();
-
+	    empleadoActualizar.setId(resultado.getId());
+	    /* Vais a lo dificil, jpa esta para algo
 	    resultado.setNombre(empleadoActualizar.getNombre());
 	    resultado.setPrimerApellido(empleadoActualizar.getPrimerApellido());
 	    resultado.setSegundoApellido(empleadoActualizar
 		    .getSegundoApellido());
 	    resultado.setTipo(empleadoActualizar.getTipo());
 	    resultado.setDepartamento(empleadoActualizar.getDepartamento());
+	    */
 
-	    entityManager.merge(resultado);
+	    entityManager.merge(empleadoActualizar);
 
 	    entityManager.getTransaction().commit();
 
@@ -174,19 +192,21 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    throw new BSoDException(
 		    "No se ha podido actualizar el empleado, por que no existe");
-
-	} catch (Exception e) {
-
-	    entityManager.getTransaction().rollback();
-
-	    throw new BSoDException(e.getMessage());
+	}catch (Exception ex) {
+		    
+	    
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
-	    entityManager.detach(resultado);
+	    entityManager.detach(empleadoActualizar);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
 
-	return resultado;
+	return empleadoActualizar;
 
     }
 
@@ -215,8 +235,9 @@ public class SAempleadosImp implements SAEmpleados {
 		    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
 	    query.setParameter("arg", dniEmpleado);
 	    resultado = query.getSingleResult();
-
-	    entityManager.getTransaction().commit();
+	    
+	    //Que necesidad hay para un commit?
+	    //entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
@@ -225,9 +246,13 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se pudo encontrar el empleado con DNI "
 		    + dniEmpleado);
 	} catch (Exception ex) {
-
-	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(ex.getMessage());
+	    
+	   
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    if (resultado != null)
 		entityManager.detach(resultado);
@@ -254,8 +279,8 @@ public class SAempleadosImp implements SAEmpleados {
 		    Empleado.QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_, Empleado.class);
 
 	    resultados = query.getResultList();
-
-	    entityManager.getTransaction().commit();
+	    //Otra vez, commit pa que?
+	    //entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
@@ -264,8 +289,12 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se encontraron empleados");
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(ex.getMessage());
+	    
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    for (Empleado emp : resultados) {
 		entityManager.detach(emp);
@@ -314,9 +343,12 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
-
-	    throw new BSoDException(ex.getMessage());
+	    
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 
 	    entityManager.close();
@@ -392,11 +424,15 @@ public class SAempleadosImp implements SAEmpleados {
 		    + dniEmpleado);
 	} catch (Exception ex) {
 
-	    entityManager.getTransaction().rollback();
+	    
 
 	    asignadasCorrecto = false;
 
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	}
 
 	return asignadasCorrecto;

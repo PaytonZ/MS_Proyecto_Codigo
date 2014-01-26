@@ -124,6 +124,13 @@ public class SADepartamentosImp implements SADepartamentos {
 	} catch (NoResultException nr) {
 
 	    entityManager.getTransaction().rollback();
+	   throw new BSoDException(nr.getMessage());
+	}catch (Exception ex) {
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 
 	    entityManager.close();
@@ -170,12 +177,12 @@ public class SADepartamentosImp implements SADepartamentos {
 
 	    throw new BSoDException("No existe el departamento");
 
-	} catch (Exception e) {
-
-	    entityManager.getTransaction().rollback();
-	    entityManager.close();
-	    entityManagerFactory.close();
-	    throw new BSoDException(e.getMessage());
+	} catch (Exception ex) {
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		 entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    if ( resultado != null )
 		entityManager.detach(resultado);
@@ -211,16 +218,21 @@ public class SADepartamentosImp implements SADepartamentos {
 	    query.setParameter("nombre", nombreDepartamento);
 	    
 	    d = query.getSingleResult();
-
-	    entityManager.getTransaction().commit();
+	    
 
 	} catch (NoResultException nr) {
 
 	    entityManager.getTransaction().rollback();
 	    
 	    throw new BSoDException("No existe el departamento");
-	} finally {
-
+	}catch (Exception ex) {
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		 entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    } 
+	}finally {
+	    entityManager.detach(d);
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
@@ -248,8 +260,8 @@ public class SADepartamentosImp implements SADepartamentos {
 	try {
 	    entityManager.getTransaction().begin();
 	    departamentos = entityManager.createNamedQuery("Departamento.findAll", Departamento.class).getResultList();
-
-	    entityManager.getTransaction().commit();
+	    //Nada que commitear
+	    //entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
@@ -257,10 +269,11 @@ public class SADepartamentosImp implements SADepartamentos {
 
 	    throw new BSoDException("No se encontraron empleados");
 	} catch (Exception ex) {
-
-	    entityManager.getTransaction().rollback();
-	    
-	    throw new BSoDException(ex.getMessage());
+	    if(ex instanceof BSoDException) throw ex;
+	    else{
+		 entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getMessage());
+	    }
 	} finally {
 	    
 	    for ( Departamento dpto : departamentos) {
