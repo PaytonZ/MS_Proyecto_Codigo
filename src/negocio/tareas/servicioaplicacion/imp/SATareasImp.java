@@ -5,7 +5,6 @@ package negocio.tareas.servicioaplicacion.imp;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -13,11 +12,10 @@ import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
-import presentacion.principal.HotelManager;
-import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
+import presentacion.principal.HotelManager;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
