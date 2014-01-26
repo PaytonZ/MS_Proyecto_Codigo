@@ -51,6 +51,7 @@ public class FramePrincipal extends JFrame {
 		setMinimumSize(new Dimension(100, 100));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 600);
+		setTitle("Hotel Manager for God Antonio Navarro");
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
