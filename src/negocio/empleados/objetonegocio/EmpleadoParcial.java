@@ -37,4 +37,14 @@ public class EmpleadoParcial extends Empleado implements Serializable {
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
 	private Object id;
+	
+	private int horas;
+	
+	public int getHoras() {
+	    return horas;
+	}
+	
+	public void setHoras(int horas) {
+	    this.horas = horas;
+	}
 }

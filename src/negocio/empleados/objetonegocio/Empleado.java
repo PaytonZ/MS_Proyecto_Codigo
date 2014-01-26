@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -35,6 +37,7 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 @Entity
 @Table(name = "empleados", uniqueConstraints = { @UniqueConstraint(columnNames = "DNI") })
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDni", query = "select e from Empleado e where e.DNI = :arg and e.activo = true"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBytarea", query = "select obj from Empleado obj where obj.tarea = :tarea"),

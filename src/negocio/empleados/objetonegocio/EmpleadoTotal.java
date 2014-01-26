@@ -3,10 +3,11 @@
  */
 package negocio.empleados.objetonegocio;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.NamedQuery;
+
+import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -39,11 +40,24 @@ public class EmpleadoTotal extends Empleado implements Serializable {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
-	private Object id;
+	private Integer id;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
-	private Object plazaAparcamiento;
+	private TipoPlazaParking plazaAparcamiento;
+	
+	public TipoPlazaParking getPlazaAparcamiento() {
+	    return plazaAparcamiento;
+	}
+	
+	public void setPlazaAparcamiento(TipoPlazaParking plaza) {
+	    this.plazaAparcamiento = plaza;
+	}
+	
+	public enum TipoPlazaParking {
+	    DOBLE,
+	    SIMPLE
+	};
 }
