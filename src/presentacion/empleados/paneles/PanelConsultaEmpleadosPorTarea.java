@@ -114,6 +114,9 @@ public class PanelConsultaEmpleadosPorTarea extends JPanel implements GUIPaneles
 		panelLista.setLayout(new BorderLayout());
 		
 		panelLista.add(panel_1, BorderLayout.NORTH);
+		
+		JLabel lblHoras = new JLabel("horas | plaza");
+		panel_1.add(lblHoras);
 		panelLista.add(scrollPane, BorderLayout.CENTER);
 		add(panelLista, BorderLayout.CENTER);
 	}
