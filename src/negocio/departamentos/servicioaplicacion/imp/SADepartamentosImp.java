@@ -232,7 +232,9 @@ public class SADepartamentosImp implements SADepartamentos {
 		throw new BSoDException(ex.getMessage());
 	    } 
 	}finally {
-	    entityManager.detach(d);
+	    if ( d != null) {
+		entityManager.detach(d);
+	    }
 	    entityManager.close();
 	    entityManagerFactory.close();
 	}
