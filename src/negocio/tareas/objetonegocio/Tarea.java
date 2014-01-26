@@ -34,7 +34,8 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBynombreAlta", query = "select obj from Tarea obj where obj.nombre = :nombre"),
 	@NamedQuery(name = "Tarea.findAll", query = "select obj from Tarea obj where obj.activo = true"),
 	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findBydescripcion", query = "select obj from Tarea obj where obj.descripcion = :descripcion"),
-	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findByactivo", query = "select obj from Tarea obj where obj.activo = :activo") })
+	@NamedQuery(name = "negocio.tareas.objetonegocio.Tarea.findByactivo", query = "select obj from Tarea obj where obj.activo = :activo")
+})
 @OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 public class Tarea {
 

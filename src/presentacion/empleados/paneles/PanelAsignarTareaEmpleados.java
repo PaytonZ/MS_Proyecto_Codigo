@@ -35,7 +35,7 @@ import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAp
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfaz {
+public class PanelAsignarTareaEmpleados extends JPanel implements GUIPanelesInterfaz {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -52,7 +52,7 @@ public class PanelAltaTareaEmpleados extends JPanel implements GUIPanelesInterfa
 	
 	private JButton btnAsignarTareas;
 	
-	public PanelAltaTareaEmpleados() {
+	public PanelAsignarTareaEmpleados() {
 		
 		setLayout(new MigLayout("", "[24.00][][grow][39.00][36.00][][grow][]", "[23.00][17.00][][20.00][][13.00][][24.00][][][][][grow]"));
 		

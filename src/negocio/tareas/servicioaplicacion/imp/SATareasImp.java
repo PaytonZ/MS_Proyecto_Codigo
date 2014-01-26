@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
+import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
@@ -105,6 +106,15 @@ public class SATareasImp implements SATareas {
 		try {
 		    entityManager.getTransaction().begin();
 		   
+		    TypedQuery<Empleado> empleadosQuery = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_TAREA, Empleado.class);
+		    empleadosQuery.setParameter("tarea", tarea);
+		    
+		    List<Empleado> listaEmpleados = empleadosQuery.getResultList();
+		    
+		    if ( ! listaEmpleados.isEmpty() ) {
+			throw new BSoDException("No se puede borrar una tarea con empleados asigandos");
+		    }
+		    
 		    resultado = obtenerTarea(tarea.getNombre(),entityManager);
 		    
 		    /*si existe la damos de baja*/
@@ -114,7 +124,7 @@ public class SATareasImp implements SATareas {
 		    entityManager.close();
 		    entityManagerFactory.close();
 		    
-		}catch(BSoDException e){
+		} catch(BSoDException e){
 		    
 		    if(e.getMensaje().contains("transaccion")) throw e;
 		    entityManager.getTransaction().rollback();

@@ -6,9 +6,8 @@ package presentacion.empleados;
 import presentacion.comandos.IDEventos;
 import presentacion.empleados.imp.GUIEmpleadosImp;
 import presentacion.empleados.paneles.PanelAltaEmpleados;
-import presentacion.empleados.paneles.PanelAltaTareaEmpleados;
+import presentacion.empleados.paneles.PanelAsignarTareaEmpleados;
 import presentacion.empleados.paneles.PanelBajaEmpleados;
-import presentacion.empleados.paneles.PanelBajaTareaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleadosPorTarea;
 import presentacion.empleados.paneles.PanelConsultaMultipleEmpleados;
@@ -99,16 +98,7 @@ public abstract class GUIEmpleados {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract PanelAltaTareaEmpleados getPanelAltaTareaEmpleados();
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public abstract PanelBajaTareaEmpleados getPanelBajaTareaEmpleados();
+	public abstract PanelAsignarTareaEmpleados getPanelAsignarTareaEmpleados();
 	
 	public abstract PanelConsultaEmpleadosPorTarea getPanelConsutlaEmpleadosPorTarea();
 }

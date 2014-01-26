@@ -6,9 +6,8 @@ package presentacion.empleados.imp;
 import presentacion.comandos.IDEventos;
 import presentacion.empleados.GUIEmpleados;
 import presentacion.empleados.paneles.PanelAltaEmpleados;
-import presentacion.empleados.paneles.PanelAltaTareaEmpleados;
+import presentacion.empleados.paneles.PanelAsignarTareaEmpleados;
 import presentacion.empleados.paneles.PanelBajaEmpleados;
-import presentacion.empleados.paneles.PanelBajaTareaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleados;
 import presentacion.empleados.paneles.PanelConsultaEmpleadosPorTarea;
 import presentacion.empleados.paneles.PanelConsultaMultipleEmpleados;
@@ -23,8 +22,7 @@ import presentacion.empleados.paneles.PanelModificacionEmpleados;
  */
 public class GUIEmpleadosImp extends GUIEmpleados {
 
-	private PanelBajaTareaEmpleados panelBajaTareaEmpleados;
-	private PanelAltaTareaEmpleados panelAltaTareaEmpleados;
+	private PanelAsignarTareaEmpleados panelAltaTareaEmpleados;
 	private PanelBajaEmpleados panelBajaEmpleados;
 	private PanelConsultaMultipleEmpleados panelConsultaMultipleEmpleados;
 	private PanelModificacionEmpleados panelModificacionEmpleados;
@@ -78,22 +76,13 @@ public class GUIEmpleadosImp extends GUIEmpleados {
 		return panelBajaEmpleados;
 	}
 	@Override
-	public PanelAltaTareaEmpleados getPanelAltaTareaEmpleados() {
+	public PanelAsignarTareaEmpleados getPanelAsignarTareaEmpleados() {
 		
 		if ( panelAltaTareaEmpleados == null) {
-			panelAltaTareaEmpleados = new PanelAltaTareaEmpleados();
+			panelAltaTareaEmpleados = new PanelAsignarTareaEmpleados();
 		}
 		
 		return panelAltaTareaEmpleados;
-	}
-	@Override
-	public PanelBajaTareaEmpleados getPanelBajaTareaEmpleados() {
-
-		if (panelBajaTareaEmpleados == null) {
-			panelBajaTareaEmpleados = new PanelBajaTareaEmpleados();
-		}
-		
-		return panelBajaTareaEmpleados;
 	}
 	
 	@Override
@@ -140,7 +129,7 @@ public class GUIEmpleadosImp extends GUIEmpleados {
         	case ERROR_CONSULTAR_TAREAS_V_ASIGARTAREA:
         	case EVENTO_CONSULTAR_EMPLEADO_V_ASIGARTAREA:
         	case ERROR_CONSULTAR_EMPLEADO_V_ASIGARTAREA:
-        	    getPanelAltaTareaEmpleados().actualizarVentana(eventoActual, datos);
+        	    getPanelAsignarTareaEmpleados().actualizarVentana(eventoActual, datos);
         	    break;
         	case EVENTO_CONSULTAR_TODOS_EMPLEADOS:
         	case ERROR_CONSULTAR_TODOS_EMPLEADOS:

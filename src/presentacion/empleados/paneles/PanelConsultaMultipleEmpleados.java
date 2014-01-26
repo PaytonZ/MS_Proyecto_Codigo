@@ -92,7 +92,7 @@ public class PanelConsultaMultipleEmpleados extends JPanel implements GUIPaneles
 		JLabel lblTipo = new JLabel("Tipo");
 		panel_1.add(lblTipo);
 		
-		JLabel lblHoraspalza = new JLabel("horas|palza");
+		JLabel lblHoraspalza = new JLabel("horas|plaza");
 		panel_1.add(lblHoraspalza);
 	}
 

@@ -5,7 +5,6 @@ package negocio.departamentos.servicioaplicacion.imp;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -14,8 +13,8 @@ import javax.persistence.TypedQuery;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
+import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
-import negocio.tareas.objetonegocio.Tarea;
 import presentacion.principal.HotelManager;
 
 /**
@@ -107,10 +106,16 @@ public class SADepartamentosImp implements SADepartamentos {
 	try {
 	    entityManager.getTransaction().begin();
 
-	    TypedQuery<Departamento> query = entityManager
-		    .createNamedQuery(
-			    "negocio.departamentos.objetonegocio.Departamento.findBynombre",
-			    Departamento.class);
+	    TypedQuery<Empleado> empleadosQuery = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DEPARTAMENTO, Empleado.class);
+	    empleadosQuery.setParameter("departamento", departamento);
+	    
+	    List<Empleado> empleados = empleadosQuery.getResultList();
+	    
+	    if ( !empleados.isEmpty() ) {
+		throw new BSoDException("No se puede borrar un departamento con empleados");
+	    }
+	    
+	    TypedQuery<Departamento> query = entityManager.createNamedQuery("negocio.departamentos.objetonegocio.Departamento.findBynombre", Departamento.class);
 	    query.setParameter("nombre", departamento.getNombre());
 
 	    Departamento depto = query.getSingleResult();
@@ -126,9 +131,9 @@ public class SADepartamentosImp implements SADepartamentos {
 	    entityManager.getTransaction().rollback();
 	   throw new BSoDException(nr.getMessage());
 	}catch (Exception ex) {
+	    entityManager.getTransaction().rollback();
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
-		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getMessage());
 	    }
 	} finally {

@@ -138,7 +138,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja clientes", GUICliente.getInstance().getPanelBajaClientes());
 				tabbedPane.add("Modificación clientes", GUICliente.getInstance().getPanelModificacionClientes());
 				tabbedPane.add("Consulta clientes", GUICliente.getInstance().getPanelConsultaClientes());
-				tabbedPane.add("Consulta multiple clientes", GUICliente.getInstance().getPanelConsultaMultipleClientes());
+				tabbedPane.add("Consulta múltiple clientes", GUICliente.getInstance().getPanelConsultaMultipleClientes());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
@@ -186,7 +186,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja habitaciones", GUIHabitaciones.getInstance().getPanelBajaHabitaciones());
 				tabbedPane.add("Modificación habitaciones", GUIHabitaciones.getInstance().getPanelModificacionHabitaciones());
 				tabbedPane.add("Consulta habitaciones", GUIHabitaciones.getInstance().getPanelConsultaHabitaciones());
-				tabbedPane.add("Consulta multiple habitaciones", GUIHabitaciones.getInstance().getPanelConsultaMultiplesHabitaciones());
+				tabbedPane.add("Consulta múltiple habitaciones", GUIHabitaciones.getInstance().getPanelConsultaMultiplesHabitaciones());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
@@ -234,7 +234,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja reservas", GUIReservas.getInstance().getPanelBajaReservas());
 				tabbedPane.add("Modificación reservas", GUIReservas.getInstance().getPanelModificacionReservas());
 				tabbedPane.add("Consulta reservas", GUIReservas.getInstance().getPanelConsultaReservas());
-				tabbedPane.add("Consulta multiple reservas", GUIReservas.getInstance().getPanelConsultaMultipleReservas());
+				tabbedPane.add("Consulta múltiple reservas", GUIReservas.getInstance().getPanelConsultaMultipleReservas());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
@@ -276,7 +276,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja departamento", GUIDepartamentos.getInstance().getPanelBajaDepartamentos());
 				tabbedPane.add("Modificación departamentos", GUIDepartamentos.getInstance().getPanelModificacionDepartamentos());
 				tabbedPane.add("Consulta departamentos", GUIDepartamentos.getInstance().getPanelConsultaDepartamentos());
-				tabbedPane.add("Consulta multiple departamentos", GUIDepartamentos.getInstance().getPanelConsultaMultiplesDepartamentos());
+				tabbedPane.add("Consulta múltiple departamentos", GUIDepartamentos.getInstance().getPanelConsultaMultiplesDepartamentos());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
@@ -318,9 +318,9 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja empleados", GUIEmpleados.getInstance().getPanelBajaEmpleados());
 				tabbedPane.add("Modificación empleados", GUIEmpleados.getInstance().getPanelModificacionEmpleados());
 				tabbedPane.add("Consulta empleados", GUIEmpleados.getInstance().getPanelConsultaEmpleados());
-				tabbedPane.add("Consulta multiple empleados", GUIEmpleados.getInstance().getPanelConsultaMultipleEmpleados());
+				tabbedPane.add("Consulta múltiple empleados", GUIEmpleados.getInstance().getPanelConsultaMultipleEmpleados());
 				tabbedPane.add("Consulta empleados por tarea", GUIEmpleados.getInstance().getPanelConsutlaEmpleadosPorTarea());
-				tabbedPane.add("Asignar tareas", GUIEmpleados.getInstance().getPanelAltaTareaEmpleados());
+				tabbedPane.add("Asignar tareas", GUIEmpleados.getInstance().getPanelAsignarTareaEmpleados());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
@@ -360,7 +360,7 @@ public class FramePrincipal extends JFrame {
 				tabbedPane.add("Baja tareas", GUITareas.getInstance().getPanelBajaTareas());
 				tabbedPane.add("Modificación tareas", GUITareas.getInstance().getPanelModificacionTareas());
 				tabbedPane.add("Consulta tareas", GUITareas.getInstance().getPanelConsultaTarea());
-				tabbedPane.add("Consulta multiple tareas", GUITareas.getInstance().getPanelConsultaMultipleTareas());
+				tabbedPane.add("Consulta múltiple tareas", GUITareas.getInstance().getPanelConsultaMultipleTareas());
 				
 				contentPane.add(tabbedPane, BorderLayout.CENTER);
 				contentPane.validate();
