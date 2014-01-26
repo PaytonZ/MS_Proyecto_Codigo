@@ -46,13 +46,13 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
     private JPanel contentPane;
     private JTextField textPlaza;
     private JTextField textHoras;
-    
+
     private JLabel lblHoras;
     private JLabel lblPlaza;
-    
-    
+
     public PanelBajaEmpleados() {
-	setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][][]"));
+	setLayout(new MigLayout("", "[][][][grow][][][grow][]",
+		"[][][17.00][][][20.00][][13.00][][13.00][][][]"));
 
 	contentPane = this;
 
@@ -143,22 +143,22 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 			    "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 	});
-	
+
 	lblPlaza = new JLabel("Plaza");
 	lblPlaza.setVisible(false);
 	add(lblPlaza, "cell 2 10,alignx trailing");
-	
+
 	textPlaza = new JTextField();
 	textPlaza.setEnabled(false);
 	textPlaza.setEditable(false);
 	textPlaza.setVisible(false);
 	add(textPlaza, "cell 3 10,growx");
 	textPlaza.setColumns(10);
-	
+
 	lblHoras = new JLabel("Horas");
 	lblHoras.setVisible(false);
 	add(lblHoras, "cell 5 10,alignx trailing");
-	
+
 	textHoras = new JTextField();
 	textHoras.setEnabled(false);
 	textHoras.setEditable(false);
@@ -208,7 +208,6 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 
 		Empleado empleado = (Empleado) datos;
 
-		
 		this.empleado = empleado;
 		txtDni.setText(empleado.getDNI());
 		textNombre.setText(empleado.getNombre());
@@ -216,24 +215,26 @@ public class PanelBajaEmpleados extends JPanel implements GUIPanelesInterfaz {
 			+ empleado.getSegundoApellido());
 		textTipo.setText(empleado.getTipo().name());
 		btnBorrarCliente.setEnabled(true);
-		if( empleado instanceof EmpleadoParcial)
-		{
-		    
+		if (empleado instanceof EmpleadoParcial) {
+
 		    textHoras.setVisible(true);
 		    textHoras.setEnabled(true);
 		    lblHoras.setVisible(true);
-		    textHoras.setText((String.valueOf((((EmpleadoParcial) empleado).getHoras()))));
-		    
+		    textHoras
+			    .setText((String
+				    .valueOf((((EmpleadoParcial) empleado)
+					    .getHoras()))));
+
 		}
-		if( empleado instanceof EmpleadoTotal)
-		{
-		   textPlaza.setVisible(true);
-		   textPlaza.setEnabled(true);
-		   lblPlaza.setVisible(true);
-		   textPlaza.setText(((EmpleadoTotal) empleado).getPlazaAparcamiento().name());
-		    
+		if (empleado instanceof EmpleadoTotal) {
+		    textPlaza.setVisible(true);
+		    textPlaza.setEnabled(true);
+		    lblPlaza.setVisible(true);
+		    textPlaza.setText(((EmpleadoTotal) empleado)
+			    .getPlazaAparcamiento().name());
+
 		}
-		
+
 	    }
 	} else if (IDEventos.ERROR_BAJA_EMPLEADO == idEvento
 		|| IDEventos.ERROR_CONSULTAR_EMPLEADOS_V_BORRAR == idEvento) {
