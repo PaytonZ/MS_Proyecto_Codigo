@@ -14,6 +14,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import negocio.empleados.objetonegocio.Empleado;
+import negocio.empleados.objetonegocio.EmpleadoParcial;
+import negocio.empleados.objetonegocio.EmpleadoTotal;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
@@ -40,11 +42,16 @@ public class PanelConsultaEmpleados extends JPanel implements
     private Empleado empleado;
     private JTextField textTipo;
     private JTextField textDepartamento;
+    private JTextField textPlaza;
+    private JTextField textHoras;
+    
+
+    private JLabel lblHoras;
+    private JLabel lblPlaza;
 
     public PanelConsultaEmpleados() {
 
-	setLayout(new MigLayout("", "[][][][grow][][][grow][]",
-		"[][][17.00][][][20.00][][13.00][][13.00][][24.00]"));
+	setLayout(new MigLayout("", "[][][][grow][][][grow][]", "[][][17.00][][][20.00][][13.00][][13.00][][7.00][][]"));
 
 	JLabel lblConsultaClientes = new JLabel("Consulta empleados");
 	add(lblConsultaClientes, "cell 0 1 8 1,alignx center");
@@ -124,6 +131,29 @@ public class PanelConsultaEmpleados extends JPanel implements
 	textDepartamento.setEditable(false);
 	add(textDepartamento, "cell 6 10,growx");
 	textDepartamento.setColumns(10);
+	
+	lblPlaza = new JLabel("Plaza:");
+	lblPlaza.setVisible(false);
+	add(lblPlaza, "cell 2 12,alignx trailing");
+	
+	textPlaza = new JTextField();
+	textPlaza.setEnabled(false);
+	textPlaza.setEditable(false);
+	textPlaza.setVisible(false);
+	add(textPlaza, "cell 3 12,growx");
+	textPlaza.setColumns(10);
+	
+	lblHoras = new JLabel("Horas:");
+	lblHoras.setVisible(false);
+	add(lblHoras, "cell 5 12,alignx trailing");
+	
+	textHoras = new JTextField();
+	textHoras = new JTextField();
+	textHoras.setEnabled(false);
+	textHoras.setEditable(false);
+	textHoras.setVisible(false);
+	add(textHoras, "cell 6 12,growx");
+	textHoras.setColumns(10);
     }
 
     /**
@@ -140,7 +170,12 @@ public class PanelConsultaEmpleados extends JPanel implements
 	    if (datos instanceof Empleado) {
 
 		empleado = (Empleado) datos;
-
+		
+		 textHoras.setVisible(false);
+		 lblHoras.setVisible(false);
+		 lblPlaza.setVisible(false);
+		  textPlaza.setVisible(false);
+		 
 		txtDni.setText(empleado.getDNI());
 		textNombre.setText(empleado.getNombre());
 		textApellidos.setText(empleado.getPrimerApellido() + " "
@@ -148,6 +183,26 @@ public class PanelConsultaEmpleados extends JPanel implements
 		textTipo.setText(empleado.getTipo().name());
 		textDepartamento
 			.setText(empleado.getDepartamento().getNombre());
+		
+		if (empleado instanceof EmpleadoParcial) {
+
+		    textHoras.setVisible(true);
+		    textHoras.setEnabled(true);
+		    lblHoras.setVisible(true);
+		    textHoras
+			    .setText((String
+				    .valueOf((((EmpleadoParcial) empleado)
+					    .getHoras()))));
+
+		}
+		if (empleado instanceof EmpleadoTotal) {
+		    textPlaza.setVisible(true);
+		    textPlaza.setEnabled(true);
+		    lblPlaza.setVisible(true);
+		    textPlaza.setText(((EmpleadoTotal) empleado)
+			    .getPlazaAparcamiento().name());
+
+		}
 
 	    } else {
 		JOptionPane.showMessageDialog(this,
