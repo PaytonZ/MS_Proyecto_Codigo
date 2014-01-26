@@ -18,12 +18,18 @@ import javax.swing.JTextField;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
+import negocio.empleados.objetonegocio.EmpleadoParcial;
 import negocio.empleados.objetonegocio.Empleado.TipoEmpleado;
+import negocio.empleados.objetonegocio.EmpleadoTotal;
+import negocio.empleados.objetonegocio.EmpleadoTotal.TipoPlazaParking;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
+
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -47,6 +53,11 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 	private JComboBox<TipoEmpleado> cbTipo;
 	
 	private JButton btnModificarEmpleado;
+	private JLabel lblPlaza;
+	private JTextField textHoras;
+	
+	private JLabel lblHoras;
+	private JComboBox<TipoPlazaParking> cbPlaza;
 	
 	public PanelModificacionEmpleados() {
 		
@@ -106,6 +117,14 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				textSegundoApellido.setEditable(false);
 				cbTipo.setEnabled(false);
 				cbDepartamento.setEnabled(false);
+				
+				lblHoras.setVisible(false);
+				textHoras.setText("");
+				textHoras.setVisible(false);
+				
+				lblPlaza.setVisible(false);
+				cbPlaza.setVisible(false);
+				cbPlaza.setSelectedIndex(-1);
 			}
 		});
 		add(btnNuevaBsqueda, "cell 5 3");
@@ -133,7 +152,23 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 		add(lblTipo, "cell 1 8,alignx trailing");
 		
 		cbTipo = new JComboBox<>();
+		cbTipo.addItemListener(new ItemListener() {
+		    
+		    @Override
+		    public void itemStateChanged(ItemEvent arg0) {
+
+			if ( arg0.getStateChange() == ItemEvent.SELECTED) {
+			    
+			    TipoEmpleado tie = (TipoEmpleado) arg0.getItem();
+			    
+			    if ( tie == TipoEmpleado.COMPLETO) {
+				
+			    }
+			}
+		    }
+		});
 		cbTipo.setModel(new DefaultComboBoxModel<TipoEmpleado>(TipoEmpleado.values()));
+		cbTipo.setSelectedIndex(-1);
 		cbTipo.setEnabled(false);
 		add(cbTipo, "cell 2 8,growx");
 		
@@ -191,12 +226,31 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 			}
 		});
 		
+		lblHoras = new JLabel("Horas:");
+		lblHoras.setVisible(false);
+		add(lblHoras, "cell 1 10,alignx trailing");
+		
+		textHoras = new JTextField();
+		textHoras.setVisible(false);
+		add(textHoras, "cell 2 10,growx");
+		textHoras.setColumns(10);
+		
 		JLabel lblDepartamento = new JLabel("Departamento: ");
 		add(lblDepartamento, "cell 4 10,alignx trailing");
 		
 		cbDepartamento = new JComboBox<>();
 		cbDepartamento.setEnabled(false);
 		add(cbDepartamento, "cell 5 10,growx");
+		
+		lblPlaza = new JLabel("Plaza:");
+		lblPlaza.setVisible(false);
+		add(lblPlaza, "cell 1 11,alignx trailing");
+		
+		cbPlaza = new JComboBox<>();
+		cbPlaza.setModel(new DefaultComboBoxModel<TipoPlazaParking>(TipoPlazaParking.values()));
+		cbPlaza.setSelectedIndex(-1);
+		cbPlaza.setVisible(false);
+		add(cbPlaza, "cell 2 11,growx");
 		
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1, "cell 1 12 6 1,growx,aligny center");
@@ -231,6 +285,14 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				cbDepartamento.setSelectedIndex(-1);
 				cbDepartamento.setEnabled(false);
 				
+				lblHoras.setVisible(false);
+				textHoras.setText("");
+				textHoras.setVisible(false);
+				
+				lblPlaza.setVisible(false);
+				cbPlaza.setVisible(false);
+				cbPlaza.setSelectedIndex(-1);
+				
 				btnModificarEmpleado.setEnabled(false);
 				
 				JOptionPane.showMessageDialog(contentPane, "El empleado se ha modificado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -260,6 +322,17 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				cbTipo.setEnabled(true);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO, null);
+
+				if ( empleado.getTipo() == TipoEmpleado.HORAS) {
+				    lblHoras.setVisible(true);
+				    textHoras.setText( String.valueOf( ((EmpleadoParcial)empleado).getHoras() ) );
+				    textHoras.setVisible(true);
+				}
+				else if ( empleado.getTipo() == TipoEmpleado.COMPLETO) {
+				    lblPlaza.setVisible(true);
+				    cbPlaza.setVisible(true);
+				    cbPlaza.setSelectedItem( (TipoPlazaParking) ((EmpleadoTotal)empleado).getPlazaAparcamiento());
+				}
 				
 				btnModificarEmpleado.setEnabled(true);
 			}
