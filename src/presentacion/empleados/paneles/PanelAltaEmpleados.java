@@ -202,7 +202,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 						
 						try {
 						    
-						    if (Integer.valueOf(textHoras.getText().trim()) < 7) {
+						    if (Integer.valueOf(textHoras.getText().trim()) <= 7) {
 							
 							((EmpleadoParcial)empleado).setHoras( Integer.valueOf(textHoras.getText().trim()));
 							   

@@ -60,4 +60,9 @@ public class EmpleadoTotal extends Empleado implements Serializable {
 	    DOBLE,
 	    SIMPLE
 	};
+
+	@Override
+	public String toString() {
+	    return getDNI() + " " + getNombre() + " " + getPrimerApellido() + " " + getSegundoApellido() + " " + getTipo() + " " + plazaAparcamiento;
+	}
 }

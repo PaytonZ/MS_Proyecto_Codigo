@@ -61,13 +61,4 @@ public interface SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public List<Tarea> obtenerTodaslasTareas() throws BSoDException;
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idEmpleado
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public List<Tarea> obtenerTareasPorEmpleados(String DNIEmpleado) throws BSoDException;
 }

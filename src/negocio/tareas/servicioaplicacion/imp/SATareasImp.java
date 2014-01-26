@@ -262,41 +262,4 @@ public class SATareasImp implements SATareas {
 		// end-user-code
 	    
 	}
-
-	/**
-	 * (sin Javadoc)
-	 * 
-	 * @see SATareas#obtenerTareasPorEmpleados(Object idEmpleado)
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Tarea> obtenerTareasPorEmpleados(String DNIEmpleado) throws BSoDException {
-	    // TODO Auto-generated method stub
-	    EntityManagerFactory entityManagerFactory = 
-		    Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
-		
-	    EntityManager entityManager = entityManagerFactory.createEntityManager();
-	    entityManager.getTransaction().begin();
-	    Empleado resultado = null;
-	    TypedQuery<Empleado> query = null;
-
-	    try {
-	
-		query = entityManager.createNamedQuery(
-			    Empleado.QUERY_BUSCAR_EMPLEADOS_POR_DNI, Empleado.class);
-		query.setParameter("DNI", DNIEmpleado);
-		resultado = query.getSingleResult();
-		    
-	    }catch(NoResultException ex){
-		throw new BSoDException("No se ha podido encontrar el empleado en la base de datos");
-	    }catch(IllegalStateException e){
-		//Solo ocurre si la transaccion no llega inicializada! 
-		throw  new BSoDException("No se ha podido realizar la transaccion");
-	    }
-	
-		// end-user-code
-	    return (List<Tarea>) resultado.getTarea();
-	}
-	
 }
