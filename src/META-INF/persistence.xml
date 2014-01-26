@@ -5,6 +5,8 @@
 	 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
      <class>negocio.empleados.objetonegocio.Empleado</class>
+     <class>negocio.empleados.objetonegocio.EmpleadoTotal</class>
+     <class>negocio.empleados.objetonegocio.EmpleadoParcial</class>
      <class>negocio.departamentos.objetonegocio.Departamento</class>
      <class>negocio.tareas.objetonegocio.Tarea</class>
 	 
