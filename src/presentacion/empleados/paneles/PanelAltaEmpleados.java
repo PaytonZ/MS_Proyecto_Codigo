@@ -288,7 +288,7 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 				textSegundoApellido.setText("");
 				textNombre.setText("");
 				
-				cbTipo.setSelectedItem(-1);
+				cbTipo.setSelectedIndex(-1);
 				cbDepartamento.setSelectedIndex(-1);
 				
 				lblHoras.setVisible(false);
