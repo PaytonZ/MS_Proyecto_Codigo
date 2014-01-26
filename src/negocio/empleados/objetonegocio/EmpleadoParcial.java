@@ -4,7 +4,9 @@
 package negocio.empleados.objetonegocio;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
+
 import javax.persistence.NamedQuery;
 
 /** 
@@ -46,5 +48,10 @@ public class EmpleadoParcial extends Empleado implements Serializable {
 	
 	public void setHoras(int horas) {
 	    this.horas = horas;
+	}
+	 
+	@Override
+	public String toString() {
+	    return getDNI() + " " + getNombre() + " " + getPrimerApellido() + " " + getSegundoApellido() + " " + getTipo() + " " + horas;
 	}
 }
