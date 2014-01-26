@@ -19,7 +19,7 @@ import presentacion.comandos.commandFactory.CommandResponse;
  * @author Daniel
  * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
  */
-public class CommandAltaTareaEmpleado implements Command {
+public class CommandAsignarTareaEmpleado implements Command {
 	/** 
 	 * (sin Javadoc)
 	 * @see Command#execute(Clase datos)
