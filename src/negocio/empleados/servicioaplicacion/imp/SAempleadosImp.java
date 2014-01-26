@@ -120,6 +120,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    resultado = query.getSingleResult();
 
 	    resultado.setActivo(false);
+	    resultado.setTarea(new HashSet<Tarea>());
+	    
 	    entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
