@@ -205,6 +205,23 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 						    if (Integer.valueOf(textHoras.getText().trim()) < 7) {
 							
 							((EmpleadoParcial)empleado).setHoras( Integer.valueOf(textHoras.getText().trim()));
+							   
+							empleado.setDNI(textDNI.getText());
+							empleado.setNombre(textNombre.getText());
+							empleado.setTipo( (TipoEmpleado)cbTipo.getSelectedItem());
+							empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
+							
+							if ( textPrimerApellido.getText().equals("") ) {
+								JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+							}
+							else {
+								empleado.setPrimerApellido(textPrimerApellido.getText().trim());
+								
+								if ( !textSegundoApellido.getText().equals("") )
+									empleado.setSegundoApellido(textSegundoApellido.getText().trim());
+								
+								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_EMPLEADO, empleado);
+							}
 						    }
 						    else {
 							JOptionPane.showMessageDialog(contentPane, "Las horas no pueden superar 7", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -218,35 +235,34 @@ public class PanelAltaEmpleados extends JPanel implements GUIPanelesInterfaz {
 						JOptionPane.showMessageDialog(contentPane, "El campo horas no puede estar vacío", "Aviso", JOptionPane.WARNING_MESSAGE);
 					    }
 					}
-					
-					if ( cbPlaza.isVisible() ) {
+					else if ( cbPlaza.isVisible() ) {
 					    
 					    if ( cbPlaza.getSelectedIndex() > -1) {
 						
 						empleado = new EmpleadoTotal();
 						
 						((EmpleadoTotal)empleado).setPlazaAparcamiento( (TipoPlazaParking)cbPlaza.getSelectedItem());
+
+						empleado.setDNI(textDNI.getText());
+						empleado.setNombre(textNombre.getText());
+						empleado.setTipo( (TipoEmpleado)cbTipo.getSelectedItem());
+						empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
+						
+						if ( textPrimerApellido.getText().equals("") ) {
+							JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							empleado.setPrimerApellido(textPrimerApellido.getText().trim());
+							
+							if ( !textSegundoApellido.getText().equals("") )
+								empleado.setSegundoApellido(textSegundoApellido.getText().trim());
+							
+							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_EMPLEADO, empleado);
+						}
 					    }
 					    else {
 						JOptionPane.showMessageDialog(contentPane, "Debe seleccionar el tipo de plaza de parking", "Aviso", JOptionPane.WARNING_MESSAGE);
 					    }
-					}
-				    
-					empleado.setDNI(textDNI.getText());
-					empleado.setNombre(textNombre.getText());
-					empleado.setTipo( (TipoEmpleado)cbTipo.getSelectedItem());
-					empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
-					
-					if ( textPrimerApellido.getText().equals("") ) {
-						JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						empleado.setPrimerApellido(textPrimerApellido.getText().trim());
-						
-						if ( !textSegundoApellido.getText().equals("") )
-							empleado.setSegundoApellido(textSegundoApellido.getText().trim());
-						
-						ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_ALTA_EMPLEADO, empleado);
 					}
 				}
 				else {
