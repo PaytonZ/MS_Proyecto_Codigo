@@ -40,7 +40,22 @@ public void altaYbaja() {
 	assertNotNull(d1);
 	assertTrue(d1.getID() >= 0);
 	assertTrue(d.getNombre().equalsIgnoreCase(d1.getNombre()));
-
+	
+	
+	try {
+	    assertTrue(sadepartamento.borrarDepartamento(d));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	    e2.printStackTrace();
+	}
+	try {
+	    Departamento d2 = new Departamento();
+	    d2.setNombre(String.valueOf(new Random()
+	    .nextInt(99999)));
+	    assertFalse(sadepartamento.borrarDepartamento(d2));
+	} catch (BSoDException e2) {
+	    // TODO Auto-generated catch block
+	}
 //	try {
 //	    assertTrue(sadepartamento.borrarDepartamento(d.getNombre()));
 //	} catch (BSoDException e2) {
