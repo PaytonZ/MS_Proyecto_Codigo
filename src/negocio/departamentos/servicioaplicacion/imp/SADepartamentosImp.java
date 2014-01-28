@@ -103,6 +103,8 @@ public class SADepartamentosImp implements SADepartamentos {
 	EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
+	
+	Boolean borrado = false;
 
 	try {
 	    entityManager.getTransaction().begin();
@@ -123,9 +125,9 @@ public class SADepartamentosImp implements SADepartamentos {
 
 	    depto.setActivo(false);
 
-	    entityManager.merge(depto);
-
 	    entityManager.getTransaction().commit();
+	    
+	    borrado = true;
 
 	} catch (NoResultException nr) {
 
@@ -143,7 +145,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	  
 	}
 
-	return true;
+	return borrado;
     }
 
     /**
@@ -171,8 +173,6 @@ public class SADepartamentosImp implements SADepartamentos {
 	    resultado = query.getSingleResult();
 
 	    resultado.setNombre(departamento.getNombre());
-	    // resultado esta attached, no hace falta mergear
-	    //entityManager.merge(resultado);
 
 	    entityManager.getTransaction().commit();
 
@@ -266,7 +266,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    entityManager.getTransaction().begin();
 	    departamentos = entityManager.createNamedQuery("Departamento.findAll", Departamento.class).getResultList();
 	    //Nada que commitear
-	    //entityManager.getTransaction().commit();
+//	    entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 

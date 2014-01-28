@@ -133,6 +133,7 @@ public class SATareasImp implements SATareas {
 		    
 		    /*si existe la damos de baja*/
 		    resultado.setActivo(false);
+		    
 		    entityManager.getTransaction().commit();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
