@@ -60,9 +60,9 @@ public class SAempleadosImp implements SAEmpleados {
 			"El empleado ya existe en la base de datos");
 
 	    } else {
-		empleadoNuevo.setId(resultado.getId());
-
 		entityManager.getTransaction().commit();
+
+		empleadoNuevo.setId(resultado.getId());
 	    }
 
 	} catch (NoResultException ex) {// No se encontro el empleado.
@@ -244,6 +244,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    query.setParameter("arg", dniEmpleado);
 	    resultado = query.getSingleResult();
 	    entityManager.lock(resultado, LockModeType.OPTIMISTIC);
+	    
+	    entityManager.getTransaction().commit();
 
 	} catch (NoResultException ex) {
 
