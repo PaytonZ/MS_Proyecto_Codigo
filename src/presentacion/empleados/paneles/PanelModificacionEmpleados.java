@@ -318,14 +318,14 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				textSegundoApellido.setEditable(true);
 				
 				cbTipo.setSelectedItem(empleado.getTipo());
-				cbTipo.setEnabled(true);
+//				cbTipo.setEnabled(true);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO, null);
 
 				if ( empleado.getTipo() == TipoEmpleado.HORAS) {
 				    lblHoras.setVisible(true);
-				    textHoras.setText( String.valueOf( ((EmpleadoParcial)empleado).getHoras() ) );
 				    textHoras.setVisible(true);
+				    textHoras.setText( String.valueOf( ((EmpleadoParcial)empleado).getHoras() ) );
 				}
 				else if ( empleado.getTipo() == TipoEmpleado.COMPLETO) {
 				    lblPlaza.setVisible(true);
