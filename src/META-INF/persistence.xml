@@ -11,7 +11,7 @@
      <class>negocio.tareas.objetonegocio.Tarea</class>
 	 
 	 <properties>
-	 	 <property name="eclipselink.logging.level" value="FINE"/>
+	 	 <property name="eclipselink.logging.level" value="OFF"/>
 		  <!-- 	  eclipselink.logging.level ->   Cambiar este valor a OFF cuando se entrege la APP -->
 	
 		 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> 
@@ -21,7 +21,7 @@
 	     <property name="javax.persistence.jdbc.password" value="zabalamanco" />
 		 
 <!-- 		 Crear o extender el schema -->
-		<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>   
+ 	<property name="eclipselink.ddl-generation" value="none"/>  
 <!--  		<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
 		
 

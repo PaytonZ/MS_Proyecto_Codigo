@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
+import negocio.jpa.EntityManagerFactoryS;
 import negocio.tareas.objetonegocio.Tarea;
 import negocio.tareas.servicioaplicacion.SATareas;
 import presentacion.principal.HotelManager;
@@ -35,8 +36,8 @@ public class SATareasImp implements SATareas {
 	 */
     	
 	public Tarea anadirTarea(Tarea tareaNueva) throws BSoDException {
-	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	    EntityManagerFactory entityManagerFactory = EntityManagerFactoryS
+			.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
@@ -65,7 +66,7 @@ public class SATareasImp implements SATareas {
 			//Cierre de entidades de persistencia
 			entityManager.detach(resultado);
 			entityManager.close();
-			entityManagerFactory.close();
+			
 			return resultado;
 		    }
 		} catch (NoResultException ex) {// No se encontro la tarea.
@@ -81,7 +82,7 @@ public class SATareasImp implements SATareas {
 		    entityManager.detach(tareaNueva);
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
-		    entityManagerFactory.close();
+		    
 		    return tareaNueva;
 		}   
 	}
@@ -97,8 +98,7 @@ public class SATareasImp implements SATareas {
 	public Boolean borrarTarea(Tarea tarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	    EntityManagerFactory entityManagerFactory =EntityManagerFactoryS.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
@@ -122,7 +122,7 @@ public class SATareasImp implements SATareas {
 		    entityManager.getTransaction().commit();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
-		    entityManagerFactory.close();
+		    
 		    
 		} catch(BSoDException e){
 		    
@@ -130,7 +130,7 @@ public class SATareasImp implements SATareas {
 		    entityManager.getTransaction().rollback();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
-		    entityManagerFactory.close();
+		   
 		    throw e;
 		    
 		}catch(RollbackException e){
@@ -152,8 +152,7 @@ public class SATareasImp implements SATareas {
 	public Tarea actualizarTarea(Tarea tarea) throws BSoDException {
 		// begin-user-code
 		// TODO Ap�ndice de m�todo generado autom�ticamente
-	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	    EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado = null;
@@ -175,12 +174,12 @@ public class SATareasImp implements SATareas {
 		    //No hace falta el detach pro el merge no linkea la entidad por parametro
 		    //entityManager.detach(tarea);
 		    entityManager.close();
-		    entityManagerFactory.close();
+		   
 		}catch(NoResultException e){
 		    entityManager.getTransaction().rollback();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
-		    entityManagerFactory.close();
+		   
 		    throw new BSoDException("Ya existe la tarea en la base de datos");
 		    
 		}catch(RollbackException e){
@@ -200,8 +199,7 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Tarea obtenerTarea(String nombreTarea) throws BSoDException {
-	    EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	    EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
 		Tarea resultado=null;
@@ -210,12 +208,12 @@ public class SATareasImp implements SATareas {
 		    resultado=obtenerTarea(nombreTarea,entityManager);
 		    entityManager.detach(resultado);
 		    entityManager.close();
-		    entityManagerFactory.close();
+		    
 		}
 		catch(BSoDException e){
 		    entityManager.getTransaction().rollback();
 		    entityManager.close();
-		    entityManagerFactory.close();
+		   
 		    throw e;
 		}
 		return resultado;
@@ -252,10 +250,9 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public List<Tarea> obtenerTodaslasTareas() throws BSoDException {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+		
 	    EntityManagerFactory entityManagerFactory = 
-		    Persistence.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+		    EntityManagerFactoryS.getEntityManagerFactory();
 		
 	    	EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
@@ -264,10 +261,10 @@ public class SATareasImp implements SATareas {
 		for(Tarea t : tareas)entityManager.detach(t);
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		entityManagerFactory.close();
+		
 		
 	return tareas;
-		// end-user-code
+		
 	    
 	}
 }

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.swing.UIManager;
 
+import negocio.jpa.EntityManagerFactoryS;
 import presentacion.FramePrincipal;
 
 public class HotelManager {
@@ -35,5 +36,8 @@ public class HotelManager {
 		}
 	    }
 	});
+	
+	EntityManagerFactoryS.closeEntityManagerFactory();
+	
     }
 }

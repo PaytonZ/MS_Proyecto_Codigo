@@ -22,6 +22,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import negocio.jpa.EntityManagerFactoryS;
 import presentacion.clientes.GUICliente;
 import presentacion.departamentos.GUIDepartamentos;
 import presentacion.empleados.GUIEmpleados;
@@ -64,6 +65,7 @@ public class FramePrincipal extends JFrame {
 		    
 		    @Override
 		    public void actionPerformed(ActionEvent arg0) {
+			EntityManagerFactoryS.closeEntityManagerFactory();
 			System.exit(0);
 			
 		    }

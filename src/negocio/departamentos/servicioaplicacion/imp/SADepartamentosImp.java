@@ -15,6 +15,7 @@ import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
+import negocio.jpa.EntityManagerFactoryS;
 import presentacion.principal.HotelManager;
 
 /**
@@ -38,8 +39,7 @@ public class SADepartamentosImp implements SADepartamentos {
      */
     public Departamento anadirDepartamento(Departamento departamentoNuevo)
 	    throws BSoDException {
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 	
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
@@ -58,7 +58,7 @@ public class SADepartamentosImp implements SADepartamentos {
 		entityManager.getTransaction().rollback();
 		 //Cierre de entidades de persistencia
 		 entityManager.close();
-		 entityManagerFactory.close();
+		
 		 throw new BSoDException("Ya existe el departamento en la base de datos");
 	    }
 	    else{
@@ -68,7 +68,7 @@ public class SADepartamentosImp implements SADepartamentos {
 		//Cierre de entidades de persistencia
 		entityManager.detach(resultado);
 		entityManager.close();
-		entityManagerFactory.close();
+		
 		return resultado;
 	    }
 	} catch (NoResultException ex) {// No se encontro la tarea.
@@ -84,7 +84,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    entityManager.detach(departamentoNuevo);
 	    //Cierre de entidades de persistencia
 	    entityManager.close();
-	    entityManagerFactory.close();
+	  
 	    return departamentoNuevo;
 	}   
 	
@@ -98,8 +98,7 @@ public class SADepartamentosImp implements SADepartamentos {
      *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
      */
     public Boolean borrarDepartamento(Departamento departamento) throws BSoDException {
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
@@ -139,7 +138,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	} finally {
 
 	    entityManager.close();
-	    entityManagerFactory.close();
+	  
 	}
 
 	return true;
@@ -155,8 +154,7 @@ public class SADepartamentosImp implements SADepartamentos {
     public Departamento actualizarDepartamento(Departamento departamento)
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
@@ -192,7 +190,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    if ( resultado != null )
 		entityManager.detach(resultado);
 	    entityManager.close();
-	    entityManagerFactory.close();
+	  
 	}
 
 	return departamento;
@@ -208,8 +206,7 @@ public class SADepartamentosImp implements SADepartamentos {
     public Departamento obternerDepartamento(String nombreDepartamento)
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManagerFactory entityManagerFactory =EntityManagerFactoryS.getEntityManagerFactory();
 
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
@@ -241,7 +238,7 @@ public class SADepartamentosImp implements SADepartamentos {
 		entityManager.detach(d);
 	    }
 	    entityManager.close();
-	    entityManagerFactory.close();
+	    
 	}
 
 	return d;
@@ -257,8 +254,7 @@ public class SADepartamentosImp implements SADepartamentos {
     public List<Departamento> obtenerTodoslosDepartamentos()
 	    throws BSoDException {
 
-	EntityManagerFactory entityManagerFactory = Persistence
-		.createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+	EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 	EntityManager entityManager = entityManagerFactory
 		.createEntityManager();
 
@@ -288,7 +284,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    }
 
 	    entityManager.close();
-	    entityManagerFactory.close();
+	    
 	}
 	
 	return departamentos;
