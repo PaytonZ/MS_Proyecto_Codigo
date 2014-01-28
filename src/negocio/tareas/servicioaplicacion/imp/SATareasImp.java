@@ -174,14 +174,13 @@ public class SATareasImp implements SATareas {
 		    query = entityManager.createNamedQuery(
 			    Tarea.QUERY_BUSCAR_TAREA_POR_ID, Tarea.class);
 		    query.setParameter("id", tarea.getId());
-		    resultado = query.getSingleResult();
 		    
-		   //Si existe hacemos un merge
-		    tarea.setId(resultado.getId());
-		    entityManager.merge(tarea);
+		    resultado = query.getSingleResult();
+		
+		    resultado.setNombre(tarea.getNombre());
+		    resultado.setDescripcion(tarea.getDescripcion());
+		    
 		    entityManager.getTransaction().commit();
-		    //No hace falta el detach pro el merge no linkea la entidad por parametro
-		    //entityManager.detach(tarea);
 		    entityManager.close();
 		   
 		}catch(NoResultException e){
