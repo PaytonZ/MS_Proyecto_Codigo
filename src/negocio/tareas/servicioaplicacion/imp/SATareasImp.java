@@ -13,6 +13,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.jpa.EntityManagerFactoryS;
@@ -133,7 +135,6 @@ public class SATareasImp implements SATareas {
 		    
 		    /*si existe la damos de baja*/
 		    resultado.setActivo(false);
-		    
 		    entityManager.getTransaction().commit();
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
@@ -226,6 +227,7 @@ public class SATareasImp implements SATareas {
 		try{
 		    entityManager.getTransaction().begin();
 		    resultado=obtenerTarea(nombreTarea,entityManager);
+		    entityManager.lock(resultado,LockModeType.OPTIMISTIC);
 		    entityManager.detach(resultado);
 		    entityManager.close();
 		    
@@ -288,7 +290,7 @@ public class SATareasImp implements SATareas {
 		
 		try {
         		tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
-        		for(Tarea t : tareas)entityManager.detach(t);
+        		for(Tarea t : tareas){entityManager.detach(t);entityManager.lock(t, LockModeType.OPTIMISTIC);}
         		entityManager.getTransaction().commit();
         		entityManager.close();
         		
