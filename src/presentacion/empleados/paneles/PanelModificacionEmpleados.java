@@ -187,8 +187,6 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				
 				textDNIBusqueda.setEditable(false);
 				
-				Empleado empleado = new Empleado();
-				
 				if ( empleado != null 
 						&& !textDNIBusqueda.getText().equals("")
 						&& !textPrimerApellido.getText().equals("")
@@ -197,7 +195,7 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 						&& cbTipo.getSelectedIndex() > -1
 						&& cbDepartamento.getSelectedIndex() > -1) {
 					
-					empleado.setDNI(textDNIBusqueda.getText());
+					/*empleado.setDNI(textDNIBusqueda.getText());
 					empleado.setNombre(textNombre.getText());
 					
 					try {
@@ -217,6 +215,69 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 					}
 					catch (ClassCastException cce) {
 						JOptionPane.showMessageDialog(contentPane, "No se ha seleccionado un tipo o departamento", "Error", JOptionPane.ERROR_MESSAGE);
+					}*/
+				    
+				    if ( textHoras.isVisible() ) {
+
+					    if ( !textHoras.getText().trim().equals("")) {
+						
+						try {
+						    
+						    if (Integer.valueOf(textHoras.getText().trim()) <= 7) {
+							
+							((EmpleadoParcial)empleado).setHoras( Integer.valueOf(textHoras.getText().trim()));
+							   
+							empleado.setNombre(textNombre.getText());
+							empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
+							
+							if ( textPrimerApellido.getText().equals("") ) {
+								JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+							}
+							else {
+								empleado.setPrimerApellido(textPrimerApellido.getText().trim());
+								
+								if ( !textSegundoApellido.getText().equals("") )
+									empleado.setSegundoApellido(textSegundoApellido.getText().trim());
+								
+								ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_EMPLEADO, empleado);
+							}
+						    }
+						    else {
+							JOptionPane.showMessageDialog(contentPane, "Las horas no pueden superar 7", "Aviso", JOptionPane.WARNING_MESSAGE);
+						    }
+						}
+						catch ( NumberFormatException nu) {
+						    JOptionPane.showMessageDialog(contentPane, "Solo puede insertar números en las horas", "Aviso", JOptionPane.WARNING_MESSAGE);
+						}
+					    }
+					    else {
+						JOptionPane.showMessageDialog(contentPane, "El campo horas no puede estar vacío", "Aviso", JOptionPane.WARNING_MESSAGE);
+					    }
+					}
+					else if ( cbPlaza.isVisible() ) {
+					    
+					    if ( cbPlaza.getSelectedIndex() > -1) {
+						
+						((EmpleadoTotal)empleado).setPlazaAparcamiento( (TipoPlazaParking)cbPlaza.getSelectedItem());
+
+						empleado.setNombre(textNombre.getText());
+						empleado.setDepartamento( (Departamento)cbDepartamento.getSelectedItem());
+						
+						if ( textPrimerApellido.getText().equals("") ) {
+							JOptionPane.showMessageDialog(contentPane, "No ha introducido el primer apellido", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							empleado.setPrimerApellido(textPrimerApellido.getText().trim());
+							
+							if ( !textSegundoApellido.getText().equals("") )
+								empleado.setSegundoApellido(textSegundoApellido.getText().trim());
+							
+							ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_MODIFICAR_EMPLEADO, empleado);
+						}
+					    }
+					    else {
+						JOptionPane.showMessageDialog(contentPane, "Debe seleccionar el tipo de plaza de parking", "Aviso", JOptionPane.WARNING_MESSAGE);
+					    }
 					}
 				}
 				else {

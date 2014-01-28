@@ -24,9 +24,6 @@ import javax.persistence.Version;
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.tareas.objetonegocio.Tarea;
 
-import org.eclipse.persistence.annotations.OptimisticLocking;
-import org.eclipse.persistence.annotations.OptimisticLockingType;
-
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -296,7 +293,14 @@ public class Empleado {
     @Override
     public boolean equals(Object o) {
 
-	return DNI.equals(((Empleado) o).getDNI());
+	boolean iguales = false;
+	
+	if ( o instanceof Empleado) {
+	    
+	    iguales = DNI.equals(((Empleado)o).DNI);
+	}
+	
+	return iguales;
     }
 
     @Override

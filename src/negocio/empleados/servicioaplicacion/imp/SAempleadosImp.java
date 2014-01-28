@@ -178,8 +178,7 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    resultado.setNombre(empleadoActualizar.getNombre());
 	    resultado.setPrimerApellido(empleadoActualizar.getPrimerApellido());
-	    resultado.setSegundoApellido(empleadoActualizar
-		    .getSegundoApellido());
+	    resultado.setSegundoApellido(empleadoActualizar.getSegundoApellido());
 	    resultado.setDepartamento(empleadoActualizar.getDepartamento());
 
 	    if (resultado instanceof EmpleadoParcial) {
@@ -356,17 +355,12 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception ex) {
 
-<<<<<<< HEAD
-	    entityManager.getTransaction().rollback();
-	    throw new BSoDException(ex.getLocalizedMessage());
-=======
 	    if (ex instanceof BSoDException)
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());
 	    }
->>>>>>> branch 'segunda_entrega' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
 	} finally {
 
 	    entityManager.close();
@@ -405,8 +399,8 @@ public class SAempleadosImp implements SAEmpleados {
 	    query.setParameter("arg", dniEmpleado);
 
 	    resultado = query.getSingleResult();
-	    entityManager.lock(resultado,
-		    LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+	    
+	    entityManager.lock(resultado, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 	    Set<Tarea> tareas = new HashSet<>();
 
 	    for (Tarea tarea : listaTareas) {
