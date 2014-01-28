@@ -154,5 +154,5 @@ public class Departamento {
     }
 
     @Version
-    private int version;
+    protected int version;
 }

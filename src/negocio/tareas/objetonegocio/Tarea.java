@@ -164,6 +164,6 @@ public class Tarea {
 	this.activo = activo;
     }
     @Version
-    private int version;
+    protected int version;
     
 }

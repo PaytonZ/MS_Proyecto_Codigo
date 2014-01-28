@@ -291,7 +291,7 @@ public class Empleado {
     }
     
     @Version
-    private int version;
+    protected int version;
     
 
     @Override
