@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
@@ -49,6 +50,8 @@ public class SATareasImp implements SATareas {
 			    Tarea.QUERY_BUSCAR_TAREA_POR_NOMBRE_ALTA, Tarea.class);
 		    query.setParameter("nombre", tareaNueva.getNombre());
 		    resultado = query.getSingleResult();
+		    //Lock del resultado
+		    entityManager.lock(resultado,LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 		    //Si no canta es que existe la tarea
 		    if(resultado.getActivo()){
 			entityManager.getTransaction().rollback();
@@ -112,6 +115,10 @@ public class SATareasImp implements SATareas {
 		try {
 		    entityManager.getTransaction().begin();
 		   
+		    //Cambiado de lugar para adecuarlo al lock
+		    resultado = obtenerTarea(tarea.getNombre(),entityManager);
+		    entityManager.lock(resultado, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+		    
 		    TypedQuery<Empleado> empleadosQuery = entityManager.createNamedQuery(Empleado.QUERY_BUSCAR_EMPLEADOS_POR_TAREA, Empleado.class);
 		    empleadosQuery.setParameter("tarea", tarea);
 		    
@@ -121,7 +128,8 @@ public class SATareasImp implements SATareas {
 			throw new BSoDException("No se puede borrar una tarea con empleados asigandos");
 		    }
 		    
-		    resultado = obtenerTarea(tarea.getNombre(),entityManager);
+		    //resultado = obtenerTarea(tarea.getNombre(),entityManager);
+		    
 		    
 		    /*si existe la damos de baja*/
 		    resultado.setActivo(false);
@@ -176,6 +184,7 @@ public class SATareasImp implements SATareas {
 		    query.setParameter("id", tarea.getId());
 		    
 		    resultado = query.getSingleResult();
+		    entityManager.lock(resultado, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 		
 		    resultado.setNombre(tarea.getNombre());
 		    resultado.setDescripcion(tarea.getDescripcion());
