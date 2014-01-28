@@ -21,7 +21,8 @@ import javax.persistence.Version;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "negocio.empleados.objetonegocio.EmpleadoTotal.findByid", query = "select obj from EmpleadoTotal obj where obj.id = :id"),
-	@NamedQuery(name = "negocio.empleados.objetonegocio.EmpleadoTotal.findByplazaAparcamiento", query = "select obj from EmpleadoTotal obj where obj.plazaAparcamiento = :plazaAparcamiento") })
+	@NamedQuery(name = "negocio.empleados.objetonegocio.EmpleadoTotal.findByplazaAparcamiento", query = "select obj from EmpleadoTotal obj where obj.plazaAparcamiento = :plazaAparcamiento"),
+})
 public class EmpleadoTotal extends Empleado implements Serializable {
     /**
      * <!-- begin-UML-doc --> <!-- end-UML-doc -->

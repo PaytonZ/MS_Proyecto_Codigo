@@ -21,7 +21,7 @@
 	     <property name="javax.persistence.jdbc.password" value="zabalamanco" />
 		 
 <!-- 		 Crear o extender el schema -->
- 	<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>  
+ 	<property name="eclipselink.ddl-generation" value="none"/>  
 <!--  		<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
 		
 

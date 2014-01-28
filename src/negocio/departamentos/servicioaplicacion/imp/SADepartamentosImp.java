@@ -51,8 +51,8 @@ public class SADepartamentosImp implements SADepartamentos {
 		    Departamento.QUERY_BUSCAR_DEPARTAMENTO_POR_NOMBRE_ALTA, Departamento.class);
 	    query.setParameter("nombre", departamentoNuevo.getNombre());
 	    resultado = query.getSingleResult();
-	    //Si no canta es que existe la tarea
-	    if(resultado.getActivo()){
+	    //Si no canta es que existe el departamento
+	    if(resultado.getActivo()) {
 		entityManager.getTransaction().rollback();
 		 //Cierre de entidades de persistencia
 		 entityManager.close();
@@ -82,7 +82,11 @@ public class SADepartamentosImp implements SADepartamentos {
 	    entityManager.detach(departamentoNuevo);
 	    //Cierre de entidades de persistencia
 	    entityManager.close();
-	  
+	    
+	} catch (BSoDException be) {
+	    
+	    throw be;
+	    
 	} catch (Exception e) {
 	    
 	    throw new BSoDException(e.getLocalizedMessage());

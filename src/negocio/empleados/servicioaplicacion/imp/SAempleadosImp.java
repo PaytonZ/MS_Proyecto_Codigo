@@ -60,7 +60,64 @@ public class SAempleadosImp implements SAEmpleados {
 			"El empleado ya existe en la base de datos");
 
 	    } else {
-		entityManager.getTransaction().commit();
+		
+		if ( resultado.getTipo().equals(empleadoNuevo.getTipo())) {
+        		resultado.setNombre(empleadoNuevo.getNombre());
+        		resultado.setPrimerApellido(empleadoNuevo.getPrimerApellido());
+        		resultado.setSegundoApellido(empleadoNuevo.getSegundoApellido());
+        		resultado.setTipo(empleadoNuevo.getTipo());
+        		resultado.setTarea(empleadoNuevo.getTarea());
+        		resultado.setDepartamento(empleadoNuevo.getDepartamento());
+        		resultado.setActivo(true);
+        		
+        		entityManager.getTransaction().commit();
+		}
+		else {
+		    if ( empleadoNuevo instanceof EmpleadoTotal) {
+			
+			entityManager.remove(resultado);
+			entityManager.getTransaction().commit();
+			
+			entityManager.getTransaction().begin();
+			
+			resultado = new EmpleadoTotal();
+			resultado.setDNI(empleadoNuevo.getDNI());
+        		resultado.setNombre(empleadoNuevo.getNombre());
+        		resultado.setPrimerApellido(empleadoNuevo.getPrimerApellido());
+        		resultado.setSegundoApellido(empleadoNuevo.getSegundoApellido());
+        		resultado.setTipo(empleadoNuevo.getTipo());
+        		resultado.setTarea(empleadoNuevo.getTarea());
+        		resultado.setDepartamento(empleadoNuevo.getDepartamento());
+        		((EmpleadoTotal)resultado).setPlazaAparcamiento(((EmpleadoTotal) empleadoNuevo).getPlazaAparcamiento());
+        		
+        		entityManager.persist(resultado);
+        		
+			entityManager.getTransaction().commit();
+        		
+		    }
+		    else if ( empleadoNuevo instanceof EmpleadoParcial) {
+			
+			entityManager.remove(resultado);
+			entityManager.getTransaction().commit();
+			
+			entityManager.getTransaction().begin();
+			
+			resultado = new EmpleadoParcial();
+			resultado.setDNI(empleadoNuevo.getDNI());
+        		resultado.setNombre(empleadoNuevo.getNombre());
+        		resultado.setPrimerApellido(empleadoNuevo.getPrimerApellido());
+        		resultado.setSegundoApellido(empleadoNuevo.getSegundoApellido());
+        		resultado.setTipo(empleadoNuevo.getTipo());
+        		resultado.setTarea(empleadoNuevo.getTarea());
+        		resultado.setDepartamento(empleadoNuevo.getDepartamento());
+        		((EmpleadoParcial)resultado).setHoras(((EmpleadoParcial) empleadoNuevo).getHoras());
+
+        		entityManager.persist(resultado);
+        		
+			entityManager.getTransaction().commit();
+		    }
+		}
+		
 
 		empleadoNuevo.setId(resultado.getId());
 	    }
@@ -69,19 +126,19 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.persist(empleadoNuevo);
 
 	    entityManager.getTransaction().commit();
+	    
+	} catch (BSoDException be) {
+	    
+	    throw be;
 
 	} catch (Exception ex) {
-	    if (ex instanceof BSoDException)
-		throw ex;
-	    else {
-		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getLocalizedMessage());
-	    }
+	    
+	    entityManager.getTransaction().rollback();
+	    throw new BSoDException(ex.getLocalizedMessage());
 
 	} finally {
 	    entityManager.detach(empleadoNuevo);
 	    entityManager.close();
-
 	}
 
 	return empleadoNuevo;
