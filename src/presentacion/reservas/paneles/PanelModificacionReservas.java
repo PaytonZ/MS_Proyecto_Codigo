@@ -10,7 +10,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 

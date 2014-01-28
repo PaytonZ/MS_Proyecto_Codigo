@@ -5,10 +5,10 @@ package presentacion.comandos.tarea;
 
 import negocio.excepciones.BSoDException;
 import negocio.factorias.serviciosAplicacion.FactorySA;
+import negocio.tareas.objetonegocio.Tarea;
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandResponse;
-import negocio.tareas.objetonegocio.Tarea;
 
 /** 
  * <!-- begin-UML-doc -->

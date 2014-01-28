@@ -3,6 +3,10 @@
  */
 package integracion.reservas.dao.imp;
 
+import integracion.reservas.dao.DAOReserva;
+import integracion.transacciones.transaction.Transaction;
+import integracion.transacciones.transactionManager.TransactionManager;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,9 +16,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import integracion.reservas.dao.DAOReserva;
-import integracion.transacciones.transaction.Transaction;
-import integracion.transacciones.transactionManager.TransactionManager;
 import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 

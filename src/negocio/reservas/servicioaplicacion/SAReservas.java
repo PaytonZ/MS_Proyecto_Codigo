@@ -3,10 +3,10 @@
  */
 package negocio.reservas.servicioaplicacion;
 
+import java.util.List;
+
 import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
-
-import java.util.List;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

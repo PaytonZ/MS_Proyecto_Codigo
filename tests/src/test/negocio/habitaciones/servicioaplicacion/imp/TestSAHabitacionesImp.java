@@ -1,6 +1,7 @@
 package test.negocio.habitaciones.servicioaplicacion.imp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;

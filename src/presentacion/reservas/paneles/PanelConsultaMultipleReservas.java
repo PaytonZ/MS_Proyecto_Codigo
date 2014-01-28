@@ -22,9 +22,7 @@ import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
-
 import presentacion.GUIPanelesInterfaz;
-
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 

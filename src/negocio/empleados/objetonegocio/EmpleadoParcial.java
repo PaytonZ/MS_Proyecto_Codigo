@@ -3,10 +3,9 @@
  */
 package negocio.empleados.objetonegocio;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 
 /** 

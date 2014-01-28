@@ -3,7 +3,6 @@
  */
 package negocio.empleados.objetonegocio;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.tareas.objetonegocio.Tarea;
@@ -48,17 +48,8 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBysegundoApellido", query = "select obj from Empleado obj where obj.segundoApellido = :segundoApellido"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findBydepartamento", query = "select obj from Empleado obj where obj.departamento = :departamento and obj.activo = true"),
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByactivo", query = "select obj from Empleado obj where obj.activo = :activo"),
-	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj where obj.DNI = :dni")})
-
-public class Empleado implements Serializable {
-
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -361764100211108078L;
-    /**
-     * 
-     */
+	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findalleveninactive", query = "select obj from Empleado obj where obj.DNI = :dni") })
+public class Empleado {
 
     public static final String QUERY_BUSCAR_EMPLEADOS_POR_DNI = "negocio.empleados.objetonegocio.Empleado.findByDni";
     public static final String QUERY_BUSCAR_TODOS_LOS_EMPLEADOS_ = "negocio.empleados.objetonegocio.Empleado.findAll";
@@ -298,6 +289,10 @@ public class Empleado implements Serializable {
     public void setTarea(Set<Tarea> tarea) {
 	this.tarea = tarea;
     }
+    
+    @Version
+    private int version;
+    
 
     @Override
     public boolean equals(Object o) {

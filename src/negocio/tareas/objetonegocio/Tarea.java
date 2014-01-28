@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
 import negocio.empleados.objetonegocio.Empleado;
 
@@ -162,4 +163,7 @@ public class Tarea {
     public void setActivo(Boolean activo) {
 	this.activo = activo;
     }
+    @Version
+    private int version;
+    
 }

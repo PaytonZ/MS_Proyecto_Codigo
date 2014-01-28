@@ -5,13 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
-
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
 import presentacion.comandos.Command;
 import presentacion.comandos.IDEventos;
 import presentacion.comandos.commandFactory.CommandFactory;

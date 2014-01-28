@@ -5,6 +5,8 @@ package presentacion.empleados.paneles;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -18,8 +20,8 @@ import javax.swing.JTextField;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
-import negocio.empleados.objetonegocio.EmpleadoParcial;
 import negocio.empleados.objetonegocio.Empleado.TipoEmpleado;
+import negocio.empleados.objetonegocio.EmpleadoParcial;
 import negocio.empleados.objetonegocio.EmpleadoTotal;
 import negocio.empleados.objetonegocio.EmpleadoTotal.TipoPlazaParking;
 import negocio.excepciones.BSoDException;
@@ -27,9 +29,6 @@ import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -20,17 +21,15 @@ import javax.swing.JTextField;
 
 import negocio.departamentos.objetonegocio.Departamento;
 import negocio.empleados.objetonegocio.Empleado;
-import negocio.empleados.objetonegocio.EmpleadoTotal;
 import negocio.empleados.objetonegocio.Empleado.TipoEmpleado;
 import negocio.empleados.objetonegocio.EmpleadoParcial;
+import negocio.empleados.objetonegocio.EmpleadoTotal;
 import negocio.empleados.objetonegocio.EmpleadoTotal.TipoPlazaParking;
 import negocio.excepciones.BSoDException;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-
-import javax.swing.ImageIcon;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

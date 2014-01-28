@@ -1,9 +1,10 @@
 package integracion.departamentos.dao.imp;
 
+import integracion.departamentos.dao.DAODepartamento;
+
 import javax.persistence.EntityManager;
 
 import negocio.departamentos.objetonegocio.Departamento;
-import integracion.departamentos.dao.DAODepartamento;
 
 public class DAODepartamentoImp implements DAODepartamento {
 

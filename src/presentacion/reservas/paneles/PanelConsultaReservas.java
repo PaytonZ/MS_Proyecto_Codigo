@@ -3,6 +3,9 @@
  */
 package presentacion.reservas.paneles;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,16 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import negocio.clientes.transfer.TransferCliente;
 import negocio.excepciones.BSoDException;
 import negocio.reservas.transfer.TransferReserva;
 import net.miginfocom.swing.MigLayout;
 import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

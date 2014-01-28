@@ -22,8 +22,6 @@ import presentacion.GUIPanelesInterfaz;
 import presentacion.comandos.IDEventos;
 import presentacion.controladores.aplicacion.controladoraplicacion.ControladorAplicacion;
 
-import javax.swing.JCheckBox;
-
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 

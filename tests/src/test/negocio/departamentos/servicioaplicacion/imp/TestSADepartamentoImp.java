@@ -12,6 +12,7 @@ import negocio.departamentos.objetonegocio.Departamento;
 import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.departamentos.servicioaplicacion.imp.SADepartamentosImp;
 import negocio.excepciones.BSoDException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

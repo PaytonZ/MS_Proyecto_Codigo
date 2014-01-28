@@ -8,10 +8,10 @@ import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.departamentos.dao.DAODepartamento;
 import integracion.departamentos.dao.imp.DAODepartamentoImp;
 import integracion.factorias.factoriaDAO.FactoriaDAO;
-import integracion.reservas.dao.DAOReserva;
-import integracion.reservas.dao.imp.DAOReservaImp;
 import integracion.habitaciones.dao.DAOHabitacion;
 import integracion.habitaciones.dao.imp.DAOHabitacionImp;
+import integracion.reservas.dao.DAOReserva;
+import integracion.reservas.dao.imp.DAOReservaImp;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

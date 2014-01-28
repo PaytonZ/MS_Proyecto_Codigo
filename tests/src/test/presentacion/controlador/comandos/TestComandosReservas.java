@@ -2,7 +2,6 @@ package test.presentacion.controlador.comandos;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import integracion.clientes.dao.DAOCliente;
 import integracion.clientes.dao.imp.DAOClienteImp;
 import integracion.habitaciones.dao.DAOHabitacion;
@@ -18,7 +17,6 @@ import negocio.excepciones.BSoDException;
 import negocio.habitaciones.transfer.TransferHabitacion;
 import negocio.habitaciones.transfer.TransferHabitacionNormal;
 import negocio.reservas.transfer.TransferReserva;
-
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;

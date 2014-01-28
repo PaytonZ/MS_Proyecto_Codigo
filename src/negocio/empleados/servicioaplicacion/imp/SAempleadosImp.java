@@ -10,16 +10,13 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.empleados.servicioaplicacion.SAEmpleados;
 import negocio.excepciones.BSoDException;
-import negocio.tareas.objetonegocio.Tarea;
-import presentacion.principal.HotelManager;
-
 import negocio.jpa.EntityManagerFactoryS;
+import negocio.tareas.objetonegocio.Tarea;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -50,7 +47,7 @@ public class SAempleadosImp implements SAEmpleados {
 		    Empleado.class);
 	    query.setParameter("dni", empleadoNuevo.getDNI());
 	    resultado = query.getSingleResult();
-
+	   
 	    if (resultado.isActivo()) {
 
 		entityManager.getTransaction().rollback();

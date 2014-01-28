@@ -3,9 +3,9 @@
  */
 package integracion.transacciones.transactionManager;
 
-import negocio.excepciones.BSoDException;
 import integracion.transacciones.transaction.Transaction;
 import integracion.transacciones.transactionManager.imp.TransactionManagerImp;
+import negocio.excepciones.BSoDException;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import negocio.departamentos.objetonegocio.Departamento;
@@ -16,7 +15,6 @@ import negocio.departamentos.servicioaplicacion.SADepartamentos;
 import negocio.empleados.objetonegocio.Empleado;
 import negocio.excepciones.BSoDException;
 import negocio.jpa.EntityManagerFactoryS;
-import presentacion.principal.HotelManager;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
