@@ -36,7 +36,6 @@ import org.eclipse.persistence.annotations.OptimisticLockingType;
  */
 @Entity
 @Table(name = "empleados", uniqueConstraints = { @UniqueConstraint(columnNames = "DNI") })
-@OptimisticLocking(type = OptimisticLockingType.CHANGED_COLUMNS)
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
 	@NamedQuery(name = "negocio.empleados.objetonegocio.Empleado.findByDni", query = "select e from Empleado e where e.DNI = :arg and e.activo = true"),
@@ -291,7 +290,7 @@ public class Empleado {
     }
     
     @Version
-    protected int version;
+    private int version;
     
 
     @Override

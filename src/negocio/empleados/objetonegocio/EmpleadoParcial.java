@@ -6,7 +6,9 @@ package negocio.empleados.objetonegocio;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -37,7 +39,8 @@ public class EmpleadoParcial extends Empleado implements Serializable {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a JPA (com.ibm.xtools.transform.uml2.ejb3.java.jpa.internal.UML2JPATransform)"
 	 */
-	private Object id;
+	@Id
+	private int id;
 	
 	private int horas;
 	
@@ -48,6 +51,8 @@ public class EmpleadoParcial extends Empleado implements Serializable {
 	public void setHoras(int horas) {
 	    this.horas = horas;
 	}
+	@Version
+	 private int version;
 	 
 	@Override
 	public String toString() {

@@ -40,7 +40,7 @@ public class TestSAEmpleadosImp {
 	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
 	}
-
+	
 	assertNotNull(e1);
 	assertTrue(e1.getId() >= 0);
 	assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
@@ -54,13 +54,13 @@ public class TestSAEmpleadosImp {
 	    assertTrue(saempleados.borrarEmpleado(e.getDNI()));
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
+	    System.out.println(e2.toString());
 	}
 	try {
 	    assertFalse(saempleados.borrarEmpleado(String.valueOf(new Random()
 		    .nextInt(99999))));
 	} catch (BSoDException e2) {
-	    // TODO Auto-generated catch block
+	    System.out.println(e2.toString());
 	}
 
     }
@@ -96,8 +96,7 @@ public class TestSAEmpleadosImp {
 	try {
 	    e1 = saempleados.obtenerEmpleado(e.getDNI());
 	} catch (BSoDException e2) {
-	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
+	    System.out.println(e2.toString());
 	}
 	assertTrue(e1.getId() >= 0);
 	assertTrue(e.getDNI().equalsIgnoreCase(e1.getDNI()));
@@ -125,7 +124,7 @@ public class TestSAEmpleadosImp {
 	    e1 = saempleados.anadirEmpleado(e);
 	} catch (BSoDException e2) {
 	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
+	    System.out.println(e2.toString());
 	}
 
 	assertNotNull(e1);
@@ -136,7 +135,7 @@ public class TestSAEmpleadosImp {
 		e1.getPrimerApellido()));
 	assertTrue(e.getSegundoApellido().equalsIgnoreCase(
 		e1.getSegundoApellido()));
-
+	e1=null;
 	Tarea t = new Tarea();
 	t.setDescripcion("asdasd");
 	t.setNombre(String.valueOf(new Random().nextInt(99999)));
@@ -146,8 +145,7 @@ public class TestSAEmpleadosImp {
 	try {
 	    t1 = satareas.anadirTarea(t);
 	} catch (BSoDException e2) {
-	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
+	    System.out.println(e2.toString());
 	}
 
 	assertNotNull(t1);
@@ -170,8 +168,7 @@ public class TestSAEmpleadosImp {
 	try {
 	    j = saempleados.obtenerEmpleadosporTareas(t1);
 	} catch (BSoDException e2) {
-	    // TODO Auto-generated catch block
-	    e2.printStackTrace();
+	    System.out.println(e2.toString());
 	}
 
 	assertNotNull(j);
