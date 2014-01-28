@@ -80,7 +80,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 
 	} finally {
@@ -142,7 +142,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw e;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(e.getMessage());
+		throw new BSoDException(e.getLocalizedMessage());
 	    }
 	} finally {
 
@@ -206,7 +206,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 	    entityManager.detach(empleadoActualizar);
@@ -259,7 +259,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 	    if (resultado != null)
@@ -301,7 +301,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 	    for (Empleado emp : resultados) {
@@ -355,7 +355,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 
@@ -440,7 +440,7 @@ public class SAempleadosImp implements SAEmpleados {
 		throw ex;
 	    else {
 		entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	}
 

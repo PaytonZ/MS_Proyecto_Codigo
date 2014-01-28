@@ -83,8 +83,12 @@ public class SADepartamentosImp implements SADepartamentos {
 	    //Cierre de entidades de persistencia
 	    entityManager.close();
 	  
-	    return departamentoNuevo;
-	}   
+	} catch (Exception e) {
+	    
+	    throw new BSoDException(e.getLocalizedMessage());
+	}
+	
+	return departamentoNuevo;
 	
     }
 
@@ -126,12 +130,12 @@ public class SADepartamentosImp implements SADepartamentos {
 	} catch (NoResultException nr) {
 
 	    entityManager.getTransaction().rollback();
-	   throw new BSoDException(nr.getMessage());
+	   throw new BSoDException(nr.getLocalizedMessage());
 	}catch (Exception ex) {
 	    entityManager.getTransaction().rollback();
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 
@@ -182,7 +186,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
 		 entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 	    if ( resultado != null )
@@ -229,7 +233,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
 		 entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    } 
 	}finally {
 	    if ( d != null) {
@@ -273,7 +277,7 @@ public class SADepartamentosImp implements SADepartamentos {
 	    if(ex instanceof BSoDException) throw ex;
 	    else{
 		 entityManager.getTransaction().rollback();
-		throw new BSoDException(ex.getMessage());
+		throw new BSoDException(ex.getLocalizedMessage());
 	    }
 	} finally {
 	    

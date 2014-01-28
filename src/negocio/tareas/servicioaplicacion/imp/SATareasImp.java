@@ -3,6 +3,7 @@
  */
 package negocio.tareas.servicioaplicacion.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -81,8 +82,13 @@ public class SATareasImp implements SATareas {
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    
-		    return tareaNueva;
-		}   
+		}
+		catch (Exception e) {
+		    throw new BSoDException(e.getLocalizedMessage());
+		}
+		
+		
+		return tareaNueva;
 	}
 	
 
@@ -94,11 +100,13 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Boolean borrarTarea(Tarea tarea) throws BSoDException {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+
 	    EntityManagerFactory entityManagerFactory =EntityManagerFactoryS.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
+		
+		Boolean borrado = false;
+		
 		Tarea resultado = null;
 		
 		try {
@@ -121,6 +129,7 @@ public class SATareasImp implements SATareas {
 		    //Cierre de entidades de persistencia
 		    entityManager.close();
 		    
+		    borrado = true;
 		    
 		} catch(BSoDException e){
 		    
@@ -136,8 +145,11 @@ public class SATareasImp implements SATareas {
 		    //Solo ocurre si falla el commit!
 		    throw new BSoDException("Error en la transaccion");
 		}
-		// end-user-code
-		return true;
+		catch (Exception e) {
+		    throw new BSoDException(e.getLocalizedMessage());
+		}
+
+		return borrado;
 	}
 
 	/**
@@ -148,8 +160,7 @@ public class SATareasImp implements SATareas {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public Tarea actualizarTarea(Tarea tarea) throws BSoDException {
-		// begin-user-code
-		// TODO Ap�ndice de m�todo generado autom�ticamente
+	    
 	    EntityManagerFactory entityManagerFactory = EntityManagerFactoryS.getEntityManagerFactory();
 		EntityManager entityManager = entityManagerFactory
 			.createEntityManager();
@@ -184,7 +195,9 @@ public class SATareasImp implements SATareas {
 		    //Solo ocurre si falla el commit!
 		    throw new BSoDException("Error en la transaccion");
 		}
-		// end-user-code
+		catch (Exception e) {
+		    throw new BSoDException(e.getLocalizedMessage());
+		}
 	    
 	    return tarea;
 	}
@@ -214,6 +227,11 @@ public class SATareasImp implements SATareas {
 		   
 		    throw e;
 		}
+		catch (Exception e) {
+		    throw new BSoDException(e.getLocalizedMessage());
+		}
+		
+		
 		return resultado;
 	}
 	
@@ -235,9 +253,11 @@ public class SATareasImp implements SATareas {
 	    }catch(IllegalStateException e){
 		//Solo ocurre si la transaccion no llega inicializada! 
 		throw  new BSoDException("No se ha podido realizar la transaccion");
+	    } catch (Exception e) {
+		throw new BSoDException(e.getLocalizedMessage());
 	    }
-		return resultado;
-		// end-user-code
+	
+	    return resultado;
 	}
 
 	/**
@@ -255,14 +275,21 @@ public class SATareasImp implements SATareas {
 	    	EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
-		List<Tarea> tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
-		for(Tarea t : tareas)entityManager.detach(t);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		List<Tarea> tareas = new ArrayList<>();
+		
+		try {
+        		tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
+        		for(Tarea t : tareas)entityManager.detach(t);
+        		entityManager.getTransaction().commit();
+        		entityManager.close();
+        		
+		} catch ( Exception e) {
+		    
+		    throw new BSoDException(e.getLocalizedMessage());
+		}
 		
 		
-	return tareas;
+		return tareas;
 		
-	    
 	}
 }
