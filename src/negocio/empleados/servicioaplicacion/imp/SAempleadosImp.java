@@ -356,8 +356,17 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception ex) {
 
+<<<<<<< HEAD
 	    entityManager.getTransaction().rollback();
 	    throw new BSoDException(ex.getLocalizedMessage());
+=======
+	    if (ex instanceof BSoDException)
+		throw ex;
+	    else {
+		entityManager.getTransaction().rollback();
+		throw new BSoDException(ex.getLocalizedMessage());
+	    }
+>>>>>>> branch 'segunda_entrega' of https://github.com/PaytonZ/MS_Proyecto_Codigo.git
 	} finally {
 
 	    entityManager.close();
