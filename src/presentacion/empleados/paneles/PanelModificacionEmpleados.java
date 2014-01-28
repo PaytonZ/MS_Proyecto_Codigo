@@ -318,7 +318,6 @@ public class PanelModificacionEmpleados extends JPanel implements GUIPanelesInte
 				textSegundoApellido.setEditable(true);
 				
 				cbTipo.setSelectedItem(empleado.getTipo());
-//				cbTipo.setEnabled(true);
 				
 				ControladorAplicacion.getInstance().handleRequest(IDEventos.EVENTO_CONSULTAR_TODOS_DEPARTAMENTOS_V_MODIFICAR_EMPLEADO, null);
 
