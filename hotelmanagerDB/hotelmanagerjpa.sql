@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `alex` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `alex`;
+CREATE DATABASE  IF NOT EXISTS `hotelmanagerDB` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `hotelmanagerDB`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: test.motopoliza.com    Database: alex
+-- Host: test.motopoliza.com    Database: hotelmanagerDB
 -- ------------------------------------------------------
 -- Server version	5.5.34
 
