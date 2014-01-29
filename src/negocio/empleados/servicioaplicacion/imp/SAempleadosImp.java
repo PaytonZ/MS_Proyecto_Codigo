@@ -76,9 +76,12 @@ public class SAempleadosImp implements SAEmpleados {
 		    if ( empleadoNuevo instanceof EmpleadoTotal) {
 			
 			entityManager.remove(resultado);
-			entityManager.getTransaction().commit();
 			
-			entityManager.getTransaction().begin();
+			entityManager.detach(resultado);
+			//Viola la atomicidad de la operacion
+			//entityManager.getTransaction().commit();
+			
+			//entityManager.getTransaction().begin();
 			
 			resultado = new EmpleadoTotal();
 			resultado.setDNI(empleadoNuevo.getDNI());
@@ -98,9 +101,12 @@ public class SAempleadosImp implements SAEmpleados {
 		    else if ( empleadoNuevo instanceof EmpleadoParcial) {
 			
 			entityManager.remove(resultado);
-			entityManager.getTransaction().commit();
 			
-			entityManager.getTransaction().begin();
+			entityManager.detach(resultado);
+			//Viola la atomicidad de la operacion
+			//entityManager.getTransaction().commit();
+			
+			//entityManager.getTransaction().begin();
 			
 			resultado = new EmpleadoParcial();
 			resultado.setDNI(empleadoNuevo.getDNI());

@@ -69,7 +69,7 @@ public class SADepartamentosImp implements SADepartamentos {
 		
 		return resultado;
 	    }
-	} catch (NoResultException ex) {// No se encontro la tarea.
+	} catch (NoResultException ex) {// No se encontro el departamento.
 	    entityManager.persist(departamentoNuevo);
 	    
 	    entityManager.getTransaction().commit();
