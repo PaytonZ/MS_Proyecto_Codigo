@@ -290,7 +290,10 @@ public class SATareasImp implements SATareas {
 		
 		try {
         		tareas = entityManager.createNamedQuery("Tarea.findAll", Tarea.class).getResultList();
-        		for(Tarea t : tareas){entityManager.detach(t);entityManager.lock(t, LockModeType.OPTIMISTIC);}
+        		for(Tarea t : tareas){
+        		    entityManager.lock(t, LockModeType.OPTIMISTIC);
+        		    entityManager.detach(t);
+        		}
         		entityManager.getTransaction().commit();
         		entityManager.close();
         		
