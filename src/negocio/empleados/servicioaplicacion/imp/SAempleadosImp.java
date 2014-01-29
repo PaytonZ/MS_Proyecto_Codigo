@@ -185,6 +185,7 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    resultado.setActivo(false);
 	    resultado.setTarea(new HashSet<Tarea>());
+	    resultado.setDepartamento(null);
 
 	    entityManager.getTransaction().commit();
 
