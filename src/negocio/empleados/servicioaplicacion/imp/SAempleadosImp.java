@@ -54,10 +54,7 @@ public class SAempleadosImp implements SAEmpleados {
 		    LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 
 	    if (resultado.isActivo()) {
-
-		entityManager.getTransaction().rollback();
-		throw new BSoDException(
-			"El empleado ya existe en la base de datos");
+		throw new BSoDException("El empleado ya existe en la base de datos");
 
 	    } else {
 		
