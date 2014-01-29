@@ -74,31 +74,6 @@ LOCK TABLES `departamentos` WRITE;
 INSERT INTO `departamentos` VALUES (1,1,'2',1);
 /*!40000 ALTER TABLE `departamentos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `empleadoparcial`
---
-
-DROP TABLE IF EXISTS `empleadoparcial`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `empleadoparcial` (
-  `ID` int(11) NOT NULL,
-  `HORAS` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  CONSTRAINT `FK_EMPLEADOPARCIAL_ID` FOREIGN KEY (`ID`) REFERENCES `empleados` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `empleadoparcial`
---
-
-LOCK TABLES `empleadoparcial` WRITE;
-/*!40000 ALTER TABLE `empleadoparcial` DISABLE KEYS */;
-/*!40000 ALTER TABLE `empleadoparcial` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `empleados`
 --
@@ -133,6 +108,56 @@ LOCK TABLES `empleados` WRITE;
 INSERT INTO `empleados` VALUES (1,'EmpleadoTotal','23',1,'32','32','32',0,1,1);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
+--
+-- Table structure for table `tareas`
+--
+
+DROP TABLE IF EXISTS `tareas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tareas` (
+  `ID` int(11) NOT NULL,
+  `ACTIVO` tinyint(1) DEFAULT '0',
+  `DESCRIPCION` varchar(255) DEFAULT NULL,
+  `NOMBRE` varchar(255) DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `UNQ_tareas_0` (`NOMBRE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tareas`
+--
+
+LOCK TABLES `tareas` WRITE;
+/*!40000 ALTER TABLE `tareas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tareas` ENABLE KEYS */;
+UNLOCK TABLES;
+--
+-- Table structure for table `empleadoparcial`
+--
+
+DROP TABLE IF EXISTS `empleadoparcial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `empleadoparcial` (
+  `ID` int(11) NOT NULL,
+  `HORAS` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `FK_EMPLEADOPARCIAL_ID` FOREIGN KEY (`ID`) REFERENCES `empleados` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `empleadoparcial`
+--
+
+LOCK TABLES `empleadoparcial` WRITE;
+/*!40000 ALTER TABLE `empleadoparcial` DISABLE KEYS */;
+/*!40000 ALTER TABLE `empleadoparcial` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `empleados_tareas`
@@ -268,32 +293,7 @@ INSERT INTO `sequence` VALUES ('SEQ_GEN',0);
 /*!40000 ALTER TABLE `sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `tareas`
---
 
-DROP TABLE IF EXISTS `tareas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tareas` (
-  `ID` int(11) NOT NULL,
-  `ACTIVO` tinyint(1) DEFAULT '0',
-  `DESCRIPCION` varchar(255) DEFAULT NULL,
-  `NOMBRE` varchar(255) DEFAULT NULL,
-  `VERSION` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `UNQ_tareas_0` (`NOMBRE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tareas`
---
-
-LOCK TABLES `tareas` WRITE;
-/*!40000 ALTER TABLE `tareas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tareas` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
