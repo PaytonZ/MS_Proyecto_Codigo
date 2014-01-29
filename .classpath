@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="lib/jpalibs/moxy/javax.xml.stream_1.0.1.v201004272200.jar"/>
 	<classpathentry kind="lib" path="lib/jpalibs/sdo/commonj.sdo_2.1.1.v201112051852.jar"/>
 	<classpathentry kind="lib" path="lib/jpalibs/eclipselink.jar"/>
+	<classpathentry kind="lib" path="lib/objectdb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
