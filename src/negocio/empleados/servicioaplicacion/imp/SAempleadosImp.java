@@ -79,11 +79,10 @@ public class SAempleadosImp implements SAEmpleados {
 			
 			entityManager.remove(resultado);
 			
-			entityManager.detach(resultado);
-			//Viola la atomicidad de la operacion
-			//entityManager.getTransaction().commit();
 			
-			//entityManager.getTransaction().begin();
+			entityManager.getTransaction().commit();
+		
+			entityManager.getTransaction().begin();
 			
 			resultado = new EmpleadoTotal();
 			resultado.setDNI(empleadoNuevo.getDNI());
@@ -106,11 +105,9 @@ public class SAempleadosImp implements SAEmpleados {
 			
 			entityManager.remove(resultado);
 			
-			entityManager.detach(resultado);
-			//Viola la atomicidad de la operacion
-			//entityManager.getTransaction().commit();
+			entityManager.getTransaction().commit();
 			
-			//entityManager.getTransaction().begin();
+			entityManager.getTransaction().begin();
 			
 			resultado = new EmpleadoParcial();
 			resultado.setDNI(empleadoNuevo.getDNI());
