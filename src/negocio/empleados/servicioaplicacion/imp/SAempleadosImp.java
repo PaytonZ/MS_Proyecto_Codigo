@@ -71,6 +71,8 @@ public class SAempleadosImp implements SAEmpleados {
         		resultado.setActivo(true);
         		
         		entityManager.getTransaction().commit();
+			
+			empleadoNuevo.setId(resultado.getId());
 		}
 		else {
 		    if ( empleadoNuevo instanceof EmpleadoTotal) {
@@ -93,6 +95,8 @@ public class SAempleadosImp implements SAEmpleados {
         		entityManager.persist(resultado);
         		
 			entityManager.getTransaction().commit();
+			
+			empleadoNuevo.setId(resultado.getId());
         		
 		    }
 		    else if ( empleadoNuevo instanceof EmpleadoParcial) {
@@ -115,6 +119,8 @@ public class SAempleadosImp implements SAEmpleados {
         		entityManager.persist(resultado);
         		
 			entityManager.getTransaction().commit();
+			
+			empleadoNuevo.setId(resultado.getId());
 		    }
 		}
 		
