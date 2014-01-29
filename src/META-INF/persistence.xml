@@ -15,7 +15,7 @@
 		  <!-- 	  eclipselink.logging.level ->   Cambiar este valor a OFF cuando se entrege la APP -->
 	
 	     <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/hotelmanagerdb" />
+	     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/hotelmanagerDB" />
 	     <property name="javax.persistence.jdbc.user" value="root" />
 	     <property name="javax.persistence.jdbc.password" value="root" />
 		 
