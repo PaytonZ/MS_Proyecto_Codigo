@@ -71,8 +71,6 @@ public class SAempleadosImp implements SAEmpleados {
         		resultado.setActivo(true);
         		
         		entityManager.getTransaction().commit();
-			
-			empleadoNuevo.setId(resultado.getId());
 		}
 		else {
 		    if ( empleadoNuevo instanceof EmpleadoTotal) {
@@ -97,8 +95,6 @@ public class SAempleadosImp implements SAEmpleados {
         		entityManager.persist(resultado);
         		
 			entityManager.getTransaction().commit();
-			
-			empleadoNuevo.setId(resultado.getId());
         		
 		    }
 		    else if ( empleadoNuevo instanceof EmpleadoParcial) {
@@ -122,8 +118,6 @@ public class SAempleadosImp implements SAEmpleados {
         		entityManager.persist(resultado);
         		
 			entityManager.getTransaction().commit();
-			
-			empleadoNuevo.setId(resultado.getId());
 		    }
 		}
 		
@@ -137,6 +131,7 @@ public class SAempleadosImp implements SAEmpleados {
 	    entityManager.getTransaction().commit();
 	    
 	} catch (BSoDException be) {
+	    entityManager.getTransaction().rollback();
 	    
 	    throw be;
 
@@ -187,6 +182,7 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    resultado.setActivo(false);
 	    resultado.setTarea(new HashSet<Tarea>());
+	    resultado.setDepartamento(null);
 
 	    entityManager.getTransaction().commit();
 
@@ -199,8 +195,10 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception e) {
 
-	    if (e instanceof BSoDException)
+	    if (e instanceof BSoDException) {
+		    entityManager.getTransaction().rollback();
 		throw e;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(e.getLocalizedMessage());
@@ -268,8 +266,11 @@ public class SAempleadosImp implements SAEmpleados {
 		    "No se ha podido actualizar el empleado, por que no existe");
 	} catch (Exception ex) {
 
-	    if (ex instanceof BSoDException)
+	    if (ex instanceof BSoDException) {
+
+		    entityManager.getTransaction().rollback();
 		throw ex;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());
@@ -321,8 +322,10 @@ public class SAempleadosImp implements SAEmpleados {
 		    + dniEmpleado);
 	} catch (Exception ex) {
 
-	    if (ex instanceof BSoDException)
+	    if (ex instanceof BSoDException) {
+		    entityManager.getTransaction().rollback();
 		throw ex;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());
@@ -366,8 +369,10 @@ public class SAempleadosImp implements SAEmpleados {
 	    throw new BSoDException("No se encontraron empleados");
 	} catch (Exception ex) {
 
-	    if (ex instanceof BSoDException)
+	    if (ex instanceof BSoDException) {
+		    entityManager.getTransaction().rollback();
 		throw ex;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());
@@ -423,8 +428,10 @@ public class SAempleadosImp implements SAEmpleados {
 
 	} catch (Exception ex) {
 
-	    if (ex instanceof BSoDException)
+	    if (ex instanceof BSoDException) {
+		    entityManager.getTransaction().rollback();
 		throw ex;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());
@@ -507,8 +514,10 @@ public class SAempleadosImp implements SAEmpleados {
 
 	    asignadasCorrecto = false;
 
-	    if (ex instanceof BSoDException)
+	    if (ex instanceof BSoDException) {
+		    entityManager.getTransaction().rollback();
 		throw ex;
+	    }
 	    else {
 		entityManager.getTransaction().rollback();
 		throw new BSoDException(ex.getLocalizedMessage());

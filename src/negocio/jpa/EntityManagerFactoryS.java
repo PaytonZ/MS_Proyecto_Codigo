@@ -13,6 +13,8 @@ public class EntityManagerFactoryS {
 	if (entityManagerFactoryInstance == null)
 	    entityManagerFactoryInstance = Persistence
 		    .createEntityManagerFactory(HotelManager.UNIDAD_PERSISTENCIA_ECLIPSELINK);
+//	entityManagerFactoryInstance = Persistence
+//		.createEntityManagerFactory("$objectdb/db/hotelmanager.odb");
 	return entityManagerFactoryInstance;
 
     }

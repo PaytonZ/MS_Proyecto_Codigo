@@ -1,0 +1,114 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 16:51:43 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 2960@W7
+
+[2014-01-29 16:51:43 #2 type.registry] 
+New type negocio.departamentos.objetonegocio.Departamento
+
+[2014-01-29 16:51:43 #3 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 16:51:43 #4 type.registry] 
+New type negocio.empleados.objetonegocio.Empleado
+
+[2014-01-29 16:51:43 #5 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 16:51:43 #6 type.registry] 
+New type negocio.tareas.objetonegocio.Tarea
+
+[2014-01-29 16:51:43 #7 type.registry] 
+New type negocio.empleados.objetonegocio.Empleado$TipoEmpleado
+
+[2014-01-29 16:51:43 #8 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
+[2014-01-29 16:51:43 #9 type.registry] 
+New type com.objectdb.o.LMT
+
+[2014-01-29 16:51:43 #10 type.registry] 
+New type com.objectdb.o.VAL
+
+[2014-01-29 16:51:43 #11 type.registry] 
+New type com.objectdb.o.RFV
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 16:57:22 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' has been recovered (tr. 1-5)
+
+[2014-01-29 16:57:22 #2 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 2660@W7
+
+[2014-01-29 16:57:22 #3 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 16:57:22 #4 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 16:57:22 #5 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 17:01:12 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' has been recovered (tr. 6-6)
+
+[2014-01-29 17:01:12 #2 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 1352@W7
+
+[2014-01-29 17:01:12 #3 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 17:01:12 #4 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 17:01:12 #5 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 17:02:35 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 6132@W7
+
+[2014-01-29 17:02:35 #2 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 17:02:35 #3 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 17:02:35 #4 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 17:05:56 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' has been recovered (tr. 7-7)
+
+[2014-01-29 17:05:56 #2 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 8008@W7
+
+[2014-01-29 17:05:56 #3 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 17:05:56 #4 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 17:05:56 #5 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2014-01-29 17:06:36 #1 store] 
+Database 'C:\Users\Daniel\Documents\GitHub\MS_Proyecto_Codigo\db\hotelmanager.odb' is opened by 1736@W7
+
+[2014-01-29 17:06:36 #2 type] 
+Type negocio.departamentos.objetonegocio.Departamento is not enhanced.
+
+[2014-01-29 17:06:36 #3 type] 
+Type negocio.empleados.objetonegocio.Empleado is not enhanced.
+
+[2014-01-29 17:06:36 #4 type] 
+Type negocio.tareas.objetonegocio.Tarea is not enhanced.
+
