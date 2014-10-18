@@ -9,5 +9,5 @@ Best proyect of the subject "Software Modeling" Course(MS) 2013/2014
 
 
 Emilio Álvarez Piñerio<br>
-Juan Luis Pérez Valbuena
+Juan Luis Pérez Valbuena<br>
 Daniel Serrano Torres<br>
